@@ -3,12 +3,12 @@
 // Ces valeurs ne sont pas secrètes (elles identifient le projet) ; la sécurité repose sur firestore.rules.
 // Console Firebase → Paramètres du projet → Vos applications → Application Web → Configuration.
 export const firebaseConfig = {
-  apiKey: "REMPLACER",
-  authDomain: "REMPLACER.firebaseapp.com",
-  projectId: "REMPLACER",
-  storageBucket: "REMPLACER.appspot.com",
-  messagingSenderId: "REMPLACER",
-  appId: "REMPLACER"
+  apiKey: "AIzaSyBZ3GnfcaCtYnINGi8h2vOsTITpEojW-Po",
+  authDomain: "guardian-angel-62a43.firebaseapp.com",
+  projectId: "guardian-angel-62a43",
+  storageBucket: "guardian-angel-62a43.firebasestorage.app",
+  messagingSenderId: "148203669220",
+  appId: "1:148203669220:web:b02c9bd7d0ea9420004ef1"
 };
 
 // Mettre à true pour utiliser les émulateurs locaux (npm run emulators).

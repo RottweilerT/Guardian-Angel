@@ -94,7 +94,7 @@ Le guide pas à pas (clic par clic) est dans le document « Guardian Angel — m
 4. **Actions → Déploiement Firebase → Run workflow**, puis **Actions → Import des lectures → Run workflow**.
 5. Ouvrir `https://VOTRE-PROJET.web.app`.
 
-Facultatif : remplacer `VOTRE-PROJET-FIREBASE` dans `.firebaserc` (utile seulement pour les commandes `firebase` lancées depuis votre ordinateur).
+Projet Firebase : `guardian-angel-62a43` (déjà renseigné dans `.firebaserc` et `public/firebase-config.js`).
 
 ## Ajouter des lectures
 
