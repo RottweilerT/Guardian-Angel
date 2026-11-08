@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-09",
+  "titre": "Dédicace de la basilique du Latran",
+  "rang": "fete",
+  "couleur": "blanc",
+  "saint": "Cathédrale de l'évêque de Rome, « mère et tête de toutes les églises »",
+  "lectures": [
+    {
+      "type": "lecture1",
+      "ref": "Ez 47, 1-2.8-9.12",
+      "intro": "Lecture du livre du prophète Ézékiel",
+      "resume": "Dans sa vision, le prophète voit une eau jaillir du Temple et devenir un fleuve qui assainit tout sur son passage ; sur ses rives poussent des arbres dont les fruits nourrissent et les feuilles guérissent."
+    },
+    {
+      "type": "psaume",
+      "ref": "Ps 45 (46)"
+    },
+    {
+      "type": "lecture2",
+      "ref": "1 Co 3, 9c-11.16-17",
+      "intro": "Lecture de la première lettre de saint Paul apôtre aux Corinthiens (au choix)",
+      "resume": "Vous êtes la maison que Dieu construit, bâtie sur l'unique fondation qu'est Jésus Christ ; vous êtes le sanctuaire de Dieu, et l'Esprit habite en vous."
+    },
+    {
+      "type": "evangile",
+      "ref": "Jn 2, 13-22",
+      "intro": "Évangile de Jésus Christ selon saint Jean",
+      "resume": "Jésus chasse les marchands du Temple et annonce : détruisez ce sanctuaire, en trois jours je le relèverai. Il parlait du sanctuaire de son corps, ce que les disciples comprirent après sa résurrection."
+    }
+  ]
+}

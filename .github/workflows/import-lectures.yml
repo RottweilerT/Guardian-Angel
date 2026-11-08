@@ -1,0 +1,42 @@
+name: Import des lectures
+
+# Envoie les fichiers data/lectures/*.json dans Firestore (collection `jours`).
+# Se lance tout seul quand un fichier de lectures est ajouté ou modifié sur main,
+# ou à la main depuis l'onglet Actions.
+# À VENIR : une tâche planifiée de récupération automatique (scraping) — source à définir.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/lectures/**"
+  workflow_dispatch:
+    inputs:
+      since:
+        description: "N'importer qu'à partir de cette date (AAAA-MM-JJ) — vide = tout"
+        default: ""
+
+concurrency:
+  group: import-lectures
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --omit=dev --no-audit --no-fund
+      - name: Vérifier les fichiers
+        run: node scripts/import-lectures.mjs --check
+      - name: Écrire dans Firestore
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.since }}" ]; then ARGS="--since ${{ inputs.since }}"; fi
+          node scripts/import-lectures.mjs $ARGS

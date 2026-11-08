@@ -1,0 +1,38 @@
+rules_version = '2';
+
+// Règles de sécurité Firestore — Guardian Angel
+//  - jours/{date}             : lectures du jour, lisibles par tous, écrites uniquement par l'import (Admin SDK)
+//  - users/{uid}/notes/{date} : notes privées ; chaque personne connectée ne voit et ne modifie que les siennes
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+
+    match /jours/{date} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /users/{uid}/notes/{date} {
+      function isOwner() { return signedIn() && request.auth.uid == uid; }
+      function validNote() {
+        let d = request.resource.data;
+        return date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+          && d.date == date
+          && d.keys().hasOnly(['date', 'titreJour', 'eglise', 'celebrant', 'homelie', 'perso', 'updatedAt'])
+          && (!('titreJour' in d) || (d.titreJour is string && d.titreJour.size() < 300))
+          && (!('eglise' in d)    || (d.eglise is string    && d.eglise.size() < 300))
+          && (!('celebrant' in d) || (d.celebrant is string && d.celebrant.size() < 300))
+          && (!('homelie' in d)   || (d.homelie is string   && d.homelie.size() < 50000))
+          && (!('perso' in d)     || (d.perso is string     && d.perso.size() < 20000));
+      }
+      allow read, delete: if isOwner();
+      allow create, update: if isOwner() && validNote();
+    }
+
+    // Tout le reste est fermé.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+node_modules/
+.firebase/
+*.log
+firebase-debug*.log
+firestore-debug.log
+ui-debug.log
+.env
+.env.*
+# clés de compte de service : ne JAMAIS les committer
+*service-account*.json
+*-firebase-adminsdk-*.json
+.DS_Store

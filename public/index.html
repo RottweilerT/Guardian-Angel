@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guardian Angel</title>
+<meta name="description" content="Guardian Angel : l'ordinaire de la messe, les lectures du jour et vos notes sur l'homélie.">
+<meta name="theme-color" content="#f7f3ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1b1916" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Guardian Angel">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="banner" class="banner" hidden></div>
+
+<div id="app">
+<header>
+  <div class="band" id="band"></div>
+  <div class="hrow">
+    <span class="brand">✠ <span class="full">Guardian Angel</span></span>
+    <button class="icon" id="zoomOut" aria-label="Texte plus petit">A−</button>
+    <button class="icon" id="zoomIn" aria-label="Texte plus grand">A+</button>
+    <button class="icon" id="wake" aria-label="Garder l'écran allumé" title="Garder l'écran allumé">☀</button>
+    <div class="tabs">
+      <button class="tab on" data-view="messe">Messe</button>
+      <button class="tab" data-view="notes">Mes notes</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap" id="wrap">
+  <section id="view-messe">
+    <div class="hero">
+      <div class="datenav">
+        <button class="arrow" id="prev" aria-label="Jour précédent">‹</button>
+        <label class="datelabel"><span id="dateTxt"></span><input type="date" id="datePick" aria-label="Choisir une date"></label>
+        <button class="arrow" id="next" aria-label="Jour suivant">›</button>
+      </div>
+      <button class="today" id="goToday" hidden>Revenir à aujourd'hui</button>
+      <h1 id="titre"></h1>
+      <div class="sub" id="sousTitre"></div>
+      <div class="chips" id="chips"></div>
+      <div class="saint" id="saint"></div>
+    </div>
+    <div class="toolbar">
+      <div class="seg" id="langSeg">
+        <button data-l="fr">Français</button><button data-l="both">FR + Latin</button><button data-l="la">Latin</button>
+      </div>
+      <div class="seg" id="readSeg"><button data-r="full">Texte complet</button><button data-r="short">Références</button></div>
+      <div class="seg" id="foldSeg"><button data-f="open">Tout déplier</button><button data-f="close">Replier</button></div>
+      <select class="sel" id="messeSel" hidden aria-label="Choix de la messe"></select>
+    </div>
+    <div class="jump">
+      <button data-j="p-ouverture">Ouverture</button>·
+      <button data-j="p-parole">Parole</button>·
+      <button data-j="p-eucharistie">Eucharistie</button>·
+      <button data-j="p-envoi">Envoi</button>·
+      <button data-j="notesBox">Mes notes</button>
+    </div>
+    <div id="mass"></div>
+  </section>
+
+  <section id="view-notes" hidden>
+    <div class="hero"><h1>Mes notes</h1><div class="sub">Homélies et pensées, jour après jour</div></div>
+    <div class="account">
+      <span class="who" id="who"></span>
+      <button class="btn ghost small" id="exportMd">Exporter (.md)</button>
+      <button class="btn ghost small" id="exportJson">Exporter (.json)</button>
+      <label class="btn ghost small">Importer un fichier<input type="file" id="importFile" accept=".json,application/json" hidden></label>
+      <button class="btn ghost small" id="importPaste">Coller depuis le presse-papiers</button>
+      <button class="btn ghost small" id="logout" hidden>Se connecter avec Google</button>
+      <button class="btn ghost small danger" id="deleteAccount" hidden>Supprimer mon compte et mes notes</button>
+    </div>
+    <input class="search" id="search" placeholder="Rechercher dans mes notes…">
+    <div class="nlist" id="nlist"></div>
+  </section>
+
+  <footer>Guardian Angel · calendrier romain (France) · <a href="/confidentialite">Confidentialité et mentions légales</a></footer>
+</div>
+
+<button class="fab" id="fab">✎ Notes</button>
+</div>
+
+<div class="notes" id="notesBox">
+  <h3>Notes sur l'homélie</h3>
+  <div class="row"><input id="n-eglise" placeholder="Église / lieu"><input id="n-celebrant" placeholder="Célébrant"></div>
+  <label for="n-homelie">Ce que j'ai retenu du sermon</label>
+  <textarea id="n-homelie" placeholder="Idées principales, citations, références…"></textarea>
+  <label for="n-perso">Résolution · prière · question</label>
+  <textarea id="n-perso" class="small" placeholder="Ce que je veux vivre cette semaine…"></textarea>
+  <div class="status" id="saveStatus"></div>
+  <p class="sync" id="noteSync" hidden>Notes enregistrées sur cet appareil. <a href="#" id="noteLogin">Se connecter avec Google</a> pour les retrouver partout.</p>
+</div>
+<div class="toast" id="toast"></div>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>
