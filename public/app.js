@@ -139,7 +139,8 @@ const LABEL = {
 function lectureBlock(l, extraAfter = "", extraBefore = "") {
   const label = LABEL[l.type] || (l.type ? l.type.charAt(0).toUpperCase() + l.type.slice(1) : "Lecture");
   let inner = extraBefore;
-  if (l.titre && S.read === "full") inner += `<p class="intro">${esc(l.titre)}</p>`;
+  const intro = l.titre || l.intro;
+  if (intro && S.read === "full") inner += `<p class="intro">${esc(intro)}</p>`;
   if (l.refrain) inner += `<p class="refrain">${esc(l.refrain)}</p>`;
   if (S.read === "full" && l.contenu) inner += `<div class="lecture">${sanitize(l.contenu)}</div>`;
   else if (l.resume) inner += `<p class="resume">${esc(l.resume)}</p>`;
