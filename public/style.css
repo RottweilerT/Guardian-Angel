@@ -1,10 +1,24 @@
 :root{
-  --paper:#f7f3ea; --card:#fffdf8; --ink:#2a2622; --muted:#7a7066; --line:#e4dccd;
-  --rubric:#a3271f; --lit:#3d7a4f;
+  /* Charte graphique Guardian Angel — couleurs tirées du logo (voir CHARTE.md) */
+  --nuit:#172c53;      /* bleu nuit du manteau */
+  --ciel:#335686;      /* bleu du ciel */
+  --or:#c9973f;        /* or de la médaille et du halo */
+  --or-clair:#f4cfab;  /* lumière du halo */
+  --aube:#e1bca3;      /* pêche du lever du jour */
+  --ivoire:#fef7ea;    /* robe et lumière */
+  --danger:#a3271f;
+
+  --paper:#fbf6ec; --card:#fffdf8; --ink:#1b2440; --muted:#6b6f80; --line:#e6dccb;
+  --rubric:#24407e;    /* titres, liens, accents */
+  --rub-text:#8f6420;  /* rubriques en italique (or foncé lisible) */
+  --mark:#b8862f;      /* ℟ ℣ */
+  --accent-bg:var(--nuit); --accent-fg:#f4d9a6;
+  --lit:#3d7a4f;
   --serif:"EB Garamond",Georgia,serif; --sc:"Cormorant SC","EB Garamond",serif;
 }
 @media (prefers-color-scheme:dark){
-  :root{--paper:#1b1916;--card:#24211d;--ink:#ece5d8;--muted:#a59a8b;--line:#3a352e;--rubric:#e0796c}
+  :root{--paper:#0e1830;--card:#152345;--ink:#f3ead8;--muted:#a9b0c4;--line:#273a63;
+        --rubric:#e2b569;--rub-text:#e2b569;--mark:#e2b569;--accent-bg:#e2b569;--accent-fg:#172c53;--danger:#ff8a7a}
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.5}
@@ -136,3 +150,23 @@ footer a{color:var(--muted)}
 .legal h1{text-align:left}
 .legal h2{font-family:var(--sc);color:var(--rubric);margin-top:28px}
 .legal a{color:var(--rubric)}
+
+/* --- Charte graphique Guardian Angel --- */
+body{background-image:linear-gradient(180deg,rgba(225,188,163,.18),transparent 320px)}
+.brand{display:inline-flex;align-items:center;gap:8px;color:var(--rubric)}
+.brand img{width:30px;height:30px;border-radius:50%;box-shadow:0 0 0 2px var(--or),0 0 10px rgba(201,151,63,.45)}
+.hero .logo{width:84px;height:84px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px var(--or),0 0 24px rgba(244,207,171,.9)}
+h1{color:var(--rubric)}
+.rub{color:var(--rub-text)}
+.r:before,.v:before,.proper .refrain:before{color:var(--mark)}
+.tab.on,.seg button.on{background:var(--accent-bg);color:var(--accent-fg);border-color:var(--accent-bg)}
+.btn{background:var(--accent-bg);color:var(--accent-fg);border-color:var(--accent-bg)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.danger{color:var(--danger);border-color:var(--danger)}
+.fab{background:var(--accent-bg);color:var(--accent-fg);box-shadow:0 4px 16px rgba(23,44,83,.35)}
+.hrow .icon.on{background:var(--or);color:var(--nuit);border-color:var(--or)}
+.notes{border-color:var(--or)}
+.part>h2:after{background:var(--or);opacity:1}
+.item{border-color:var(--line)}
+.todo{border-color:var(--or)}
+.legal .logo{width:72px;height:72px;border-radius:50%;box-shadow:0 0 0 3px var(--or)}

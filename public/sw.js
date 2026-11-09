@@ -1,7 +1,7 @@
 // Service worker : l'application s'ouvre même sans réseau (dans une église sans couverture, par ex.).
 // Les données (lectures, notes) sont gérées hors ligne par le cache persistant de Firestore.
-const VERSION = "guardian-v3";
-const SHELL = ["/", "/index.html", "/style.css", "/app.js", "/liturgie.js", "/ordinaire.js", "/firebase-config.js", "/manifest.webmanifest", "/icons/icon.svg", "/confidentialite.html"];
+const VERSION = "guardian-v4";
+const SHELL = ["/", "/index.html", "/style.css", "/app.js", "/liturgie.js", "/ordinaire.js", "/firebase-config.js", "/manifest.webmanifest", "/icons/favicon-32.png", "/img/logo-96.png", "/img/logo-240.png", "/confidentialite.html"];
 const RUNTIME_HOSTS = ["www.gstatic.com", "fonts.googleapis.com", "fonts.gstatic.com"];
 
 self.addEventListener("install", e => {

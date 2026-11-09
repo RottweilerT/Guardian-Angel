@@ -61,7 +61,8 @@ guardian-angel/
 │   ├── firebase-config.js     # config pour le développement hors Hosting
 │   ├── sw.js                  # service worker (hors ligne)
 │   ├── manifest.webmanifest   # installation sur l'écran d'accueil
-│   └── icons/
+│   ├── icons/                 # icônes de l’application (logo)
+│   └── img/                   # logo rond, image de partage
 ├── data/lectures/             # un fichier JSON par jour
 ├── scripts/
 │   ├── import-lectures.mjs    # data/lectures → Firestore
@@ -178,6 +179,10 @@ Sans Firebase, `npx serve public` suffit : calendrier, ordinaire et notes locale
 - [ ] Rappel de la messe du dimanche (notifications)
 - [ ] Étiquettes et recherche par livre biblique dans les notes
 - [ ] Publication Google Play (application Android autour du site)
+
+## Charte graphique
+
+Logo, couleurs et typographie : voir [`CHARTE.md`](CHARTE.md).
 
 ## Licence
 
