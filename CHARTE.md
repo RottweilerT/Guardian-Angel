@@ -6,10 +6,10 @@ L'ange gardien au manteau bleu nuit, avec la médaille d'or, qui accompagne un r
 
 | Fichier | Usage |
 | --- | --- |
-| `public/icons/icon-512.png`, `icon-192.png` | icône de l'application (écran d'accueil, magasins d'applications) |
-| `public/icons/icon-maskable-512.png` | icône Android adaptative (image entourée de bleu nuit) |
-| `public/icons/apple-touch-icon.png` | icône iPhone / iPad (180 px) |
-| `public/icons/favicon-32.png`, `favicon-64.png` | onglet du navigateur (recadrage sur l'ange et le chien) |
+| `public/icons/icon-512-v2.png`, `icon-192-v2.png` | icône de l'application (écran d'accueil, magasins d'applications) |
+| `public/icons/icon-maskable-512-v2.png` | icône Android adaptative (image entourée de bleu nuit) |
+| `public/icons/apple-touch-icon-v2.png` | icône iPhone / iPad (180 px) |
+| `public/icons/favicon-32-v2.png`, `favicon-64-v2.png` | onglet du navigateur (recadrage sur l'ange et le chien) |
 | `public/img/logo-96.png`, `logo-240.png` | logo rond (en-tête, page d'accueil) |
 | `public/img/og-image.jpg` | aperçu lors du partage d'un lien |
 | `public/img/guardian-angel-800.jpg` | illustration complète (800 px) |
