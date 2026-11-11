@@ -1,12 +1,11 @@
 node_modules/
 .firebase/
 *.log
-firebase-debug*.log
-firestore-debug.log
-ui-debug.log
 .env
 .env.*
+public/vendor/
 # clés de compte de service : ne JAMAIS les committer
 *service-account*.json
 *-firebase-adminsdk-*.json
+guardian-angel-62a43-*.json
 .DS_Store

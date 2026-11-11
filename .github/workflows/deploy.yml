@@ -1,33 +1,32 @@
 name: Déploiement Firebase
-
 on:
   push:
     branches: [main]
-    paths:
-      - "public/**"
-      - "firebase.json"
-      - "firestore.rules"
-      - "firestore.indexes.json"
-      - ".github/workflows/deploy.yml"
+    paths: ["public/**", "scripts/fetch-churches.mjs", "firebase.json", "firestore.rules", "firestore.indexes.json", ".github/workflows/deploy.yml"]
+  schedule:
+    - cron: "23 3 * * 1"   # chaque lundi : rafraîchit les données OpenStreetMap
   workflow_dispatch:
-
-concurrency:
-  group: deploy
-  cancel-in-progress: false
-
+concurrency: { group: deploy, cancel-in-progress: false }
+permissions:
+  contents: write
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Tests avant déploiement
+        with: { node-version: 20 }
+      - name: Tests
         run: node --test tests/*.test.mjs
+      - name: Bibliothèque de carte (copie locale, aucun CDN tiers)
+        run: |
+          npm install --no-save --no-audit --no-fund leaflet@1.9.4
+          mkdir -p public/vendor/leaflet
+          cp -r node_modules/leaflet/dist/leaflet.js node_modules/leaflet/dist/leaflet.css node_modules/leaflet/dist/images node_modules/leaflet/LICENSE public/vendor/leaflet/
+      - name: Données des églises (OpenStreetMap, ODbL)
+        run: node scripts/fetch-churches.mjs
       - name: Clé du compte de service
-        env:
-          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        env: { SA: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" }
         run: |
           printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
           echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/sa.json" >> "$GITHUB_ENV"
@@ -36,3 +35,8 @@ jobs:
       - name: Nettoyage
         if: always()
         run: rm -f "$RUNNER_TEMP/sa.json"
+      - name: Conserver l'extraction dans le dépôt
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/churches.json
+          git diff --cached --quiet || { git commit -qm "Données : extraction OpenStreetMap [skip ci]"; git push -q || echo "push ignoré"; }

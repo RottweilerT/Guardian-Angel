@@ -2,110 +2,33 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guardian Angel</title>
-<meta name="description" content="Guardian Angel : l'ordinaire de la messe, les lectures du jour et vos notes sur l'homélie.">
-<meta name="theme-color" content="#172c53" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0e1830" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Églises de Paris, missel, journal spirituel, missions paroissiales et passeport des églises.">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/icons/favicon-32-v2.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/icons/favicon-64-v2.png" sizes="64x64" type="image/png">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon-v2.png">
-<meta property="og:title" content="Guardian Angel">
-<meta property="og:description" content="L'ordinaire de la messe, les lectures du jour et vos notes sur l'homélie.">
-<meta property="og:image" content="/img/og-image.jpg">
-<meta property="og:type" content="website">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Guardian Angel">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/css/ds.css">
 </head>
 <body>
-<div id="banner" class="banner" hidden></div>
-
-<div id="app">
-<header>
-  <div class="band" id="band"></div>
-  <div class="hrow">
-    <span class="brand"><img src="/img/logo-96.png" alt="" width="30" height="30"><span class="full">Guardian Angel</span></span>
-    <button class="icon" id="zoomOut" aria-label="Texte plus petit">A−</button>
-    <button class="icon" id="zoomIn" aria-label="Texte plus grand">A+</button>
-    <button class="icon" id="wake" aria-label="Garder l'écran allumé" title="Garder l'écran allumé">☀</button>
-    <div class="tabs">
-      <button class="tab on" data-view="messe">Messe</button>
-      <button class="tab" data-view="notes">Mes notes</button>
-    </div>
-  </div>
-</header>
-
-<div class="wrap" id="wrap">
-  <section id="view-messe">
-    <div class="hero">
-      <img class="logo" src="/img/logo-240.png" alt="Guardian Angel" width="84" height="84">
-      <div class="datenav">
-        <button class="arrow" id="prev" aria-label="Jour précédent">‹</button>
-        <label class="datelabel"><span id="dateTxt"></span><input type="date" id="datePick" aria-label="Choisir une date"></label>
-        <button class="arrow" id="next" aria-label="Jour suivant">›</button>
-      </div>
-      <button class="today" id="goToday" hidden>Revenir à aujourd'hui</button>
-      <h1 id="titre"></h1>
-      <div class="sub" id="sousTitre"></div>
-      <div class="chips" id="chips"></div>
-      <div class="saint" id="saint"></div>
-    </div>
-    <div class="toolbar">
-      <div class="seg" id="langSeg">
-        <button data-l="fr">Français</button><button data-l="both">FR + Latin</button><button data-l="la">Latin</button>
-      </div>
-      <div class="seg" id="readSeg"><button data-r="full">Texte complet</button><button data-r="short">Références</button></div>
-      <div class="seg" id="foldSeg"><button data-f="open">Tout déplier</button><button data-f="close">Replier</button></div>
-      <select class="sel" id="messeSel" hidden aria-label="Choix de la messe"></select>
-    </div>
-    <div class="jump">
-      <button data-j="p-ouverture">Ouverture</button>·
-      <button data-j="p-parole">Parole</button>·
-      <button data-j="p-eucharistie">Eucharistie</button>·
-      <button data-j="p-envoi">Envoi</button>·
-      <button data-j="notesBox">Mes notes</button>
-    </div>
-    <div id="mass"></div>
-  </section>
-
-  <section id="view-notes" hidden>
-    <div class="hero"><h1>Mes notes</h1><div class="sub">Homélies et pensées, jour après jour</div></div>
-    <div class="account">
-      <span class="who" id="who"></span>
-      <button class="btn ghost small" id="exportMd">Exporter (.md)</button>
-      <button class="btn ghost small" id="exportJson">Exporter (.json)</button>
-      <label class="btn ghost small">Importer un fichier<input type="file" id="importFile" accept=".json,application/json" hidden></label>
-      <button class="btn ghost small" id="importPaste">Coller depuis le presse-papiers</button>
-      <button class="btn ghost small" id="logout" hidden>Se connecter avec Google</button>
-      <button class="btn ghost small danger" id="deleteAccount" hidden>Supprimer mon compte et mes notes</button>
-    </div>
-    <input class="search" id="search" placeholder="Rechercher dans mes notes…">
-    <div class="nlist" id="nlist"></div>
-  </section>
-
-  <footer>Guardian Angel · calendrier romain (France) · <a href="/confidentialite">Confidentialité et mentions légales</a></footer>
-</div>
-
-<button class="fab" id="fab">✎ Notes</button>
-</div>
-
-<div class="notes" id="notesBox">
-  <h3>Notes sur l'homélie</h3>
-  <div class="row"><input id="n-eglise" placeholder="Église / lieu"><input id="n-celebrant" placeholder="Célébrant"></div>
-  <label for="n-homelie">Ce que j'ai retenu du sermon</label>
-  <textarea id="n-homelie" placeholder="Idées principales, citations, références…"></textarea>
-  <label for="n-perso">Résolution · prière · question</label>
-  <textarea id="n-perso" class="small" placeholder="Ce que je veux vivre cette semaine…"></textarea>
-  <div class="status" id="saveStatus"></div>
-  <p class="sync" id="noteSync" hidden>Notes enregistrées sur cet appareil. <a href="#" id="noteLogin">Se connecter avec Google</a> pour les retrouver partout.</p>
-</div>
-<div class="toast" id="toast"></div>
-
-<script type="module" src="/app.js"></script>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="top"><div class="in">
+  <img src="/img/logo-96.png" alt="" width="32" height="32">
+  <span class="name">Guardian Angel</span><span class="sp"></span>
+  <a class="btn ghost sm" href="#/profil" id="topAccount">Profil</a>
+</div></header>
+<main id="main" tabindex="-1"><div class="skeleton" style="margin-top:40px"></div><div class="skeleton"></div>
+<noscript><p>Cette application nécessite JavaScript.</p></noscript></main>
+<nav class="nav" aria-label="Navigation principale"><div class="in">
+  <a href="#/accueil" data-nav="accueil"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/><path d="M12 20v-6M9.5 11.5h5"/></svg>Accueil</a>
+  <a href="#/carte" data-nav="carte"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.500C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg>Carte</a>
+  <a href="#/missel" data-nav="missel"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 013 3v13H8a3 3 0 01-3-3z"/><path d="M12 8v6M9.500 10.500h5"/></svg>Missel</a>
+  <a href="#/journal" data-nav="journal"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>Journal</a>
+  <a href="#/profil" data-nav="profil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.500-4 4.500-6 8-6s6.500 2 8 6"/></svg>Profil</a>
+</div></nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<dialog id="dlg"></dialog>
+<script type="module" src="/js/app.js"></script>
 </body>
 </html>

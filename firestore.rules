@@ -1,38 +1,69 @@
 rules_version = '2';
-
-// Règles de sécurité Firestore — Guardian Angel
-//  - jours/{date}             : lectures du jour, lisibles par tous, écrites uniquement par l'import (Admin SDK)
-//  - users/{uid}/notes/{date} : notes privées ; chaque personne connectée ne voit et ne modifie que les siennes
+// Guardian Angel — règles de sécurité Firestore.
+// Données privées (users/…) isolées des données publiques (missions publiées). Tout le reste est fermé.
 service cloud.firestore {
   match /databases/{database}/documents {
-
     function signedIn() { return request.auth != null; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+    function isAdmin() { return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    function str(d, k, max) { return !(k in d) || (d[k] is string && d[k].size() <= max); }
+    function isDate(s) { return s is string && s.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$'); }
 
-    match /jours/{date} {
-      allow read: if true;
-      allow write: if false;
-    }
+    // Administrateurs : gérés à la main dans la console Firebase.
+    match /admins/{uid} { allow get: if isOwner(uid); allow list, write: if false; }
 
-    match /users/{uid}/notes/{date} {
-      function isOwner() { return signedIn() && request.auth.uid == uid; }
-      function validNote() {
-        let d = request.resource.data;
-        return date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
-          && d.date == date
-          && d.keys().hasOnly(['date', 'titreJour', 'eglise', 'celebrant', 'homelie', 'perso', 'updatedAt'])
-          && (!('titreJour' in d) || (d.titreJour is string && d.titreJour.size() < 300))
-          && (!('eglise' in d)    || (d.eglise is string    && d.eglise.size() < 300))
-          && (!('celebrant' in d) || (d.celebrant is string && d.celebrant.size() < 300))
-          && (!('homelie' in d)   || (d.homelie is string   && d.homelie.size() < 50000))
-          && (!('perso' in d)     || (d.perso is string     && d.perso.size() < 20000));
+    match /users/{uid} {
+      // Consentement explicite (RGPD art. 9) — préalable à toute écriture de données spirituelles.
+      match /meta/{docId} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && docId == 'consent'
+          && request.resource.data.keys().hasOnly(['version', 'givenAt', 'scope']) && request.resource.data.version is int;
       }
-      allow read, delete: if isOwner();
-      allow create, update: if isOwner() && validNote();
+      function consented() { return exists(/databases/$(database)/documents/users/$(uid)/meta/consent); }
+
+      match /journal/{id} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && consented() && request.resource.data.id == id && isDate(request.resource.data.date)
+          && request.resource.data.keys().hasOnly(['id', 'date', 'categorie', 'eglise', 'egliseId', 'notes', 'passages', 'reflexions', 'intentions', 'updatedAt'])
+          && str(request.resource.data, 'categorie', 40) && str(request.resource.data, 'eglise', 200) && str(request.resource.data, 'egliseId', 40)
+          && str(request.resource.data, 'notes', 20000) && str(request.resource.data, 'passages', 500)
+          && str(request.resource.data, 'reflexions', 20000) && str(request.resource.data, 'intentions', 5000);
+      }
+      match /visits/{churchId} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && consented() && request.resource.data.churchId == churchId && isDate(request.resource.data.date)
+          && request.resource.data.keys().hasOnly(['churchId', 'nom', 'date', 'note', 'updatedAt'])
+          && str(request.resource.data, 'nom', 200) && str(request.resource.data, 'note', 4000);
+      }
+      // Notes de la première version de l'application : lecture et suppression seulement.
+      match /notes/{id} { allow read, delete: if isOwner(uid); allow create, update: if false; }
     }
 
-    // Tout le reste est fermé.
-    match /{document=**} {
-      allow read, write: if false;
+    // Missions : lecture publique des missions publiées ; écriture réservée aux administrateurs.
+    match /missions/{id} {
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow write: if isAdmin();
     }
+    // Candidatures : chacun gère la sienne ; les administrateurs les lisent et en modifient le statut.
+    match /applications/{id} {
+      allow read: if (signedIn() && resource.data.uid == request.auth.uid) || isAdmin();
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid;
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.missionId + '_' + request.auth.uid
+        && get(/databases/$(database)/documents/missions/$(request.resource.data.missionId)).data.status == 'published'
+        && request.resource.data.keys().hasOnly(['uid', 'missionId', 'email', 'message', 'competences', 'disponibilites', 'status', 'createdAt'])
+        && request.resource.data.status == 'envoyée'
+        && str(request.resource.data, 'message', 2000) && str(request.resource.data, 'competences', 300) && str(request.resource.data, 'disponibilites', 300) && str(request.resource.data, 'email', 320);
+      allow update: if isAdmin() && request.resource.data.uid == resource.data.uid;
+    }
+    // Signalements d'erreur sur une fiche d'église.
+    match /reports/{id} {
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid', 'churchId', 'churchName', 'message', 'status', 'createdAt'])
+        && request.resource.data.status == 'nouveau' && request.resource.data.message is string && request.resource.data.message.size() <= 2000
+        && str(request.resource.data, 'churchId', 40) && str(request.resource.data, 'churchName', 200);
+      allow read, update, delete: if isAdmin();
+    }
+    match /{document=**} { allow read, write: if false; }
   }
 }

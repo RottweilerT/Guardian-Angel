@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { liturgie, easter, dn, iso, advent1 } from "../public/liturgie.js";
+import { liturgie, easter, dn, iso, advent1 } from "../public/js/liturgie-romain.js";
 
 const L = (y, m, d) => liturgie(dn(y, m, d));
 
