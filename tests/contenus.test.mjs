@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import { ORDO } from "../public/js/ordo.js";
-import { normalize, QUERY_ARR } from "../scripts/fetch-churches.mjs";
+import { normalize, arrondissements, inside, QUERY } from "../scripts/fetch-churches.mjs";
 const J = p => JSON.parse(readFileSync(new URL(p, import.meta.url), "utf8"));
 const OK = ["PUBLIC_DOMAIN", "OPEN_LICENSE_VERIFIED", "PERMISSION_GRANTED"];
 const STATUTS = [...OK, "PERMISSION_REQUIRED", "LEGAL_REVIEW_REQUIRED", "PROHIBITED"];
@@ -35,17 +35,23 @@ test("lectures : références et résumés seulement", () => {
 test("parcours : structure", () => {
   for (const r of J("../public/data/routes.json").routes) { assert.ok(r.id && r.titre && r.etapes.length >= 3); r.etapes.forEach(s => assert.ok(s.nom && s.texte && s.match.length)); }
 });
-test("extraction OpenStreetMap : normalisation", () => {
-  assert.ok(QUERY_ARR.includes("75101") && QUERY_ARR.includes("75120"));
+test("extraction OpenStreetMap : normalisation et arrondissements", () => {
+  const sq = (n, lat, lon) => ({ type: "relation", tags: { "ref:INSEE": "751" + String(n).padStart(2, "0") }, members: [
+    { type: "way", role: "outer", geometry: [{ lat, lon }, { lat: lat + 0.01, lon }, { lat: lat + 0.01, lon: lon + 0.02 }] },
+    { type: "way", role: "outer", geometry: [{ lat: lat + 0.01, lon: lon + 0.02 }, { lat, lon: lon + 0.02 }, { lat, lon }] }] });
+  const arrs = arrondissements([sq(4, 48.85, 2.34), sq(1, 48.86, 2.33)]);
+  assert.equal(arrs.length, 2);
+  assert.ok(inside(48.853, 2.3499, arrs[0].rings)); assert.ok(!inside(48.853, 2.3499, arrs[1].rings));
   const els = [
     { type: "way", id: 1, center: { lat: 48.853, lon: 2.3499 }, tags: { name: "Cathédrale Notre-Dame de Paris", website: "https://x.example", wheelchair: "yes", service_times: "Su 10:00", wikidata: "Q2981" } },
-    { type: "count", id: 0 }, { type: "count", id: 0 },
-    { type: "node", id: 2, lat: 48.86, lon: 2.34, tags: { name: "Saint-Eustache", "addr:postcode": "75001", wheelchair: "peut-être" } },
+    { type: "node", id: 2, lat: 48.8634, lon: 2.345, tags: { name: "Saint-Eustache", wheelchair: "peut-être" } },
+    { type: "node", id: 5, lat: 48.9, lon: 2.4, tags: { name: "Hors contours", "addr:postcode": "75019" } },
     { type: "node", id: 2, lat: 48.86, lon: 2.34, tags: {} }, { type: "relation", id: 3, tags: { name: "Sans coordonnées" } }
   ];
-  const r = normalize(els, { byArr: true });
-  assert.equal(r.length, 2);
-  const nd = r.find(c => c.id === "w1"), eu = r.find(c => c.id === "n2");
-  assert.equal(nd.arr, 1); assert.equal(eu.arr, 3); assert.equal(nd.serviceTimes, "Su 10:00"); assert.equal(eu.wheelchair, undefined);
-  assert.equal(normalize(els)[1].arr ?? normalize(els)[0].arr, 1);
+  const r = normalize(els, arrs);
+  assert.equal(r.length, 3);
+  const by = id => r.find(c => c.id === id);
+  assert.equal(by("w1").arr, 4); assert.equal(by("n2").arr, 1); assert.equal(by("n5").arr, 19);
+  assert.equal(by("w1").serviceTimes, "Su 10:00"); assert.equal(by("n2").wheelchair, undefined);
+  assert.ok(QUERY.includes("3600007444"));
 });

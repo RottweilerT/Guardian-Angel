@@ -32,6 +32,14 @@ jobs:
           echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/sa.json" >> "$GITHUB_ENV"
       - name: Déployer l'hébergement et les règles Firestore
         run: npx --yes firebase-tools@13 deploy --only hosting,firestore --project "${{ vars.FIREBASE_PROJECT_ID }}" --non-interactive --force
+      - name: Vérifier le site en ligne
+        run: |
+          sleep 5
+          U="https://${{ vars.FIREBASE_PROJECT_ID }}.web.app"
+          N=$(curl -fsS "$U/data/churches.json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).churches.length))")
+          curl -fsS "$U/js/app.js" | grep -q "Guardian Angel — point d'entrée"
+          curl -fsS -o /dev/null "$U/vendor/leaflet/leaflet.js"
+          echo "::notice::Site en ligne vérifié : application v2 servie, bibliothèque de carte présente, $N églises publiées."
       - name: Nettoyage
         if: always()
         run: rm -f "$RUNNER_TEMP/sa.json"
