@@ -11,7 +11,7 @@ const SEL = '["amenity"="place_of_worship"]["religion"="christian"]["denominatio
 // Paris = relation OSM 7444 (aire 3600007444). Requête simple ; l'arrondissement est ensuite calculé localement.
 export const QUERY = `[out:json][timeout:90];area(id:3600007444)->.a;nwr(area.a)${SEL};out center tags;`;
 export const QUERY_NAME = `[out:json][timeout:90];area["boundary"="administrative"]["admin_level"="8"]["name"="Paris"]["ref:INSEE"="75056"]->.a;nwr(area.a)${SEL};out center tags;`;
-export const QUERY_ARR = `[out:json][timeout:90];area(id:3600007444)->.a;relation(area.a)["boundary"="administrative"]["admin_level"="9"]["ref:INSEE"];out geom;`;
+export const QUERY_ARR = `[out:json][timeout:90];relation["boundary"="administrative"]["admin_level"="9"]["ref:INSEE"~"^751"](48.80,2.22,48.91,2.47);out geom;`;
 
 // Point dans un polygone par lancer de rayon sur les segments des contours (l'ordre des segments est indifférent).
 export function inside(lat, lon, rings) {
