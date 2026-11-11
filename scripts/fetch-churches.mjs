@@ -11,7 +11,9 @@ const SEL = '["amenity"="place_of_worship"]["religion"="christian"]["denominatio
 // Paris = relation OSM 7444 (aire 3600007444). Requête simple ; l'arrondissement est ensuite calculé localement.
 export const QUERY = `[out:json][timeout:90];area(id:3600007444)->.a;nwr(area.a)${SEL};out center tags;`;
 export const QUERY_NAME = `[out:json][timeout:90];area["boundary"="administrative"]["admin_level"="8"]["name"="Paris"]["ref:INSEE"="75056"]->.a;nwr(area.a)${SEL};out center tags;`;
-export const QUERY_ARR = `[out:json][timeout:90];relation["boundary"="administrative"]["admin_level"="9"]["ref:INSEE"~"^751"](48.80,2.22,48.91,2.47);out geom;`;
+const ARR = `relation["boundary"="administrative"]["admin_level"="9"]["ref:INSEE"~"^751"](48.80,2.22,48.91,2.47);out geom;`;
+// Une seule requête : églises + contours des arrondissements (un seul créneau Overpass).
+export const QUERY_FULL = QUERY.replace("out center tags;", "out center tags;" + ARR);
 
 // Point dans un polygone par lancer de rayon sur les segments des contours (l'ordre des segments est indifférent).
 export function inside(lat, lon, rings) {
@@ -68,9 +70,12 @@ async function overpass(query) {
 async function main() {
   let churches = [], note = "";
   try {
-    let els; try { els = await overpass(QUERY); } catch { els = []; }
+    let els = [];
+    try { els = await overpass(QUERY_FULL); } catch (e) { note = " (requête complète en échec : " + e.message + ")"; }
+    if (els.length < 50) { try { els = await overpass(QUERY); } catch { els = []; } }
     if (els.length < 50) els = await overpass(QUERY_NAME);
-    let arrs = []; try { arrs = arrondissements(await overpass(QUERY_ARR)); } catch (e) { note = " (arrondissements indisponibles : " + e.message + ")"; }
+    const arrs = arrondissements(els);
+    els = els.filter(e => !(e.type === "relation" && e.tags?.["ref:INSEE"]));
     churches = normalize(els, arrs);
     note += ` — ${arrs.length} arrondissements, ${churches.filter(c => c.arr).length} églises situées`;
   } catch (e) { note = "Extraction impossible : " + e.message; }
