@@ -1,0 +1,20 @@
+name: probe
+on: { push: { branches: [probe-fcm] } }
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for v in 13.1.0 13.0.0 12.11.0 12.4.0 11.10.0 10.12.2; do
+            for m in app auth firestore messaging app-check; do
+              code=$(curl -s -o /tmp/f.js -w "%{http_code}" https://www.gstatic.com/firebasejs/$v/firebase-$m.js)
+              ex=""
+              if [ "$m" = messaging ]; then ex=$(grep -oE "as (register|onRegistered|getToken|deleteToken|unregister|onUnregistered|isSupported|onMessage)\b" /tmp/f.js | sort -u | tr '\n' ' '); fi
+              if [ "$m" = firestore ]; then ex=$(grep -oE "as (persistentLocalCache|persistentMultipleTabManager|initializeFirestore)\b" /tmp/f.js | sort -u | tr '\n' ' '); fi
+              if [ "$m" = auth ]; then ex=$(grep -oE "as (signInAnonymously|signInWithPopup|reauthenticateWithPopup)\b" /tmp/f.js | sort -u | tr '\n' ' '); fi
+              echo "::notice::$v $m $code $ex"
+            done
+          done
+          npm view firebase-admin versions --json | tail -8 | tr -d '\n' | sed 's/^/::notice::admin /'; echo
+          npm view firebase version | sed 's/^/::notice::firebase-latest /'
+          mkdir t && cd t && npm init -y >/dev/null && npm i firebase-admin@13 >/dev/null 2>&1 && grep -rl "fid" node_modules/firebase-admin/lib/messaging/*.js | sed 's/^/::notice::adminfid /'; grep -o '"version": "[^"]*"' node_modules/firebase-admin/package.json | sed 's/^/::notice::admin13 /'
