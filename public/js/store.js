@@ -2,6 +2,7 @@
 //  - sans compte, ou sans consentement explicite : stockage local uniquement (navigateur) ;
 //  - avec compte ET consentement (RGPD art. 9) : Firestore, sous users/{uid}/…
 import { cloud } from "./cloud.js";
+import { deleteAllFor as deletePushFor } from "./push.js";
 export const KINDS = ["journal", "visits"];
 export const CONSENT_VERSION = 1;
 
@@ -89,6 +90,7 @@ export async function deleteAccount() {
   }
   const apps = await fs.getDocs(fs.query(fs.collection(db, "applications"), fs.where("uid", "==", user.uid)));
   for (const d of apps.docs) await fs.deleteDoc(d.ref);
+  await deletePushFor(user.uid).catch(e => console.warn("abonnements", e));
   try { await au.deleteUser(user); }
   catch (e) { if (e.code !== "auth/requires-recent-login") throw e; await au.reauthenticateWithPopup(user, new au.GoogleAuthProvider()); await au.deleteUser(user); }
   eraseLocal();

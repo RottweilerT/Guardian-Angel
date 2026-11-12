@@ -290,6 +290,22 @@
    "preuve": "",
    "utilise": false,
    "demander_a": "Prestataire retenu ; prédicateur ; paroisse"
+  },
+  {
+   "nom": "Firebase Cloud Messaging (notifications web)",
+   "reference": "https://firebase.google.com/docs/cloud-messaging",
+   "titulaire": "Google LLC",
+   "type": "Service tiers",
+   "licence": "Conditions d'utilisation Firebase / Google Cloud",
+   "verifie_le": "2026-11-12",
+   "mode_verification": "documentation officielle consultée le 12/11/2026",
+   "conditions": "Acheminement des notifications ; identifiant technique de l'appareil transmis à Google et au service push du navigateur. Avenant de traitement des données Google Cloud à accepter.",
+   "attribution": "",
+   "usage_commercial": true,
+   "statut": "OPEN_LICENSE_VERIFIED",
+   "preuve": "",
+   "utilise": true,
+   "demander_a": ""
   }
  ]
 }

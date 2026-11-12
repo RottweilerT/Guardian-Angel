@@ -13,6 +13,7 @@ En ligne : https://guardian-angel-62a43.web.app — **version de démonstration*
 | [`docs/DATA_MODEL.md`](docs/DATA_MODEL.md) · [`docs/schema.sql`](docs/schema.sql) | Modèle de données actuel (Firestore) et schéma cible PostgreSQL/PostGIS |
 | [`docs/CONTENT_RIGHTS_REGISTER.md`](docs/CONTENT_RIGHTS_REGISTER.md) | Registre des licences et droits d'auteur |
 | [`docs/AUTORISATIONS.md`](docs/AUTORISATIONS.md) | Autorisations à demander |
+| [`docs/NOTIFICATIONS.md`](docs/NOTIFICATIONS.md) | Notifications push : fonctionnement, configuration, maintenance |
 | [`docs/RGPD.md`](docs/RGPD.md) | Plan de conformité RGPD |
 | [`docs/RISQUES_JURIDIQUES.md`](docs/RISQUES_JURIDIQUES.md) | Risques et points bloquants avant publication |
 
@@ -55,7 +56,8 @@ public/            application (aucune étape de build)
   js/ordo.js       ordinaire de la messe (latin du domaine public, explications originales)
   js/views/        accueil, carte, missel, journal, missions, passeport, profil
   data/            églises (OSM), lectures (références), parcours, registre des droits
-scripts/           extraction OpenStreetMap, génération du registre
+server/            serveur de notifications (exécuté par GitHub Actions)
+scripts/           extraction OpenStreetMap, génération du registre, vérification du SDK
 tests/             tests unitaires et tests des règles Firestore
 docs/              livrables de conception et de conformité
 ```

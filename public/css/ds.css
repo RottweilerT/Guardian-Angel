@@ -120,3 +120,5 @@ h2.sec:after{content:"";flex:1;height:1px;background:var(--line)}
 .missel h2{font-size:1.1em;text-align:center;color:var(--accent-fg);margin:22px 0 4px;letter-spacing:.08em;text-transform:uppercase;font-size:.78em}
 .band{height:5px;margin:0 -16px}
 .missel .notice{font-family:var(--sans)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+fieldset{border:1px solid var(--line)}

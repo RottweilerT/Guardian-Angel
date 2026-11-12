@@ -10,8 +10,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - name: Syntaxe des modules
-        run: for f in public/js/*.js public/js/views/*.js public/sw.js scripts/*.mjs; do node --check "$f"; done
-      - name: Tests (calendriers, registre des droits, données)
+        run: for f in public/js/*.js public/js/views/*.js public/sw.js scripts/*.mjs server/*.mjs; do node --check "$f"; done
+      - name: Tests (calendriers, registre des droits, données, serveur de notifications)
         run: node --test tests/*.test.mjs
   rules:
     runs-on: ubuntu-latest
@@ -22,5 +22,5 @@ jobs:
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 21 }
       - run: npm install --no-audit --no-fund
-      - name: Règles Firestore (émulateur)
-        run: npx firebase emulators:exec --project demo-guardian --only firestore "node --test tests/rules.spec.mjs"
+      - name: Règles Firestore et serveur de notifications (émulateur)
+        run: npx firebase emulators:exec --project demo-guardian --only firestore "node --test --test-concurrency=1 tests/rules.spec.mjs tests/notify.spec.mjs"

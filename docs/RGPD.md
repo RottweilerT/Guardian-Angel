@@ -23,12 +23,16 @@
 | Journal et passeport synchronisés | Retrouver ses notes sur ses appareils | Consentement explicite (9-2-a) | Dates, lieux, notes, intentions, visites | Jusqu'à suppression ; purge des comptes inactifs à définir (proposition : 3 ans, après notification) |
 | Candidatures | Mise en relation avec une paroisse | Consentement | Message, compétences, disponibilités, e-mail | Jusqu'au retrait ; 12 mois au plus (à confirmer) |
 | Signalements | Qualité des données | Intérêt légitime | Message, identifiant | 12 mois (à confirmer) |
+| Notifications push | Alerter l'utilisateur selon ses choix | Consentement (bouton explicite + autorisation du navigateur), retirable | Identifiant FCM de l'appareil, catégories, état, dates, uid de session | Jusqu'au désabonnement ; purge automatique après 9 mois d'inactivité ou si invalide |
 
 ## Sous-traitants et transferts
 
 - **Google Firebase** (Hosting, Authentication, Firestore — emplacement de la base : UE). Accepter l'avenant de traitement des données Google Cloud ; transferts hors UE encadrés par clauses contractuelles types et Data Privacy Framework ; à documenter.
 - **Fondation OpenStreetMap** (tuiles) : destinataire de l'adresse IP à l'ouverture de la carte ; mentionné dans la politique. Alternative : fournisseur de tuiles européen sous contrat.
-- **GitHub** : code source et automatisation, aucune donnée personnelle d'utilisateur.
+- **GitHub** : code source et automatisation ; le programme d'envoi des notifications lit les abonnements (identifiants techniques) au moment de l'envoi, sans les conserver. GitHub étant établi aux États-Unis, ce traitement relève des transferts hors UE à documenter.
+- **Services push des navigateurs** (Google, Apple, Mozilla, Microsoft) : acheminent les notifications.
+
+Les catégories suivies peuvent révéler un intérêt religieux (comme tout l'usage de l'application) : elles sont limitées à quatre thèmes génériques, ne sont liées à aucune identité sans compte, et ne sont jamais transmises aux services push.
 
 ## À faire avant ouverture au public
 

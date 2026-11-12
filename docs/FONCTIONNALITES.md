@@ -26,6 +26,11 @@ Vérifié le 11 novembre 2026 par les tests automatisés et un parcours complet 
 **Passeport et parcours**
 - Marquer une église comme visitée (date, note), carnet des visites ; trois parcours thématiques reliés aux fiches.
 
+**Notifications push** (code en place ; envoi réel à confirmer après génération de la clé Web Push — voir `NOTIFICATIONS.md`)
+- Abonnement volontaire par bouton, sans compte (session anonyme), multi-appareils ; catégories missions, solennités, informations importantes, nouveautés ; pause ; désabonnement.
+- Envoi automatique à la publication d'une mission et le matin des solennités ; envoi manuel par les administrateurs avec aperçu, confirmation, historique et annulation.
+- Aide à l'installation sur iPhone/iPad ; message dans l'application lorsqu'elle est au premier plan.
+
 **Compte et confidentialité**
 - Utilisation complète sans compte pour les fonctions publiques ; connexion Google facultative ; préférences liturgiques ; export JSON ; suppression du compte et des données ; pages légales (projets) ; registre des sources consultable dans l'application.
 
@@ -42,6 +47,7 @@ Vérifié le 11 novembre 2026 par les tests automatisés et un parcours complet 
 | Comptes paroissiaux vérifiés, espace d'administration, événements, actualités, modération outillée | Développement + procédure de vérification |
 | Dons | Cadre juridique et prestataire de paiement |
 | Connexion e-mail / mot de passe et réinitialisation | Activation du fournisseur dans Firebase + écran dédié |
-| Application native (magasins), notifications | Migration Expo |
+| Application native (magasins) | Migration Expo |
+| Notifications : envoi instantané (aujourd'hui 5 à 20 min) | Cloud Functions, forfait Blaze |
 | Surveillance des erreurs, App Check, alerte de budget | Configuration |
 | Audit d'accessibilité, internationalisation | À planifier |

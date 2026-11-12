@@ -32,6 +32,8 @@ export default function profil(el) {
     <div class="row"><button class="btn ghost" id="exp">Exporter mes données (JSON)</button>
     <button class="btn danger" id="del">${u ? "Supprimer mon compte et mes données" : "Effacer les données de cet appareil"}</button></div>
   </div>
+  <h2 class="sec">Notifications</h2>
+  <div class="card"><p class="small">Alertes pour les nouvelles missions, les grandes fêtes et les annonces importantes.</p><a class="btn ghost" href="#/notifications">Gérer les notifications</a></div>
   <h2 class="sec">Informations</h2>
   <ul class="list">
     <li><a href="#/sources">Sources, licences et droits d'auteur</a></li>

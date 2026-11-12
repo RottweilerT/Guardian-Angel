@@ -167,6 +167,22 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Preuve / autorisation | Fourniture directe par le porteur du projet — justificatif à joindre |
 | Utilisée dans l'application | oui |
 
+### Firebase Cloud Messaging (notifications web)
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://firebase.google.com/docs/cloud-messaging |
+| Titulaire des droits | Google LLC |
+| Type | Service tiers |
+| Licence | Conditions d'utilisation Firebase / Google Cloud |
+| Date de vérification | 2026-11-12 (documentation officielle consultée le 12/11/2026) |
+| Conditions | Acheminement des notifications ; identifiant technique de l'appareil transmis à Google et au service push du navigateur. Avenant de traitement des données Google Cloud à accepter. |
+| Attribution requise | — |
+| Usage commercial | autorisé |
+| Statut | `OPEN_LICENSE_VERIFIED` |
+| Preuve / autorisation | — |
+| Utilisée dans l'application | oui |
+
 ## Ressources non intégrées — AUTORISATION À DEMANDER AVANT INTÉGRATION
 
 ### Traduction liturgique française (Missel romain, lectionnaire, Bible de la liturgie)

@@ -20,22 +20,26 @@ export default async function missions(el) {
   const shown = list.filter(m => !dom || m.domaine === dom);
   box.innerHTML = `
     <div class="row"><select id="md" aria-label="Domaine" style="max-width:240px"><option value="">Tous les domaines</option>${DOMAINES.map(d => `<option${d === dom ? " selected" : ""}>${d}</option>`).join("")}</select>
-      ${cloud.admin ? '<button class="btn sm" id="madd">+ Publier une mission</button>' : ""}</div>
+      ${cloud.admin ? '<button class="btn sm" id="madd">+ Nouvelle mission</button>' : ""}</div>
     ${shown.length ? shown.map(m => { const a = mine.find(x => x.missionId === m.id); return `<div class="card">
         <div class="row between"><span class="chip">${esc(m.domaine || "Autre")}</span>${m.status !== "published" ? '<span class="chip">brouillon</span>' : ""}</div>
         <h3 style="margin:6px 0 2px">${esc(m.titre)}</h3><p class="small muted">${esc(m.paroisse || "")}</p>
         <p style="white-space:pre-wrap">${esc(m.description || "")}</p>
         ${a ? `<p class="small"><strong>Candidature envoyée</strong> — statut : ${esc(a.status || "envoyée")} <button class="btn ghost sm" data-wd="${esc(a.id)}">Retirer</button></p>`
         : `<button class="btn sm" data-apply="${esc(m.id)}">Proposer mon aide</button>`}
-        ${cloud.admin ? ` <button class="btn ghost sm" data-cands="${esc(m.id)}">Candidatures</button> <button class="btn danger sm" data-del="${esc(m.id)}">Supprimer</button>` : ""}</div>`; }).join("")
+        ${cloud.admin ? `${m.status !== "published" ? ` <button class="btn sm" data-pub="${esc(m.id)}">Publier</button>` : ""} <button class="btn ghost sm" data-cands="${esc(m.id)}">Candidatures</button> <button class="btn danger sm" data-del="${esc(m.id)}">Supprimer</button>` : ""}</div>`; }).join("")
     : `<div class="empty">Aucune mission publiée pour le moment.<br><span class="small">Les paroisses pourront publier leurs besoins après vérification de leur compte.</span></div>`}
     <div class="notice rights small">Seuls les comptes vérifiés par l'équipe peuvent publier au nom d'une paroisse. Les dons et collectes en ligne ne sont pas proposés : cadre juridique et prestataire de paiement à valider au préalable.</div>`;
   $("#md", el).onchange = e => { dom = e.target.value; missions(el); };
 
   box.onclick = async e => {
-    const t = e.target, ap = t.dataset.apply, wd = t.dataset.wd, del = t.dataset.del, cands = t.dataset.cands;
+    const t = e.target, pub = t.dataset.pub, ap = t.dataset.apply, wd = t.dataset.wd, del = t.dataset.del, cands = t.dataset.cands;
     try {
-      if (ap) {
+      if (pub) {
+        // La publication déclenche la notification automatique (une seule fois, côté serveur).
+        await fs.updateDoc(fs.doc(db, "missions", pub), { status: "published", publishedAt: fs.serverTimestamp() });
+        toast("Mission publiée — les abonnés seront notifiés"); missions(el);
+      } else if (ap) {
         if (!user) { toast("Connectez-vous (Profil) pour proposer votre aide"); return; }
         const r = await modal(`<h2>Proposer mon aide</h2>
           <p class="small muted">Votre message, vos disponibilités et votre adresse e-mail (${esc(user.email || "")}) seront transmis aux responsables de cette mission.</p>
@@ -57,11 +61,15 @@ export default async function missions(el) {
           <label for="xt">Titre</label><input id="xt" maxlength="150"><label for="xp">Paroisse</label><input id="xp" maxlength="150">
           <label for="xd">Domaine</label><select id="xd">${DOMAINES.map(d => `<option>${d}</option>`).join("")}</select>
           <label for="xx">Description</label><textarea id="xx" maxlength="4000"></textarea>
-          <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn ghost" data-close="x">Annuler</button><button class="btn" id="xok">Publier</button></div>`,
-          (d, done) => { $("#xok", d).onclick = () => { if ($("#xt", d).value.trim()) done(JSON.stringify({ titre: $("#xt", d).value.trim(), paroisse: $("#xp", d).value.trim(), domaine: $("#xd", d).value, description: $("#xx", d).value })); }; });
+          <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn ghost" data-close="x">Annuler</button><button class="btn ghost" id="xdraft">Enregistrer en brouillon</button><button class="btn" id="xok">Publier</button></div>`,
+          (d, done) => {
+            const go = status => { if ($("#xt", d).value.trim()) done(JSON.stringify({ titre: $("#xt", d).value.trim(), paroisse: $("#xp", d).value.trim(), domaine: $("#xd", d).value, description: $("#xx", d).value, status })); };
+            $("#xok", d).onclick = () => go("published"); $("#xdraft", d).onclick = () => go("draft");
+          });
         if (!r || r === "x") return;
-        await fs.addDoc(fs.collection(db, "missions"), { ...JSON.parse(r), status: "published", createdBy: user.uid, createdAt: fs.serverTimestamp() });
-        toast("Mission publiée"); missions(el);
+        const m = JSON.parse(r);
+        await fs.addDoc(fs.collection(db, "missions"), { ...m, createdBy: user.uid, createdAt: fs.serverTimestamp(), ...(m.status === "published" ? { publishedAt: fs.serverTimestamp() } : {}) });
+        toast(m.status === "published" ? "Mission publiée — les abonnés seront notifiés" : "Brouillon enregistré"); missions(el);
       }
     } catch (err) { console.error(err); toast("Action impossible"); }
   };
