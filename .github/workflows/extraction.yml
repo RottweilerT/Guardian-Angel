@@ -1,0 +1,25 @@
+name: Extraction OSM Paris
+on:
+  push: { branches: [donnees-osm-paris], paths: ["osm_paris.py", ".github/workflows/extraction.yml"] }
+  workflow_dispatch:
+permissions: { contents: write }
+jobs:
+  extraire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Extraction (Overpass)
+        run: python3 osm_paris.py --dossier donnees
+      - name: Contrôle indépendant (GDAL / ogr2ogr, comme QGIS)
+        run: |
+          sudo apt-get -qq update && sudo apt-get -qq install -y gdal-bin >/dev/null
+          for f in donnees/*.geojson; do echo "::notice::$(ogrinfo -ro -so -al "$f" | grep -E 'Feature Count|Geometry:' | tr '\n' ' ') — $(basename $f)"; done
+      - name: Résumé
+        run: echo "::notice::$(grep -E '^\| (rues|eglises|rues_et)' donnees/rapport_extraction.md | tr '\n' ' ')"
+      - name: Enregistrer les fichiers
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add donnees && git commit -qm "Extraction OSM Paris $(date -u +%F)" && git push -q
