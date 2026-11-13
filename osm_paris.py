@@ -131,6 +131,7 @@ def rues(elements, arrs):
         geom = {"type": "Polygon", "coordinates": [orienter(coords, True)]} if aire else {"type": "LineString", "coordinates": coords}
         mid = centre(coords[:-1]) if aire else coords[len(coords) // 2]
         traverses = sorted({a["n"] for c in (coords[0], mid, coords[-1]) for a in [trouver_arr(c[0], c[1], arrs)] if a})
+        if arrs and not traverses: continue              # entièrement hors de Paris (repli par emprise rectangulaire)
         a = trouver_arr(mid[0], mid[1], arrs)
         feats.append({"type": "Feature", "id": f"way/{e['id']}", "geometry": geom, "properties": {
             "categorie": "rue", "osm_id": f"way/{e['id']}", "osm_type": "way", "osm_ref": e["id"],
