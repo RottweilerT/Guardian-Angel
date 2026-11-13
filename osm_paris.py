@@ -36,12 +36,12 @@ SEL_RUES = 'way["highway"]["name"]'
 SEL_EGL = ['nwr["amenity"="place_of_worship"]["religion"="christian"]',
            'nwr["building"~"^(church|cathedral|chapel|basilica)$"]']
 
-def requete_rues(area): return f"[out:json][timeout:600][maxsize:1073741824];area(id:{area})->.a;{SEL_RUES}(area.a);out tags geom;"
+def requete_rues(area): return f"[out:json][timeout:180][maxsize:1073741824];area(id:{area})->.a;{SEL_RUES}(area.a);out tags geom;"
 def requete_eglises(area): return f"[out:json][timeout:300];area(id:{area})->.a;(" + "".join(s + "(area.a);" for s in SEL_EGL) + ");out tags geom;"
 
 def log(*a): print(*a, flush=True)
 
-def overpass(q, essais=3):
+def overpass(q, essais=2, delai=240):
     """Envoie une requête Overpass, avec plusieurs serveurs et tentatives (attente croissante)."""
     derniere = None
     for t in range(essais):
@@ -49,14 +49,14 @@ def overpass(q, essais=3):
             try:
                 data = urllib.parse.urlencode({"data": q}).encode()
                 req = urllib.request.Request(url, data=data, headers={"User-Agent": "extraction-paris-osm/1.0 (usage personnel)"})
-                with urllib.request.urlopen(req, timeout=900) as r:
+                with urllib.request.urlopen(req, timeout=delai) as r:
                     j = json.loads(r.read().decode("utf-8"))
                 if "remark" in j and "runtime error" in j["remark"]:
                     raise RuntimeError(j["remark"][:200])
                 return j.get("elements", [])
             except Exception as e:
                 derniere = e; log(f"::warning::Overpass {url} : {str(e)[:200]}")
-        time.sleep(20 * (t + 1))
+        time.sleep(15 * (t + 1))
     raise RuntimeError(f"Overpass indisponible : {derniere}")
 
 # ---------- Géométrie ----------
@@ -260,7 +260,8 @@ def verifier(fc):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--dossier", default=".")
-    ap.add_argument("--par-arrondissement", action="store_true", help="interroge chaque arrondissement séparément")
+    ap.add_argument("--par-arrondissement", action="store_true", help="interroge chaque arrondissement séparément (rues et églises)")
+    ap.add_argument("--rues-en-une-requete", action="store_true", help="tente d'abord Paris en une seule requête pour les rues (lourd)")
     o = ap.parse_args(); os.makedirs(o.dossier, exist_ok=True)
     date = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
@@ -269,18 +270,24 @@ def main():
     log(f"    {len(arrs)} arrondissements")
     if len(arrs) != 20: log("    ! nombre d'arrondissements inattendu : le rattachement sera incomplet")
 
-    def extraire(nom, fabrique):
-        if not o.par_arrondissement:
+    def extraire(nom, fabrique, unique=True):
+        if unique and not o.par_arrondissement:
             try:
                 els = overpass(fabrique(PARIS_AREA)); log(f"    {len(els)} éléments (Paris en une requête)"); return els, "Paris en une requête"
             except Exception as ex: log(f"    ! requête unique refusée ({str(ex)[:120]}) : repli par arrondissement")
         els = []
         for a in arrs:
-            part = overpass(fabrique(3600000000 + a["osm_id"])); els += part
+            try: part = overpass(fabrique(3600000000 + a["osm_id"]), essais=3)
+            except Exception:
+                # dernier recours : emprise rectangulaire de l'arrondissement, filtrée ensuite par le polygone
+                xs = [c[0] for r in a["anneaux"] for c in r]; ys = [c[1] for r in a["anneaux"] for c in r]
+                bb = f"({min(ys)},{min(xs)},{max(ys)},{max(xs)})"
+                part = overpass(fabrique(PARIS_AREA).replace("area(id:%d)->.a;" % PARIS_AREA, "").replace("(area.a)", bb), essais=3)
+            els += part
             log(f"    {a['n']:>2}e : {len(part)} éléments"); time.sleep(5)
         return els, "par arrondissement (20 requêtes, doublons supprimés)"
 
-    log("2/4 Rues…"); er, mode_r = extraire("rues", requete_rues)
+    log("2/4 Rues…"); er, mode_r = extraire("rues", requete_rues, unique=o.rues_en_une_requete)
     log("3/4 Églises…"); ee, mode_e = extraire("eglises", requete_eglises)
     R = rues(er, arrs); E, fusions = eglises(ee, arrs)
 
