@@ -31,7 +31,7 @@ TYPES_VOIE = {
     "footway": "chemin piéton", "path": "sentier", "steps": "escalier", "cycleway": "piste cyclable", "track": "chemin", "busway": "voie de bus",
     "bridleway": "allée cavalière"}
 
-Q_ARR = f"[out:json][timeout:180];area(id:{PARIS_AREA})->.p;rel(area.p)[\"boundary\"=\"administrative\"][\"admin_level\"=\"9\"][\"ref:INSEE\"~\"^751\"];out tags geom;"
+Q_ARR = "[out:json][timeout:180];rel[\"boundary\"=\"administrative\"][\"admin_level\"=\"9\"][\"ref:INSEE\"~\"^751\"](48.80,2.22,48.91,2.47);out tags geom;"
 SEL_RUES = 'way["highway"]["name"]'
 SEL_EGL = ['nwr["amenity"="place_of_worship"]["religion"="christian"]',
            'nwr["building"~"^(church|cathedral|chapel|basilica)$"]']
@@ -55,7 +55,7 @@ def overpass(q, essais=3):
                     raise RuntimeError(j["remark"][:200])
                 return j.get("elements", [])
             except Exception as e:
-                derniere = e; log(f"  ! {url} : {str(e)[:160]}")
+                derniere = e; log(f"::warning::Overpass {url} : {str(e)[:200]}")
         time.sleep(20 * (t + 1))
     raise RuntimeError(f"Overpass indisponible : {derniere}")
 
@@ -330,4 +330,6 @@ def main():
     if erreurs: sys.exit(1)
 
 if __name__ == "__main__":
-    main()
+    try: main()
+    except Exception as ex:
+        print(f"::error::{type(ex).__name__}: {str(ex)[:500]}"); raise
