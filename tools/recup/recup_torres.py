@@ -83,7 +83,30 @@ for b in livres:
             j = i
             while j < len(ch) and not ch[j][1]: j += 1
             run = ch[i:j]; stats["versets"] += len(run)
-            if i == 0 or j == len(ch): stats["bord"] += len(run); i = j; continue
+            if i == 0 or j == len(ch):
+                # bord de chapitre : un seul voisin connu ; on cherche le numéro du verset près de lui
+                for v, _ in run:
+                    textes = []
+                    for it, toks, idx, g3 in sources:
+                        if i == 0:   # début de chapitre : marqueur « v. » avant le premier verset connu
+                            Bs = sorted(anchors(g3, words(ch[j][1]), False))
+                            for bb in Bs[:6]:
+                                lo = max(0, idx[bb] - 120 * len(run) - 60); seg = toks[lo: idx[bb]]
+                                ks = [k for k, t in enumerate(seg) if re.sub(r"[^\d]", "", t) == v and len(t) <= len(v) + 2]
+                                if ks:
+                                    k = ks[-1]; stop = next((m for m in range(k + 1, len(seg)) if re.sub(r"[^\d]", "", seg[m]) == str(int(v) + 1) and len(seg[m]) <= 4), len(seg))
+                                    textes.append((it, " ".join(seg[k + 1:stop]))); break
+                        else:        # fin de chapitre : marqueur « v. » après le dernier verset connu
+                            P = ch[i - 1]; As = sorted(anchors(g3, words(P[1]), False))
+                            for a0 in As[:6]:
+                                hi = idx[a0] + 2 * len(P[1].split()) + 120 * len(run) + 40; seg = toks[idx[a0]: hi]
+                                ks = [k for k, t in enumerate(seg) if k > 2 and re.sub(r"[^\d]", "", t) == v and len(t) <= len(v) + 2]
+                                if ks:
+                                    k = ks[0]; stop = next((m for m in range(k + 1, len(seg)) if (re.sub(r"[^\d]", "", seg[m]) == str(int(v) + 1) and len(seg[m]) <= 4) or re.match(r"CAP[IÍ]TULO|SALMO|FIN", seg[m])), len(seg))
+                                    textes.append((it, " ".join(seg[k + 1:stop]))); break
+                    if textes: res[f"{b} {ci + 1} {v}"] = {"textes": dict(textes), "bord": True}; stats["bord_textes"] += 1
+                    else: stats["bord_rien"] += 1
+                i = j; continue
             P, Nn = ch[i - 1], ch[j]; WP, WN = words(P[1]), words(Nn[1])
             maxlen = 2 * len(P[1].split()) + 90 * len(run) + 40
             for v, _ in run:
@@ -110,7 +133,7 @@ for b in livres:
                             coupe = (k, n); break
                     if coupe: break
                 if coupe:
-                    res[f"{b} {ci + 1} {v}"] = {"coupe_dans": P[0], "mot": coupe[0], "editions": coupe[1]}; stats["coupes"] += 1
+                    res[f"{b} {ci + 1} {v}"] = {"coupe_dans": P[0], "mot": coupe[0], "debut": hp[coupe[0]:coupe[0] + 4], "editions": coupe[1]}; stats["coupes"] += 1
                 elif textes:
                     res[f"{b} {ci + 1} {v}"] = {"textes": dict(textes)}; stats["textes"] += 1
                 else: stats["rien"] += 1
