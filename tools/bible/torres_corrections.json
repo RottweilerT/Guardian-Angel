@@ -1,0 +1,24472 @@
+{
+"stats": {
+"versets_suspects": 4340,
+"corrections": 3105
+},
+"corrections": {
+"GEN 2 4": [
+[
+19,
+"Serror",
+"senor",
+5
+]
+],
+"GEN 2 13": [
+[
+16,
+"Ethyopia.",
+"etiopia",
+2
+]
+],
+"GEN 2 14": [
+[
+9,
+"corrienco",
+"corriendo",
+2
+]
+],
+"GEN 2 16": [
+[
+7,
+"quieves,",
+"quieres",
+2
+]
+],
+"GEN 4 4": [
+[
+26,
+"ofrentlas",
+"ofrendas",
+5
+]
+],
+"GEN 4 7": [
+[
+43,
+"UEres.",
+"quieres",
+4
+]
+],
+"GEN 5 15": [
+[
+1,
+"Malaleédl",
+"malaleel",
+2
+]
+],
+"GEN 5 27": [
+[
+8,
+"noye:",
+"nove",
+2
+]
+],
+"GEN 6 7": [
+[
+0,
+"Yoraeré,",
+"raere",
+4
+]
+],
+"GEN 9 25": [
+[
+31,
+"vergienzas",
+"verguenzas",
+4
+]
+],
+"GEN 9 27": [
+[
+15,
+"eselayo.",
+"esclavo",
+5
+]
+],
+"GEN 10 3": [
+[
+7,
+"Thosorma",
+"thogorma",
+5
+]
+],
+"GEN 10 20": [
+[
+8,
+"prosaplas,",
+"prosapias",
+4
+]
+],
+"GEN 10 25": [
+[
+10,
+"Phales,",
+"faleg",
+2
+]
+],
+"GEN 12 3": [
+[
+20,
+"descendientes)serán",
+"descendientes seran",
+3
+]
+],
+"GEN 13 7": [
+[
+4,
+"suseitarse",
+"suscitarse",
+5
+],
+[
+21,
+"Chamanéo",
+"cananeo",
+3
+]
+],
+"GEN 14 4": [
+[
+0,
+"Yelomotivo",
+"motivo",
+5
+]
+],
+"GEN 14 11": [
+[
+10,
+"bromorrha,",
+"gomorra",
+3
+]
+],
+"GEN 15 2": [
+[
+20,
+"miundo",
+"mundo",
+3
+]
+],
+"GEN 15 6": [
+[
+9,
+"justiee",
+"justicia",
+3
+]
+],
+"GEN 15 12": [
+[
+19,
+"vidse",
+"viose",
+4
+]
+],
+"GEN 16 1": [
+[
+13,
+"Egypcla",
+"egipcia",
+3
+]
+],
+"GEN 16 13": [
+[
+22,
+"ajfticcion.",
+"afliccion",
+3
+]
+],
+"GEN 17 13": [
+[
+9,
+"demotar",
+"denotar",
+4
+]
+],
+"GEN 18 6": [
+[
+11,
+"clijo:",
+"dijo",
+4
+]
+],
+"GEN 18 10": [
+[
+12,
+"atm",
+"un",
+3
+]
+],
+"GEN 18 15": [
+[
+3,
+"dijollena",
+"dijo llena",
+3
+]
+],
+"GEN 18 27": [
+[
+0,
+"Elnstando",
+"instando",
+3
+]
+],
+"GEN 18 30": [
+[
+26,
+"trembta",
+"treinta",
+2
+]
+],
+"GEN 19 2": [
+[
+2,
+"Ruésoos,",
+"ruegoos",
+4
+]
+],
+"GEN 19 8": [
+[
+19,
+"gustarcis;",
+"gustareis",
+3
+]
+],
+"GEN 19 9": [
+[
+20,
+"gobernar?pues",
+"gobernar pues",
+4
+]
+],
+"GEN 19 17": [
+[
+29,
+"cireunvecina:",
+"circunvecina",
+3
+]
+],
+"GEN 20 12": [
+[
+10,
+"mieta",
+"nieta",
+3
+]
+],
+"GEN 20 13": [
+[
+30,
+"llegucmos,",
+"lleguemos",
+2
+]
+],
+"GEN 21 4": [
+[
+1,
+"cireuneidóle",
+"circuncidole",
+4
+]
+],
+"GEN 21 5": [
+[
+0,
+"Blendo",
+"siendo",
+4
+]
+],
+"GEN 21 6": [
+[
+10,
+"aleerarme:",
+"alegrarme",
+3
+]
+],
+"GEN 22 14": [
+[
+11,
+"prowee.",
+"provee",
+3
+]
+],
+"GEN 23 4": [
+[
+7,
+"concedede",
+"concededme",
+4
+]
+],
+"GEN 24 26": [
+[
+8,
+"SROr",
+"senor",
+2
+]
+],
+"GEN 24 32": [
+[
+9,
+"los:camellos,",
+"los camellos",
+4
+]
+],
+"GEN 24 37": [
+[
+22,
+"rrabo",
+"habito",
+3
+]
+],
+"GEN 24 47": [
+[
+6,
+"dicho:De",
+"dicho de",
+4
+]
+],
+"GEN 24 51": [
+[
+6,
+"Mévavela",
+"llevatela",
+3
+]
+],
+"GEN 25 22": [
+[
+0,
+"Perochocaban",
+"chocaban",
+3
+]
+],
+"GEN 26 5": [
+[
+24,
+"prescrib4.",
+"prescribi",
+3
+]
+],
+"GEN 26 13": [
+[
+3,
+"muy-rico,",
+"muy rico",
+4
+]
+],
+"GEN 26 20": [
+[
+9,
+"(erara",
+"gerara",
+4
+]
+],
+"GEN 26 31": [
+[
+6,
+"reclprocamente:",
+"reciprocamente",
+2
+],
+[
+8,
+"Isage",
+"isaac",
+2
+]
+],
+"GEN 27 9": [
+[
+1,
+"yendoal",
+"al",
+5
+]
+],
+"GEN 27 43": [
+[
+10,
+"Luye",
+"huye",
+4
+]
+],
+"GEN 28 21": [
+[
+1,
+"vyolviere",
+"volviere",
+4
+]
+],
+"GEN 29 8": [
+[
+21,
+"abreyar",
+"abrevar",
+3
+]
+],
+"GEN 30 30": [
+[
+27,
+"aleuún",
+"algun",
+5
+]
+],
+"GEN 31 30": [
+[
+11,
+"bienguerencia",
+"bienquerencia",
+4
+]
+],
+"GEN 31 40": [
+[
+13,
+"hula",
+"huia",
+5
+]
+],
+"GEN 31 42": [
+[
+15,
+"actora",
+"adora",
+3
+]
+],
+"GEN 31 54": [
+[
+0,
+"Einmoladas",
+"inmoladas",
+3
+]
+],
+"GEN 32 4": [
+[
+22,
+"peregrinando-á",
+"peregrinando a",
+4
+]
+],
+"GEN 32 14": [
+[
+8,
+"enabrío,",
+"cabrio",
+3
+]
+],
+"GEN 32 18": [
+[
+5,
+"resalo",
+"regalo",
+5
+]
+],
+"GEN 32 19": [
+[
+20,
+"dicienclo:",
+"diciendo",
+3
+]
+],
+"GEN 33 13": [
+[
+19,
+"fativare",
+"fatigare",
+3
+]
+],
+"GEN 33 19": [
+[
+22,
+"Sichen,",
+"siquem",
+3
+]
+],
+"GEN 34 1": [
+[
+0,
+"Saliówndia",
+"dia",
+5
+]
+],
+"GEN 34 2": [
+[
+22,
+"desMoró",
+"desfloro",
+2
+]
+],
+"GEN 34 4": [
+[
+6,
+"Cásamo,",
+"casame",
+4
+]
+],
+"GEN 34 15": [
+[
+13,
+"cireuncidando",
+"circuncidando",
+5
+]
+],
+"GEN 34 20": [
+[
+0,
+"Habiendoido",
+"ido",
+2
+]
+],
+"GEN 34 21": [
+[
+39,
+"dareInos",
+"daremos",
+4
+]
+],
+"GEN 34 25": [
+[
+12,
+"herjdas",
+"heridas",
+3
+]
+],
+"GEN 35 25": [
+[
+8,
+"Nephthalf.",
+"neftali",
+2
+]
+],
+"GEN 36 40": [
+[
+30,
+"Alya,",
+"alva",
+3
+]
+],
+"GEN 37 4": [
+[
+22,
+"AYFUTA",
+"agrura",
+3
+]
+],
+"GEN 37 8": [
+[
+11,
+"ó¿hemos",
+"o hemos",
+4
+]
+],
+"GEN 37 27": [
+[
+15,
+"DUestró",
+"nuestro",
+3
+]
+],
+"GEN 37 30": [
+[
+1,
+"raseándose",
+"rasgandose",
+3
+]
+],
+"GEN 37 31": [
+[
+8,
+"tifñiéronla",
+"tineronla",
+4
+]
+],
+"GEN 37 34": [
+[
+1,
+"raseándose",
+"rasgandose",
+4
+],
+[
+7,
+"elicio,",
+"cilicio",
+4
+],
+[
+8,
+"lorando",
+"llorando",
+2
+]
+],
+"GEN 38 2": [
+[
+1,
+"vióalll",
+"alli",
+2
+]
+],
+"GEN 40 16": [
+[
+1,
+"el.jefe",
+"jefe",
+3
+]
+],
+"GEN 40 20": [
+[
+30,
+"meaestresala",
+"maestresala",
+2
+]
+],
+"GEN 41 2": [
+[
+9,
+"cordas:",
+"gordas",
+5
+]
+],
+"GEN 41 4": [
+[
+1,
+"setragaron",
+"tragaron",
+2
+]
+],
+"GEN 41 20": [
+[
+2,
+"ASEpues",
+"despues",
+3
+]
+],
+"GEN 41 22": [
+[
+0,
+"Víien",
+"en",
+2
+]
+],
+"GEN 41 29": [
+[
+6,
+"tertilidad",
+"fertilidad",
+2
+]
+],
+"GEN 41 33": [
+[
+18,
+"Feypto",
+"egipto",
+3
+]
+],
+"GEN 41 50": [
+[
+20,
+"Heliópol",
+"heliopoli",
+4
+]
+],
+"GEN 43 26": [
+[
+10,
+"preí",
+"presentes",
+3
+],
+[
+11,
+"sentes,teniéndolos",
+"teniendolos",
+3
+]
+],
+"GEN 43 32": [
+[
+17,
+"Eeypceios",
+"egipcios",
+3
+]
+],
+"GEN 44 5": [
+[
+23,
+"ohors.",
+"ahora",
+3
+]
+],
+"GEN 44 6": [
+[
+3,
+"puntualgmente",
+"puntualmente",
+3
+]
+],
+"GEN 44 10": [
+[
+5,
+"ejccuútese",
+"ejecutese",
+2
+],
+[
+6,
+"vuecstra-",
+"vuestra",
+2
+]
+],
+"GEN 44 12": [
+[
+2,
+"mayordon:o",
+"mayordomo",
+2
+],
+[
+18,
+"copa.en",
+"copa en",
+3
+]
+],
+"GEN 44 13": [
+[
+0,
+"Pefo",
+"ellos",
+2
+],
+[
+1,
+"ellys,rasgando",
+"rasgando",
+3
+],
+[
+9,
+"jumeujos,",
+"jumentos",
+2
+]
+],
+"GEN 44 14": [
+[
+23,
+"pustrargn",
+"postraron",
+2
+]
+],
+"GEN 45 17": [
+[
+1,
+"asídijoá",
+"a",
+4
+],
+[
+11,
+"Caread",
+"cargad",
+4
+]
+],
+"GEN 45 26": [
+[
+35,
+"ereerlos.",
+"creerlos",
+3
+]
+],
+"GEN 46 9": [
+[
+9,
+"Charmní.",
+"carmi",
+3
+]
+],
+"GEN 46 12": [
+[
+18,
+"muerto-en",
+"muerto en",
+2
+]
+],
+"GEN 46 16": [
+[
+5,
+"Hagul,",
+"haggi",
+4
+]
+],
+"GEN 46 18": [
+[
+10,
+"Labén",
+"laban",
+2
+]
+],
+"GEN 46 22": [
+[
+5,
+"parid",
+"pario",
+4
+]
+],
+"GEN 47 4": [
+[
+43,
+"Gressen.",
+"gessen",
+2
+]
+],
+"GEN 47 16": [
+[
+16,
+"viveros.",
+"viveres",
+5
+]
+],
+"GEN 48 9": [
+[
+12,
+"Acéreamelos,",
+"acercamelos",
+5
+]
+],
+"GEN 48 21": [
+[
+2,
+"finásu",
+"fina su",
+2
+]
+],
+"GEN 49 26": [
+[
+23,
+"recalean",
+"recaigan",
+2
+]
+],
+"GEN 50 15": [
+[
+6,
+"anduyiesen",
+"anduviesen",
+3
+]
+],
+"GEN 50 17": [
+[
+49,
+"proru",
+"prorumpio",
+2
+],
+[
+50,
+"mpió.en",
+"en",
+3
+]
+],
+"GEN 50 21": [
+[
+21,
+"AMOTOSAS.",
+"amorosas",
+2
+]
+],
+"EXO 1 12": [
+[
+10,
+"erecian.",
+"crecian",
+3
+]
+],
+"EXO 2 6": [
+[
+9,
+"tiermos",
+"tiernos",
+2
+]
+],
+"EXO 2 7": [
+[
+18,
+"BOBIEn",
+"hebrea",
+4
+]
+],
+"EXO 2 11": [
+[
+1,
+"diaf",
+"dia",
+4
+]
+],
+"EXO 2 23": [
+[
+0,
+"Deallil",
+"alli",
+3
+]
+],
+"EXO 3 1": [
+[
+3,
+"apacentarlas",
+"apacentar las",
+3
+]
+],
+"EXO 3 9": [
+[
+1,
+"guma,",
+"suma",
+3
+]
+],
+"EXO 3 15": [
+[
+41,
+"UeRigO",
+"tengo",
+4
+]
+],
+"EXO 4 7": [
+[
+9,
+"Volviólaá",
+"volviola a",
+4
+]
+],
+"EXO 4 9": [
+[
+11,
+"eseucharen",
+"escucharen",
+4
+]
+],
+"EXO 4 11": [
+[
+4,
+"Señor:¡Quién",
+"senor quien",
+3
+]
+],
+"EXO 4 12": [
+[
+3,
+"yo:estaré",
+"yo estare",
+4
+]
+],
+"EXO 4 16": [
+[
+4,
+"lugaral",
+"lugar al",
+4
+]
+],
+"EXO 5 8": [
+[
+4,
+"exlelreis",
+"exigireis",
+4
+]
+],
+"EXO 5 17": [
+[
+1,
+"holeando,",
+"holgando",
+4
+]
+],
+"EXO 5 22": [
+[
+16,
+"pueblo;A",
+"pueblo a",
+3
+]
+],
+"EXO 7 4": [
+[
+6,
+"esencharos.",
+"escucharos",
+2
+]
+],
+"EXO 7 9": [
+[
+12,
+"emvica,",
+"envia",
+3
+]
+],
+"EXO 7 19": [
+[
+11,
+"yard",
+"vara",
+2
+]
+],
+"EXO 7 21": [
+[
+18,
+"Esypeilos",
+"egipcios",
+3
+]
+],
+"EXO 8 2": [
+[
+0,
+"Quesino",
+"no",
+5
+]
+],
+"EXO 8 9": [
+[
+29,
+"ecbadas",
+"echadas",
+4
+]
+],
+"EXO 8 21": [
+[
+24,
+"sénero",
+"genero",
+3
+]
+],
+"EXO 8 31": [
+[
+10,
+"Inoscas",
+"moscas",
+2
+]
+],
+"EXO 9 6": [
+[
+0,
+"Astlo",
+"lo",
+3
+]
+],
+"EXO 10 6": [
+[
+17,
+"Esypelos;",
+"egypcios",
+2
+]
+],
+"EXO 10 26": [
+[
+7,
+"nosotros:no",
+"nosotros no",
+4
+]
+],
+"EXO 11 6": [
+[
+11,
+"muneca",
+"nunca",
+2
+]
+],
+"EXO 11 7": [
+[
+20,
+"conozeals",
+"conozcais",
+2
+]
+],
+"EXO 12 42": [
+[
+23,
+"bhca",
+"deben",
+5
+]
+],
+"EXO 12 43": [
+[
+21,
+"penOS",
+"pascual",
+5
+]
+],
+"EXO 12 44": [
+[
+8,
+"bonces",
+"tonces",
+2
+]
+],
+"EXO 14 20": [
+[
+0,
+"Sesituó",
+"situo",
+4
+],
+[
+23,
+"mivaba",
+"miraba",
+2
+]
+],
+"EXO 14 23": [
+[
+19,
+"—CAYTOS,",
+"carros",
+3
+]
+],
+"EXO 15 13": [
+[
+20,
+"poderá",
+"poder a",
+3
+]
+],
+"EXO 15 15": [
+[
+8,
+"Mohab",
+"moab",
+2
+]
+],
+"EXO 15 16": [
+[
+39,
+"adquerido.",
+"adquirido",
+2
+]
+],
+"EXO 16 12": [
+[
+19,
+"saciarels",
+"saciareis",
+3
+]
+],
+"EXO 17 2": [
+[
+24,
+"tentails",
+"tentais",
+5
+]
+],
+"EXO 17 7": [
+[
+19,
+"tentaronal",
+"tentaron al",
+4
+]
+],
+"EXO 17 14": [
+[
+14,
+"adyiérteselo",
+"advierteselo",
+3
+]
+],
+"EXO 18 11": [
+[
+25,
+"oreullosamente",
+"orgullosamente",
+2
+]
+],
+"EXO 18 25": [
+[
+28,
+"deeuriones",
+"decuriones",
+3
+]
+],
+"EXO 19 5": [
+[
+12,
+"míentre",
+"mi entre",
+5
+]
+],
+"EXO 19 8": [
+[
+4,
+"voztodo",
+"voz todo",
+2
+]
+],
+"EXO 19 17": [
+[
+6,
+"salirá",
+"salir a",
+2
+]
+],
+"EXO 19 23": [
+[
+1,
+"entofices",
+"entonces",
+2
+]
+],
+"EXO 20 10": [
+[
+35,
+"CATgA,",
+"carga",
+4
+]
+],
+"EXO 20 16": [
+[
+0,
+"Noleyantarás",
+"levantaras",
+3
+]
+],
+"EXO 21 19": [
+[
+14,
+"pereusor",
+"percusor",
+4
+]
+],
+"EXO 21 22": [
+[
+31,
+"juzeiaren",
+"juzgaren",
+4
+],
+[
+0,
+"Siarmando",
+"armando",
+4
+]
+],
+"EXO 21 26": [
+[
+0,
+"Slalguno",
+"alguno",
+3
+]
+],
+"EXO 23 6": [
+[
+0,
+"Notuerzas",
+"tuerzas",
+4
+]
+],
+"EXO 23 12": [
+[
+16,
+"reeree",
+"recree",
+5
+]
+],
+"EXO 26 6": [
+[
+6,
+"oro,con",
+"oro con",
+2
+]
+],
+"EXO 26 9": [
+[
+23,
+"deltecho",
+"del techo",
+2
+]
+],
+"EXO 26 35": [
+[
+10,
+"enfrenlan",
+"en",
+2
+]
+],
+"EXO 27 2": [
+[
+9,
+"eubrirás",
+"cubriras",
+3
+]
+],
+"EXO 28 7": [
+[
+15,
+"remnirán",
+"reuniran",
+5
+]
+],
+"EXO 28 15": [
+[
+22,
+"azwb",
+"azul",
+5
+]
+],
+"EXO 28 23": [
+[
+4,
+"amállos",
+"anillos",
+3
+]
+],
+"EXO 28 27": [
+[
+27,
+"Racional,para",
+"racional para",
+3
+]
+],
+"EXO 28 38": [
+[
+1,
+"pendierite",
+"pendiente",
+5
+],
+[
+9,
+"carvará",
+"cargara",
+2
+]
+],
+"EXO 28 39": [
+[
+1,
+"harásen",
+"en",
+5
+]
+],
+"EXO 29 11": [
+[
+0,
+"Yledegollarás",
+"degollaras",
+5
+]
+],
+"EXO 29 21": [
+[
+4,
+"sangre.vertida",
+"sangre vertida",
+2
+]
+],
+"EXO 29 22": [
+[
+21,
+"dos:riñones",
+"dos rinones",
+4
+]
+],
+"EXO 29 23": [
+[
+6,
+"hojaldre",
+"ojaldre",
+5
+]
+],
+"EXO 29 37": [
+[
+11,
+"lesantificarás,",
+"le santificaras",
+4
+]
+],
+"EXO 29 40": [
+[
+18,
+"frigo,",
+"trigo",
+5
+]
+],
+"EXO 30 36": [
+[
+4,
+"redncido",
+"reducido",
+4
+]
+],
+"EXO 31 2": [
+[
+7,
+"Beseleé,",
+"beseleel",
+4
+]
+],
+"EXO 31 14": [
+[
+5,
+"saerosanto",
+"sacrosanto",
+4
+],
+[
+15,
+"muerte:el",
+"muerte el",
+4
+]
+],
+"EXO 32 8": [
+[
+19,
+"saerificándole",
+"sacrificandole",
+2
+]
+],
+"EXO 32 16": [
+[
+3,
+"Dios;así",
+"dios asi",
+3
+]
+],
+"EXO 32 24": [
+[
+1,
+"yo:¿Quién",
+"quien",
+5
+]
+],
+"EXO 33 20": [
+[
+7,
+"pue«les",
+"puedes",
+3
+],
+[
+0,
+"Encuantoávermi",
+"mi",
+3
+]
+],
+"EXO 34 5": [
+[
+18,
+"últa",
+"alta",
+4
+]
+],
+"EXO 34 18": [
+[
+23,
+"mueyos",
+"nuevos",
+5
+]
+],
+"EXO 34 21": [
+[
+8,
+"nisegarás.",
+"ni segaras",
+5
+]
+],
+"EXO 35 30": [
+[
+23,
+"Hux,",
+"hur",
+3
+]
+],
+"EXO 36 3": [
+[
+1,
+"entreró",
+"entrego",
+2
+],
+[
+25,
+"proseenuita",
+"proseguia",
+2
+]
+],
+"EXO 36 12": [
+[
+5,
+"presilas",
+"presillas",
+5
+]
+],
+"EXO 36 19": [
+[
+21,
+"moradus.",
+"moradas",
+5
+]
+],
+"EXO 36 36": [
+[
+6,
+"setim;las",
+"setim las",
+3
+]
+],
+"EXO 37 17": [
+[
+19,
+"elobitos,",
+"globitos",
+5
+]
+],
+"EXO 37 20": [
+[
+17,
+"elobito,",
+"globito",
+5
+]
+],
+"EXO 37 21": [
+[
+18,
+"elobitos",
+"globitos",
+5
+]
+],
+"EXO 38 18": [
+[
+10,
+"cortimon",
+"cortinon",
+3
+]
+],
+"EXO 39 1": [
+[
+2,
+"(Beseleéi)",
+"beseleel",
+2
+]
+],
+"EXO 39 3": [
+[
+0,
+"Siendoel",
+"el",
+5
+]
+],
+"EXO 39 7": [
+[
+18,
+"Señorordenado",
+"senor ordenado",
+4
+]
+],
+"EXO 39 8": [
+[
+0,
+"Isualmente",
+"igualmente",
+5
+]
+],
+"EXO 39 9": [
+[
+3,
+"cuadraneular,",
+"cuadrangular",
+5
+]
+],
+"EXO 39 25": [
+[
+3,
+"tánicas",
+"tunicas",
+3
+]
+],
+"EXO 39 42": [
+[
+7,
+"sesuúun",
+"segun",
+5
+]
+],
+"EXO 40 4": [
+[
+1,
+"entradadentro",
+"dentro",
+3
+]
+],
+"EXO 40 12": [
+[
+20,
+"layados",
+"lavados",
+4
+]
+],
+"EXO 40 13": [
+[
+17,
+"sermpiterno",
+"sempiterno",
+3
+]
+],
+"LEV 1 16": [
+[
+1,
+"bucheylas",
+"las",
+2
+]
+],
+"LEV 2 7": [
+[
+14,
+"IJeualmente",
+"igualmente",
+5
+]
+],
+"LEV 2 11": [
+[
+29,
+"mutel",
+"miel",
+4
+]
+],
+"LEV 2 14": [
+[
+31,
+"orano;",
+"grano",
+3
+]
+],
+"LEV 3 15": [
+[
+5,
+"telillaque",
+"telilla que",
+4
+]
+],
+"LEV 4 3": [
+[
+0,
+"Blel",
+"el",
+2
+]
+],
+"LEV 4 13": [
+[
+9,
+"¡jenorancia,",
+"ignorancia",
+2
+]
+],
+"LEV 4 27": [
+[
+0,
+"SLalgun",
+"algun",
+4
+]
+],
+"LEV 6 11": [
+[
+12,
+"levará",
+"llevara",
+3
+]
+],
+"LEV 6 21": [
+[
+5,
+"frelrá",
+"freira",
+4
+]
+],
+"LEV 6 27": [
+[
+3,
+"tocaresus",
+"tocare sus",
+5
+]
+],
+"LEV 7 12": [
+[
+18,
+"fortas",
+"tortas",
+2
+]
+],
+"LEV 7 18": [
+[
+21,
+"oferente:antes",
+"oferente antes",
+3
+],
+[
+26,
+"secontaminare",
+"se contaminare",
+4
+]
+],
+"LEV 7 24": [
+[
+0,
+"Nitempoco",
+"tampoco",
+2
+]
+],
+"LEV 7 26": [
+[
+1,
+"probarels",
+"probareis",
+4
+]
+],
+"LEV 7 30": [
+[
+0,
+"Tendráenlas",
+"las",
+3
+]
+],
+"LEV 8 27": [
+[
+11,
+"eleyaron",
+"elevaron",
+3
+]
+],
+"LEV 9 2": [
+[
+0,
+"Tomadela",
+"la",
+4
+]
+],
+"LEV 10 4": [
+[
+27,
+"Mlevadlos",
+"llevadlos",
+5
+]
+],
+"LEV 10 17": [
+[
+31,
+"careándoos",
+"cargandoos",
+3
+]
+],
+"LEV 11 2": [
+[
+18,
+"l¿citamente",
+"licitamente",
+4
+]
+],
+"LEV 11 17": [
+[
+9,
+"cigieña",
+"ciguena",
+3
+]
+],
+"LEV 11 25": [
+[
+4,
+"carea",
+"carga",
+2
+]
+],
+"LEV 12 3": [
+[
+4,
+"cireunecidado",
+"circuncidado",
+3
+]
+],
+"LEV 13 2": [
+[
+27,
+"sacerdute",
+"sacerdote",
+2
+]
+],
+"LEV 13 20": [
+[
+20,
+"blamncos,",
+"blancos",
+4
+]
+],
+"LEV 14 32": [
+[
+9,
+"proecurarse",
+"procurarse",
+4
+]
+],
+"LEV 14 45": [
+[
+0,
+"Laderribarán",
+"derribaran",
+5
+]
+],
+"LEV 15 24": [
+[
+3,
+"imadvertidamente",
+"inadvertidamente",
+2
+]
+],
+"LEV 16 17": [
+[
+13,
+"Sanecta",
+"sancta",
+2
+]
+],
+"LEV 16 31": [
+[
+17,
+"y-perpétuo.",
+"y perpetuo",
+4
+]
+],
+"LEV 19 6": [
+[
+23,
+"quemareils",
+"quemareis",
+3
+]
+],
+"LEV 19 27": [
+[
+11,
+"raerels",
+"raereis",
+3
+]
+],
+"LEV 19 28": [
+[
+1,
+"sajarels",
+"sajareis",
+3
+]
+],
+"LEV 20 7": [
+[
+1,
+"Bantificaos",
+"santificaos",
+3
+]
+],
+"LEV 21 20": [
+[
+3,
+"lagañoso,",
+"leganoso",
+4
+]
+],
+"LEV 23 3": [
+[
+2,
+"trabajareis;el",
+"trabajareis el",
+5
+]
+],
+"LEV 23 15": [
+[
+0,
+"Contarels,",
+"contareis",
+5
+]
+],
+"LEV 23 19": [
+[
+0,
+"Sacrificarels",
+"tambien",
+5
+],
+[
+1,
+"tambien-un",
+"un",
+5
+]
+],
+"LEV 23 22": [
+[
+9,
+"cortarels",
+"cortareis",
+5
+],
+[
+14,
+"recogerels",
+"recogereis",
+5
+],
+[
+1,
+"segárels",
+"segareis",
+3
+]
+],
+"LEV 24 7": [
+[
+7,
+"trasparente:f",
+"transparente",
+3
+]
+],
+"LEV 24 8": [
+[
+6,
+"ponténdose",
+"poniendose",
+2
+]
+],
+"LEV 24 18": [
+[
+3,
+"malare",
+"matare",
+2
+]
+],
+"LEV 25 37": [
+[
+30,
+"exiglirás",
+"exigiras",
+5
+]
+],
+"LEV 25 43": [
+[
+1,
+"allijas",
+"aflijas",
+5
+]
+],
+"LEV 25 47": [
+[
+0,
+"SLunextranjero",
+"extranjero",
+3
+]
+],
+"LEV 25 49": [
+[
+9,
+"consanguilnidad",
+"consanguinidad",
+4
+]
+],
+"LEV 26 3": [
+[
+0,
+"Siseguís",
+"seguis",
+4
+],
+[
+9,
+"eumplis,",
+"cumplis",
+4
+]
+],
+"LEV 26 7": [
+[
+0,
+"FPerseguireis",
+"perseguireis",
+3
+]
+],
+"LEV 26 27": [
+[
+12,
+"puenando",
+"pugnando",
+4
+]
+],
+"LEV 26 36": [
+[
+24,
+"yolante,",
+"volante",
+4
+]
+],
+"LEV 27 5": [
+[
+10,
+"«slelos,",
+"siclos",
+4
+]
+],
+"NUM 2 12": [
+[
+16,
+"Surisaddal.",
+"surisaddai",
+4
+]
+],
+"NUM 2 25": [
+[
+17,
+"Ammisaddal.",
+"ammisaddai",
+2
+]
+],
+"NUM 2 27": [
+[
+13,
+"Phegliel,",
+"salamiel",
+4
+]
+],
+"NUM 4 5": [
+[
+15,
+"Sanetorurn,",
+"sanctorum",
+3
+]
+],
+"NUM 5 18": [
+[
+45,
+"exccracion",
+"execracion",
+3
+]
+],
+"NUM 5 26": [
+[
+25,
+"amaregnísimas",
+"amarguisimas",
+3
+]
+],
+"NUM 6 9": [
+[
+27,
+"vezen",
+"vez en",
+5
+]
+],
+"NUM 6 11": [
+[
+23,
+"meancho,",
+"mancho",
+5
+]
+],
+"NUM 6 18": [
+[
+0,
+"Entoncesante",
+"ante",
+5
+]
+],
+"NUM 7 78": [
+[
+12,
+"Nephthal",
+"neftali",
+2
+]
+],
+"NUM 8 7": [
+[
+4,
+"roclados",
+"rociados",
+5
+]
+],
+"NUM 11 21": [
+[
+24,
+"lenteró",
+"entero",
+5
+]
+],
+"NUM 13 16": [
+[
+5,
+"Giel",
+"guel",
+3
+]
+],
+"NUM 13 20": [
+[
+12,
+"emdades,",
+"ciudades",
+3
+]
+],
+"NUM 13 29": [
+[
+0,
+"Perotiene",
+"tiene",
+4
+],
+[
+16,
+"Enae",
+"enac",
+2
+]
+],
+"NUM 14 41": [
+[
+1,
+"Moysésles",
+"les",
+4
+]
+],
+"NUM 15 21": [
+[
+7,
+"gostáreis,",
+"gastareis",
+3
+]
+],
+"NUM 15 24": [
+[
+0,
+"Sitoda",
+"toda",
+4
+]
+],
+"NUM 15 27": [
+[
+7,
+"legnorancia,",
+"ignorancia",
+5
+]
+],
+"NUM 15 28": [
+[
+17,
+"ljenorancia;",
+"ignorancia",
+4
+]
+],
+"NUM 15 29": [
+[
+9,
+"ljenorancia,",
+"ignorancia",
+5
+]
+],
+"NUM 15 30": [
+[
+6,
+"alemn",
+"algun",
+5
+]
+],
+"NUM 16 10": [
+[
+22,
+"arroguels",
+"arrogueis",
+5
+]
+],
+"NUM 16 11": [
+[
+5,
+"subleye",
+"subleve",
+4
+]
+],
+"NUM 16 31": [
+[
+8,
+"tierra:se",
+"tierra se",
+3
+]
+],
+"NUM 16 33": [
+[
+12,
+"medio-del",
+"medio del",
+4
+]
+],
+"NUM 16 42": [
+[
+7,
+"ereciese",
+"creciese",
+5
+]
+],
+"NUM 17 9": [
+[
+0,
+"kFacó",
+"saco",
+2
+]
+],
+"NUM 18 2": [
+[
+33,
+"ejercerels",
+"ejercereis",
+5
+]
+],
+"NUM 18 27": [
+[
+11,
+"primilas,",
+"primicias",
+2
+]
+],
+"NUM 18 29": [
+[
+8,
+"Separárels",
+"separareis",
+3
+]
+],
+"NUM 18 30": [
+[
+23,
+"diesels",
+"dieseis",
+5
+]
+],
+"NUM 19 17": [
+[
+15,
+"mezelarán",
+"mezclaran",
+5
+]
+],
+"NUM 20 10": [
+[
+10,
+"OQid,",
+"oid",
+3
+],
+[
+13,
+"desereidos:",
+"descreidos",
+2
+]
+],
+"NUM 20 29": [
+[
+3,
+"la:cima",
+"la cima",
+2
+]
+],
+"NUM 21 17": [
+[
+0,
+"Entoncesentonó",
+"entono",
+3
+]
+],
+"NUM 22 5": [
+[
+21,
+"Amumonitas,",
+"ammonitas",
+3
+]
+],
+"NUM 22 11": [
+[
+27,
+"abuyentarle.",
+"ahuyentarle",
+3
+]
+],
+"NUM 22 14": [
+[
+9,
+"Balaara",
+"balaam",
+5
+]
+],
+"NUM 22 20": [
+[
+25,
+"hacermas",
+"hacer mas",
+4
+]
+],
+"NUM 22 30": [
+[
+8,
+"pollina,",
+"jumento",
+2
+]
+],
+"NUM 23 1": [
+[
+17,
+"ijeual",
+"igual",
+4
+]
+],
+"NUM 23 11": [
+[
+3,
+"Balaec",
+"balac",
+5
+]
+],
+"NUM 25 4": [
+[
+15,
+"ewlpables",
+"culpables",
+5
+]
+],
+"NUM 26 3": [
+[
+0,
+"Segun.esto,",
+"esto",
+3
+]
+],
+"NUM 26 18": [
+[
+10,
+"evarenta",
+"cuarenta",
+4
+]
+],
+"NUM 26 42": [
+[
+6,
+"Subam,",
+"suham",
+2
+],
+[
+14,
+"Subamitas.",
+"suhamitas",
+2
+]
+],
+"NUM 27 21": [
+[
+25,
+"jeualmente",
+"igualmente",
+2
+]
+],
+"NUM 28 25": [
+[
+7,
+"solermnísimo",
+"solemnisimo",
+3
+]
+],
+"NUM 28 26": [
+[
+0,
+"Teualmente",
+"igualmente",
+5
+]
+],
+"NUM 29 35": [
+[
+6,
+"solermnísimo,",
+"solemnisimo",
+4
+]
+],
+"NUM 30 3": [
+[
+0,
+"Sialgun",
+"algun",
+3
+]
+],
+"NUM 30 7": [
+[
+15,
+"puores,",
+"padres",
+4
+]
+],
+"NUM 31 21": [
+[
+10,
+"egnerreros",
+"guerreros",
+5
+]
+],
+"NUM 31 50": [
+[
+7,
+"conativo",
+"donativo",
+4
+]
+],
+"NUM 32 5": [
+[
+8,
+"ocracia",
+"gracia",
+2
+]
+],
+"NUM 32 9": [
+[
+37,
+"Señor?f",
+"senor",
+4
+]
+],
+"NUM 32 35": [
+[
+8,
+"Jogbaa,",
+"jegbaa",
+2
+]
+],
+"NUM 33 28": [
+[
+6,
+"Metbca.",
+"methca",
+3
+]
+],
+"NUM 33 38": [
+[
+3,
+"Suwmo",
+"sumo",
+5
+],
+[
+25,
+"Ezypto,",
+"egipto",
+3
+]
+],
+"NUM 34 10": [
+[
+1,
+"confinespor",
+"por",
+5
+]
+],
+"NUM 34 11": [
+[
+23,
+"Oenereth",
+"cenereth",
+3
+],
+[
+25,
+"Genezoreth.",
+"genezareth",
+3
+]
+],
+"NUM 35 5": [
+[
+8,
+"¡eualmente",
+"igualmente",
+3
+]
+],
+"NUM 35 15": [
+[
+9,
+"advenenizos",
+"advenedizos",
+2
+]
+],
+"NUM 35 23": [
+[
+0,
+"Nianteriores",
+"anteriores",
+4
+]
+],
+"NUM 35 31": [
+[
+0,
+"Norecibireis",
+"recibireis",
+5
+]
+],
+"DEU 1 23": [
+[
+0,
+"Habicadome",
+"habiendome",
+6
+]
+],
+"DEU 1 35": [
+[
+14,
+"prometisla",
+"prometida",
+4
+]
+],
+"DEU 1 41": [
+[
+4,
+"pecaclo",
+"pecado",
+6
+],
+[
+25,
+"encaminasels",
+"encaminaseis",
+3
+]
+],
+"DEU 2 23": [
+[
+15,
+"Cappadoeios,",
+"cappadocios",
+5
+]
+],
+"DEU 2 25": [
+[
+38,
+"estremezecan,",
+"estremezcan",
+6
+]
+],
+"DEU 2 30": [
+[
+18,
+"fuviese",
+"tuviese",
+2
+]
+],
+"DEU 3 2": [
+[
+31,
+"Selron,",
+"sehon",
+3
+]
+],
+"DEU 3 16": [
+[
+30,
+"Jeboe,",
+"jeboc",
+3
+]
+],
+"DEU 4 2": [
+[
+10,
+"quibels",
+"quiteis",
+2
+]
+],
+"DEU 4 13": [
+[
+11,
+"suardarais,",
+"guardarais",
+2
+]
+],
+"DEU 4 18": [
+[
+1,
+"dereptiles",
+"reptiles",
+4
+]
+],
+"DEU 4 20": [
+[
+23,
+"tenerun",
+"tener un",
+4
+]
+],
+"DEU 4 21": [
+[
+14,
+"hteteron",
+"hicieron",
+4
+]
+],
+"DEU 4 26": [
+[
+0,
+"Invocodesde",
+"desde",
+6
+]
+],
+"DEU 4 27": [
+[
+21,
+"Nevar.",
+"llevar",
+5
+]
+],
+"DEU 4 42": [
+[
+3,
+"refuglase",
+"refugiase",
+6
+]
+],
+"DEU 5 5": [
+[
+0,
+"Yofuíen",
+"en",
+5
+]
+],
+"DEU 5 14": [
+[
+10,
+"des:anso",
+"descanso",
+3
+]
+],
+"DEU 5 25": [
+[
+21,
+"prosegulmos",
+"proseguimos",
+3
+]
+],
+"DEU 5 31": [
+[
+0,
+"Túentre",
+"tu",
+2
+]
+],
+"DEU 7 14": [
+[
+13,
+"nineuún",
+"ningun",
+5
+]
+],
+"DEU 8 3": [
+[
+32,
+"dispus1ere.",
+"dispusiere",
+2
+]
+],
+"DEU 8 14": [
+[
+0,
+"Seenegria",
+"engria",
+5
+]
+],
+"DEU 9 9": [
+[
+24,
+"mantuye",
+"mantuve",
+3
+]
+],
+"DEU 9 18": [
+[
+28,
+"cometistels",
+"cometisteis",
+6
+]
+],
+"DEU 9 21": [
+[
+19,
+"reducióndole",
+"reduciendole",
+3
+]
+],
+"DEU 9 22": [
+[
+26,
+"ambtojo,",
+"antojo",
+5
+]
+],
+"DEU 11 17": [
+[
+12,
+"lluylas,",
+"lluvias",
+4
+]
+],
+"DEU 11 22": [
+[
+10,
+"cumplierels,",
+"cumpliereis",
+4
+]
+],
+"DEU 12 5": [
+[
+2,
+"ireisal",
+"ireis al",
+4
+]
+],
+"DEU 12 22": [
+[
+9,
+"comerde",
+"comer de",
+6
+]
+],
+"DEU 12 30": [
+[
+0,
+"Miraque",
+"que",
+5
+],
+[
+10,
+"niandes",
+"ni andes",
+2
+]
+],
+"DEU 14 15": [
+[
+11,
+"aleotan",
+"alcotan",
+4
+]
+],
+"DEU 15 17": [
+[
+1,
+"una-lesna,",
+"lesna",
+4
+]
+],
+"DEU 16 1": [
+[
+34,
+"Egyptotu",
+"egypto tu",
+3
+]
+],
+"DEU 17 16": [
+[
+24,
+"teniéndoes",
+"teniendoos",
+2
+]
+],
+"DEU 19 3": [
+[
+36,
+"¿m10luntario.",
+"involuntario",
+4
+]
+],
+"DEU 19 7": [
+[
+11,
+"jguales",
+"iguales",
+3
+]
+],
+"DEU 20 18": [
+[
+18,
+"ofendals",
+"ofendais",
+3
+]
+],
+"DEU 21 10": [
+[
+0,
+"Sisaliendo",
+"saliendo",
+4
+]
+],
+"DEU 21 22": [
+[
+0,
+"Onando",
+"cuando",
+6
+]
+],
+"DEU 22 12": [
+[
+0,
+"Pondrásá",
+"a",
+3
+]
+],
+"DEU 23 1": [
+[
+14,
+"ilelesia",
+"iglesia",
+2
+]
+],
+"DEU 23 7": [
+[
+13,
+"Esgypeio,",
+"egypcio",
+3
+]
+],
+"DEU 23 9": [
+[
+8,
+"envardarás",
+"guardaras",
+3
+]
+],
+"DEU 23 13": [
+[
+3,
+"puntiaegudo",
+"puntiagudo",
+2
+]
+],
+"DEU 23 15": [
+[
+10,
+"acoojere.",
+"acogiere",
+3
+]
+],
+"DEU 23 21": [
+[
+11,
+"complirle;",
+"cumplirle",
+3
+]
+],
+"DEU 23 22": [
+[
+6,
+"hetcer",
+"hacer",
+3
+]
+],
+"DEU 25 3": [
+[
+18,
+"ienominiosamente",
+"ignominiosamente",
+5
+]
+],
+"DEU 25 7": [
+[
+30,
+"juegado,",
+"juzgado",
+4
+]
+],
+"DEU 25 8": [
+[
+1,
+"puntole",
+"le",
+5
+]
+],
+"DEU 25 11": [
+[
+0,
+"Siriñeren",
+"rineren",
+5
+]
+],
+"DEU 25 12": [
+[
+7,
+"moyerte",
+"moverte",
+3
+]
+],
+"DEU 25 13": [
+[
+13,
+"dejectuosas",
+"defectuosas",
+2
+]
+],
+"DEU 25 18": [
+[
+3,
+"Aeuclllando",
+"acuchillando",
+5
+]
+],
+"DEU 26 2": [
+[
+0,
+"Fepararás",
+"separaras",
+6
+]
+],
+"DEU 26 5": [
+[
+43,
+"mfinita",
+"infinita",
+6
+]
+],
+"DEU 26 9": [
+[
+8,
+"ferbíilésima",
+"fertilisima",
+4
+]
+],
+"DEU 26 16": [
+[
+5,
+"Señor¡tu",
+"senor tu",
+5
+]
+],
+"DEU 27 4": [
+[
+20,
+"cupa",
+"capa",
+5
+]
+],
+"DEU 27 15": [
+[
+10,
+"talla,ó",
+"talla o",
+2
+]
+],
+"DEU 28 50": [
+[
+2,
+"jfera",
+"fiera",
+3
+]
+],
+"DEU 28 57": [
+[
+3,
+"seeundinas,",
+"secundinas",
+4
+]
+],
+"DEU 29 21": [
+[
+11,
+"compliéndose",
+"cumpliendose",
+2
+]
+],
+"DEU 31 13": [
+[
+11,
+"19norantes",
+"ignorantes",
+2
+]
+],
+"DEU 31 19": [
+[
+2,
+"eseribios",
+"escribios",
+6
+]
+],
+"DEU 32 13": [
+[
+41,
+"erian",
+"crian",
+4
+]
+],
+"DEU 32 16": [
+[
+8,
+"Ineitaron",
+"incitaron",
+3
+]
+],
+"DEU 32 27": [
+[
+33,
+"Teyuél.",
+"israel",
+3
+]
+],
+"DEU 32 40": [
+[
+0,
+"Alzarémi",
+"mi",
+4
+]
+],
+"DEU 33 2": [
+[
+11,
+"esclareclÓ;",
+"esclarecio",
+3
+]
+],
+"DEU 33 5": [
+[
+5,
+"mundará",
+"mandara",
+3
+],
+[
+10,
+"ameado",
+"amado",
+2
+]
+],
+"DEU 33 10": [
+[
+0,
+"Fstos",
+"estos",
+4
+]
+],
+"DEU 33 12": [
+[
+22,
+"nupelal,",
+"nupcial",
+5
+]
+],
+"DEU 33 19": [
+[
+13,
+"leinmolarán",
+"le inmolaran",
+4
+]
+],
+"DEU 33 21": [
+[
+3,
+"prerogaliva",
+"prerogativa",
+2
+],
+[
+28,
+"la.conquista",
+"la conquista",
+2
+],
+[
+30,
+"Chanadan,",
+"canaan",
+3
+],
+[
+32,
+"eamplió",
+"cumplio",
+4
+]
+],
+"DEU 33 23": [
+[
+22,
+"Genesarelh,",
+"genesareth",
+2
+]
+],
+"JOS 2 5": [
+[
+28,
+"alcanzarels.",
+"alcanzareis",
+4
+]
+],
+"JOS 2 18": [
+[
+8,
+"conWip\"",
+"con",
+2
+]
+],
+"JOS 2 20": [
+[
+16,
+"exisido",
+"exigido",
+4
+]
+],
+"JOS 4 3": [
+[
+20,
+"eolocareis",
+"colocareis",
+5
+]
+],
+"JOS 5 7": [
+[
+26,
+"abiéndolos",
+"habiendolos",
+5
+]
+],
+"JOS 7 5": [
+[
+29,
+"acuchilados",
+"acuchillados",
+4
+]
+],
+"JOS 7 12": [
+[
+11,
+"hutirá",
+"huira",
+4
+],
+[
+28,
+"exterminels",
+"extermineis",
+3
+]
+],
+"JOS 8 4": [
+[
+20,
+"anteneos",
+"manteneos",
+5
+]
+],
+"JOS 8 7": [
+[
+7,
+"sienméndonos",
+"siguiendonos",
+5
+]
+],
+"JOS 8 15": [
+[
+8,
+"finviendo",
+"fingiendo",
+5
+]
+],
+"JOS 8 23": [
+[
+10,
+"Hail,",
+"hai",
+6
+]
+],
+"JOS 9 1": [
+[
+44,
+"Ethéo,",
+"hetheo",
+2
+]
+],
+"JOS 9 5": [
+[
+14,
+"ylejo,",
+"viejo",
+4
+]
+],
+"JOS 9 22": [
+[
+29,
+"IOSOÉTFOs",
+"nosotros",
+3
+]
+],
+"JOS 9 24": [
+[
+30,
+"destrulria",
+"destruiria",
+3
+]
+],
+"JOS 10 3": [
+[
+3,
+"Adonisedee,",
+"adonisedec",
+2
+]
+],
+"JOS 10 15": [
+[
+0,
+"Volviíase",
+"volviase",
+4
+]
+],
+"JOS 10 19": [
+[
+4,
+"parels",
+"pareis",
+5
+]
+],
+"JOS 10 23": [
+[
+38,
+"Eslon.",
+"eglon",
+5
+]
+],
+"JOS 10 27": [
+[
+17,
+"descoleados",
+"descolgados",
+3
+]
+],
+"JOS 10 28": [
+[
+8,
+"Maecda",
+"maceda",
+5
+]
+],
+"JOS 11 6": [
+[
+37,
+"quernar",
+"quemar",
+6
+]
+],
+"JOS 13 9": [
+[
+1,
+"Aroersituada",
+"situada",
+5
+]
+],
+"JOS 13 20": [
+[
+5,
+"Bethiesimotkh,",
+"bethiesimoth",
+2
+]
+],
+"JOS 13 30": [
+[
+31,
+"pobla.clones",
+"poblaciones",
+2
+]
+],
+"JOS 15 9": [
+[
+10,
+"Nepbhtoa,",
+"nephtoa",
+2
+]
+],
+"JOS 15 10": [
+[
+33,
+"Tammna",
+"tamna",
+3
+]
+],
+"JOS 15 35": [
+[
+3,
+"Adullan,",
+"adullam",
+2
+]
+],
+"JOS 15 47": [
+[
+22,
+"JTediterráneo,",
+"mediterraneo",
+3
+]
+],
+"JOS 15 57": [
+[
+0,
+"Accaln,",
+"accain",
+5
+]
+],
+"JOS 16 8": [
+[
+8,
+"Mediterrámeo",
+"mediterraneo",
+2
+]
+],
+"JOS 17 2": [
+[
+41,
+"Hepbher,",
+"hepher",
+3
+]
+],
+"JOS 17 5": [
+[
+0,
+"Asitocaron",
+"tocaron",
+4
+]
+],
+"JOS 17 11": [
+[
+46,
+"Thenaec",
+"thenac",
+5
+]
+],
+"JOS 17 14": [
+[
+6,
+"dirigteron",
+"dirigieron",
+3
+]
+],
+"JOS 19 13": [
+[
+16,
+"Rermmon,",
+"remmon",
+5
+]
+],
+"JOS 19 15": [
+[
+0,
+"Eincluyen",
+"incluyen",
+4
+]
+],
+"JOS 19 18": [
+[
+7,
+"Sunenn",
+"sunem",
+4
+]
+],
+"JOS 19 27": [
+[
+24,
+"Nehiel;y",
+"nehiel y",
+4
+]
+],
+"JOS 20 6": [
+[
+0,
+"Asiestará",
+"estara",
+5
+]
+],
+"JOS 20 7": [
+[
+25,
+"Carlath-Arbe,",
+"cariatharbe",
+4
+]
+],
+"JOS 21 23": [
+[
+7,
+"Eltheeo,",
+"eltheco",
+3
+]
+],
+"JOS 21 41": [
+[
+6,
+"á.Israél",
+"a israel",
+2
+]
+],
+"JOS 22 13": [
+[
+7,
+"Galaadá",
+"galaad a",
+2
+]
+],
+"JOS 22 19": [
+[
+30,
+"desertels",
+"deserteis",
+5
+]
+],
+"JOS 22 30": [
+[
+8,
+"prinelpales",
+"principales",
+4
+]
+],
+"JOS 23 1": [
+[
+13,
+"sojuzeadas",
+"sojuzgadas",
+5
+]
+],
+"JOS 23 9": [
+[
+11,
+"Brandos",
+"grandes",
+4
+]
+],
+"JOS 24 8": [
+[
+35,
+"pasastels",
+"pasasteis",
+3
+]
+],
+"JOS 24 9": [
+[
+10,
+"emerra",
+"guerra",
+4
+]
+],
+"JOS 24 12": [
+[
+4,
+"OSITOS",
+"vosotros",
+5
+]
+],
+"JOS 24 30": [
+[
+10,
+"Tamnatbh-Sare,",
+"tamnathsare",
+3
+]
+],
+"JDG 1 4": [
+[
+22,
+"Bezee",
+"bezec",
+6
+]
+],
+"JDG 1 5": [
+[
+4,
+"Adonibezee,",
+"adonibezec",
+5
+]
+],
+"JDG 1 12": [
+[
+7,
+"Cariathb-Sepher,",
+"cariathsepher",
+3
+]
+],
+"JDG 1 16": [
+[
+47,
+"trasmieraron",
+"trasmigraron",
+4
+]
+],
+"JDG 2 18": [
+[
+20,
+"atribuMl",
+"atribu",
+2
+]
+],
+"JDG 2 22": [
+[
+11,
+"signen",
+"siguen",
+4
+]
+],
+"JDG 3 9": [
+[
+17,
+"Othontel,",
+"othoniel",
+3
+]
+],
+"JDG 3 19": [
+[
+25,
+"prosieulese;",
+"prosiguiese",
+3
+]
+],
+"JDG 3 26": [
+[
+23,
+"Selrath.",
+"seirath",
+2
+]
+],
+"JDG 4 6": [
+[
+9,
+"Abinoena,",
+"abinoem",
+5
+]
+],
+"JDG 4 12": [
+[
+10,
+"Abinoe,",
+"abinoem",
+5
+]
+],
+"JDG 5 3": [
+[
+16,
+"entoñiaré",
+"entonare",
+4
+]
+],
+"JDG 5 6": [
+[
+26,
+"extramoadas.",
+"extraviadas",
+3
+]
+],
+"JDG 5 8": [
+[
+2,
+"meuravilloso",
+"maravilloso",
+3
+]
+],
+"JDG 5 11": [
+[
+17,
+"vencanzas",
+"venganzas",
+4
+]
+],
+"JDG 5 22": [
+[
+18,
+"precipieios",
+"precipicios",
+6
+]
+],
+"JDG 5 23": [
+[
+31,
+"gUETTeros.",
+"guerreros",
+4
+]
+],
+"JDG 5 27": [
+[
+15,
+"reyolcado",
+"revolcado",
+3
+]
+],
+"JDG 6 2": [
+[
+19,
+"puarecerse,",
+"guarecerse",
+4
+]
+],
+"JDG 6 37": [
+[
+0,
+"Héaqué",
+"aqui",
+4
+]
+],
+"JDG 7 4": [
+[
+10,
+"-oguíalos",
+"guialos",
+5
+]
+],
+"JDG 7 9": [
+[
+14,
+"emenvigos;",
+"enemigos",
+5
+]
+],
+"JDG 7 23": [
+[
+16,
+"tiempolos",
+"tiempo los",
+6
+]
+],
+"JDG 8 1": [
+[
+24,
+"ásriamente,",
+"agriamente",
+5
+],
+[
+25,
+"Íaltando",
+"faltando",
+5
+]
+],
+"JDG 8 13": [
+[
+1,
+"yolviendo",
+"volviendo",
+4
+]
+],
+"JDG 8 15": [
+[
+4,
+"Soceoth,",
+"soccoth",
+2
+]
+],
+"JDG 9 2": [
+[
+19,
+"hijos.n",
+"hijos",
+3
+]
+],
+"JDG 9 15": [
+[
+30,
+"apLaSOl",
+"abrase",
+5
+]
+],
+"JDG 9 17": [
+[
+1,
+"expuso:su",
+"su",
+5
+]
+],
+"JDG 9 26": [
+[
+21,
+"Sichenn",
+"sichem",
+3
+]
+],
+"JDG 9 36": [
+[
+7,
+"Zebul:No",
+"zebul no",
+5
+]
+],
+"JDG 10 17": [
+[
+0,
+"Entretantolos",
+"los",
+4
+]
+],
+"JDG 11 2": [
+[
+10,
+"enales",
+"cuales",
+4
+]
+],
+"JDG 11 10": [
+[
+15,
+"ecumpliremos",
+"cumpliremos",
+5
+]
+],
+"JDG 12 3": [
+[
+9,
+"poguésima",
+"poquisima",
+3
+],
+[
+15,
+"Ármmon,",
+"ammon",
+4
+]
+],
+"JDG 12 6": [
+[
+0,
+"Replicíbanle:",
+"replicabanle",
+4
+]
+],
+"JDG 13 15": [
+[
+15,
+"aderecemos",
+"aderezemos",
+3
+]
+],
+"JDG 14 3": [
+[
+31,
+"incireuncisa?",
+"incircuncisa",
+5
+]
+],
+"JDG 14 12": [
+[
+7,
+"pFOPOneroS",
+"proponeros",
+5
+]
+],
+"JDG 14 19": [
+[
+26,
+"deseifraron",
+"descifraron",
+5
+]
+],
+"JDG 15 17": [
+[
+16,
+"Ramatb-lechi,",
+"ramathlechi",
+2
+]
+],
+"JDG 15 18": [
+[
+19,
+"concedido-por",
+"concedido por",
+6
+]
+],
+"JDG 16 5": [
+[
+14,
+"cariciós,",
+"caricias",
+4
+]
+],
+"JDG 18 4": [
+[
+6,
+"esto.hizo",
+"esto hizo",
+5
+]
+],
+"JDG 18 27": [
+[
+30,
+"éincendiaron",
+"e incendiaron",
+3
+]
+],
+"JDG 18 29": [
+[
+0,
+"Elamándola",
+"llamandola",
+4
+]
+],
+"JDG 19 10": [
+[
+16,
+"y-llegó",
+"y llego",
+4
+]
+],
+"JDG 19 24": [
+[
+27,
+"saciels",
+"sacieis",
+5
+]
+],
+"JDG 20 22": [
+[
+0,
+"Uonfiados",
+"confiados",
+3
+]
+],
+"JDG 20 31": [
+[
+25,
+"hulan:",
+"huian",
+2
+]
+],
+"JDG 20 41": [
+[
+0,
+"Alpuntolos",
+"los",
+3
+]
+],
+"JDG 20 42": [
+[
+23,
+"acomelieron",
+"acometieron",
+3
+]
+],
+"JDG 20 45": [
+[
+8,
+"vyer",
+"ver",
+6
+],
+[
+21,
+"Rermmon.",
+"remmon",
+6
+]
+],
+"JDG 21 19": [
+[
+24,
+"blanura",
+"llanura",
+3
+]
+],
+"RUT 1 13": [
+[
+14,
+"serials",
+"seriais",
+2
+]
+],
+"RUT 2 3": [
+[
+20,
+"menevonado",
+"mencionado",
+4
+]
+],
+"RUT 2 5": [
+[
+3,
+"manecebo,",
+"mancebo",
+5
+]
+],
+"RUT 2 7": [
+[
+10,
+"cociendo",
+"cogiendo",
+3
+]
+],
+"RUT 3 3": [
+[
+13,
+"encamiínate",
+"encaminate",
+3
+]
+],
+"RUT 4 8": [
+[
+7,
+"panente:",
+"pariente",
+5
+]
+],
+"RUT 4 9": [
+[
+39,
+"Noenmt",
+"noemi",
+3
+]
+],
+"RUT 4 17": [
+[
+5,
+"coneratulándose",
+"congratulandose",
+3
+]
+],
+"1SA 1 16": [
+[
+10,
+"licenciosus",
+"licenciosas",
+2
+]
+],
+"1SA 1 20": [
+[
+19,
+"fervorosumente",
+"fervorosamente",
+2
+]
+],
+"1SA 1 23": [
+[
+20,
+"diene",
+"digne",
+6
+]
+],
+"1SA 2 3": [
+[
+9,
+"usels",
+"useis",
+2
+]
+],
+"1SA 2 5": [
+[
+27,
+"saciados.-La",
+"saciados la",
+3
+]
+],
+"1SA 2 16": [
+[
+8,
+"orosura,",
+"grosura",
+4
+]
+],
+"1SA 3 6": [
+[
+15,
+"Helt,",
+"heli",
+4
+]
+],
+"1SA 3 13": [
+[
+31,
+"debic.",
+"debia",
+6
+]
+],
+"1SA 3 14": [
+[
+16,
+"explará",
+"expiara",
+3
+]
+],
+"1SA 3 18": [
+[
+19,
+"hasa",
+"haga",
+5
+]
+],
+"1SA 4 3": [
+[
+25,
+"Tralgamos",
+"traigamos",
+4
+]
+],
+"1SA 4 6": [
+[
+6,
+"pritería",
+"griteria",
+5
+]
+],
+"1SA 4 12": [
+[
+10,
+"escupado",
+"escapado",
+3
+]
+],
+"1SA 5 9": [
+[
+9,
+"cluded,",
+"ciudad",
+3
+],
+[
+50,
+"disenrriendo",
+"discurriendo",
+3
+]
+],
+"1SA 7 12": [
+[
+21,
+"luiear",
+"lugar",
+4
+]
+],
+"1SA 8 1": [
+[
+17,
+"tententes",
+"tenientes",
+5
+]
+],
+"1SA 8 3": [
+[
+2,
+"siewieron",
+"siguieron",
+4
+]
+],
+"1SA 9 7": [
+[
+31,
+"clarle.",
+"darle",
+4
+]
+],
+"1SA 9 19": [
+[
+18,
+"comerás:conmigo,",
+"comeras conmigo",
+4
+]
+],
+"1SA 9 22": [
+[
+24,
+"distimguiéndolos",
+"distinguiendolos",
+3
+]
+],
+"1SA 10 25": [
+[
+12,
+"eseribióla",
+"escribiola",
+6
+],
+[
+20,
+"Tabermácilo",
+"tabernaculo",
+4
+]
+],
+"1SA 10 26": [
+[
+9,
+"sieméndole",
+"siguiendole",
+3
+]
+],
+"1SA 11 1": [
+[
+9,
+"moviIl",
+"movi",
+2
+],
+[
+36,
+"tmbutarios",
+"tributarios",
+4
+],
+[
+37,
+"Luyos.",
+"tuyos",
+4
+]
+],
+"1SA 11 7": [
+[
+39,
+"sigulere",
+"siguiere",
+5
+]
+],
+"1SA 11 9": [
+[
+24,
+"Socorados:",
+"socorridos",
+6
+]
+],
+"1SA 12 14": [
+[
+10,
+"eseuchárels",
+"escuchareis",
+4
+]
+],
+"1SA 13 20": [
+[
+12,
+"aguiizar",
+"aguzar",
+5
+]
+],
+"1SA 14 1": [
+[
+0,
+"Sucedióun",
+"un",
+5
+]
+],
+"1SA 14 23": [
+[
+13,
+"Bethayen.",
+"bethaven",
+4
+]
+],
+"1SA 14 29": [
+[
+30,
+"oustacdo",
+"gustado",
+5
+]
+],
+"1SA 14 34": [
+[
+3,
+"Espareíos",
+"esparcios",
+5
+]
+],
+"1SA 14 43": [
+[
+17,
+"Grusté",
+"guste",
+4
+]
+],
+"1SA 15 11": [
+[
+16,
+"órdenes..De",
+"ordenes de",
+5
+]
+],
+"1SA 16 18": [
+[
+8,
+"-dijg:",
+"dijo",
+5
+]
+],
+"1SA 17 12": [
+[
+9,
+"Epbrathéo",
+"ephratheo",
+2
+]
+],
+"1SA 17 26": [
+[
+39,
+"¿mpunemente",
+"impunemente",
+3
+],
+[
+34,
+"incireuneiso",
+"incircunciso",
+3
+]
+],
+"1SA 17 36": [
+[
+26,
+"mMisino,",
+"mismo",
+6
+]
+],
+"1SA 17 37": [
+[
+28,
+"Saulá",
+"saul a",
+3
+]
+],
+"1SA 17 39": [
+[
+0,
+"Ciméndose",
+"cinendose",
+4
+]
+],
+"1SA 18 7": [
+[
+7,
+"repetlian",
+"repetian",
+5
+]
+],
+"1SA 18 21": [
+[
+3,
+"¿mteriormente:",
+"interiormente",
+3
+],
+[
+33,
+"seruiciós",
+"servicios",
+4
+]
+],
+"1SA 18 25": [
+[
+32,
+"PhAlisindos:",
+"philistheos",
+3
+]
+],
+"1SA 18 27": [
+[
+22,
+"ineireuncisos,",
+"incircuncisos",
+2
+]
+],
+"1SA 19 3": [
+[
+7,
+"procutaré",
+"procurare",
+6
+]
+],
+"1SA 19 11": [
+[
+3,
+"seevida",
+"seguida",
+4
+]
+],
+"1SA 20 2": [
+[
+17,
+"comunicármelaf",
+"comunicarmela",
+2
+]
+],
+"1SA 20 4": [
+[
+10,
+"IMSINUATES.",
+"insinuares",
+5
+]
+],
+"1SA 20 6": [
+[
+27,
+"femália",
+"familia",
+4
+]
+],
+"1SA 20 7": [
+[
+19,
+"Adcia",
+"hacia",
+2
+]
+],
+"1SA 20 13": [
+[
+5,
+"áJonathás,",
+"a jonathas",
+3
+]
+],
+"1SA 20 27": [
+[
+9,
+"desoeupado",
+"desocupado",
+4
+]
+],
+"1SA 20 29": [
+[
+2,
+"liconela:",
+"licencia",
+6
+]
+],
+"1SA 20 31": [
+[
+0,
+"Pábete",
+"sabete",
+5
+]
+],
+"1SA 22 8": [
+[
+5,
+"conjuracio",
+"conjurado",
+3
+]
+],
+"1SA 22 9": [
+[
+11,
+"SntEO",
+"entre",
+5
+]
+],
+"1SA 22 22": [
+[
+13,
+"Tduméo,",
+"idumeo",
+4
+]
+],
+"1SA 23 23": [
+[
+0,
+"ERegistrad",
+"registrad",
+5
+]
+],
+"1SA 24 11": [
+[
+19,
+"asalió,",
+"asalto",
+3
+]
+],
+"1SA 24 13": [
+[
+9,
+"hásame",
+"hagame",
+3
+]
+],
+"1SA 24 16": [
+[
+5,
+"senteneie",
+"sentencie",
+6
+]
+],
+"1SA 24 22": [
+[
+6,
+"extinenirás",
+"extinguiras",
+3
+]
+],
+"1SA 25 2": [
+[
+34,
+"esquilarsus",
+"esquilar sus",
+4
+]
+],
+"1SA 25 6": [
+[
+5,
+"Jelicidad",
+"felicidad",
+2
+]
+],
+"1SA 25 17": [
+[
+32,
+"violenfo",
+"violento",
+4
+]
+],
+"1SA 25 29": [
+[
+50,
+"espelida",
+"expelida",
+5
+]
+],
+"1SA 26 3": [
+[
+31,
+"seguilmiento,)",
+"seguimiento",
+2
+]
+],
+"1SA 26 9": [
+[
+4,
+"Abisat:",
+"abisai",
+4
+]
+],
+"1SA 26 14": [
+[
+33,
+"eritas",
+"gritas",
+6
+]
+],
+"1SA 26 21": [
+[
+45,
+"Inuchísimas",
+"muchisimas",
+4
+]
+],
+"1SA 28 3": [
+[
+8,
+"amarqumente,",
+"amargamente",
+5
+]
+],
+"1SA 28 8": [
+[
+24,
+"Adiyíname",
+"adiviname",
+5
+]
+],
+"1SA 28 14": [
+[
+0,
+"Replkcóle",
+"replicole",
+4
+]
+],
+"1SA 28 18": [
+[
+19,
+"exiela",
+"exigia",
+5
+]
+],
+"1SA 30 1": [
+[
+31,
+"perádola",
+"pegadola",
+4
+]
+],
+"1SA 30 8": [
+[
+16,
+"aleanmzaré,",
+"alcanzare",
+3
+]
+],
+"1SA 30 11": [
+[
+7,
+"eevypeio,",
+"egipcio",
+3
+]
+],
+"1SA 30 14": [
+[
+4,
+"Ineursion",
+"incursion",
+6
+]
+],
+"1SA 30 15": [
+[
+5,
+"gularme",
+"guiarme",
+6
+]
+],
+"1SA 30 17": [
+[
+6,
+"siemió",
+"siguio",
+3
+]
+],
+"1SA 30 22": [
+[
+35,
+"contéritese",
+"contentese",
+4
+]
+],
+"1SA 31 2": [
+[
+16,
+"Melchisna,",
+"melchisua",
+3
+]
+],
+"2SA 1 3": [
+[
+1,
+"David:¿De",
+"de",
+6
+]
+],
+"2SA 1 6": [
+[
+31,
+"cabalNería",
+"caballeria",
+5
+]
+],
+"2SA 1 19": [
+[
+0,
+"Ladior",
+"flor",
+5
+]
+],
+"2SA 1 25": [
+[
+11,
+"combate;Cómo",
+"combate como",
+3
+]
+],
+"2SA 2 7": [
+[
+0,
+"Buenánimo,",
+"animo",
+5
+]
+],
+"2SA 2 14": [
+[
+2,
+"Abnerá",
+"abner a",
+5
+],
+[
+16,
+"Salean",
+"salgan",
+2
+]
+],
+"2SA 2 16": [
+[
+38,
+"Grabaon",
+"gabaon",
+3
+]
+],
+"2SA 2 20": [
+[
+7,
+"dijo:¿No",
+"dijo no",
+6
+]
+],
+"2SA 3 3": [
+[
+5,
+"Abisail,",
+"abigail",
+2
+]
+],
+"2SA 3 12": [
+[
+10,
+"David:¿A",
+"david a",
+3
+]
+],
+"2SA 3 30": [
+[
+16,
+"Asadl",
+"asael",
+4
+]
+],
+"2SA 5 12": [
+[
+22,
+"sobierno",
+"gobierno",
+4
+]
+],
+"2SA 5 23": [
+[
+16,
+"Respondiólo",
+"respondiole",
+6
+]
+],
+"2SA 7 12": [
+[
+27,
+"eonsolidaré",
+"consolidare",
+4
+]
+],
+"2SA 7 13": [
+[
+3,
+"teraplo",
+"templo",
+5
+]
+],
+"2SA 8 3": [
+[
+18,
+"donminios",
+"dominios",
+3
+]
+],
+"2SA 8 16": [
+[
+18,
+"cronista",
+"coronista",
+5
+]
+],
+"2SA 9 2": [
+[
+21,
+"responclió",
+"respondio",
+5
+]
+],
+"2SA 9 8": [
+[
+14,
+"dienado",
+"dignado",
+5
+]
+],
+"2SA 9 10": [
+[
+23,
+"MWMiphiboseth",
+"miphiboseth",
+3
+]
+],
+"2SA 11 4": [
+[
+9,
+"priInero",
+"primero",
+2
+]
+],
+"2SA 11 8": [
+[
+25,
+"sesuida",
+"seguida",
+4
+]
+],
+"2SA 11 10": [
+[
+21,
+"llewado",
+"llegado",
+4
+]
+],
+"2SA 11 17": [
+[
+18,
+"Dand",
+"david",
+3
+],
+[
+22,
+"fambiea",
+"tambien",
+4
+]
+],
+"2SA 11 20": [
+[
+0,
+"Bives",
+"ves",
+5
+]
+],
+"2SA 11 21": [
+[
+34,
+"Arrimastels",
+"arrimasteis",
+4
+]
+],
+"2SA 12 12": [
+[
+22,
+"CALAS",
+"misma",
+3
+]
+],
+"2SA 12 17": [
+[
+16,
+"ruegosá",
+"ruegos a",
+3
+]
+],
+"2SA 13 3": [
+[
+10,
+"Sermmaa",
+"semmaa",
+6
+]
+],
+"2SA 13 6": [
+[
+0,
+"Páúsose",
+"pusose",
+4
+]
+],
+"2SA 13 20": [
+[
+3,
+"hermano:¿Es",
+"hermano es",
+4
+]
+],
+"2SA 13 33": [
+[
+5,
+"créditoel",
+"credito el",
+5
+]
+],
+"2SA 13 36": [
+[
+33,
+"erlados.",
+"criados",
+2
+]
+],
+"2SA 14 1": [
+[
+12,
+"inelinaba",
+"inclinaba",
+2
+]
+],
+"2SA 14 26": [
+[
+25,
+"apreciabanm",
+"apreciaban",
+5
+]
+],
+"2SA 15 5": [
+[
+11,
+"alareaba",
+"alargaba",
+5
+]
+],
+"2SA 15 14": [
+[
+26,
+"salir;no",
+"salir no",
+5
+]
+],
+"2SA 15 19": [
+[
+5,
+"Etbhai,",
+"ethai",
+4
+]
+],
+"2SA 15 20": [
+[
+9,
+"oblivado",
+"obligado",
+4
+]
+],
+"2SA 15 25": [
+[
+35,
+"vezsu",
+"vez su",
+5
+]
+],
+"2SA 16 1": [
+[
+43,
+"pelHlejo",
+"pellejo",
+3
+]
+],
+"2SA 16 12": [
+[
+4,
+"apiladará",
+"apiadara",
+6
+]
+],
+"2SA 16 16": [
+[
+20,
+"cuarde.",
+"guarde",
+2
+]
+],
+"2SA 17 6": [
+[
+3,
+"Chusaiá",
+"chusai a",
+3
+]
+],
+"2SA 17 12": [
+[
+17,
+"eubriremos",
+"cubriremos",
+5
+]
+],
+"2SA 17 16": [
+[
+28,
+"Jordam.",
+"jordan",
+3
+]
+],
+"2SA 17 21": [
+[
+10,
+"prosiouiendo",
+"prosiguiendo",
+2
+]
+],
+"2SA 18 29": [
+[
+10,
+"Absalóom?",
+"absalom",
+2
+]
+],
+"2SA 18 32": [
+[
+30,
+"leyantaren",
+"levantaren",
+4
+]
+],
+"2SA 19 21": [
+[
+9,
+"¿Cómo;¡y",
+"como y",
+5
+]
+],
+"2SA 20 4": [
+[
+6,
+"Conyócame",
+"convocame",
+5
+]
+],
+"2SA 20 22": [
+[
+13,
+"habló-con",
+"hablo con",
+6
+]
+],
+"2SA 20 24": [
+[
+12,
+"coronisto.",
+"coronista",
+2
+]
+],
+"2SA 21 5": [
+[
+12,
+"antquilarle",
+"aniquilarle",
+3
+]
+],
+"2SA 21 6": [
+[
+10,
+"erucifiquemos",
+"crucifiquemos",
+4
+]
+],
+"2SA 21 16": [
+[
+18,
+"famante,",
+"flamante",
+4
+]
+],
+"2SA 21 19": [
+[
+18,
+"tejla",
+"tejia",
+4
+]
+],
+"2SA 22 10": [
+[
+3,
+"imelinar",
+"inclinar",
+4
+]
+],
+"2SA 22 13": [
+[
+2,
+"refuleentes",
+"refulgentes",
+5
+]
+],
+"2SA 22 26": [
+[
+10,
+"petfecto",
+"perfecto",
+5
+]
+],
+"2SA 22 28": [
+[
+0,
+"Túsalvarás",
+"salvaras",
+4
+]
+],
+"2SA 23 1": [
+[
+34,
+"esregio",
+"egregio",
+5
+]
+],
+"2SA 23 8": [
+[
+24,
+"distinguidos;aunque",
+"distinguidos aunque",
+2
+]
+],
+"2SA 24 10": [
+[
+21,
+"eravísimamente",
+"gravisimamente",
+6
+]
+],
+"2SA 24 17": [
+[
+11,
+"castiegaba",
+"castigaba",
+5
+]
+],
+"1KI 1 18": [
+[
+9,
+"remando",
+"reinando",
+3
+]
+],
+"1KI 2 7": [
+[
+6,
+"Perzellai,",
+"berzellai",
+2
+]
+],
+"1KI 6 7": [
+[
+35,
+"azuelo,",
+"azuela",
+4
+]
+],
+"1KI 7 5": [
+[
+3,
+"legual",
+"igual",
+6
+]
+],
+"1KI 7 23": [
+[
+13,
+"didmetro,",
+"diametro",
+5
+]
+],
+"1KI 7 32": [
+[
+16,
+"eorrespondiéndose",
+"correspondiendose",
+6
+]
+],
+"1KI 8 31": [
+[
+8,
+"tuylere",
+"tuviere",
+2
+]
+],
+"1KI 8 48": [
+[
+17,
+"enemisza",
+"enemiga",
+3
+]
+],
+"1KI 8 53": [
+[
+26,
+"Moyass,",
+"moises",
+3
+]
+],
+"1KI 8 59": [
+[
+3,
+"palabras,,con",
+"palabras con",
+2
+]
+],
+"1KI 9 8": [
+[
+22,
+"prorumplirá",
+"prorumpira",
+5
+]
+],
+"1KI 9 14": [
+[
+6,
+"PeTAcion",
+"salomon",
+5
+]
+],
+"1KI 10 11": [
+[
+10,
+"conduela",
+"conducia",
+3
+]
+],
+"1KI 10 12": [
+[
+6,
+"tymo",
+"tyno",
+3
+]
+],
+"1KI 10 15": [
+[
+5,
+"trailan",
+"traian",
+4
+]
+],
+"1KI 10 17": [
+[
+18,
+"eolocólas",
+"colocolas",
+3
+]
+],
+"1KI 10 24": [
+[
+21,
+"coWPrazon",
+"corazon",
+3
+]
+],
+"1KI 11 9": [
+[
+0,
+"Porloqueseirritó",
+"irrito",
+4
+]
+],
+"1KI 11 17": [
+[
+7,
+"cnados",
+"criados",
+6
+]
+],
+"1KI 11 30": [
+[
+2,
+"Ahíias",
+"ahias",
+3
+]
+],
+"1KI 12 10": [
+[
+24,
+"alfvianosle",
+"alivianosle",
+3
+]
+],
+"1KI 12 20": [
+[
+28,
+"sienmiera",
+"siguiera",
+2
+]
+],
+"1KI 13 11": [
+[
+30,
+"refiniendo",
+"refiriendo",
+4
+]
+],
+"1KI 14 18": [
+[
+20,
+"Ahlas",
+"ahias",
+3
+]
+],
+"1KI 15 1": [
+[
+8,
+"Jeroboax,",
+"jeroboam",
+3
+]
+],
+"1KI 15 5": [
+[
+16,
+"motablemente",
+"notablemente",
+4
+]
+],
+"1KI 16 2": [
+[
+0,
+"Dirásá",
+"a",
+3
+]
+],
+"1KI 16 9": [
+[
+8,
+"coman(lante",
+"comandante",
+4
+]
+],
+"1KI 16 13": [
+[
+35,
+"UOSes.",
+"dioses",
+2
+]
+],
+"1KI 16 16": [
+[
+19,
+"Ámyri,",
+"amri",
+5
+]
+],
+"1KI 16 22": [
+[
+24,
+"Axrnri.",
+"amri",
+3
+]
+],
+"1KI 17 1": [
+[
+37,
+"dlijere.",
+"dijere",
+3
+]
+],
+"1KI 17 6": [
+[
+23,
+"ALTOyO.",
+"arroyo",
+4
+]
+],
+"1KI 17 18": [
+[
+14,
+"Dios;Has",
+"dios has",
+3
+]
+],
+"1KI 17 21": [
+[
+6,
+"encoglóse",
+"encogiose",
+5
+]
+],
+"1KI 18 18": [
+[
+32,
+"OLOSES.",
+"dioses",
+4
+]
+],
+"1KI 19 18": [
+[
+26,
+"extendéídola",
+"extendidola",
+3
+]
+],
+"1KI 20 10": [
+[
+19,
+"Hásanme",
+"haganme",
+2
+]
+],
+"1KI 20 16": [
+[
+1,
+"á.eso",
+"eso",
+2
+]
+],
+"1KI 20 18": [
+[
+11,
+"bregucas,",
+"treguas",
+3
+]
+],
+"1KI 20 32": [
+[
+4,
+"ciñnéndoselos",
+"cinendoselos",
+4
+]
+],
+"1KI 20 33": [
+[
+33,
+"Presontósele",
+"presentosele",
+4
+]
+],
+"1KI 21 8": [
+[
+27,
+"erudad,",
+"ciudad",
+5
+]
+],
+"1KI 21 9": [
+[
+14,
+"Nabotb",
+"naboth",
+3
+]
+],
+"1KI 21 22": [
+[
+25,
+"proyocarme",
+"provocarme",
+3
+]
+],
+"1KI 22 12": [
+[
+23,
+"entregará-en",
+"entregara en",
+3
+]
+],
+"1KI 22 13": [
+[
+31,
+"lenenaje",
+"lenguage",
+3
+]
+],
+"2KI 1 12": [
+[
+22,
+"hueBo",
+"fuego",
+4
+],
+[
+13,
+"deyórete",
+"devorete",
+4
+]
+],
+"2KI 2 6": [
+[
+30,
+"Marecharon",
+"marcharon",
+4
+]
+],
+"2KI 2 15": [
+[
+36,
+"reverenela",
+"reverencia",
+4
+]
+],
+"2KI 2 21": [
+[
+25,
+"húnea",
+"nunca",
+4
+]
+],
+"2KI 3 8": [
+[
+8,
+"responclióle",
+"respondiole",
+3
+]
+],
+"2KI 3 19": [
+[
+18,
+"cegarels",
+"cegareis",
+6
+]
+],
+"2KI 3 21": [
+[
+18,
+"conyvocaron",
+"convocaron",
+5
+]
+],
+"2KI 4 13": [
+[
+30,
+"puedayo",
+"pueda yo",
+4
+]
+],
+"2KI 4 18": [
+[
+10,
+"Iráencontrar",
+"ir",
+4
+]
+],
+"2KI 4 29": [
+[
+8,
+"eimta,",
+"cinta",
+5
+]
+],
+"2KI 5 23": [
+[
+47,
+"G1ezi.",
+"giezi",
+2
+]
+],
+"2KI 6 15": [
+[
+47,
+"hilaremos?",
+"haremos",
+3
+]
+],
+"2KI 6 18": [
+[
+27,
+"destumbró",
+"deslumbro",
+4
+]
+],
+"2KI 7 2": [
+[
+26,
+"boviese",
+"lloviese",
+5
+]
+],
+"2KI 7 4": [
+[
+0,
+"5itratamos",
+"tratamos",
+4
+],
+[
+36,
+"cualquiermodo",
+"cualquier modo",
+2
+]
+],
+"2KI 7 6": [
+[
+15,
+"fulcados",
+"falcados",
+5
+]
+],
+"2KI 7 9": [
+[
+36,
+"lleyemos",
+"llevemos",
+4
+]
+],
+"2KI 7 11": [
+[
+10,
+"noyedad",
+"novedad",
+2
+]
+],
+"2KI 8 15": [
+[
+8,
+"acolcheacdo;",
+"acolchado",
+3
+]
+],
+"2KI 8 20": [
+[
+10,
+"eliejóse",
+"eligiose",
+4
+]
+],
+"2KI 9 12": [
+[
+12,
+"Jehuúu",
+"jehu",
+3
+]
+],
+"2KI 9 17": [
+[
+34,
+"cireunstamtes:",
+"circunstantes",
+4
+]
+],
+"2KI 9 33": [
+[
+9,
+"Arrojárona,",
+"arrojaronla",
+2
+]
+],
+"2KI 10 5": [
+[
+38,
+"haztodo",
+"haz todo",
+4
+]
+],
+"2KI 10 26": [
+[
+1,
+"sataron",
+"sacaron",
+4
+]
+],
+"2KI 11 2": [
+[
+1,
+"queJosaba,",
+"josaba",
+6
+]
+],
+"2KI 11 8": [
+[
+20,
+"ansultarle,",
+"insultarle",
+3
+]
+],
+"2KI 15 7": [
+[
+0,
+"Pasóen",
+"y",
+2
+]
+],
+"2KI 15 9": [
+[
+0,
+"EÉhizoel",
+"el",
+4
+]
+],
+"2KI 15 17": [
+[
+14,
+"pucóficamente",
+"pacificamente",
+2
+]
+],
+"2KI 16 17": [
+[
+23,
+"ljeualmente",
+"igualmente",
+6
+]
+],
+"2KI 17 19": [
+[
+19,
+"extraviíos",
+"extravios",
+2
+]
+],
+"2KI 17 24": [
+[
+47,
+"clnudades.",
+"ciudades",
+3
+]
+],
+"2KI 17 35": [
+[
+23,
+"atdlorels,",
+"adoreis",
+6
+]
+],
+"2KI 18 9": [
+[
+22,
+"amaasar",
+"salmanasar",
+3
+]
+],
+"2KI 19 6": [
+[
+35,
+"ASAYEIOS",
+"asirios",
+3
+]
+],
+"2KI 19 9": [
+[
+1,
+"Sennad.érib,",
+"sennaquerib",
+2
+],
+[
+18,
+"m.arcbar",
+"marchar",
+3
+]
+],
+"2KI 19 10": [
+[
+33,
+"Assyrlos",
+"asirios",
+3
+]
+],
+"2KI 19 13": [
+[
+18,
+"Sepharvaira,",
+"sepharvaim",
+4
+]
+],
+"2KI 19 22": [
+[
+24,
+"¿msolentes?",
+"insolentes",
+4
+]
+],
+"2KI 19 23": [
+[
+19,
+"ajymodos",
+"armados",
+2
+]
+],
+"2KI 21 6": [
+[
+24,
+"migrománticos,",
+"nigromanticos",
+4
+]
+],
+"2KI 22 5": [
+[
+32,
+"reparatle",
+"repararle",
+2
+]
+],
+"2KI 23 4": [
+[
+20,
+"que:arrojasen",
+"que arrojasen",
+5
+]
+],
+"2KI 23 19": [
+[
+35,
+"raseaste",
+"rasgaste",
+2
+]
+],
+"2KI 25 1": [
+[
+7,
+"Sedecíns,",
+"sedecias",
+2
+]
+],
+"2KI 25 2": [
+[
+8,
+"cireunvalada",
+"circunvalada",
+4
+]
+],
+"2KI 25 21": [
+[
+5,
+"keblatha,",
+"reblatha",
+3
+]
+],
+"1CH 1 6": [
+[
+5,
+"Riphatb,",
+"riphath",
+2
+]
+],
+"1CH 1 7": [
+[
+8,
+"Dodanin",
+"dodanim",
+2
+]
+],
+"1CH 1 29": [
+[
+16,
+"Mabsaxn",
+"mabsam",
+2
+]
+],
+"1CH 1 51": [
+[
+25,
+"Jethetbh",
+"jetheth",
+3
+]
+],
+"1CH 2 26": [
+[
+1,
+"mujertuvo",
+"tuvo",
+6
+]
+],
+"1CH 2 40": [
+[
+3,
+"Sisamol,",
+"sisamoi",
+5
+]
+],
+"1CH 2 42": [
+[
+8,
+"primoinn",
+"primo",
+2
+]
+],
+"1CH 2 44": [
+[
+10,
+"Sammal.",
+"sammai",
+6
+]
+],
+"1CH 3 5": [
+[
+21,
+"Amumniel.",
+"ammiel",
+3
+]
+],
+"1CH 3 21": [
+[
+7,
+"Jeselas,",
+"jeseias",
+3
+]
+],
+"1CH 4 1": [
+[
+10,
+"Chárrai,",
+"carmi",
+3
+]
+],
+"1CH 4 5": [
+[
+5,
+"Theecua,",
+"thecua",
+2
+]
+],
+"1CH 4 6": [
+[
+0,
+"Naarale",
+"le",
+2
+]
+],
+"1CH 4 13": [
+[
+8,
+"Othontiel:",
+"othoniel",
+2
+]
+],
+"1CH 4 16": [
+[
+10,
+"Asracl.",
+"asrael",
+3
+]
+],
+"1CH 4 19": [
+[
+7,
+"Nabam,",
+"naham",
+3
+]
+],
+"1CH 4 21": [
+[
+13,
+"vadre",
+"padre",
+4
+]
+],
+"1CH 4 26": [
+[
+8,
+"Zachur;é",
+"zachur e",
+2
+]
+],
+"1CH 5 24": [
+[
+19,
+"Odolas,",
+"odoias",
+6
+]
+],
+"1CH 6 3": [
+[
+15,
+"Hhamar",
+"ithamar",
+4
+]
+],
+"1CH 6 21": [
+[
+0,
+"DeZamma",
+"zamma",
+2
+]
+],
+"1CH 6 26": [
+[
+9,
+"Nabhatlh",
+"nahath",
+3
+]
+],
+"1CH 6 30": [
+[
+7,
+"Hasgia;",
+"haggia",
+5
+],
+[
+10,
+"Haeela,",
+"haggia",
+4
+]
+],
+"1CH 6 32": [
+[
+30,
+"fumabras.",
+"familias",
+4
+]
+],
+"1CH 6 41": [
+[
+2,
+"Athanail,",
+"athanai",
+2
+]
+],
+"1CH 7 3": [
+[
+15,
+"ecmmeo",
+"cinco",
+3
+]
+],
+"1CH 7 7": [
+[
+5,
+"0Ozl,",
+"ozi",
+4
+]
+],
+"1CH 7 8": [
+[
+9,
+"Eltoenal,",
+"elioenai",
+3
+]
+],
+"1CH 8 13": [
+[
+0,
+"Bariay",
+"y",
+4
+]
+],
+"1CH 8 14": [
+[
+0,
+"Abhio,",
+"ahio",
+4
+]
+],
+"1CH 8 20": [
+[
+1,
+"Elicenai,",
+"elioenai",
+2
+]
+],
+"1CH 8 27": [
+[
+6,
+"Zeechu,",
+"zechri",
+3
+]
+],
+"1CH 9 12": [
+[
+11,
+"Melehias,",
+"melquias",
+2
+]
+],
+"1CH 10 4": [
+[
+15,
+"Desenyaina",
+"desenvaina",
+6
+]
+],
+"1CH 11 14": [
+[
+2,
+"Bleazar",
+"eleazar",
+5
+],
+[
+4,
+"Semmna,",
+"semma",
+5
+]
+],
+"1CH 11 15": [
+[
+34,
+"Raphainn.",
+"rafaim",
+3
+]
+],
+"1CH 11 19": [
+[
+42,
+"esforzadís1m0s5",
+"esforzadisimos",
+3
+]
+],
+"1CH 11 20": [
+[
+1,
+"Abisaf,",
+"abisai",
+2
+]
+],
+"1CH 11 21": [
+[
+9,
+"eseclarecido",
+"esclarecido",
+5
+]
+],
+"1CH 11 25": [
+[
+6,
+"lgualaba",
+"igualaba",
+5
+]
+],
+"1CH 11 32": [
+[
+3,
+"Gaáas,",
+"gaas",
+6
+]
+],
+"1CH 11 33": [
+[
+10,
+"Arart",
+"arari",
+5
+]
+],
+"1CH 11 38": [
+[
+7,
+"Agaral",
+"agarai",
+6
+]
+],
+"1CH 11 44": [
+[
+7,
+"Hothánm,",
+"hotham",
+5
+]
+],
+"1CH 12 3": [
+[
+13,
+"Gabaatb,",
+"gabaath",
+3
+]
+],
+"1CH 12 4": [
+[
+9,
+"Lrembta,",
+"treinta",
+4
+]
+],
+"1CH 12 11": [
+[
+0,
+"Etbi",
+"ethi",
+3
+]
+],
+"1CH 12 20": [
+[
+28,
+"Salatbi,",
+"salathi",
+2
+]
+],
+"1CH 12 32": [
+[
+23,
+"preseribir",
+"prescribir",
+6
+]
+],
+"1CH 13 8": [
+[
+11,
+"d4reca",
+"arca",
+3
+]
+],
+"1CH 14 5": [
+[
+1,
+"Jebabar,",
+"jebahar",
+4
+]
+],
+"1CH 14 15": [
+[
+32,
+"PhiUsthéos.",
+"filisteos",
+3
+]
+],
+"1CH 14 16": [
+[
+20,
+"Gazora",
+"gazera",
+3
+]
+],
+"1CH 15 7": [
+[
+10,
+"CONSILO",
+"consigo",
+3
+]
+],
+"1CH 15 20": [
+[
+19,
+"naplos",
+"nablos",
+4
+]
+],
+"1CH 15 23": [
+[
+7,
+"ujteres",
+"ugieres",
+4
+]
+],
+"1CH 15 24": [
+[
+7,
+"Amasal,",
+"amasai",
+3
+]
+],
+"1CH 15 25": [
+[
+33,
+"regoeljos",
+"regocijos",
+4
+]
+],
+"1CH 16 5": [
+[
+27,
+"Obededom:á",
+"obededom a",
+2
+]
+],
+"1CH 16 34": [
+[
+6,
+"¿nmensa;",
+"inmensa",
+4
+]
+],
+"1CH 16 40": [
+[
+26,
+"preserita",
+"prescrita",
+2
+]
+],
+"1CH 16 42": [
+[
+13,
+"pletillos,",
+"platillos",
+5
+]
+],
+"1CH 17 8": [
+[
+30,
+"masgnates",
+"magnates",
+4
+]
+],
+"1CH 17 24": [
+[
+1,
+"lléyese",
+"llevese",
+4
+]
+],
+"1CH 17 26": [
+[
+7,
+"imfulible,",
+"infalible",
+2
+]
+],
+"1CH 18 4": [
+[
+39,
+"caballos,.que",
+"caballos que",
+6
+]
+],
+"1CH 18 8": [
+[
+10,
+"Obun,",
+"cun",
+3
+]
+],
+"1CH 18 10": [
+[
+13,
+"coneratularse",
+"congratularse",
+3
+]
+],
+"1CH 19 12": [
+[
+16,
+"Armmmonitas",
+"ammonitas",
+4
+]
+],
+"1CH 21 3": [
+[
+42,
+"«carreard",
+"acarreara",
+4
+]
+],
+"1CH 21 21": [
+[
+6,
+"aleanzóle",
+"alcanzole",
+4
+]
+],
+"1CH 21 24": [
+[
+20,
+"debo-yo",
+"debo yo",
+4
+]
+],
+"1CH 22 13": [
+[
+29,
+"varonmilmente:",
+"varonilmente",
+4
+]
+],
+"1CH 22 16": [
+[
+3,
+"bronco!",
+"bronce",
+4
+],
+[
+9,
+"incaleulable.",
+"incalculable",
+3
+]
+],
+"1CH 23 30": [
+[
+16,
+"ienalmente",
+"igualmente",
+5
+]
+],
+"1CH 24 7": [
+[
+9,
+"Jedel",
+"jedei",
+4
+]
+],
+"1CH 24 8": [
+[
+7,
+"Scorim,",
+"seorim",
+4
+]
+],
+"1CH 24 10": [
+[
+3,
+"Aecos,",
+"accos",
+6
+]
+],
+"1CH 24 23": [
+[
+0,
+"DeJaath",
+"jaath",
+5
+]
+],
+"1CH 25 3": [
+[
+7,
+"Jeselas,",
+"jeseias",
+5
+]
+],
+"1CH 25 10": [
+[
+9,
+"Spano",
+"hermanos",
+4
+]
+],
+"1CH 26 5": [
+[
+0,
+"Armmiel",
+"ammiel",
+2
+]
+],
+"1CH 26 23": [
+[
+14,
+"Ozibel.",
+"ozihel",
+2
+]
+],
+"1CH 26 30": [
+[
+7,
+"her-y",
+"y",
+3
+]
+],
+"1CH 27 6": [
+[
+3,
+"Banailas,",
+"banaias",
+4
+]
+],
+"1CH 27 15": [
+[
+15,
+"SgusiEO",
+"cuerpo",
+4
+]
+],
+"1CH 27 17": [
+[
+5,
+"hijo.a",
+"hijo",
+5
+]
+],
+"1CH 27 27": [
+[
+5,
+"Semecias",
+"semeias",
+2
+]
+],
+"1CH 27 32": [
+[
+0,
+"EmperoJonathán,",
+"jonathan",
+2
+]
+],
+"1CH 28 1": [
+[
+60,
+"pOcSroños",
+"poderosos",
+5
+]
+],
+"1CH 29 13": [
+[
+7,
+"elorificamos,",
+"glorificamos",
+4
+]
+],
+"2CH 1 12": [
+[
+5,
+"y.-además",
+"y ademas",
+4
+]
+],
+"2CH 3 6": [
+[
+8,
+"preclosísimos,",
+"preciosisimos",
+2
+]
+],
+"2CH 4 21": [
+[
+2,
+"tlorones,",
+"florones",
+6
+]
+],
+"2CH 7 1": [
+[
+22,
+"magostad",
+"majestad",
+4
+]
+],
+"2CH 7 6": [
+[
+54,
+"AOnDA",
+"sonaban",
+4
+]
+],
+"2CH 7 7": [
+[
+39,
+"sulficiente",
+"suficiente",
+5
+]
+],
+"2CH 7 8": [
+[
+5,
+"onentonees",
+"entonces",
+6
+]
+],
+"2CH 7 15": [
+[
+0,
+"Sicerrare",
+"cerrare",
+3
+]
+],
+"2CH 9 1": [
+[
+50,
+"Sa-Jomon,",
+"salomon",
+2
+]
+],
+"2CH 9 4": [
+[
+27,
+"magneficencio",
+"magnificencia",
+3
+],
+[
+40,
+"víctimas.que",
+"victimas que",
+4
+]
+],
+"2CH 9 6": [
+[
+0,
+"Yonoacababa",
+"acababa",
+4
+]
+],
+"2CH 9 13": [
+[
+12,
+"scisolentos",
+"seiscientos",
+3
+]
+],
+"2CH 9 15": [
+[
+12,
+"siescientos",
+"seiscientos",
+2
+]
+],
+"2CH 9 19": [
+[
+9,
+"oradas",
+"gradas",
+6
+]
+],
+"2CH 11 8": [
+[
+7,
+"Z1ph",
+"ziph",
+3
+]
+],
+"2CH 11 15": [
+[
+0,
+"Einstituyó",
+"instituyo",
+3
+]
+],
+"2CH 12 5": [
+[
+30,
+"abandonastels;",
+"abandonasteis",
+4
+],
+[
+15,
+"congcresado",
+"congregado",
+3
+]
+],
+"2CH 12 8": [
+[
+18,
+"serrir",
+"servir",
+4
+]
+],
+"2CH 12 10": [
+[
+20,
+"ouardaban",
+"guardaban",
+4
+]
+],
+"2CH 13 6": [
+[
+5,
+"Nabai,",
+"nabat",
+5
+]
+],
+"2CH 13 9": [
+[
+51,
+"cli0ses.",
+"dioses",
+3
+]
+],
+"2CH 13 18": [
+[
+13,
+"erandísimos",
+"grandisimos",
+6
+]
+],
+"2CH 14 14": [
+[
+8,
+"Grerara;",
+"gerara",
+4
+]
+],
+"2CH 15 2": [
+[
+45,
+"abandonárels,",
+"abandonareis",
+5
+]
+],
+"2CH 15 9": [
+[
+33,
+"fayorecia",
+"favorecia",
+5
+]
+],
+"2CH 15 13": [
+[
+5,
+"yiguiere",
+"siguiere",
+5
+],
+[
+13,
+"estepcion,",
+"excepcion",
+4
+]
+],
+"2CH 16 1": [
+[
+23,
+"fortilicar",
+"fortificar",
+3
+]
+],
+"2CH 16 6": [
+[
+21,
+"Acopiaclas",
+"acopiadas",
+4
+]
+],
+"2CH 16 10": [
+[
+0,
+"Alirado",
+"airado",
+5
+]
+],
+"2CH 17 6": [
+[
+21,
+"udoratorios",
+"adoratorios",
+3
+]
+],
+"2CH 18 6": [
+[
+1,
+"Josaphat:¿No",
+"no",
+2
+]
+],
+"2CH 18 33": [
+[
+21,
+"euéello",
+"cuello",
+5
+]
+],
+"2CH 19 2": [
+[
+31,
+"Imerecias",
+"merecias",
+5
+]
+],
+"2CH 19 6": [
+[
+29,
+"dierels,",
+"diereis",
+2
+]
+],
+"2CH 20 2": [
+[
+40,
+"Enoacldi.",
+"engaddi",
+4
+]
+],
+"2CH 20 9": [
+[
+1,
+"descarearen",
+"descargaren",
+5
+],
+[
+7,
+"venadora,",
+"vengadora",
+4
+]
+],
+"2CH 20 10": [
+[
+21,
+"permitiste.que",
+"permitiste que",
+4
+],
+[
+27,
+"Eosypto,",
+"egipto",
+3
+]
+],
+"2CH 20 14": [
+[
+56,
+"CONCUYSO",
+"concurso",
+2
+]
+],
+"2CH 20 23": [
+[
+38,
+"euchilladas.",
+"cuchilladas",
+2
+]
+],
+"2CH 20 36": [
+[
+19,
+"Astongaber.",
+"asiongaber",
+5
+]
+],
+"2CH 21 4": [
+[
+23,
+"alemnos",
+"algunos",
+4
+]
+],
+"2CH 21 5": [
+[
+9,
+"relnal;",
+"reinar",
+5
+]
+],
+"2CH 21 16": [
+[
+0,
+"Suseitó",
+"suscito",
+3
+]
+],
+"2CH 22 7": [
+[
+27,
+"Naxmsi,",
+"namsi",
+5
+]
+],
+"2CH 23 1": [
+[
+33,
+"Adalas,",
+"adaias",
+6
+]
+],
+"2CH 23 3": [
+[
+5,
+"coliegó",
+"coligo",
+5
+]
+],
+"2CH 23 8": [
+[
+64,
+"succedian",
+"sucedian",
+5
+]
+],
+"2CH 24 5": [
+[
+25,
+"amuales",
+"anuales",
+4
+]
+],
+"2CH 24 24": [
+[
+42,
+"jenominioso",
+"ignominioso",
+3
+]
+],
+"2CH 25 14": [
+[
+21,
+"clioses",
+"dioses",
+4
+]
+],
+"2CH 26 10": [
+[
+24,
+"pews",
+"pais",
+4
+]
+],
+"2CH 26 13": [
+[
+4,
+"mando.todo",
+"mando todo",
+5
+]
+],
+"2CH 26 21": [
+[
+15,
+"enbierto",
+"cubierto",
+5
+]
+],
+"2CH 27 5": [
+[
+10,
+"cualez",
+"cuales",
+3
+],
+[
+27,
+"wmil",
+"mil",
+2
+]
+],
+"2CH 28 15": [
+[
+36,
+"alipiarlos",
+"aliviarlos",
+6
+],
+[
+40,
+"ecuidádolos",
+"cuidadolos",
+4
+]
+],
+"2CH 28 23": [
+[
+36,
+"enuando",
+"cuando",
+5
+]
+],
+"2CH 30 6": [
+[
+11,
+"mapnates,",
+"magnates",
+4
+]
+],
+"2CH 30 19": [
+[
+24,
+"puritficados.",
+"purificados",
+2
+]
+],
+"2CH 30 25": [
+[
+30,
+"progélitos,",
+"proselitos",
+4
+]
+],
+"2CH 31 3": [
+[
+8,
+"pesrpétwo,",
+"perpetuo",
+4
+]
+],
+"2CH 31 7": [
+[
+7,
+"acoplos,",
+"acopios",
+6
+]
+],
+"2CH 31 12": [
+[
+27,
+"ensegundo",
+"en segundo",
+4
+],
+[
+24,
+"Choneníias",
+"chonenias",
+2
+]
+],
+"2CH 32 4": [
+[
+13,
+"Cedrom",
+"cedron",
+6
+]
+],
+"2CH 32 5": [
+[
+43,
+"cénero",
+"genero",
+4
+]
+],
+"2CH 32 7": [
+[
+0,
+"FPortaos",
+"portaos",
+5
+]
+],
+"2CH 33 6": [
+[
+18,
+"agiúeros,",
+"agueros",
+5
+]
+],
+"2CH 33 19": [
+[
+40,
+"Hozal.",
+"hozai",
+5
+]
+],
+"2CH 33 23": [
+[
+20,
+"ImAyores.",
+"mayores",
+5
+]
+],
+"2CH 34 6": [
+[
+0,
+"Tenalmente",
+"igualmente",
+6
+],
+[
+5,
+"abomainables",
+"abominables",
+5
+]
+],
+"2CH 35 23": [
+[
+10,
+"ertados:",
+"criados",
+6
+]
+],
+"2CH 35 24": [
+[
+0,
+"Jillos",
+"ellos",
+6
+]
+],
+"2CH 35 25": [
+[
+31,
+"eserttas",
+"escritas",
+4
+]
+],
+"2CH 36 5": [
+[
+0,
+"Velte",
+"veinte",
+5
+]
+],
+"2CH 36 20": [
+[
+0,
+"Bialguno",
+"alguno",
+5
+]
+],
+"EZR 3 6": [
+[
+20,
+"ermientos",
+"cimientos",
+3
+]
+],
+"EZR 3 11": [
+[
+28,
+"prorumpla",
+"prorumpia",
+4
+]
+],
+"EZR 4 9": [
+[
+3,
+"Samsal",
+"samsai",
+4
+]
+],
+"EZR 4 12": [
+[
+29,
+"reparanclo",
+"reparando",
+5
+]
+],
+"EZR 4 13": [
+[
+0,
+"Advyierte",
+"advierte",
+6
+]
+],
+"EZR 4 15": [
+[
+48,
+"fragnan",
+"fraguan",
+5
+]
+],
+"EZR 4 19": [
+[
+31,
+"SUETTAS.",
+"guerras",
+3
+]
+],
+"EZR 4 20": [
+[
+19,
+"Euvhrates,",
+"eufrates",
+3
+]
+],
+"EZR 5 3": [
+[
+32,
+"restaurasels",
+"restauraseis",
+6
+]
+],
+"EZR 5 15": [
+[
+26,
+"anliguo",
+"antiguo",
+5
+]
+],
+"EZR 6 1": [
+[
+8,
+"Tegistráronse",
+"registraronse",
+3
+]
+],
+"EZR 6 11": [
+[
+11,
+"setome",
+"se tome",
+6
+]
+],
+"EZR 7 17": [
+[
+34,
+"Jerusalermn.",
+"jerusalem",
+2
+]
+],
+"EZR 8 4": [
+[
+3,
+"Phabath",
+"phahath",
+2
+]
+],
+"EZR 8 11": [
+[
+7,
+"Bebal,",
+"bebai",
+4
+]
+],
+"EZR 8 15": [
+[
+1,
+"coneresué",
+"congregue",
+5
+],
+[
+7,
+"desacgua",
+"desagua",
+6
+]
+],
+"EZR 8 19": [
+[
+0,
+"ASImISno",
+"asimismo",
+5
+]
+],
+"EZR 8 20": [
+[
+20,
+"distinotiian",
+"distinguian",
+4
+]
+],
+"EZR 8 24": [
+[
+8,
+"Sarablas,",
+"sarabias",
+4
+]
+],
+"EZR 8 27": [
+[
+21,
+"yisbosos",
+"vistosos",
+2
+]
+],
+"EZR 8 28": [
+[
+0,
+"Wiábeles:",
+"y",
+4
+]
+],
+"EZR 8 34": [
+[
+11,
+"inventarlo.",
+"inventario",
+2
+]
+],
+"EZR 9 1": [
+[
+19,
+"sacerclotes",
+"sacerdotes",
+2
+]
+],
+"EZR 9 2": [
+[
+36,
+"transeresion",
+"transgresion",
+2
+]
+],
+"EZR 9 4": [
+[
+31,
+"permanect",
+"permaneci",
+3
+]
+],
+"EZR 10 25": [
+[
+12,
+"Remela,",
+"remeia",
+3
+]
+],
+"EZR 10 27": [
+[
+8,
+"Jermuth,",
+"jerimuth",
+2
+]
+],
+"EZR 10 29": [
+[
+8,
+"Melluen,",
+"melluch",
+2
+]
+],
+"EZR 10 30": [
+[
+8,
+"Bahalas,",
+"banaias",
+2
+]
+],
+"EZR 10 31": [
+[
+7,
+"SeIelas,",
+"semeias",
+3
+]
+],
+"NEH 1 6": [
+[
+5,
+"háciuv",
+"hacia",
+2
+]
+],
+"NEH 1 8": [
+[
+12,
+"prevyaricáreis,",
+"prevaricareis",
+4
+]
+],
+"NEH 1 9": [
+[
+3,
+"conyertis",
+"convertis",
+5
+]
+],
+"NEH 2 8": [
+[
+41,
+"Otoregómelo",
+"otorgomelo",
+6
+]
+],
+"NEH 2 17": [
+[
+34,
+"jenominta.",
+"ignominia",
+6
+]
+],
+"NEH 3 2": [
+[
+7,
+"bEEatoR",
+"fabricaron",
+6
+]
+],
+"NEH 3 16": [
+[
+8,
+"Azboe,",
+"azboc",
+5
+]
+],
+"NEH 3 18": [
+[
+6,
+"Baval",
+"bavai",
+6
+]
+],
+"NEH 3 21": [
+[
+20,
+"Elhasib,",
+"eliasib",
+4
+]
+],
+"NEH 3 24": [
+[
+8,
+"porcion-igual",
+"porcion igual",
+5
+]
+],
+"NEH 4 21": [
+[
+22,
+"salean",
+"salgan",
+6
+]
+],
+"NEH 5 10": [
+[
+18,
+"yolyérselo",
+"volverselo",
+4
+],
+[
+14,
+"conyengámonos",
+"convengamonos",
+5
+]
+],
+"NEH 5 11": [
+[
+24,
+"mensucal",
+"mensual",
+2
+]
+],
+"NEH 5 14": [
+[
+9,
+"aquel.en",
+"aquel en",
+4
+]
+],
+"NEH 5 17": [
+[
+23,
+"cireunyecinos,",
+"circunvecinos",
+5
+]
+],
+"NEH 6 6": [
+[
+7,
+"Grossem",
+"gossem",
+2
+]
+],
+"NEH 6 9": [
+[
+10,
+"imaglmándose",
+"imaginandose",
+5
+]
+],
+"NEH 6 10": [
+[
+6,
+"Semalas,",
+"semaias",
+4
+],
+[
+10,
+"Dalajas,",
+"dalaias",
+3
+]
+],
+"NEH 7 3": [
+[
+23,
+"erraron",
+"cerraron",
+4
+],
+[
+37,
+"releyaban",
+"relevaban",
+4
+]
+],
+"NEH 7 5": [
+[
+7,
+"conyocase",
+"convocase",
+6
+]
+],
+"NEH 7 7": [
+[
+11,
+"Nalhamani,",
+"nahamani",
+4
+]
+],
+"NEH 7 17": [
+[
+2,
+"Azegad,",
+"azgad",
+6
+]
+],
+"NEH 7 25": [
+[
+7,
+"elmco.",
+"cinco",
+3
+]
+],
+"NEH 8 4": [
+[
+32,
+"Semeila,",
+"semeia",
+3
+]
+],
+"NEH 8 10": [
+[
+9,
+"bwemás,",
+"buenas",
+3
+]
+],
+"NEH 8 17": [
+[
+33,
+"famto",
+"tanto",
+5
+]
+],
+"NEH 9 5": [
+[
+20,
+"esviste",
+"existe",
+3
+]
+],
+"NEH 9 14": [
+[
+11,
+"promuleaste",
+"promulgaste",
+3
+]
+],
+"NEH 9 25": [
+[
+10,
+"pinetie,",
+"pingue",
+4
+]
+],
+"NEH 9 32": [
+[
+61,
+"cametivos,",
+"cautivos",
+6
+]
+],
+"NEH 9 35": [
+[
+3,
+"relnaban,",
+"reinaban",
+3
+]
+],
+"NEH 11 7": [
+[
+11,
+"Mosollanti,",
+"mosollam",
+3
+],
+[
+26,
+"Etheelj",
+"etheel",
+3
+]
+],
+"NEH 11 19": [
+[
+2,
+"Acecub,",
+"accub",
+5
+]
+],
+"NEH 11 23": [
+[
+20,
+"obseryarse",
+"observarse",
+6
+]
+],
+"NEH 11 24": [
+[
+15,
+"4rtajenjes",
+"artajerjes",
+4
+]
+],
+"NEH 11 25": [
+[
+8,
+"estableciY",
+"establecidos",
+4
+]
+],
+"NEH 11 30": [
+[
+18,
+"ayecindáronse",
+"avecindaronse",
+5
+]
+],
+"NEH 12 31": [
+[
+4,
+"masnates",
+"magnates",
+5
+]
+],
+"NEH 12 41": [
+[
+24,
+"Jezrala",
+"jezraia",
+5
+]
+],
+"NEH 13 4": [
+[
+11,
+"superintendenecia",
+"superintendencia",
+5
+]
+],
+"NEH 13 13": [
+[
+5,
+"orlota",
+"sacerdote",
+4
+]
+],
+"TOB 1 8": [
+[
+13,
+"desile",
+"desde",
+5
+]
+],
+"TOB 3 13": [
+[
+24,
+"trihulacion",
+"tribulacion",
+6
+]
+],
+"TOB 4 9": [
+[
+0,
+"Situvieres",
+"tuvieres",
+5
+]
+],
+"TOB 4 21": [
+[
+21,
+"eudad",
+"ciudad",
+4
+]
+],
+"TOB 6 10": [
+[
+11,
+"posenios?",
+"posemos",
+4
+]
+],
+"TOB 6 15": [
+[
+31,
+"0ocaslonare.",
+"ocasionare",
+4
+]
+],
+"TOB 8 7": [
+[
+9,
+"bendívante",
+"bendigante",
+3
+]
+],
+"TOB 10 10": [
+[
+57,
+"YOZOSO",
+"gozoso",
+4
+]
+],
+"TOB 11 6": [
+[
+9,
+"venilasu",
+"venia",
+4
+]
+],
+"TOB 12 6": [
+[
+17,
+"porque-ha,",
+"porque ha",
+2
+]
+],
+"TOB 12 11": [
+[
+10,
+"eneubriros",
+"encubriros",
+5
+]
+],
+"TOB 12 12": [
+[
+11,
+"leyvantabas",
+"levantabas",
+6
+]
+],
+"TOB 12 13": [
+[
+15,
+"ajfliecion",
+"afliccion",
+4
+]
+],
+"JDT 1 2": [
+[
+17,
+"Samiria,",
+"samaria",
+6
+]
+],
+"JDT 1 9": [
+[
+1,
+"ájtodos",
+"todos",
+4
+]
+],
+"JDT 2 10": [
+[
+7,
+"erandísimas",
+"grandisimas",
+6
+]
+],
+"JDT 2 13": [
+[
+3,
+"famostsima",
+"famosisima",
+6
+]
+],
+"JDT 3 10": [
+[
+7,
+"encenclidas,",
+"encendidas",
+5
+]
+],
+"JDT 5 24": [
+[
+36,
+"subyugacdos",
+"subyugados",
+3
+]
+],
+"JDT 5 26": [
+[
+8,
+"indienáronse",
+"indignaronse",
+4
+]
+],
+"JDT 6 8": [
+[
+11,
+"MNanura:",
+"llanura",
+3
+]
+],
+"JDT 7 11": [
+[
+39,
+"saciarla",
+"saciar la",
+6
+]
+],
+"JDT 7 19": [
+[
+13,
+"eoruerido",
+"cometido",
+5
+]
+],
+"JDT 7 23": [
+[
+14,
+"wvun",
+"aun",
+5
+]
+],
+"JDT 8 7": [
+[
+13,
+"humerosa",
+"numerosa",
+6
+]
+],
+"JDT 8 21": [
+[
+0,
+"Ahora:pues,",
+"pues",
+6
+]
+],
+"JDT 8 26": [
+[
+8,
+"MUrmurdcvones",
+"murmuraciones",
+3
+]
+],
+"JDT 8 27": [
+[
+34,
+"perclicion",
+"perdicion",
+4
+]
+],
+"JDT 9 5": [
+[
+8,
+"eterwidead,",
+"eternidad",
+5
+]
+],
+"JDT 9 11": [
+[
+12,
+"imfimito",
+"infinito",
+4
+]
+],
+"JDT 10 3": [
+[
+53,
+"URBuaS",
+"ninguno",
+2
+]
+],
+"JDT 10 4": [
+[
+10,
+"no-provenia",
+"no provenia",
+6
+]
+],
+"JDT 11 18": [
+[
+19,
+"decfanse",
+"decianse",
+5
+]
+],
+"JDT 11 19": [
+[
+11,
+"centileza,",
+"gentileza",
+3
+]
+],
+"JDT 12 5": [
+[
+21,
+"invyocaral",
+"al",
+2
+]
+],
+"JDT 12 8": [
+[
+11,
+"cliriglese",
+"dirigiese",
+3
+]
+],
+"JDT 12 10": [
+[
+30,
+"resuelya",
+"resuelva",
+3
+]
+],
+"JDT 13 11": [
+[
+0,
+"Dealltá",
+"a",
+4
+]
+],
+"JDT 13 15": [
+[
+8,
+"eorandes;",
+"grandes",
+6
+]
+],
+"JDT 13 20": [
+[
+12,
+"ovardado,",
+"guardado",
+5
+]
+],
+"JDT 14 4": [
+[
+15,
+"revoleado",
+"revolcado",
+6
+]
+],
+"JDT 14 6": [
+[
+21,
+"cireuncidóse,",
+"circuncidose",
+5
+]
+],
+"JDT 14 7": [
+[
+4,
+"colearon",
+"colgaron",
+3
+]
+],
+"JDT 14 9": [
+[
+19,
+"interrampitle",
+"interrumpirle",
+5
+]
+],
+"JDT 14 15": [
+[
+20,
+"imaeinaba",
+"imaginaba",
+2
+]
+],
+"JDT 15 10": [
+[
+18,
+"Jerusalem:tú",
+"jerusalem tu",
+3
+]
+],
+"JDT 16 11": [
+[
+9,
+"cantivóle",
+"cautivole",
+4
+]
+],
+"JDT 16 22": [
+[
+29,
+"VoLos",
+"votos",
+4
+]
+],
+"EST 1 15": [
+[
+1,
+"pwes",
+"pues",
+4
+]
+],
+"EST 2 11": [
+[
+20,
+"cuildadoso",
+"cuidadoso",
+4
+]
+],
+"EST 2 13": [
+[
+25,
+"convietorio",
+"convictorio",
+6
+]
+],
+"EST 2 18": [
+[
+27,
+"imbutos",
+"tributos",
+6
+]
+],
+"EST 2 21": [
+[
+42,
+"pensaTon",
+"pensaron",
+5
+]
+],
+"EST 3 8": [
+[
+29,
+"deseonocidas,",
+"desconocidas",
+5
+]
+],
+"EST 4 10": [
+[
+6,
+"sieulente",
+"siguiente",
+4
+]
+],
+"EST 4 11": [
+[
+76,
+"llainada",
+"llamada",
+4
+]
+],
+"EST 6 9": [
+[
+11,
+"Meve",
+"lleve",
+4
+]
+],
+"EST 7 9": [
+[
+45,
+"Coleadle",
+"colgadle",
+4
+]
+],
+"EST 8 3": [
+[
+36,
+"infcuas",
+"inicuas",
+4
+]
+],
+"EST 8 6": [
+[
+6,
+"degiiello",
+"deguello",
+5
+]
+],
+"EST 9 24": [
+[
+11,
+"Avag,",
+"agag",
+5
+]
+],
+"EST 9 28": [
+[
+55,
+"ceTemonias.",
+"ceremonias",
+4
+]
+],
+"EST 10 5": [
+[
+0,
+"Aciérdome",
+"acuerdome",
+2
+]
+],
+"EST 10 6": [
+[
+0,
+"Véuna",
+"una",
+5
+]
+],
+"EST 13 6": [
+[
+6,
+"desienados",
+"designados",
+3
+]
+],
+"EST 14 2": [
+[
+51,
+"diverBASe",
+"divertirse",
+4
+]
+],
+"EST 14 13": [
+[
+12,
+"4ssuero,",
+"assuero",
+3
+]
+],
+"EST 16 2": [
+[
+5,
+"bonracd",
+"bondad",
+5
+]
+],
+"EST 16 5": [
+[
+17,
+"arrunar",
+"arruinar",
+7
+]
+],
+"EST 16 12": [
+[
+0,
+"Masllegóá",
+"a",
+4
+]
+],
+"1MA 1 28": [
+[
+0,
+"Entresáronse",
+"entregaronse",
+3
+]
+],
+"1MA 1 32": [
+[
+7,
+"cridadanos,",
+"ciudadanos",
+4
+]
+],
+"1MA 2 24": [
+[
+11,
+"inlamándose",
+"inflamandose",
+5
+]
+],
+"1MA 2 48": [
+[
+1,
+"vyindicaron",
+"vindicaron",
+2
+]
+],
+"1MA 2 62": [
+[
+8,
+"pecadot;",
+"pecador",
+3
+]
+],
+"1MA 3 29": [
+[
+31,
+"wniseria,",
+"miseria",
+5
+]
+],
+"1MA 3 34": [
+[
+8,
+"sleratos",
+"elefantes",
+2
+]
+],
+"1MA 3 38": [
+[
+5,
+"Ploleméo",
+"ptolomeo",
+3
+]
+],
+"1MA 3 40": [
+[
+14,
+"Enmmaús.",
+"emmaus",
+3
+]
+],
+"1MA 3 48": [
+[
+5,
+"Ley,en",
+"ley en",
+3
+]
+],
+"1MA 4 1": [
+[
+4,
+"elneco",
+"cinco",
+4
+]
+],
+"1MA 4 22": [
+[
+11,
+"Renjeras.",
+"extranjeras",
+2
+]
+],
+"1MA 4 23": [
+[
+11,
+"enerigo,",
+"enemigo",
+3
+],
+[
+19,
+"Topas",
+"ropas",
+4
+]
+],
+"1MA 4 30": [
+[
+51,
+"esendero",
+"escudero",
+3
+]
+],
+"1MA 4 45": [
+[
+8,
+"destruirlo,",
+"destruirle",
+3
+]
+],
+"1MA 5 19": [
+[
+21,
+"NOSOLTOos.",
+"nosotros",
+4
+]
+],
+"1MA 5 23": [
+[
+31,
+"resrocijo",
+"regocijo",
+3
+]
+],
+"1MA 5 25": [
+[
+22,
+"Cralaad",
+"galaad",
+4
+]
+],
+"1MA 5 26": [
+[
+19,
+"Carnalm",
+"carnaim",
+4
+]
+],
+"1MA 5 38": [
+[
+9,
+"ernisarios",
+"emisarios",
+3
+]
+],
+"1MA 5 43": [
+[
+41,
+"Carnalm.",
+"carnaim",
+2
+]
+],
+"1MA 5 58": [
+[
+13,
+"amnia",
+"jamnia",
+5
+]
+],
+"1MA 5 59": [
+[
+2,
+"salió.s",
+"salio",
+5
+]
+],
+"1MA 6 23": [
+[
+2,
+"resolyimos",
+"resolvimos",
+4
+]
+],
+"1MA 7 20": [
+[
+18,
+"Jacchides",
+"bacchides",
+2
+]
+],
+"1MA 7 30": [
+[
+15,
+"volyerle",
+"volverle",
+5
+]
+],
+"1MA 7 38": [
+[
+17,
+"espada:ten",
+"espada ten",
+2
+]
+],
+"1MA 7 47": [
+[
+28,
+"leyaron",
+"llevaron",
+3
+]
+],
+"1MA 8 7": [
+[
+33,
+"INNWiE",
+"a",
+3
+]
+],
+"1MA 8 22": [
+[
+4,
+"reseripto",
+"rescripto",
+5
+]
+],
+"1MA 9 37": [
+[
+0,
+"Dealí",
+"alli",
+5
+]
+],
+"1MA 9 52": [
+[
+5,
+"Betsura,",
+"bethsura",
+2
+]
+],
+"1MA 9 54": [
+[
+30,
+"4ggé0",
+"aggeo",
+2
+],
+[
+32,
+"Zachartuas.",
+"zacarias",
+3
+]
+],
+"1MA 10 20": [
+[
+4,
+"eonstituimos",
+"constituimos",
+5
+]
+],
+"1MA 10 43": [
+[
+16,
+"refuglaren",
+"refugiaren",
+3
+]
+],
+"1MA 10 56": [
+[
+0,
+"Yo.estoy",
+"estoy",
+5
+]
+],
+"1MA 10 57": [
+[
+15,
+"eiento",
+"ciento",
+5
+]
+],
+"1MA 11 18": [
+[
+0,
+"Deallfá",
+"a",
+5
+]
+],
+"1MA 11 24": [
+[
+18,
+"Ptolemailda,",
+"ptolemaida",
+5
+]
+],
+"1MA 11 30": [
+[
+1,
+"hkeY",
+"rey",
+3
+]
+],
+"1MA 11 46": [
+[
+0,
+"HEncerróse",
+"encerrose",
+5
+],
+[
+15,
+"axsenidas,",
+"avenidas",
+4
+]
+],
+"1MA 11 63": [
+[
+10,
+"habian.ido",
+"habian ido",
+3
+]
+],
+"1MA 12 13": [
+[
+20,
+"cireanvecinos.",
+"circunvecinos",
+2
+]
+],
+"1MA 12 19": [
+[
+8,
+"4rúo",
+"rio",
+2
+]
+],
+"1MA 12 21": [
+[
+22,
+"Abrahaxnn",
+"abraham",
+2
+]
+],
+"1MA 12 22": [
+[
+15,
+"gozals",
+"gozais",
+4
+]
+],
+"1MA 12 53": [
+[
+4,
+"ecireunvecinas",
+"circunvecinas",
+4
+]
+],
+"1MA 14 25": [
+[
+0,
+"Dijo:¿De",
+"de",
+4
+]
+],
+"1MA 14 32": [
+[
+24,
+"suminmistrándoles",
+"suministrandoles",
+5
+]
+],
+"1MA 15 23": [
+[
+29,
+"Sieyon,",
+"sicyon",
+4
+]
+],
+"1MA 15 31": [
+[
+9,
+"ecrudades,",
+"ciudades",
+2
+]
+],
+"1MA 16 2": [
+[
+27,
+"enemizyos",
+"enemigos",
+4
+]
+],
+"1MA 16 8": [
+[
+36,
+"Fedor",
+"gedor",
+3
+]
+],
+"1MA 16 9": [
+[
+17,
+"(Gredor,",
+"gedor",
+3
+]
+],
+"1MA 16 15": [
+[
+0,
+"PBalióles",
+"salioles",
+3
+]
+],
+"2MA 1 3": [
+[
+21,
+"ferVOTOSO",
+"fervoroso",
+3
+]
+],
+"2MA 1 8": [
+[
+17,
+"dineido",
+"dirigido",
+4
+]
+],
+"2MA 2 30": [
+[
+45,
+"NOSOÉTOS",
+"nosotros",
+3
+]
+],
+"2MA 3 12": [
+[
+5,
+"ninenn",
+"ningun",
+5
+]
+],
+"2MA 4 3": [
+[
+12,
+"asesmatos",
+"asesinatos",
+5
+],
+[
+14,
+"aleúunos",
+"algunos",
+3
+]
+],
+"2MA 4 4": [
+[
+23,
+"¿mprudencia",
+"imprudencia",
+3
+]
+],
+"2MA 4 14": [
+[
+45,
+"guego",
+"juego",
+3
+]
+],
+"2MA 4 21": [
+[
+21,
+"Proleméo",
+"ptolomeo",
+2
+]
+],
+"2MA 5 14": [
+[
+24,
+"esclamos",
+"esclavos",
+4
+]
+],
+"2MA 5 21": [
+[
+28,
+"imagmaba",
+"imaginaba",
+4
+]
+],
+"2MA 7 18": [
+[
+27,
+"kemos",
+"hemos",
+4
+]
+],
+"2MA 7 26": [
+[
+21,
+"CONVENAIA.",
+"convenia",
+3
+]
+],
+"2MA 8 4": [
+[
+23,
+"justisimea",
+"justisima",
+3
+]
+],
+"2MA 8 14": [
+[
+6,
+"quecdacdo,",
+"quedado",
+5
+]
+],
+"2MA 8 18": [
+[
+27,
+"trastorpar",
+"trastornar",
+4
+]
+],
+"2MA 8 25": [
+[
+13,
+"esclamos;",
+"esclavos",
+5
+]
+],
+"2MA 9 11": [
+[
+23,
+"crecilan",
+"crecian",
+5
+]
+],
+"2MA 10 8": [
+[
+20,
+"masimos",
+"mismos",
+4
+]
+],
+"2MA 10 29": [
+[
+17,
+"ecmeo",
+"cinco",
+5
+]
+],
+"2MA 10 34": [
+[
+14,
+"Sudtos",
+"judios",
+2
+]
+],
+"2MA 11 17": [
+[
+9,
+"me-pidieron",
+"me pidieron",
+5
+]
+],
+"2MA 11 21": [
+[
+0,
+"Pasadilo",
+"pasadlo",
+3
+]
+],
+"2MA 11 25": [
+[
+21,
+"Testituya",
+"restituya",
+3
+]
+],
+"2MA 12 8": [
+[
+7,
+"Jarmnia",
+"jamnia",
+4
+]
+],
+"2MA 12 24": [
+[
+23,
+"salyvasen",
+"salvasen",
+5
+],
+[
+19,
+"insÑ",
+"ins",
+2
+]
+],
+"2MA 12 29": [
+[
+8,
+"Seythas,",
+"scythas",
+2
+]
+],
+"2MA 12 35": [
+[
+45,
+"Gorgilas",
+"gorgias",
+4
+]
+],
+"2MA 13 3": [
+[
+17,
+"atmnase",
+"amase",
+5
+]
+],
+"2MA 13 13": [
+[
+16,
+"4nbiocho",
+"antioco",
+3
+]
+],
+"2MA 13 24": [
+[
+18,
+"Herasenos.",
+"gerasenos",
+3
+]
+],
+"2MA 14 1": [
+[
+20,
+"naygs",
+"naves",
+4
+]
+],
+"2MA 14 6": [
+[
+5,
+"Judíos-que",
+"judios que",
+5
+]
+],
+"2MA 14 14": [
+[
+27,
+"calami«lades",
+"calamidades",
+2
+]
+],
+"2MA 14 21": [
+[
+15,
+"sccretamente;",
+"secretamente",
+4
+]
+],
+"2MA 14 31": [
+[
+11,
+"preventle,",
+"prevenirle",
+5
+]
+],
+"2MA 15 11": [
+[
+28,
+"fidediena",
+"fidedigna",
+3
+]
+],
+"2MA 15 21": [
+[
+55,
+"vietoría",
+"victoria",
+3
+]
+],
+"2MA 15 22": [
+[
+31,
+"cimeo",
+"cincu",
+2
+]
+],
+"2MA 15 27": [
+[
+17,
+"careaban",
+"cargaban",
+3
+]
+],
+"2MA 15 39": [
+[
+0,
+"Sliella",
+"ella",
+4
+]
+],
+"JOB 1 15": [
+[
+13,
+"robaco",
+"robado",
+6
+]
+],
+"JOB 1 20": [
+[
+9,
+"habiénclose",
+"habiendose",
+4
+]
+],
+"JOB 3 9": [
+[
+0,
+"Obseurezcan",
+"obscurezcan",
+6
+]
+],
+"JOB 3 17": [
+[
+14,
+"allí.es",
+"alli es",
+5
+]
+],
+"JOB 3 25": [
+[
+9,
+"temia:se",
+"temia se",
+6
+]
+],
+"JOB 5 4": [
+[
+23,
+"umpare.",
+"ampare",
+3
+]
+],
+"JOB 9 19": [
+[
+19,
+"favor.mio",
+"favor",
+6
+]
+],
+"JOB 9 20": [
+[
+3,
+"justiicarme,",
+"justificarme",
+4
+]
+],
+"JOB 9 30": [
+[
+10,
+"réeluzcan",
+"reluzcan",
+3
+]
+],
+"JOB 9 33": [
+[
+4,
+"redareúlr",
+"redarguir",
+4
+]
+],
+"JOB 10 3": [
+[
+10,
+"entreeves",
+"entregues",
+3
+]
+],
+"JOB 10 6": [
+[
+9,
+"ayeriguando",
+"averiguando",
+4
+]
+],
+"JOB 10 8": [
+[
+7,
+"toclas",
+"todas",
+4
+]
+],
+"JOB 11 17": [
+[
+17,
+"ereerás",
+"creeras",
+4
+]
+],
+"JOB 11 18": [
+[
+9,
+"eterna,te",
+"eterna te",
+3
+]
+],
+"JOB 12 4": [
+[
+24,
+"senelllez",
+"sencillez",
+4
+]
+],
+"JOB 12 24": [
+[
+19,
+"divacando",
+"divagando",
+5
+]
+],
+"JOB 13 2": [
+[
+1,
+"usélo",
+"lo",
+4
+]
+],
+"JOB 13 9": [
+[
+23,
+"bisonjas?",
+"lisonjas",
+5
+]
+],
+"JOB 13 19": [
+[
+8,
+"juicio!.Que",
+"juicio que",
+5
+]
+],
+"JOB 13 21": [
+[
+8,
+"a/figirme,",
+"afligirme",
+6
+]
+],
+"JOB 14 4": [
+[
+7,
+"1mpura",
+"impura",
+4
+]
+],
+"JOB 14 12": [
+[
+20,
+"remováado,",
+"renovado",
+3
+]
+],
+"JOB 14 14": [
+[
+6,
+"vivirun",
+"vivir un",
+6
+]
+],
+"JOB 15 3": [
+[
+4,
+"redareuyes",
+"redarguyes",
+3
+]
+],
+"JOB 15 6": [
+[
+20,
+"proterado",
+"proferido",
+4
+]
+],
+"JOB 15 8": [
+[
+16,
+"¿nmápnita",
+"infinita",
+3
+]
+],
+"JOB 15 11": [
+[
+11,
+"POEVOISAS",
+"perversas",
+4
+]
+],
+"JOB 15 15": [
+[
+10,
+"acód",
+"aca",
+4
+]
+],
+"JOB 16 10": [
+[
+7,
+"amenazáandome",
+"amenazandome",
+4
+]
+],
+"JOB 16 17": [
+[
+4,
+"entumeecido",
+"entumecido",
+6
+]
+],
+"JOB 16 20": [
+[
+6,
+"¿imocencio",
+"inocencia",
+2
+]
+],
+"JOB 16 22": [
+[
+12,
+"públicumente",
+"publicamente",
+6
+]
+],
+"JOB 18 3": [
+[
+0,
+"Pero¿por",
+"por",
+5
+],
+[
+3,
+"reputals",
+"reputais",
+5
+]
+],
+"JOB 18 6": [
+[
+15,
+"coleada",
+"colgada",
+6
+]
+],
+"JOB 19 3": [
+[
+13,
+"averegonzails",
+"avergonzais",
+5
+]
+],
+"JOB 19 8": [
+[
+23,
+"eubierto",
+"cubierto",
+4
+]
+],
+"JOB 19 28": [
+[
+17,
+"cablumniarle?",
+"calumniarle",
+3
+]
+],
+"JOB 20 5": [
+[
+31,
+"hipoeritas",
+"hipocritas",
+2
+]
+],
+"JOB 20 8": [
+[
+12,
+"noctuma.",
+"nocturna",
+3
+]
+],
+"JOB 20 10": [
+[
+12,
+"imicuas",
+"inicuas",
+4
+]
+],
+"JOB 20 13": [
+[
+0,
+"Sesaboreará",
+"saboreara",
+4
+]
+],
+"JOB 21 29": [
+[
+2,
+"enalquiera",
+"cualquiera",
+5
+]
+],
+"JOB 21 33": [
+[
+9,
+"arrasbrará",
+"arrastrara",
+5
+]
+],
+"JOB 22 11": [
+[
+5,
+"caerlas",
+"caerias",
+5
+]
+],
+"JOB 22 13": [
+[
+16,
+"OSCUTAs",
+"oscuras",
+3
+]
+],
+"JOB 22 15": [
+[
+8,
+"siemieron",
+"siguieron",
+3
+]
+],
+"JOB 22 17": [
+[
+8,
+"Juzzaban",
+"juzgaban",
+4
+]
+],
+"JOB 23 11": [
+[
+12,
+"desyiarme",
+"desviarme",
+6
+]
+],
+"JOB 23 13": [
+[
+18,
+"untversal",
+"universal",
+4
+]
+],
+"JOB 26 3": [
+[
+4,
+"tú;Acaso",
+"tu acaso",
+6
+]
+],
+"JOB 26 4": [
+[
+5,
+"enseñar?¿No",
+"ensenar no",
+4
+]
+],
+"JOB 26 5": [
+[
+3,
+"eisantes",
+"gigantes",
+5
+]
+],
+"JOB 27 4": [
+[
+7,
+"Inmusta,",
+"injusta",
+6
+]
+],
+"JOB 27 13": [
+[
+20,
+"Tado-poderoso.",
+"todopoderoso",
+4
+]
+],
+"JOB 28 7": [
+[
+0,
+"Busendano",
+"no",
+4
+]
+],
+"JOB 28 9": [
+[
+0,
+"EÉlextendió",
+"extendio",
+3
+]
+],
+"JOB 29 7": [
+[
+17,
+"distinguado.",
+"distinguido",
+3
+]
+],
+"JOB 29 13": [
+[
+19,
+"desoLecdi.",
+"desolada",
+5
+]
+],
+"JOB 30 8": [
+[
+3,
+"insensala",
+"insensata",
+6
+]
+],
+"JOB 30 14": [
+[
+0,
+"Comositiadores",
+"sitiadores",
+2
+]
+],
+"JOB 30 18": [
+[
+16,
+"rodeun,",
+"rodean",
+4
+]
+],
+"JOB 30 22": [
+[
+0,
+"Meensalzaste,",
+"ensalzaste",
+5
+]
+],
+"JOB 31 12": [
+[
+10,
+"desarralgea",
+"desarraiga",
+4
+]
+],
+"JOB 31 21": [
+[
+0,
+"Sialeé",
+"alze",
+3
+]
+],
+"JOB 31 26": [
+[
+0,
+"Simirando",
+"mirando",
+5
+]
+],
+"JOB 32 3": [
+[
+9,
+"diseurrido",
+"discurrido",
+5
+]
+],
+"JOB 32 11": [
+[
+7,
+"Cliscursos;",
+"discursos",
+5
+]
+],
+"JOB 33 16": [
+[
+5,
+"OICOS,",
+"oidos",
+5
+],
+[
+10,
+"COrTigo",
+"corrige",
+4
+]
+],
+"JOB 33 23": [
+[
+0,
+"Sientonces",
+"entonces",
+5
+]
+],
+"JOB 33 26": [
+[
+21,
+"Jusbiela,",
+"justicia",
+4
+]
+],
+"JOB 33 29": [
+[
+0,
+"Asíiesque",
+"que",
+4
+]
+],
+"JOB 34 13": [
+[
+1,
+"crdido",
+"cedido",
+6
+],
+[
+15,
+"encargalo",
+"encargado",
+6
+]
+],
+"JOB 34 16": [
+[
+11,
+"clice,",
+"dice",
+4
+]
+],
+"JOB 34 17": [
+[
+12,
+"justicia;¿Pues",
+"justicia pues",
+5
+]
+],
+"JOB 34 26": [
+[
+0,
+"Castivólos",
+"castigolos",
+4
+]
+],
+"JOB 34 31": [
+[
+12,
+"dleJensa,",
+"defensa",
+4
+]
+],
+"JOB 34 32": [
+[
+11,
+"hablacto",
+"hablado",
+4
+]
+],
+"JOB 35 13": [
+[
+10,
+"()mnipotente",
+"omnipotente",
+4
+]
+],
+"JOB 36 7": [
+[
+0,
+"Noapartará",
+"apartara",
+6
+]
+],
+"JOB 36 13": [
+[
+13,
+"reclamarán",
+"clamaran",
+4
+],
+[
+20,
+"apristonados.",
+"aprisionados",
+2
+]
+],
+"JOB 36 24": [
+[
+20,
+"1NSIQNES",
+"insignes",
+6
+]
+],
+"JOB 36 26": [
+[
+0,
+"¡Ohb,",
+"oh",
+6
+]
+],
+"JOB 36 30": [
+[
+8,
+"oseureciéndolo",
+"oscureciendolo",
+4
+]
+],
+"JOB 37 9": [
+[
+0,
+"Leyántase",
+"levantase",
+4
+]
+],
+"JOB 37 13": [
+[
+7,
+"Herr",
+"tierra",
+5
+]
+],
+"JOB 37 21": [
+[
+23,
+"disipard.",
+"disipara",
+6
+]
+],
+"JOB 37 23": [
+[
+15,
+"juleios,",
+"juicios",
+6
+]
+],
+"JOB 38 4": [
+[
+0,
+"Déíme",
+"dime",
+4
+]
+],
+"JOB 38 19": [
+[
+12,
+"depdsito",
+"deposito",
+4
+]
+],
+"JOB 38 33": [
+[
+16,
+"¿mffujo",
+"influjo",
+4
+]
+],
+"JOB 39 3": [
+[
+0,
+"Encóryanse",
+"encorvanse",
+4
+]
+],
+"JOB 39 13": [
+[
+11,
+"cioneña",
+"ciguena",
+2
+]
+],
+"JOB 39 19": [
+[
+0,
+"Díme:¡¿Sabrias",
+"sabrias",
+5
+],
+[
+10,
+"Nenar",
+"llenar",
+3
+]
+],
+"JOB 39 32": [
+[
+20,
+"areuye",
+"arguye",
+6
+]
+],
+"JOB 40 2": [
+[
+0,
+"Cime",
+"cine",
+5
+]
+],
+"JOB 41 9": [
+[
+11,
+"cenfelleam",
+"centellean",
+5
+]
+],
+"JOB 41 12": [
+[
+0,
+"Sualiento",
+"aliento",
+2
+]
+],
+"JOB 41 13": [
+[
+12,
+"aniseria.",
+"miseria",
+4
+]
+],
+"JOB 41 22": [
+[
+0,
+"Consusbujidos",
+"bufidos",
+4
+]
+],
+"JOB 41 23": [
+[
+0,
+"Dejaen",
+"en",
+5
+]
+],
+"JOB 42 4": [
+[
+8,
+"Juieto:",
+"juicio",
+4
+]
+],
+"PSA 2 2": [
+[
+22,
+"WMestas.",
+"mesias",
+5
+]
+],
+"PSA 2 8": [
+[
+0,
+"FPídeme,",
+"pideme",
+6
+]
+],
+"PSA 5 5": [
+[
+20,
+"imquidad",
+"iniquidad",
+7
+]
+],
+"PSA 5 11": [
+[
+38,
+"irmtado.",
+"irritado",
+7
+],
+[
+16,
+"—FrúsDa,",
+"frus",
+2
+]
+],
+"PSA 6 3": [
+[
+14,
+"Zustú",
+"hasta",
+6
+]
+],
+"PSA 6 9": [
+[
+1,
+"Zejos",
+"lejos",
+5
+]
+],
+"PSA 7 13": [
+[
+5,
+"v.brará",
+"vibrara",
+5
+],
+[
+4,
+"convirliéreis,",
+"convirtiereis",
+4
+]
+],
+"PSA 7 16": [
+[
+0,
+"Elabrió",
+"abrio",
+5
+]
+],
+"PSA 8 2": [
+[
+2,
+"Soberuno",
+"soberano",
+4
+]
+],
+"PSA 9 20": [
+[
+11,
+"Juzeadas",
+"juzgadas",
+6
+]
+],
+"PSA 11 5": [
+[
+8,
+"arbifciosas",
+"artificiosas",
+4
+]
+],
+"PSA 13 3": [
+[
+20,
+"carganta",
+"garganta",
+4
+]
+],
+"PSA 14 1": [
+[
+10,
+"tabernáculo;O",
+"tabernaculo o",
+7
+]
+],
+"PSA 15 1": [
+[
+14,
+"todw",
+"toda",
+6
+]
+],
+"PSA 15 4": [
+[
+15,
+"aceleradamente.—No",
+"aceleradamente no",
+4
+]
+],
+"PSA 16 13": [
+[
+3,
+"preyen",
+"preven",
+3
+]
+],
+"PSA 17 5": [
+[
+0,
+"CUercáronme",
+"cercaronme",
+6
+]
+],
+"PSA 17 16": [
+[
+3,
+"ocwltos",
+"ocultos",
+6
+],
+[
+15,
+"terráqueo,—al",
+"terraqueo al",
+3
+]
+],
+"PSA 17 20": [
+[
+0,
+"Facóme",
+"sacome",
+5
+]
+],
+"PSA 17 40": [
+[
+3,
+"reyestiste",
+"revestiste",
+6
+]
+],
+"PSA 17 42": [
+[
+6,
+"salyvase:",
+"salvase",
+4
+]
+],
+"PSA 17 49": [
+[
+12,
+"iníeno.",
+"inicuo",
+5
+]
+],
+"PSA 19 6": [
+[
+2,
+"aleeraremos",
+"alegraremos",
+6
+],
+[
+8,
+"eloriaremos",
+"gloriaremos",
+5
+]
+],
+"PSA 20 11": [
+[
+0,
+"Extirparássu",
+"su",
+5
+]
+],
+"PSA 21 1": [
+[
+2,
+"fin:por",
+"fin por",
+6
+]
+],
+"PSA 21 3": [
+[
+10,
+"oltrás;",
+"oiras",
+6
+]
+],
+"PSA 24 7": [
+[
+6,
+"laquezas",
+"flaquezas",
+2
+],
+[
+12,
+"necedades.—Acuérdate",
+"necedades acuerdate",
+3
+]
+],
+"PSA 26 2": [
+[
+14,
+"carnes;-—esos",
+"carnes esos",
+4
+]
+],
+"PSA 26 4": [
+[
+34,
+"frecuentanLL",
+"frecuentando",
+5
+]
+],
+"PSA 27 3": [
+[
+29,
+"mpquinando",
+"maquinando",
+4
+]
+],
+"PSA 28 2": [
+[
+25,
+"pantuarno.",
+"santuario",
+5
+]
+],
+"PSA 28 9": [
+[
+9,
+"cierras,",
+"ciervas",
+4
+]
+],
+"PSA 29 7": [
+[
+9,
+"experlmentaré",
+"experimentare",
+2
+]
+],
+"PSA 29 8": [
+[
+14,
+"estado.—Apartaste",
+"estado apartaste",
+3
+]
+],
+"PSA 29 10": [
+[
+14,
+"sepulcro!—;¡Acaso",
+"sepulcro acaso",
+5
+]
+],
+"PSA 30 5": [
+[
+9,
+"«atmado,",
+"armado",
+4
+]
+],
+"PSA 30 7": [
+[
+9,
+"inútiles.—Mas",
+"inutiles mas",
+3
+]
+],
+"PSA 30 18": [
+[
+17,
+"derribaclos",
+"derribados",
+7
+]
+],
+"PSA 30 24": [
+[
+9,
+"ingquirirá",
+"inquirira",
+7
+]
+],
+"PSA 31 6": [
+[
+21,
+"con108as",
+"copiosas",
+4
+]
+],
+"PSA 31 9": [
+[
+13,
+"entendimiento.—Sujeta,",
+"entendimiento sujeta",
+3
+]
+],
+"PSA 32 1": [
+[
+3,
+"hRegoeijaos,",
+"regocijaos",
+4
+]
+],
+"PSA 32 2": [
+[
+0,
+"Alabadal",
+"al",
+6
+]
+],
+"PSA 32 3": [
+[
+4,
+"cantacile",
+"cantadle",
+5
+]
+],
+"PSA 32 10": [
+[
+15,
+"imutiliza",
+"inutiliza",
+5
+]
+],
+"PSA 33 3": [
+[
+11,
+"consueélense.",
+"consuelense",
+4
+]
+],
+"PSA 33 5": [
+[
+0,
+"Acudísolícitamente",
+"solicitamente",
+2
+]
+],
+"PSA 33 15": [
+[
+14,
+"parg",
+"para",
+4
+]
+],
+"PSA 33 18": [
+[
+4,
+"oyoólos",
+"oyolos",
+2
+]
+],
+"PSA 34 4": [
+[
+12,
+"vida.—Sean",
+"vida sean",
+4
+]
+],
+"PSA 34 6": [
+[
+12,
+"persigiéndolos",
+"persiguiendolos",
+4
+]
+],
+"PSA 34 7": [
+[
+3,
+"eanusa",
+"causa",
+6
+]
+],
+"PSA 34 11": [
+[
+9,
+"19n0raba.",
+"ignoraba",
+4
+]
+],
+"PSA 34 15": [
+[
+6,
+"annaron",
+"aunaron",
+4
+],
+[
+19,
+"emustt.",
+"causa",
+4
+]
+],
+"PSA 34 17": [
+[
+15,
+"Z:b74",
+"libra",
+5
+]
+],
+"PSA 34 19": [
+[
+21,
+"miuestran",
+"muestran",
+2
+]
+],
+"PSA 34 22": [
+[
+10,
+"silencia:",
+"silencio",
+3
+]
+],
+"PSA 35 6": [
+[
+2,
+"llesa",
+"llega",
+5
+]
+],
+"PSA 35 8": [
+[
+9,
+"cordias!—Por",
+"por",
+3
+]
+],
+"PSA 36 11": [
+[
+8,
+"demuchísima",
+"de muchisima",
+5
+]
+],
+"PSA 36 14": [
+[
+0,
+"Desenyainaron",
+"desenvainaron",
+4
+]
+],
+"PSA 39 5": [
+[
+0,
+"DPienaventurado",
+"bienaventurado",
+7
+]
+],
+"PSA 39 6": [
+[
+0,
+"Muehas",
+"muchas",
+7
+]
+],
+"PSA 39 10": [
+[
+8,
+"dsambled",
+"asamblea",
+5
+]
+],
+"PSA 39 11": [
+[
+18,
+"viene,—No",
+"viene no",
+3
+]
+],
+"PSA 39 15": [
+[
+12,
+"vida:—vuélvanse",
+"vida vuelvanse",
+4
+],
+[
+7,
+"cuanLos",
+"cuantos",
+4
+]
+],
+"PSA 40 6": [
+[
+0,
+"Prorampian",
+"prorumpian",
+5
+]
+],
+"PSA 40 9": [
+[
+1,
+"infeua",
+"inicua",
+6
+]
+],
+"PSA 41 3": [
+[
+0,
+"Bedienta",
+"sedienta",
+6
+]
+],
+"PSA 41 6": [
+[
+6,
+"mia;y",
+"mia y",
+5
+],
+[
+13,
+"agitacion?—Espera",
+"agitacion espera",
+4
+]
+],
+"PSA 42 1": [
+[
+24,
+"ensañador.",
+"enganador",
+5
+]
+],
+"PSA 42 4": [
+[
+14,
+"juventud.—Cantaré",
+"juventud cantare",
+4
+]
+],
+"PSA 43 2": [
+[
+17,
+"Inciste",
+"hiciste",
+5
+]
+],
+"PSA 43 9": [
+[
+3,
+"eloriaremos",
+"gloriaremos",
+6
+]
+],
+"PSA 43 22": [
+[
+18,
+"corazon.—El",
+"corazon el",
+3
+]
+],
+"PSA 44 1": [
+[
+22,
+"alabamea",
+"alabanza",
+4
+]
+],
+"PSA 45 1": [
+[
+11,
+"mistea)",
+"misterios",
+2
+]
+],
+"PSA 45 5": [
+[
+3,
+"alesra",
+"alegra",
+5
+]
+],
+"PSA 47 3": [
+[
+10,
+"Santuavio",
+"santuario",
+3
+]
+],
+"PSA 48 12": [
+[
+26,
+"eterntcarse.",
+"eternizarse",
+6
+]
+],
+"PSA 49 7": [
+[
+10,
+"meexplicaré",
+"me explicare",
+2
+]
+],
+"PSA 49 15": [
+[
+0,
+"Einvócame",
+"invocame",
+5
+]
+],
+"PSA 49 18": [
+[
+0,
+"Sivelas",
+"veias",
+5
+]
+],
+"PSA 50 4": [
+[
+0,
+"Láyame",
+"lavame",
+6
+]
+],
+"PSA 50 15": [
+[
+0,
+"Yoenseñaré",
+"ensenare",
+4
+]
+],
+"PSA 52 4": [
+[
+4,
+"descarriado:se",
+"descarriado se",
+5
+],
+[
+7,
+"¡jenalmente",
+"igualmente",
+6
+]
+],
+"PSA 52 6": [
+[
+14,
+"temer,—Porque",
+"temer porque",
+6
+]
+],
+"PSA 53 3": [
+[
+0,
+"Pálvame,",
+"salvame",
+6
+]
+],
+"PSA 54 2": [
+[
+10,
+"hunvlde",
+"humilde",
+2
+]
+],
+"PSA 54 3": [
+[
+5,
+"escúchame,—Héme",
+"escuchame heme",
+3
+]
+],
+"PSA 54 7": [
+[
+4,
+"dicho:¡Oh",
+"dicho oh",
+5
+]
+],
+"PSA 54 11": [
+[
+10,
+"iniquidad.—En",
+"iniquidad en",
+3
+]
+],
+"PSA 54 16": [
+[
+10,
+"infierno:—ya",
+"infierno ya",
+6
+]
+],
+"PSA 54 20": [
+[
+11,
+"siselos,",
+"siglos",
+5
+],
+[
+13,
+"humillará.—Ellos",
+"humillara ellos",
+3
+]
+],
+"PSA 55 9": [
+[
+19,
+"láscrimas,",
+"lagrimas",
+4
+]
+],
+"PSA 55 10": [
+[
+7,
+"enemigos.—En",
+"enemigos en",
+2
+]
+],
+"PSA 55 12": [
+[
+13,
+"cuompliré",
+"cumplire",
+6
+]
+],
+"PSA 56 2": [
+[
+18,
+"confianza.—Á",
+"confianza a",
+3
+]
+],
+"PSA 56 3": [
+[
+3,
+"USIEO,",
+"altisimo",
+6
+]
+],
+"PSA 56 4": [
+[
+15,
+"piés.—Envió",
+"pies envio",
+5
+]
+],
+"PSA 56 7": [
+[
+12,
+"espíritu.—Abrieron",
+"espiritu abrieron",
+4
+]
+],
+"PSA 57 8": [
+[
+11,
+"sedisipa:",
+"se disipa",
+5
+]
+],
+"PSA 57 11": [
+[
+0,
+"Alesrarse",
+"alegrarse",
+6
+]
+],
+"PSA 61 4": [
+[
+15,
+"aerrocamie",
+"derrocarle",
+5
+]
+],
+"PSA 63 8": [
+[
+9,
+"hasan,",
+"hagan",
+4
+]
+],
+"PSA 64 5": [
+[
+14,
+"tabernáculo.—Colmados",
+"tabernaculo colmados",
+5
+]
+],
+"PSA 65 12": [
+[
+5,
+"sujetaste.—Pasado",
+"sujetaste pasado",
+6
+]
+],
+"PSA 67 5": [
+[
+27,
+"—BSaltad",
+"saltad",
+4
+]
+],
+"PSA 67 7": [
+[
+12,
+"costumbres:—y",
+"costumbres y",
+4
+]
+],
+"PSA 67 15": [
+[
+2,
+"fiey",
+"rey",
+5
+]
+],
+"PSA 67 34": [
+[
+3,
+"eleyó",
+"elevo",
+2
+]
+],
+"PSA 68 6": [
+[
+6,
+"jenorancia,",
+"ignorancia",
+4
+]
+],
+"PSA 68 21": [
+[
+27,
+"hizo;ó",
+"hizo o",
+4
+]
+],
+"PSA 70 2": [
+[
+10,
+"peligro.—Presta",
+"peligro presta",
+4
+]
+],
+"PSA 70 3": [
+[
+13,
+"salvo:—ya",
+"salvo ya",
+5
+]
+],
+"PSA 70 4": [
+[
+19,
+"imíeno",
+"inicuo",
+4
+]
+],
+"PSA 70 21": [
+[
+16,
+"consolasto.",
+"consolaste",
+6
+]
+],
+"PSA 71 4": [
+[
+7,
+"affigidos",
+"afligidos",
+5
+]
+],
+"PSA 71 6": [
+[
+13,
+"coploso",
+"copioso",
+6
+]
+],
+"PSA 72 2": [
+[
+10,
+"resba-",
+"resbalar",
+6
+]
+],
+"PSA 72 18": [
+[
+9,
+"enganoga;",
+"enganosa",
+3
+]
+],
+"PSA 73 1": [
+[
+23,
+"oyejitas",
+"ovejitas",
+6
+]
+],
+"PSA 73 19": [
+[
+8,
+"lalmas",
+"almas",
+5
+]
+],
+"PSA 73 20": [
+[
+17,
+"inteuamente",
+"inicuamente",
+2
+]
+],
+"PSA 73 22": [
+[
+8,
+"presentestus",
+"presentes tus",
+2
+]
+],
+"PSA 74 5": [
+[
+17,
+"engrials",
+"engriais",
+5
+]
+],
+"PSA 74 9": [
+[
+15,
+"mistura,—y",
+"mistura y",
+4
+]
+],
+"PSA 76 3": [
+[
+21,
+"burlado.—8Se",
+"burlado se",
+3
+]
+],
+"PSA 77 1": [
+[
+1,
+"¿mstruccion",
+"instruccion",
+3
+],
+[
+12,
+"tus-oidos",
+"tus oidos",
+5
+]
+],
+"PSA 77 5": [
+[
+0,
+"Elestableció",
+"establecio",
+4
+]
+],
+"PSA 77 19": [
+[
+6,
+"dijeron:¿Por",
+"dijeron por",
+5
+]
+],
+"PSA 77 29": [
+[
+6,
+"abitos,",
+"ahitos",
+5
+]
+],
+"PSA 77 35": [
+[
+1,
+"acordaábanse",
+"acordabanse",
+3
+]
+],
+"PSA 77 54": [
+[
+18,
+"dtestra?,",
+"diestra",
+3
+]
+],
+"PSA 78 4": [
+[
+0,
+"Fomos",
+"somos",
+5
+]
+],
+"PSA 79 17": [
+[
+8,
+"desarralgada:",
+"desarraigada",
+6
+],
+[
+19,
+"eneMAUJOS.",
+"enemigos",
+4
+]
+],
+"PSA 80 4": [
+[
+5,
+"Noyilunio,",
+"novilunio",
+4
+]
+],
+"PSA 81 2": [
+[
+8,
+"guardarels",
+"guardareis",
+6
+]
+],
+"PSA 82 8": [
+[
+9,
+"Pyrios.",
+"tirios",
+2
+]
+],
+"PSA 82 12": [
+[
+16,
+"Salmana,—á",
+"salmana a",
+5
+]
+],
+"PSA 83 4": [
+[
+14,
+"polluelos.—Tus",
+"polluelos tus",
+4
+]
+],
+"PSA 84 10": [
+[
+0,
+"AÁsfes",
+"es",
+6
+]
+],
+"PSA 86 4": [
+[
+13,
+"mí.—Hé",
+"mi he",
+2
+]
+],
+"PSA 87 1": [
+[
+19,
+"Ezrabita",
+"ezrahita",
+2
+]
+],
+"PSA 88 15": [
+[
+8,
+"trono.—La",
+"trono la",
+2
+]
+],
+"PSA 88 21": [
+[
+5,
+"unefle",
+"ungile",
+5
+]
+],
+"PSA 88 28": [
+[
+1,
+"yoleconstituiré",
+"constituire",
+6
+]
+],
+"PSA 88 45": [
+[
+1,
+"exaltadoel",
+"el",
+4
+]
+],
+"PSA 89 3": [
+[
+0,
+"Noreduzcas",
+"reduzcas",
+4
+]
+],
+"PSA 89 11": [
+[
+0,
+"Mas¿quién",
+"quien",
+5
+]
+],
+"PSA 89 15": [
+[
+0,
+"Alesrarnos",
+"alegrarnos",
+4
+]
+],
+"PSA 91 8": [
+[
+11,
+"analyados)—",
+"malvados",
+3
+],
+[
+8,
+"brillaEén",
+"brillaran",
+2
+]
+],
+"PSA 92 4": [
+[
+6,
+"aguas.—Maravillosas",
+"aguas maravillosas",
+5
+]
+],
+"PSA 93 6": [
+[
+0,
+"Hanasesinado",
+"asesinado",
+5
+]
+],
+"PSA 95 2": [
+[
+7,
+"anuneciad",
+"anunciad",
+6
+]
+],
+"PSA 95 6": [
+[
+10,
+"brillam",
+"brillan",
+6
+]
+],
+"PSA 95 9": [
+[
+6,
+"morada.—Conmuévase",
+"morada conmuevase",
+5
+]
+],
+"PSA 96 2": [
+[
+0,
+"Uircuido",
+"circuido",
+6
+]
+],
+"PSA 96 7": [
+[
+13,
+"simulacros.—Adorad",
+"simulacros adorad",
+5
+]
+],
+"PSA 96 8": [
+[
+5,
+"alborozo.—Saltaron",
+"alborozo saltaron",
+4
+]
+],
+"PSA 97 1": [
+[
+13,
+"maravillas.—Su",
+"maravillas su",
+2
+]
+],
+"PSA 97 4": [
+[
+16,
+"Alesría,",
+"alegria",
+6
+]
+],
+"PSA 97 6": [
+[
+0,
+"Aleco",
+"eco",
+5
+]
+],
+"PSA 98 6": [
+[
+10,
+"distimgwido",
+"distinguido",
+4
+]
+],
+"PSA 99 3": [
+[
+31,
+"apaclienta",
+"apacienta",
+5
+]
+],
+"PSA 100 2": [
+[
+20,
+"fortalecerme?—He",
+"fortalecerme he",
+2
+]
+],
+"PSA 101 9": [
+[
+0,
+"Zahiérenmo",
+"zahierenme",
+6
+]
+],
+"PSA 101 10": [
+[
+14,
+"mezelan",
+"mezclan",
+5
+]
+],
+"PSA 101 24": [
+[
+12,
+"el:corto",
+"el corto",
+3
+]
+],
+"PSA 101 27": [
+[
+11,
+"vestido.—Y",
+"vestido y",
+4
+]
+],
+"PSA 102 21": [
+[
+6,
+"componels",
+"componeis",
+5
+]
+],
+"PSA 103 1": [
+[
+24,
+"erloria",
+"gloria",
+4
+]
+],
+"PSA 103 2": [
+[
+7,
+"ropaje.—Extendiste",
+"ropaje extendiste",
+2
+]
+],
+"PSA 103 3": [
+[
+1,
+"ecubriste",
+"cubriste",
+5
+]
+],
+"PSA 103 8": [
+[
+0,
+"AÁlzanse",
+"alzanse",
+6
+]
+],
+"PSA 103 14": [
+[
+12,
+"qramo",
+"grano",
+6
+]
+],
+"PSA 103 25": [
+[
+15,
+"cuento;—animales",
+"cuento animales",
+4
+]
+],
+"PSA 103 26": [
+[
+4,
+"naves,—Ese",
+"naves ese",
+7
+]
+],
+"PSA 103 27": [
+[
+11,
+"tiempoel",
+"tiempo el",
+4
+]
+],
+"PSA 103 28": [
+[
+0,
+"Túselo",
+"lo",
+5
+]
+],
+"PSA 103 30": [
+[
+7,
+"renoyarás",
+"renovaras",
+5
+]
+],
+"PSA 104 19": [
+[
+5,
+"vaticinio.—Inflamóle",
+"vaticinio inflamole",
+3
+]
+],
+"PSA 104 26": [
+[
+0,
+"Masenvió",
+"envio",
+5
+]
+],
+"PSA 105 7": [
+[
+15,
+"inisericordias.",
+"misericordias",
+3
+]
+],
+"PSA 105 24": [
+[
+8,
+"deliciosa.—No",
+"deliciosa no",
+5
+]
+],
+"PSA 105 29": [
+[
+7,
+"¿dolútricas,",
+"idolatricas",
+4
+]
+],
+"PSA 105 42": [
+[
+7,
+"euaya",
+"cuya",
+6
+]
+],
+"PSA 106 4": [
+[
+7,
+"árilos;",
+"aridos",
+4
+]
+],
+"PSA 106 38": [
+[
+1,
+"bendiíjolos",
+"bendijolos",
+6
+],
+[
+6,
+"tiplicáronse",
+"sobre",
+2
+]
+],
+"PSA 106 39": [
+[
+6,
+"CPaIdOS",
+"oprimidos",
+6
+]
+],
+"PSA 106 40": [
+[
+5,
+"PUNCIDeS:",
+"principes",
+4
+]
+],
+"PSA 107 4": [
+[
+12,
+"hiranos",
+"himnos",
+5
+]
+],
+"PSA 107 9": [
+[
+0,
+"Mioes",
+"es",
+2
+]
+],
+"PSA 108 11": [
+[
+18,
+"faticas.",
+"fatigas",
+4
+]
+],
+"PSA 108 29": [
+[
+3,
+"ljenominia",
+"ignominia",
+5
+]
+],
+"PSA 109 1": [
+[
+13,
+"diestra;—mientras",
+"diestra mientras",
+4
+]
+],
+"PSA 109 4": [
+[
+0,
+"Juróel",
+"el",
+5
+]
+],
+"PSA 110 1": [
+[
+11,
+"sociedarl",
+"sociedad",
+5
+]
+],
+"PSA 110 5": [
+[
+7,
+"temen,—Se",
+"temen se",
+3
+]
+],
+"PSA 110 8": [
+[
+2,
+"imvariobles",
+"invariables",
+4
+]
+],
+"PSA 111 7": [
+[
+18,
+"nuevas.—Su",
+"nuevas su",
+5
+]
+],
+"PSA 114 3": [
+[
+10,
+"sepulcro.—Me",
+"sepulcro me",
+4
+]
+],
+"PSA 117 5": [
+[
+9,
+"otorcóme",
+"otorgome",
+3
+]
+],
+"PSA 117 13": [
+[
+1,
+"empellonesprocuraban",
+"procuraban",
+4
+]
+],
+"PSA 117 19": [
+[
+11,
+"suantidad;",
+"santidad",
+4
+]
+],
+"PSA 117 25": [
+[
+11,
+"sumoatmente",
+"sumamente",
+4
+]
+],
+"PSA 117 27": [
+[
+0,
+"ElSeñores",
+"es",
+4
+]
+],
+"PSA 118 59": [
+[
+0,
+"Heexaminado",
+"examinado",
+5
+]
+],
+"PSA 118 63": [
+[
+0,
+"Yoentro",
+"entro",
+3
+]
+],
+"PSA 118 64": [
+[
+9,
+"AÁmaéstrame",
+"amaestrame",
+5
+]
+],
+"PSA 118 70": [
+[
+0,
+"Enerasóse",
+"encrasose",
+4
+]
+],
+"PSA 118 78": [
+[
+6,
+"infeuos",
+"inicuos",
+3
+]
+],
+"PSA 118 95": [
+[
+17,
+"Divins",
+"divinos",
+5
+]
+],
+"PSA 118 108": [
+[
+4,
+"agradolos",
+"agrado los",
+5
+],
+[
+17,
+"Julclos.",
+"juicios",
+4
+]
+],
+"PSA 118 112": [
+[
+0,
+"Ineliné",
+"incline",
+6
+]
+],
+"PSA 118 116": [
+[
+0,
+"Acóseme,",
+"acogeme",
+6
+]
+],
+"PSA 118 131": [
+[
+4,
+"tespiré;",
+"respire",
+6
+]
+],
+"PSA 118 154": [
+[
+0,
+"ñSenteneia",
+"sentencia",
+7
+]
+],
+"PSA 118 168": [
+[
+6,
+"testimoTios;",
+"testimonios",
+5
+]
+],
+"PSA 118 170": [
+[
+0,
+"FPenetren",
+"penetren",
+5
+]
+],
+"PSA 119 4": [
+[
+2,
+"traspaseda",
+"traspasada",
+5
+],
+[
+13,
+"adrrojuda",
+"arrojada",
+5
+]
+],
+"PSA 121 2": [
+[
+7,
+"dJerusalem.",
+"jerusalen",
+2
+]
+],
+"PSA 122 2": [
+[
+12,
+"2nsimuaciones",
+"insinuaciones",
+4
+],
+[
+15,
+"amos:—como",
+"amos como",
+5
+]
+],
+"PSA 125 1": [
+[
+12,
+"1ndecible",
+"indecible",
+4
+]
+],
+"PSA 125 3": [
+[
+10,
+"mundados",
+"inundados",
+6
+]
+],
+"PSA 125 4": [
+[
+10,
+"nmiestros",
+"nuestros",
+5
+],
+[
+19,
+"Mechodía",
+"mediodia",
+6
+]
+],
+"PSA 127 1": [
+[
+13,
+"sentos",
+"santos",
+4
+]
+],
+"PSA 128 3": [
+[
+17,
+"liranía,",
+"tirania",
+4
+]
+],
+"PSA 128 5": [
+[
+0,
+"Hobre",
+"sobre",
+7
+]
+],
+"PSA 130 2": [
+[
+23,
+"penaundo",
+"penando",
+7
+]
+],
+"PSA 131 5": [
+[
+0,
+"Nireclinaré",
+"reclinare",
+5
+]
+],
+"PSA 132 2": [
+[
+3,
+"o/oroso",
+"oloroso",
+6
+],
+[
+17,
+"Aaron,—y",
+"aaron y",
+4
+]
+],
+"PSA 134 17": [
+[
+10,
+"esp?ritu",
+"espiritu",
+4
+]
+],
+"PSA 135 7": [
+[
+5,
+"lTuminares:",
+"luminares",
+5
+]
+],
+"PSA 136 3": [
+[
+13,
+"cánticos:—los",
+"canticos los",
+2
+]
+],
+"PSA 136 6": [
+[
+15,
+"santa:—si",
+"santa si",
+3
+]
+],
+"PSA 136 7": [
+[
+19,
+"Arrasadia,",
+"arrasadla",
+2
+]
+],
+"PSA 137 2": [
+[
+7,
+"tribumtaré",
+"tributare",
+7
+]
+],
+"PSA 137 7": [
+[
+27,
+"poderosu",
+"poderosa",
+7
+]
+],
+"PSA 138 6": [
+[
+8,
+"eregcion:",
+"creacion",
+5
+]
+],
+"PSA 138 8": [
+[
+0,
+"Sisubo",
+"subo",
+6
+]
+],
+"PSA 138 17": [
+[
+12,
+"amigos:su",
+"amigos su",
+5
+]
+],
+"PSA 138 20": [
+[
+15,
+"eimdades.",
+"ciudades",
+5
+]
+],
+"PSA 138 21": [
+[
+12,
+"aborrecian;Y",
+"aborrecian y",
+4
+]
+],
+"PSA 139 7": [
+[
+16,
+"Z/;umiide",
+"humilde",
+6
+]
+],
+"PSA 139 12": [
+[
+2,
+"deslengnado",
+"deslenguado",
+3
+]
+],
+"PSA 140 5": [
+[
+25,
+"diricirán",
+"dirigiran",
+7
+]
+],
+"PSA 143 7": [
+[
+18,
+"cter",
+"caer",
+6
+]
+],
+"PSA 143 8": [
+[
+0,
+"ÚUuya",
+"cuya",
+6
+]
+],
+"PSA 143 11": [
+[
+14,
+"sule",
+"sale",
+6
+]
+],
+"PSA 143 12": [
+[
+14,
+"edad;—sus",
+"edad sus",
+4
+]
+],
+"PSA 143 14": [
+[
+3,
+"lozames",
+"lozanas",
+6
+]
+],
+"PSA 144 4": [
+[
+12,
+"in/inito.",
+"infinito",
+4
+]
+],
+"PSA 144 16": [
+[
+2,
+"Ztberal",
+"liberal",
+4
+]
+],
+"PSA 146 5": [
+[
+4,
+"Dzos",
+"dios",
+7
+]
+],
+"PSA 147 7": [
+[
+14,
+"finyen",
+"fluyen",
+6
+]
+],
+"PSA 148 3": [
+[
+8,
+"Iueientes",
+"lucientes",
+6
+]
+],
+"PSA 149 3": [
+[
+2,
+"ercelso",
+"excelso",
+5
+]
+],
+"PSA 150 1": [
+[
+8,
+"celestit!",
+"celestial",
+6
+]
+],
+"PRO 1 12": [
+[
+7,
+"eaddveres,",
+"cadaveres",
+2
+]
+],
+"PRO 1 21": [
+[
+9,
+"úliles",
+"utiles",
+4
+]
+],
+"PRO 1 22": [
+[
+10,
+"nminerías?",
+"ninerias",
+5
+]
+],
+"PRO 1 23": [
+[
+17,
+"doctrinz.",
+"doctrina",
+5
+]
+],
+"PRO 2 10": [
+[
+0,
+"Sientrare",
+"entrare",
+5
+]
+],
+"PRO 2 11": [
+[
+10,
+"CONSETVará",
+"conservara",
+5
+]
+],
+"PRO 4 2": [
+[
+9,
+"preGceptos.",
+"preceptos",
+2
+]
+],
+"PRO 4 6": [
+[
+8,
+"proteetora:",
+"protectora",
+4
+]
+],
+"PRO 4 11": [
+[
+9,
+"gularé",
+"guiare",
+6
+]
+],
+"PRO 5 19": [
+[
+5,
+"hermostisiuma",
+"hermosisima",
+3
+]
+],
+"PRO 6 10": [
+[
+8,
+"eruzarás",
+"cruzaras",
+6
+]
+],
+"PRO 6 19": [
+[
+10,
+"cliscordias",
+"discordias",
+4
+]
+],
+"PRO 6 23": [
+[
+15,
+"¿mstrucciones",
+"instrucciones",
+3
+]
+],
+"PRO 6 33": [
+[
+6,
+"lenominias,",
+"ignominias",
+5
+]
+],
+"PRO 7 9": [
+[
+6,
+"anocheeido,",
+"anochecido",
+5
+]
+],
+"PRO 7 13": [
+[
+8,
+"imcauto",
+"incauto",
+4
+]
+],
+"PRO 7 17": [
+[
+0,
+"Herociado",
+"rociado",
+5
+]
+],
+"PRO 8 17": [
+[
+0,
+"Yoamoá",
+"a",
+5
+]
+],
+"PRO 8 22": [
+[
+16,
+"eriase",
+"criase",
+6
+]
+],
+"PRO 8 29": [
+[
+1,
+"cireunseribia",
+"circunscribia",
+6
+]
+],
+"PRO 9 7": [
+[
+9,
+"jgnorminia;",
+"ignominia",
+4
+],
+[
+6,
+"2mpto,",
+"impio",
+4
+]
+],
+"PRO 9 8": [
+[
+2,
+"redargiir",
+"redarguir",
+3
+]
+],
+"PRO 10 18": [
+[
+5,
+"maleyolencia:",
+"malevolencia",
+6
+]
+],
+"PRO 10 22": [
+[
+12,
+"añliccion",
+"afliccion",
+5
+]
+],
+"PRO 11 15": [
+[
+5,
+"imcautamente",
+"incautamente",
+5
+]
+],
+"PRO 12 14": [
+[
+22,
+"valardon.",
+"galardon",
+2
+]
+],
+"PRO 12 16": [
+[
+9,
+"cireunspecto",
+"circunspecto",
+3
+]
+],
+"PRO 12 18": [
+[
+9,
+"imstamte,",
+"instante",
+6
+]
+],
+"PRO 12 19": [
+[
+11,
+"ineconsiderado",
+"inconsiderado",
+6
+]
+],
+"PRO 12 26": [
+[
+15,
+"Imnas",
+"mas",
+5
+]
+],
+"PRO 12 27": [
+[
+0,
+"Nosacará",
+"sacara",
+4
+]
+],
+"PRO 14 16": [
+[
+5,
+"desyia",
+"desvia",
+6
+]
+],
+"PRO 14 22": [
+[
+0,
+"irrados",
+"errados",
+6
+]
+],
+"PRO 14 28": [
+[
+18,
+"deshonor.del",
+"deshonor del",
+7
+]
+],
+"PRO 15 4": [
+[
+9,
+"desentrenada",
+"desenfrenada",
+5
+]
+],
+"PRO 15 11": [
+[
+4,
+"bugar",
+"lugar",
+4
+]
+],
+"PRO 15 27": [
+[
+58,
+"purean",
+"purgan",
+2
+]
+],
+"PRO 16 7": [
+[
+16,
+"pedor",
+"pedir",
+4
+]
+],
+"PRO 16 32": [
+[
+17,
+"crnudades.",
+"ciudades",
+6
+]
+],
+"PRO 17 4": [
+[
+10,
+"iníecuas,",
+"inicuas",
+5
+]
+],
+"PRO 17 15": [
+[
+11,
+"jenalmente",
+"igualmente",
+4
+]
+],
+"PRO 18 4": [
+[
+6,
+"imagolable,",
+"inagotable",
+5
+]
+],
+"PRO 18 6": [
+[
+0,
+"Meézclanse",
+"mezclanse",
+6
+]
+],
+"PRO 18 7": [
+[
+0,
+"Altonto",
+"tonto",
+6
+]
+],
+"PRO 18 11": [
+[
+18,
+"cireuye.",
+"circuye",
+6
+]
+],
+"PRO 19 12": [
+[
+13,
+"Tostro",
+"rostro",
+6
+]
+],
+"PRO 19 14": [
+[
+7,
+"padres;mas",
+"padres mas",
+5
+]
+],
+"PRO 19 27": [
+[
+11,
+"lenorar",
+"ignorar",
+5
+]
+],
+"PRO 20 6": [
+[
+5,
+"rnisericordiosos:",
+"misericordiosos",
+4
+]
+],
+"PRO 20 20": [
+[
+11,
+"apacársele",
+"apagarsele",
+4
+]
+],
+"PRO 20 21": [
+[
+0,
+"Elpatrimonio",
+"patrimonio",
+6
+]
+],
+"PRO 21 16": [
+[
+16,
+"eleantes",
+"gigantes",
+4
+]
+],
+"PRO 21 20": [
+[
+10,
+"pinee;",
+"pingue",
+5
+]
+],
+"PRO 22 3": [
+[
+13,
+"¿ncauto",
+"incauto",
+3
+]
+],
+"PRO 22 9": [
+[
+12,
+"pobres.—Quien",
+"pobres quien",
+5
+]
+],
+"PRO 22 25": [
+[
+11,
+"otasion",
+"ocasion",
+6
+]
+],
+"PRO 23 16": [
+[
+11,
+"rechos.",
+"rectos",
+4
+]
+],
+"PRO 23 20": [
+[
+0,
+"Noasistas",
+"asistas",
+2
+]
+],
+"PRO 23 21": [
+[
+12,
+"arrulnarse,",
+"arruinarse",
+6
+]
+],
+"PRO 23 34": [
+[
+12,
+"borraseoso",
+"borrascoso",
+4
+]
+],
+"PRO 24 13": [
+[
+14,
+"duleísimo",
+"dulcisimo",
+5
+]
+],
+"PRO 24 25": [
+[
+1,
+"contrariolos",
+"los",
+4
+]
+],
+"PRO 24 32": [
+[
+0,
+"Awvista",
+"vista",
+6
+],
+[
+13,
+"sobernarme.",
+"gobernarme",
+6
+]
+],
+"PRO 24 33": [
+[
+13,
+"eruzadas",
+"cruzadas",
+6
+]
+],
+"PRO 25 16": [
+[
+13,
+"ahbito",
+"ahito",
+3
+]
+],
+"PRO 25 20": [
+[
+0,
+"OÓcomo",
+"como",
+5
+]
+],
+"PRO 26 1": [
+[
+5,
+"imoportuna",
+"inoportuna",
+3
+]
+],
+"PRO 26 2": [
+[
+19,
+"vyolando",
+"volando",
+5
+]
+],
+"PRO 26 14": [
+[
+10,
+"revuelye",
+"revuelve",
+3
+]
+],
+"PRO 27 19": [
+[
+17,
+"hiúmanos",
+"humanos",
+3
+]
+],
+"PRO 28 14": [
+[
+17,
+"descwidado",
+"descuidado",
+3
+]
+],
+"PRO 28 16": [
+[
+19,
+"avarlela,",
+"avaricia",
+4
+]
+],
+"PRO 28 27": [
+[
+16,
+"indisencia.",
+"indigencia",
+4
+]
+],
+"PRO 29 26": [
+[
+5,
+"príncipe;mas",
+"principe mas",
+5
+]
+],
+"PRO 30 3": [
+[
+10,
+"anismo",
+"mismo",
+5
+]
+],
+"PRO 30 6": [
+[
+12,
+"redaretiido",
+"redarguido",
+5
+]
+],
+"PRO 30 8": [
+[
+8,
+"mentirosas.—No",
+"mentirosas no",
+3
+]
+],
+"PRO 31 2": [
+[
+6,
+"mio!;qué",
+"mio que",
+4
+],
+[
+21,
+"cleseos!",
+"deseos",
+2
+]
+],
+"PRO 31 24": [
+[
+0,
+"Ellateje",
+"teje",
+6
+],
+[
+1,
+"finésimas",
+"finisimas",
+4
+]
+],
+"ECC 2 8": [
+[
+48,
+"mesd",
+"mesa",
+3
+]
+],
+"ECC 2 19": [
+[
+1,
+"¡jenoro",
+"ignoro",
+3
+]
+],
+"ECC 4 1": [
+[
+31,
+"imposibiltdad",
+"imposibilidad",
+5
+]
+],
+"ECC 4 16": [
+[
+13,
+"aplawmsos:",
+"aplausos",
+5
+]
+],
+"ECC 5 1": [
+[
+12,
+"¿mdiseretas",
+"indiscretas",
+3
+]
+],
+"ECC 6 3": [
+[
+22,
+"sirya",
+"sirva",
+3
+]
+],
+"ECC 6 7": [
+[
+7,
+"suciar",
+"saciar",
+4
+]
+],
+"ECC 7 11": [
+[
+2,
+"nunca:¿De",
+"nunca de",
+5
+]
+],
+"ECC 7 18": [
+[
+0,
+"Nomultipliques",
+"multipliques",
+6
+]
+],
+"ECC 8 5": [
+[
+8,
+"nineno.",
+"ninguno",
+3
+]
+],
+"ECC 8 8": [
+[
+11,
+"prclongar",
+"prolongar",
+3
+],
+[
+34,
+"ameraza.",
+"amenaza",
+3
+]
+],
+"ECC 8 16": [
+[
+13,
+"camsá",
+"causa",
+6
+]
+],
+"ECC 9 3": [
+[
+51,
+"esto-son",
+"esto son",
+3
+]
+],
+"ECC 9 5": [
+[
+10,
+"disponerse;pero",
+"disponerse pero",
+4
+]
+],
+"ECC 10 1": [
+[
+8,
+"eoido,",
+"caido",
+2
+]
+],
+"ECC 10 8": [
+[
+16,
+"aportilia",
+"aportilla",
+5
+]
+],
+"ECC 10 19": [
+[
+8,
+"relr",
+"reir",
+5
+],
+[
+10,
+"bangquetear;",
+"banquetear",
+5
+]
+],
+"ECC 11 4": [
+[
+8,
+"4unca;",
+"nunca",
+5
+]
+],
+"ECC 11 6": [
+[
+12,
+"leyantes",
+"levantes",
+5
+]
+],
+"ECC 12 9": [
+[
+16,
+"¿ndagaciones",
+"indagaciones",
+4
+]
+],
+"SNG 1 3": [
+[
+15,
+"latrodújome",
+"introdujome",
+2
+]
+],
+"SNG 1 5": [
+[
+1,
+"reparels,",
+"repareis",
+3
+]
+],
+"SNG 1 8": [
+[
+6,
+"umcidos",
+"uncidos",
+4
+]
+],
+"SNG 1 13": [
+[
+2,
+"eypro",
+"cypro",
+3
+]
+],
+"SNG 2 7": [
+[
+9,
+"ltgeras",
+"ligeras",
+4
+]
+],
+"SNG 3 1": [
+[
+21,
+"andúyele",
+"anduvele",
+6
+]
+],
+"SNG 3 3": [
+[
+0,
+"Encontráromme",
+"encontraronme",
+5
+]
+],
+"SNG 4 2": [
+[
+2,
+"blameos",
+"blancos",
+4
+],
+[
+4,
+"bienunidos",
+"bien unidos",
+3
+]
+],
+"SNG 4 4": [
+[
+5,
+"aúroso",
+"airoso",
+5
+]
+],
+"SNG 4 11": [
+[
+29,
+"suavésimo",
+"suavisimo",
+3
+]
+],
+"SNG 4 14": [
+[
+11,
+"odor+feros",
+"odoriferos",
+6
+]
+],
+"SNG 5 9": [
+[
+36,
+"FTermosura",
+"hermosura",
+4
+]
+],
+"SNG 5 16": [
+[
+8,
+"sumar,",
+"suma",
+5
+]
+],
+"SNG 7 4": [
+[
+5,
+"blameo",
+"blanco",
+5
+],
+[
+11,
+"ojos:son",
+"ojos son",
+4
+],
+[
+14,
+"eristalinos",
+"cristalinos",
+5
+]
+],
+"SNG 7 9": [
+[
+6,
+"delerta",
+"deleita",
+2
+]
+],
+"SNG 8 11": [
+[
+20,
+"culiivaran:",
+"cultivaran",
+3
+]
+],
+"WIS 2 4": [
+[
+0,
+"yUaerá",
+"caera",
+5
+]
+],
+"WIS 2 6": [
+[
+16,
+"óvenes.",
+"jovenes",
+3
+]
+],
+"WIS 2 8": [
+[
+0,
+"»Uoronémonos",
+"coronemonos",
+4
+]
+],
+"WIS 2 9": [
+[
+10,
+"dejernos",
+"dejemos",
+5
+]
+],
+"WIS 2 12": [
+[
+34,
+"divuleando",
+"divulgando",
+2
+]
+],
+"WIS 3 4": [
+[
+14,
+"segwra",
+"segura",
+4
+]
+],
+"WIS 3 14": [
+[
+5,
+"sanueo,",
+"eunuco",
+2
+]
+],
+"WIS 5 19": [
+[
+10,
+"mfalible",
+"infalible",
+6
+]
+],
+"WIS 5 23": [
+[
+13,
+"Embrayeceránse",
+"embraveceranse",
+3
+]
+],
+"WIS 6 4": [
+[
+20,
+"esendriñará",
+"escudrinara",
+5
+]
+],
+"WIS 6 5": [
+[
+8,
+"unmiverso!,",
+"universal",
+6
+]
+],
+"WIS 7 10": [
+[
+20,
+"inextinemible",
+"inextinguible",
+2
+]
+],
+"WIS 7 13": [
+[
+9,
+"eneubro",
+"encubro",
+6
+]
+],
+"WIS 10 11": [
+[
+6,
+"pemprengers",
+"sorprenderle",
+4
+]
+],
+"WIS 11 10": [
+[
+8,
+"atlisidos,",
+"afligidos",
+3
+],
+[
+17,
+"Lormentos",
+"tormentos",
+3
+]
+],
+"WIS 12 2": [
+[
+11,
+"cástio4s",
+"castigas",
+4
+]
+],
+"WIS 12 10": [
+[
+15,
+"ijenorabas",
+"ignorabas",
+5
+]
+],
+"WIS 12 12": [
+[
+41,
+"ertaste?",
+"criaste",
+4
+]
+],
+"WIS 13 16": [
+[
+32,
+"parc",
+"para",
+3
+]
+],
+"WIS 14 6": [
+[
+18,
+"refuejo",
+"refugio",
+4
+]
+],
+"WIS 14 23": [
+[
+16,
+"brw",
+"bru",
+2
+]
+],
+"WIS 14 28": [
+[
+23,
+"Tacilidad",
+"facilidad",
+4
+]
+],
+"WIS 15 6": [
+[
+0,
+"Diemos",
+"dignos",
+6
+]
+],
+"WIS 15 13": [
+[
+2,
+"artifce",
+"artifice",
+6
+]
+],
+"WIS 15 15": [
+[
+47,
+"meINCarse.",
+"menearse",
+4
+]
+],
+"WIS 15 17": [
+[
+8,
+"saerflegas",
+"sacrilegas",
+5
+]
+],
+"WIS 16 21": [
+[
+1,
+"asteste",
+"este",
+5
+]
+],
+"WIS 17 1": [
+[
+5,
+"juleios,",
+"juicios",
+4
+]
+],
+"WIS 17 18": [
+[
+23,
+"diyisaban,",
+"divisaban",
+5
+]
+],
+"WIS 17 19": [
+[
+9,
+"¡luminado",
+"iluminado",
+5
+]
+],
+"WIS 18 3": [
+[
+20,
+"brillare",
+"brillara",
+4
+]
+],
+"WIS 18 9": [
+[
+5,
+"sraebitas,",
+"israelitas",
+3
+]
+],
+"WIS 18 10": [
+[
+10,
+"ofase",
+"oiase",
+4
+]
+],
+"WIS 18 12": [
+[
+19,
+"ni-ya",
+"ni ya",
+4
+]
+],
+"WIS 18 24": [
+[
+7,
+"Nevaba,",
+"llevaba",
+5
+]
+],
+"WIS 19 6": [
+[
+24,
+"llesos",
+"ilesos",
+3
+]
+],
+"WIS 19 15": [
+[
+4,
+"eruelísimos",
+"cruelisimos",
+5
+]
+],
+"WIS 19 17": [
+[
+12,
+"frastornan,",
+"trastornan",
+5
+]
+],
+"SIR 1 8": [
+[
+4,
+"Onmipotente,",
+"omnipotente",
+4
+]
+],
+"SIR 2 7": [
+[
+18,
+"calgals.",
+"caigais",
+4
+]
+],
+"SIR 3 1": [
+[
+3,
+"disevpulos",
+"discipulos",
+5
+]
+],
+"SIR 3 12": [
+[
+18,
+"lenominila",
+"ignominia",
+2
+]
+],
+"SIR 3 17": [
+[
+10,
+"eclificio;",
+"edificio",
+4
+]
+],
+"SIR 3 18": [
+[
+9,
+"desampara!;¡Y",
+"desampara y",
+5
+]
+],
+"SIR 3 30": [
+[
+6,
+"imcorregible;",
+"incorregible",
+5
+]
+],
+"SIR 3 33": [
+[
+11,
+"expiía",
+"expia",
+5
+]
+],
+"SIR 4 6": [
+[
+21,
+"Criacdlor",
+"criador",
+4
+]
+],
+"SIR 4 24": [
+[
+2,
+"averciiences",
+"averguences",
+2
+]
+],
+"SIR 4 33": [
+[
+31,
+"arrollard",
+"arrollara",
+3
+]
+],
+"SIR 5 4": [
+[
+3,
+"pequé;¿y",
+"peque y",
+5
+]
+],
+"SIR 5 15": [
+[
+5,
+"«compañan",
+"acompanan",
+4
+]
+],
+"SIR 6 24": [
+[
+6,
+"sábila",
+"sabia",
+6
+]
+],
+"SIR 8 4": [
+[
+13,
+"aticando",
+"atizando",
+5
+],
+[
+15,
+"locuaciónd.",
+"locuacidad",
+2
+]
+],
+"SIR 8 5": [
+[
+5,
+"lenorante",
+"ignorante",
+6
+]
+],
+"SIR 8 8": [
+[
+21,
+"sozo.",
+"gozo",
+5
+]
+],
+"SIR 8 13": [
+[
+12,
+"indhiscretamente;",
+"indiscretamente",
+2
+]
+],
+"SIR 8 18": [
+[
+22,
+"sieumendo",
+"siguiendo",
+5
+]
+],
+"SIR 10 22": [
+[
+22,
+"deb¿l",
+"debil",
+4
+]
+],
+"SIR 10 32": [
+[
+7,
+"alma?¿y",
+"alma y",
+3
+]
+],
+"SIR 11 9": [
+[
+20,
+"ajends.",
+"ajenas",
+2
+]
+],
+"SIR 11 12": [
+[
+18,
+"puadoso",
+"piadoso",
+4
+]
+],
+"SIR 11 17": [
+[
+0,
+"Eldonó",
+"o",
+3
+]
+],
+"SIR 11 32": [
+[
+7,
+"regiieldos,",
+"regueldos",
+5
+]
+],
+"SIR 12 1": [
+[
+3,
+"aleuún",
+"algun",
+6
+]
+],
+"SIR 12 13": [
+[
+32,
+"iníeno,",
+"inicuo",
+4
+]
+],
+"SIR 13 1": [
+[
+18,
+"pesará",
+"pegara",
+6
+]
+],
+"SIR 13 4": [
+[
+10,
+"bravafas;",
+"bravatas",
+4
+]
+],
+"SIR 13 5": [
+[
+0,
+"Slle",
+"le",
+6
+]
+],
+"SIR 13 14": [
+[
+0,
+"Noteentretengas",
+"entretengas",
+5
+]
+],
+"SIR 14 10": [
+[
+19,
+"famélieco",
+"famelico",
+3
+]
+],
+"SIR 14 24": [
+[
+4,
+"ovrla",
+"oirla",
+3
+]
+],
+"SIR 15 8": [
+[
+7,
+"ella;mas",
+"ella mas",
+4
+]
+],
+"SIR 16 14": [
+[
+12,
+"Tetardará",
+"retardara",
+4
+]
+],
+"SIR 16 22": [
+[
+6,
+"¿nimteligibles",
+"ininteligibles",
+4
+],
+[
+54,
+"amindo.",
+"mundo",
+3
+]
+],
+"SIR 16 26": [
+[
+18,
+"culocó",
+"coloco",
+6
+]
+],
+"SIR 18 9": [
+[
+6,
+"mortalos,",
+"mortales",
+5
+]
+],
+"SIR 18 18": [
+[
+7,
+"dúdiya",
+"dadiva",
+4
+]
+],
+"SIR 18 21": [
+[
+4,
+"mortijícate",
+"mortificate",
+3
+]
+],
+"SIR 19 4": [
+[
+12,
+"(Julen",
+"quien",
+5
+]
+],
+"SIR 20 8": [
+[
+17,
+"juegar",
+"juzgar",
+6
+]
+],
+"SIR 20 21": [
+[
+20,
+"éeriada",
+"criada",
+5
+]
+],
+"SIR 21 18": [
+[
+16,
+"olrála",
+"oirala",
+5
+]
+],
+"SIR 22 4": [
+[
+21,
+"ensendracdo.",
+"engendrado",
+3
+]
+],
+"SIR 22 6": [
+[
+0,
+"Un.discurso",
+"discurso",
+4
+]
+],
+"SIR 22 16": [
+[
+0,
+"Desylate",
+"desviate",
+5
+]
+],
+"SIR 22 25": [
+[
+15,
+"zabiere",
+"zahiere",
+5
+]
+],
+"SIR 23 3": [
+[
+4,
+"lenorancias,",
+"ignorancias",
+5
+]
+],
+"SIR 23 19": [
+[
+35,
+"maldivas",
+"maldigas",
+6
+]
+],
+"SIR 23 22": [
+[
+11,
+"Galma",
+"calma",
+5
+]
+],
+"SIR 23 34": [
+[
+33,
+"botE",
+"borrara",
+2
+],
+[
+24,
+"Ramos.lla",
+"ella",
+2
+]
+],
+"SIR 24 6": [
+[
+13,
+"mebla",
+"niebla",
+6
+]
+],
+"SIR 24 13": [
+[
+12,
+"arrálgate",
+"arraigate",
+2
+]
+],
+"SIR 24 14": [
+[
+2,
+"PEIMCIDIO",
+"principio",
+2
+]
+],
+"SIR 24 22": [
+[
+0,
+"Yoextendí",
+"extendi",
+4
+]
+],
+"SIR 24 26": [
+[
+16,
+"alulces",
+"dulces",
+5
+]
+],
+"SIR 24 34": [
+[
+16,
+"limoje,",
+"linaje",
+3
+]
+],
+"SIR 24 35": [
+[
+12,
+"Tieris",
+"tigris",
+4
+]
+],
+"SIR 24 38": [
+[
+21,
+"¿nferior,",
+"inferior",
+3
+]
+],
+"SIR 24 45": [
+[
+19,
+"JuegarLos:",
+"juzgarlos",
+3
+]
+],
+"SIR 25 5": [
+[
+11,
+"halar",
+"hallar",
+5
+]
+],
+"SIR 25 7": [
+[
+10,
+"avanzada!¡y",
+"avanzada y",
+6
+]
+],
+"SIR 25 20": [
+[
+13,
+"ódioenconado",
+"odio enconado",
+5
+]
+],
+"SIR 25 29": [
+[
+15,
+"uht",
+"ahi",
+6
+]
+],
+"SIR 27 2": [
+[
+12,
+"pieclras",
+"piedras",
+3
+]
+],
+"SIR 27 15": [
+[
+11,
+"ireyerencia",
+"irreverencia",
+3
+]
+],
+"SIR 27 26": [
+[
+24,
+"arrunarte",
+"arruinarte",
+3
+]
+],
+"SIR 27 30": [
+[
+2,
+"desiento",
+"designio",
+5
+]
+],
+"SIR 28 5": [
+[
+11,
+"reconelliacion?",
+"reconciliacion",
+4
+]
+],
+"SIR 28 9": [
+[
+13,
+"¿gnoramncia",
+"ignorancia",
+4
+]
+],
+"SIR 28 14": [
+[
+12,
+"eseupieres",
+"escupieres",
+4
+]
+],
+"SIR 28 29": [
+[
+0,
+"Fuúnde",
+"funde",
+6
+]
+],
+"SIR 29 14": [
+[
+0,
+"Enplea",
+"emplea",
+6
+]
+],
+"SIR 29 21": [
+[
+6,
+"¿nfiel",
+"infiel",
+6
+]
+],
+"SIR 29 23": [
+[
+11,
+"veretienza,",
+"verguenza",
+3
+]
+],
+"SIR 29 25": [
+[
+11,
+"trasmierar",
+"transmigrar",
+3
+]
+],
+"SIR 30 4": [
+[
+2,
+"morirsu",
+"morir su",
+4
+]
+],
+"SIR 31 4": [
+[
+7,
+"sideja",
+"si deja",
+3
+]
+],
+"SIR 31 7": [
+[
+11,
+"idolaEran",
+"idolatran",
+4
+]
+],
+"SIR 31 12": [
+[
+15,
+"engulblir",
+"engullir",
+3
+]
+],
+"SIR 31 38": [
+[
+5,
+"lras",
+"iras",
+6
+]
+],
+"SIR 31 40": [
+[
+8,
+"enerya",
+"enerva",
+5
+]
+],
+"SIR 32 21": [
+[
+9,
+"siempreejemplos",
+"siempre ejemplos",
+3
+]
+],
+"SIR 34 29": [
+[
+0,
+"FSiuno",
+"uno",
+5
+]
+],
+"SIR 35 21": [
+[
+5,
+"afigido",
+"afligido",
+3
+]
+],
+"SIR 36 3": [
+[
+8,
+"¿njieles,",
+"infieles",
+2
+]
+],
+"SIR 37 6": [
+[
+0,
+"¡Ah!no",
+"no",
+3
+]
+],
+"SIR 38 6": [
+[
+21,
+"elorifquen",
+"glorifiquen",
+6
+]
+],
+"SIR 38 28": [
+[
+33,
+"clibujo,",
+"dibujo",
+2
+]
+],
+"SIR 40 2": [
+[
+0,
+"Fiven",
+"viven",
+5
+]
+],
+"SIR 40 11": [
+[
+12,
+"toclas",
+"todas",
+5
+]
+],
+"SIR 41 12": [
+[
+8,
+"munereis,",
+"muriereis",
+2
+]
+],
+"SIR 41 23": [
+[
+20,
+"costs",
+"cosas",
+4
+]
+],
+"SIR 41 24": [
+[
+0,
+"Avergiénzate",
+"averguenzate",
+4
+]
+],
+"SIR 41 26": [
+[
+25,
+"restitutrlo.",
+"restituirlo",
+5
+]
+],
+"SIR 42 1": [
+[
+15,
+"ayereonzarte:",
+"avergonzarte",
+4
+]
+],
+"SIR 42 4": [
+[
+2,
+"awergiiences",
+"averguences",
+5
+]
+],
+"SIR 42 5": [
+[
+6,
+"monapotos",
+"monopolios",
+6
+]
+],
+"SIR 42 11": [
+[
+35,
+"¡enominia",
+"ignominia",
+3
+]
+],
+"SIR 42 14": [
+[
+19,
+"lienominia",
+"ignominia",
+5
+]
+],
+"SIR 43 6": [
+[
+8,
+"Sadie",
+"periodos",
+5
+]
+],
+"SIR 43 7": [
+[
+6,
+"laminar,",
+"luminar",
+6
+]
+],
+"SIR 43 25": [
+[
+0,
+"Acuna",
+"una",
+6
+]
+],
+"SIR 44 10": [
+[
+6,
+"caritabivos,",
+"caritativos",
+4
+]
+],
+"SIR 45 4": [
+[
+9,
+"escovióle",
+"escogiole",
+4
+]
+],
+"SIR 45 6": [
+[
+24,
+"alvanmza,",
+"alianza",
+5
+]
+],
+"SIR 45 10": [
+[
+13,
+"espaldor,",
+"espaldar",
+3
+],
+[
+23,
+"vestiduro",
+"vestidura",
+2
+]
+],
+"SIR 45 22": [
+[
+37,
+"faceion",
+"faccion",
+5
+]
+],
+"SIR 45 25": [
+[
+10,
+"chióle",
+"diole",
+6
+]
+],
+"SIR 46 18": [
+[
+8,
+"vaticintos,",
+"vaticinios",
+4
+]
+],
+"SIR 47 12": [
+[
+21,
+"Jestividades",
+"festividades",
+4
+]
+],
+"SIR 47 17": [
+[
+20,
+"7egiones",
+"regiones",
+4
+]
+],
+"SIR 48 4": [
+[
+0,
+"Astse",
+"se",
+5
+]
+],
+"SIR 48 12": [
+[
+6,
+"momentáneo:",
+"momentanea",
+5
+]
+],
+"SIR 48 25": [
+[
+1,
+"Pacs",
+"ezechias",
+3
+]
+],
+"SIR 51 2": [
+[
+10,
+"auxjliador",
+"auxiliador",
+6
+]
+],
+"SIR 51 24": [
+[
+0,
+"Resolyvíme",
+"resolvime",
+5
+]
+],
+"SIR 51 32": [
+[
+4,
+"todavía;Y",
+"todavia y",
+4
+]
+],
+"ISA 1 11": [
+[
+32,
+"pingiies",
+"pingues",
+3
+]
+],
+"ISA 1 16": [
+[
+0,
+"Layaos",
+"lavaos",
+5
+]
+],
+"ISA 1 18": [
+[
+27,
+"teñddius",
+"tenidas",
+4
+]
+],
+"ISA 1 19": [
+[
+4,
+"escuecheis,",
+"escucheis",
+3
+]
+],
+"ISA 2 6": [
+[
+1,
+"tú,oh",
+"oh",
+3
+]
+],
+"ISA 3 16": [
+[
+21,
+"guñando",
+"guinando",
+4
+]
+],
+"ISA 5 7": [
+[
+50,
+"oprimados.",
+"oprimidos",
+5
+]
+],
+"ISA 5 8": [
+[
+5,
+"juntals",
+"juntais",
+4
+],
+[
+10,
+"agregals",
+"agregais",
+4
+]
+],
+"ISA 5 12": [
+[
+24,
+"considerals",
+"considerais",
+4
+]
+],
+"ISA 5 18": [
+[
+22,
+"birals",
+"tirais",
+3
+]
+],
+"ISA 5 24": [
+[
+28,
+"payesa,",
+"pavesa",
+3
+]
+],
+"ISA 6 9": [
+[
+14,
+"olrels,",
+"oireis",
+2
+]
+],
+"ISA 7 9": [
+[
+18,
+"ereyerels,",
+"creyereis",
+4
+]
+],
+"ISA 7 13": [
+[
+20,
+"hom-tres,",
+"hombres",
+2
+],
+[
+22,
+"osals",
+"osais",
+3
+]
+],
+"ISA 8 3": [
+[
+23,
+"signijique:",
+"signifique",
+5
+]
+],
+"ISA 8 6": [
+[
+9,
+"Siloef,",
+"siloe",
+4
+]
+],
+"ISA 9 4": [
+[
+2,
+"pesado.yugo",
+"pesado yugo",
+4
+]
+],
+"ISA 9 11": [
+[
+9,
+"4ssyros)",
+"asirios",
+2
+]
+],
+"ISA 9 14": [
+[
+22,
+"sobiernan.",
+"gobiernan",
+3
+]
+],
+"ISA 10 3": [
+[
+17,
+"dmenazando",
+"amenazando",
+5
+]
+],
+"ISA 10 15": [
+[
+39,
+"enyaneciese",
+"envaneciese",
+3
+]
+],
+"ISA 10 29": [
+[
+4,
+"dhicrendo:",
+"diciendo",
+3
+]
+],
+"ISA 10 31": [
+[
+7,
+"Grabirmn.",
+"gabim",
+3
+]
+],
+"ISA 13 12": [
+[
+13,
+"acendracdo.",
+"acendrado",
+4
+]
+],
+"ISA 13 18": [
+[
+4,
+"saotazos",
+"saetazos",
+4
+]
+],
+"ISA 13 19": [
+[
+2,
+"femosa",
+"famosa",
+4
+],
+[
+23,
+"arruimnada",
+"arruinada",
+4
+]
+],
+"ISA 14 4": [
+[
+0,
+"Teservirás",
+"serviras",
+2
+]
+],
+"ISA 14 8": [
+[
+20,
+"corbarnos.",
+"cortarnos",
+2
+]
+],
+"ISA 14 11": [
+[
+19,
+"colehon",
+"colchon",
+4
+]
+],
+"ISA 14 24": [
+[
+0,
+"Juróel",
+"el",
+5
+]
+],
+"ISA 15 2": [
+[
+33,
+"raldas",
+"raidas",
+5
+]
+],
+"ISA 17 10": [
+[
+24,
+"sermrá",
+"servira",
+5
+]
+],
+"ISA 17 12": [
+[
+13,
+"embrayecido:",
+"embravecido",
+4
+]
+],
+"ISA 18 4": [
+[
+59,
+"seréal",
+"sere al",
+3
+]
+],
+"ISA 19 6": [
+[
+9,
+"meneuando",
+"menguando",
+2
+]
+],
+"ISA 19 7": [
+[
+22,
+"aprostará,",
+"agostara",
+3
+]
+],
+"ISA 19 11": [
+[
+29,
+"de-sábios,",
+"de sabios",
+3
+]
+],
+"ISA 21 7": [
+[
+9,
+"cabaléros,",
+"caballeros",
+3
+]
+],
+"ISA 21 13": [
+[
+6,
+"dormirels",
+"dormireis",
+4
+]
+],
+"ISA 22 23": [
+[
+4,
+"elayo",
+"clavo",
+4
+],
+[
+5,
+"Hhineado",
+"hincado",
+4
+]
+],
+"ISA 23 10": [
+[
+18,
+"4Mparo",
+"amparo",
+2
+]
+],
+"ISA 24 4": [
+[
+11,
+"consúámese",
+"consumese",
+3
+]
+],
+"ISA 25 1": [
+[
+23,
+"¿mfalibles.",
+"infalibles",
+3
+]
+],
+"ISA 25 2": [
+[
+10,
+"erudad",
+"ciudad",
+4
+]
+],
+"ISA 25 9": [
+[
+47,
+"holearemos",
+"holgaremos",
+4
+]
+],
+"ISA 26 13": [
+[
+15,
+"hazque",
+"haz que",
+4
+]
+],
+"ISA 26 15": [
+[
+12,
+"pueblo:por",
+"pueblo por",
+6
+]
+],
+"ISA 26 18": [
+[
+29,
+"ambiguos",
+"antiguos",
+3
+]
+],
+"ISA 28 1": [
+[
+25,
+"Semaria,",
+"samaria",
+3
+]
+],
+"ISA 28 5": [
+[
+13,
+"guimalda",
+"guirnalda",
+4
+]
+],
+"ISA 28 6": [
+[
+31,
+"múismás",
+"mismas",
+2
+]
+],
+"ISA 28 13": [
+[
+5,
+"algien",
+"algun",
+5
+],
+[
+41,
+"presos:en",
+"presos en",
+4
+]
+],
+"ISA 28 16": [
+[
+27,
+"sotidisimo",
+"solidisimo",
+4
+]
+],
+"ISA 28 27": [
+[
+1,
+"pith",
+"gith",
+3
+]
+],
+"ISA 29 4": [
+[
+9,
+"abatica,",
+"abatida",
+2
+]
+],
+"ISA 29 5": [
+[
+9,
+"distpada",
+"disipada",
+3
+]
+],
+"ISA 29 10": [
+[
+28,
+"IMCIANOS",
+"ancianos",
+2
+]
+],
+"ISA 29 16": [
+[
+9,
+"leyvantase",
+"levantase",
+2
+]
+],
+"ISA 30 10": [
+[
+7,
+"profeticels;",
+"profeticeis",
+4
+]
+],
+"ISA 30 14": [
+[
+28,
+"áseva",
+"ascua",
+5
+]
+],
+"ISA 30 18": [
+[
+18,
+"perdonarog,",
+"perdonaros",
+5
+]
+],
+"ISA 30 20": [
+[
+28,
+"ylendo",
+"viendo",
+4
+]
+],
+"ISA 30 30": [
+[
+6,
+"olga",
+"oiga",
+3
+]
+],
+"ISA 32 6": [
+[
+26,
+"durando",
+"quitando",
+3
+]
+],
+"ISA 32 7": [
+[
+26,
+"ajfligidos,",
+"afligidos",
+3
+]
+],
+"ISA 32 9": [
+[
+9,
+"confials",
+"confiais",
+3
+]
+],
+"ISA 33 6": [
+[
+8,
+"préneipe,",
+"principe",
+3
+]
+],
+"ISA 33 7": [
+[
+19,
+"e1embajadores",
+"embajadores",
+2
+]
+],
+"ISA 33 18": [
+[
+25,
+"Ley?¡¿dónde",
+"ley donde",
+5
+]
+],
+"ISA 33 21": [
+[
+30,
+"enenviqo,",
+"enemigo",
+5
+]
+],
+"ISA 34 3": [
+[
+12,
+"¿msufrible:",
+"insufrible",
+3
+]
+],
+"ISA 34 5": [
+[
+11,
+"eriatuwras",
+"ras",
+2
+]
+],
+"ISA 34 6": [
+[
+0,
+"Bañadaestá",
+"esta",
+5
+],
+[
+41,
+"Idumeéos.",
+"idumeos",
+3
+]
+],
+"ISA 34 9": [
+[
+17,
+"Idumeéa;",
+"idumea",
+3
+]
+],
+"ISA 34 12": [
+[
+8,
+"ella:1implorarán",
+"ella imploraran",
+3
+],
+[
+10,
+"ahineo",
+"ahinco",
+3
+]
+],
+"ISA 34 15": [
+[
+20,
+"hocieo",
+"hocico",
+4
+]
+],
+"ISA 36 12": [
+[
+25,
+"crudadanos",
+"ciudadanos",
+2
+]
+],
+"ISA 37 22": [
+[
+36,
+"mofuúndose",
+"mofandose",
+4
+]
+],
+"ISA 37 27": [
+[
+6,
+"embaregadas",
+"embargadas",
+5
+]
+],
+"ISA 37 28": [
+[
+14,
+"¿msensatez",
+"insensatez",
+4
+]
+],
+"ISA 39 3": [
+[
+13,
+"preguntó:¿Qué",
+"pregunto que",
+6
+]
+],
+"ISA 40 3": [
+[
+0,
+"Yaoigo",
+"oigo",
+4
+]
+],
+"ISA 40 10": [
+[
+9,
+"¿nfnmito",
+"infinito",
+3
+]
+],
+"ISA 40 19": [
+[
+12,
+"fundidor?¿no",
+"fundidor no",
+3
+]
+],
+"ISA 40 26": [
+[
+30,
+"nombre;sin",
+"nombre sin",
+3
+]
+],
+"ISA 40 27": [
+[
+19,
+"¿risfe",
+"triste",
+5
+]
+],
+"ISA 41 10": [
+[
+18,
+"econfortado,",
+"confortado",
+3
+]
+],
+"ISA 41 14": [
+[
+14,
+"pareceés",
+"pareceis",
+5
+]
+],
+"ISA 41 28": [
+[
+32,
+"preountaba.",
+"preguntaba",
+2
+]
+],
+"ISA 42 11": [
+[
+7,
+"erudades,",
+"ciudades",
+3
+]
+],
+"ISA 42 21": [
+[
+0,
+"Feso",
+"eso",
+3
+]
+],
+"ISA 43 26": [
+[
+12,
+"nIcEN",
+"alega",
+4
+]
+],
+"ISA 44 10": [
+[
+4,
+"anseñsato",
+"insensato",
+3
+]
+],
+"ISA 44 21": [
+[
+28,
+"xmní.",
+"mi",
+2
+]
+],
+"ISA 44 22": [
+[
+20,
+"dimido.",
+"redimido",
+2
+]
+],
+"ISA 45 17": [
+[
+18,
+"averconzaros",
+"avergonzaros",
+2
+]
+],
+"ISA 46 1": [
+[
+30,
+"VOSOÍTOS.",
+"vosotros",
+2
+]
+],
+"ISA 48 15": [
+[
+18,
+"gulado,",
+"guiado",
+4
+]
+],
+"ISA 48 18": [
+[
+19,
+"samntidad",
+"santidad",
+3
+]
+],
+"ISA 48 21": [
+[
+23,
+"abundanera",
+"abundancia",
+2
+]
+],
+"ISA 49 2": [
+[
+0,
+"Éhizomibocadmis",
+"mis",
+3
+]
+],
+"ISA 49 17": [
+[
+10,
+"destrulan",
+"destruian",
+3
+]
+],
+"ISA 51 6": [
+[
+21,
+"mudoarám,",
+"mudaran",
+3
+]
+],
+"ISA 51 13": [
+[
+33,
+"alligia",
+"afligia",
+2
+]
+],
+"ISA 51 15": [
+[
+13,
+"enerespo",
+"encrespo",
+2
+]
+],
+"ISA 51 17": [
+[
+3,
+"álzate;levántate,",
+"alzate levantate",
+2
+]
+],
+"ISA 51 21": [
+[
+14,
+"afiteciones",
+"aflicciones",
+2
+]
+],
+"ISA 52 8": [
+[
+17,
+"dealabanza,",
+"de alabanza",
+2
+]
+],
+"ISA 52 10": [
+[
+18,
+"tocas",
+"todas",
+5
+]
+],
+"ISA 52 13": [
+[
+0,
+"Pabed",
+"sabed",
+2
+]
+],
+"ISA 53 3": [
+[
+0,
+"MPáúmosle",
+"vimosle",
+3
+]
+],
+"ISA 53 7": [
+[
+31,
+"guardaIrá",
+"guardara",
+3
+]
+],
+"ISA 53 8": [
+[
+6,
+"¿nícua",
+"inicua",
+2
+]
+],
+"ISA 54 9": [
+[
+29,
+"yituperarte",
+"vituperarte",
+3
+]
+],
+"ISA 54 14": [
+[
+3,
+"eimmientos",
+"cimientos",
+3
+]
+],
+"ISA 55 6": [
+[
+7,
+"inyocadle,",
+"invocadle",
+5
+]
+],
+"ISA 56 4": [
+[
+24,
+"mantuyieren",
+"mantuvieren",
+2
+]
+],
+"ISA 57 5": [
+[
+3,
+"solazals",
+"solazais",
+4
+]
+],
+"ISA 57 16": [
+[
+3,
+"sierapre",
+"siempre",
+2
+]
+],
+"ISA 57 17": [
+[
+20,
+"indiené,",
+"indigne",
+2
+]
+],
+"ISA 57 20": [
+[
+7,
+"alborotado,que",
+"alborotado que",
+2
+]
+],
+"ISA 58 8": [
+[
+16,
+"tíirá",
+"ti ira",
+3
+]
+],
+"ISA 59 15": [
+[
+21,
+"2alumniar",
+"calumniar",
+3
+]
+],
+"ISA 60 3": [
+[
+1,
+"átuo",
+"tu",
+3
+]
+],
+"ISA 60 7": [
+[
+2,
+"titodos",
+"ti todos",
+5
+]
+],
+"ISA 60 16": [
+[
+11,
+"eriarán",
+"criaran",
+3
+]
+],
+"ISA 60 19": [
+[
+34,
+"clavidad.",
+"claridad",
+2
+]
+],
+"ISA 63 3": [
+[
+13,
+"cerites",
+"gentes",
+4
+]
+],
+"ISA 65 2": [
+[
+3,
+"diamis",
+"dia mis",
+4
+]
+],
+"ISA 65 5": [
+[
+19,
+"humarcCa",
+"humareda",
+3
+]
+],
+"ISA 65 18": [
+[
+3,
+"alegrarels,",
+"alegrareis",
+2
+]
+],
+"ISA 66 6": [
+[
+4,
+"¿astimera",
+"lastimera",
+2
+]
+],
+"ISA 66 7": [
+[
+0,
+"AÁmtes",
+"antes",
+3
+]
+],
+"ISA 66 8": [
+[
+25,
+"ensendrada",
+"engendrada",
+5
+]
+],
+"ISA 66 19": [
+[
+15,
+"salyaren,",
+"salvaren",
+4
+]
+],
+"JER 1 6": [
+[
+1,
+"sigwiera",
+"siquiera",
+2
+]
+],
+"JER 2 19": [
+[
+17,
+"ahñhora",
+"ahora",
+2
+]
+],
+"JER 2 36": [
+[
+13,
+"pasos!Tú",
+"pasos tu",
+2
+]
+],
+"JER 4 23": [
+[
+20,
+"luz.en",
+"luz en",
+5
+]
+],
+"JER 5 7": [
+[
+44,
+"desahogudo",
+"desahogado",
+2
+]
+],
+"JER 5 10": [
+[
+4,
+"Chaldéu,",
+"caldea",
+2
+]
+],
+"JER 5 19": [
+[
+43,
+"«Vhora",
+"ahora",
+2
+]
+],
+"JER 5 25": [
+[
+37,
+"retraldo",
+"retraido",
+3
+]
+],
+"JER 5 28": [
+[
+2,
+"engordaron;y",
+"engordaron y",
+4
+]
+],
+"JER 6 7": [
+[
+31,
+"aflioidá",
+"afligida",
+4
+]
+],
+"JER 6 27": [
+[
+1,
+"Jeremúas,",
+"jeremias",
+2
+]
+],
+"JER 7 9": [
+[
+2,
+"matals,",
+"matais",
+4
+],
+[
+6,
+"¡urais",
+"jurais",
+2
+],
+[
+23,
+"conoclals.",
+"conociais",
+3
+]
+],
+"JER 7 11": [
+[
+10,
+"Nornmbre,",
+"nombre",
+3
+],
+[
+25,
+"mismosoy",
+"mismo soy",
+3
+]
+],
+"JER 7 28": [
+[
+22,
+"Instruecciones,",
+"instrucciones",
+2
+]
+],
+"JER 8 7": [
+[
+28,
+"trasmigraon:",
+"trasmigracion",
+4
+]
+],
+"JER 8 12": [
+[
+22,
+"veretienza:",
+"verguenza",
+2
+]
+],
+"JER 9 7": [
+[
+25,
+"comvertin",
+"convertir",
+5
+]
+],
+"JER 9 10": [
+[
+27,
+"campliñas:",
+"campinas",
+3
+],
+[
+35,
+"imanera",
+"manera",
+2
+]
+],
+"JER 10 8": [
+[
+20,
+"NSENSALEZ",
+"insensatez",
+3
+]
+],
+"JER 10 13": [
+[
+23,
+"resuelye",
+"resuelve",
+2
+]
+],
+"JER 10 17": [
+[
+18,
+"el-oprobio",
+"el oprobio",
+3
+]
+],
+"JER 10 24": [
+[
+0,
+"Castítame,",
+"castigame",
+3
+]
+],
+"JER 12 9": [
+[
+14,
+"colores;es",
+"colores es",
+2
+]
+],
+"JER 13 18": [
+[
+11,
+"suelo,.poneos",
+"suelo poneos",
+4
+]
+],
+"JER 14 4": [
+[
+12,
+"lMuyia,",
+"lluvia",
+3
+]
+],
+"JER 14 7": [
+[
+27,
+"grarvisimamente",
+"gravisimamente",
+2
+]
+],
+"JER 14 17": [
+[
+20,
+"vítsen",
+"virgen",
+2
+]
+],
+"JER 15 4": [
+[
+19,
+"Jize:chías,",
+"ezequias",
+3
+]
+],
+"JER 15 5": [
+[
+13,
+"amor?¿Ó",
+"amor o",
+2
+]
+],
+"JER 15 10": [
+[
+6,
+"yo!¿Por",
+"yo por",
+5
+]
+],
+"JER 15 14": [
+[
+10,
+"desconoclica;",
+"desconocida",
+3
+]
+],
+"JER 16 7": [
+[
+16,
+"su-difunto;",
+"su difunto",
+4
+]
+],
+"JER 17 23": [
+[
+18,
+"olrme,",
+"oirme",
+2
+]
+],
+"JER 18 8": [
+[
+0,
+"Perosila",
+"la",
+3
+]
+],
+"JER 18 15": [
+[
+12,
+"sacrificiosá",
+"sacrificios a",
+2
+]
+],
+"JER 18 16": [
+[
+23,
+"adimirándose?",
+"admirandose",
+2
+]
+],
+"JER 18 22": [
+[
+0,
+"Úiganse",
+"oiganse",
+4
+]
+],
+"JER 20 2": [
+[
+0,
+"Etrritado",
+"irritado",
+3
+]
+],
+"JER 21 2": [
+[
+40,
+"nosOÉLTOs.",
+"nosotros",
+3
+],
+[
+34,
+"obligene",
+"obligue",
+3
+]
+],
+"JER 21 12": [
+[
+45,
+"apagatle,",
+"apagarle",
+2
+]
+],
+"JER 22 10": [
+[
+6,
+"Josóas,",
+"josias",
+3
+],
+[
+20,
+"Jouchaz;",
+"joacaz",
+3
+]
+],
+"JER 22 12": [
+[
+10,
+"niverá",
+"ni vera",
+5
+]
+],
+"JER 22 18": [
+[
+27,
+"mio!¡ay",
+"mio ay",
+4
+],
+[
+37,
+"ínelito",
+"inclito",
+4
+]
+],
+"JER 22 23": [
+[
+14,
+"cedros;¡cuáles",
+"cedros cuales",
+3
+]
+],
+"JER 22 26": [
+[
+1,
+"átiyá",
+"a",
+2
+]
+],
+"JER 23 26": [
+[
+7,
+"4maginacion",
+"imaginacion",
+3
+]
+],
+"JER 23 32": [
+[
+26,
+"prestiglos;",
+"prestigios",
+3
+]
+],
+"JER 23 33": [
+[
+28,
+"amuncias",
+"anuncias",
+2
+]
+],
+"JER 23 36": [
+[
+11,
+"carea",
+"carga",
+4
+]
+],
+"JER 23 37": [
+[
+4,
+"profeta:¿Qué",
+"profeta que",
+5
+]
+],
+"JER 24 1": [
+[
+34,
+"Jechontías,",
+"jechonias",
+2
+]
+],
+"JER 25 4": [
+[
+22,
+"escuchasels,",
+"escuchaseis",
+4
+]
+],
+"JER 25 10": [
+[
+11,
+"voes",
+"voces",
+3
+]
+],
+"JER 25 16": [
+[
+18,
+"desenvalinaré",
+"desenvainare",
+5
+]
+],
+"JER 25 26": [
+[
+26,
+"cúliz",
+"caliz",
+2
+]
+],
+"JER 25 27": [
+[
+21,
+"yomitar,",
+"vomitar",
+3
+]
+],
+"JER 25 30": [
+[
+25,
+"rusirá",
+"rugira",
+5
+]
+],
+"JER 26 5": [
+[
+2,
+"ereyereis",
+"creyereis",
+4
+]
+],
+"JER 26 20": [
+[
+8,
+"Sexmei,",
+"semei",
+3
+]
+],
+"JER 27 10": [
+[
+8,
+"aco,rearos",
+"acarrearos",
+2
+]
+],
+"JER 29 12": [
+[
+2,
+"invocarels,",
+"invocareis",
+3
+],
+[
+7,
+"potria:",
+"patria",
+3
+]
+],
+"JER 29 14": [
+[
+48,
+"trasmiegrar.",
+"transmigrar",
+3
+]
+],
+"JER 29 28": [
+[
+24,
+"ellas:haced",
+"ellas haced",
+4
+]
+],
+"JER 30 18": [
+[
+30,
+"emudad",
+"ciudad",
+3
+],
+[
+35,
+"fandado",
+"fundado",
+2
+]
+],
+"JER 30 20": [
+[
+10,
+"congreeacióon",
+"congregacion",
+3
+]
+],
+"JER 31 3": [
+[
+14,
+"Teengañas,",
+"te enganas",
+3
+]
+],
+"JER 31 18": [
+[
+0,
+"Heescuchado",
+"escuchado",
+5
+]
+],
+"JER 31 23": [
+[
+13,
+"olirán",
+"oiran",
+2
+]
+],
+"JER 31 37": [
+[
+8,
+"mepa",
+"jamas",
+2
+]
+],
+"JER 32 16": [
+[
+10,
+"esritura",
+"escritura",
+2
+]
+],
+"JER 32 21": [
+[
+0,
+"Túsacaste",
+"sacaste",
+4
+]
+],
+"JER 32 35": [
+[
+44,
+"MBACION:",
+"e",
+2
+],
+[
+45,
+"éindujesen",
+"indujesen",
+2
+]
+],
+"JER 32 37": [
+[
+0,
+"Babed",
+"sabed",
+3
+]
+],
+"JER 33 3": [
+[
+15,
+"jenoras",
+"ignoras",
+4
+]
+],
+"JER 33 15": [
+[
+27,
+"estublecerá",
+"establecera",
+4
+]
+],
+"JER 33 22": [
+[
+21,
+"descendienses",
+"descendientes",
+3
+]
+],
+"JER 38 4": [
+[
+6,
+"Pedítnoste",
+"pedimoste",
+4
+]
+],
+"JER 38 6": [
+[
+0,
+"Cogleron",
+"cogieron",
+3
+]
+],
+"JER 38 17": [
+[
+39,
+"esta.ciudad",
+"esta ciudad",
+3
+]
+],
+"JER 38 22": [
+[
+0,
+"Bábete",
+"sabete",
+4
+]
+],
+"JER 38 25": [
+[
+31,
+"liablado",
+"hablado",
+5
+]
+],
+"JER 38 26": [
+[
+23,
+"edircel",
+"carcel",
+5
+]
+],
+"JER 39 13": [
+[
+0,
+"Poreuyo",
+"cuyo",
+4
+]
+],
+"JER 40 10": [
+[
+1,
+"vyeis,",
+"veis",
+3
+]
+],
+"JER 40 11": [
+[
+48,
+"Ahicaxna,",
+"ahicam",
+5
+]
+],
+"JER 41 10": [
+[
+39,
+"Ahicanm.",
+"ahicam",
+5
+]
+],
+"JER 42 6": [
+[
+0,
+"Yaseacosa",
+"cosa",
+5
+]
+],
+"JER 42 16": [
+[
+0,
+"Allfen",
+"en",
+4
+]
+],
+"JER 42 20": [
+[
+35,
+"anúneianoslo",
+"anuncianoslo",
+4
+]
+],
+"JER 44 23": [
+[
+1,
+"sacrificastels",
+"sacrificasteis",
+3
+],
+[
+19,
+"0bservar",
+"observar",
+3
+]
+],
+"JER 44 27": [
+[
+0,
+"Mirad:yo",
+"yo",
+3
+]
+],
+"JER 45 3": [
+[
+10,
+"Sony",
+"senor",
+4
+]
+],
+"JER 46 7": [
+[
+16,
+"enerespan",
+"encrespan",
+2
+]
+],
+"JER 46 8": [
+[
+18,
+"ayanzaré,",
+"avanzare",
+3
+]
+],
+"JER 46 11": [
+[
+15,
+"mediemas;",
+"medicinas",
+5
+]
+],
+"JER 47 2": [
+[
+22,
+"loinunda,",
+"lo inunda",
+2
+]
+],
+"JER 47 4": [
+[
+40,
+"marituma",
+"maritima",
+3
+]
+],
+"JER 48 8": [
+[
+11,
+"loab,",
+"moab",
+4
+]
+],
+"JER 48 18": [
+[
+16,
+"Vabuchodonosor,",
+"nabuchodonosor",
+2
+]
+],
+"JER 48 32": [
+[
+32,
+"extermineacdor",
+"exterminador",
+2
+]
+],
+"JER 48 33": [
+[
+0,
+"Alpajés",
+"pais",
+5
+],
+[
+1,
+"jértil",
+"fertil",
+4
+]
+],
+"JER 50 2": [
+[
+20,
+"enenbrais:",
+"encubrais",
+2
+]
+],
+"JER 50 5": [
+[
+16,
+"cambiverio,",
+"cautiverio",
+5
+]
+],
+"JER 50 11": [
+[
+17,
+"retozals",
+"retozais",
+4
+]
+],
+"JER 50 17": [
+[
+12,
+"deyorarla",
+"devorarla",
+5
+]
+],
+"JER 50 23": [
+[
+10,
+"Bubylomia,",
+"babilonia",
+3
+]
+],
+"JER 50 37": [
+[
+20,
+"tómidos",
+"timidos",
+2
+]
+],
+"JER 50 44": [
+[
+40,
+"encareue",
+"encargue",
+2
+]
+],
+"JER 50 45": [
+[
+8,
+"ulld",
+"alla",
+3
+],
+[
+53,
+"ecludades",
+"ciudades",
+3
+]
+],
+"JER 51 15": [
+[
+16,
+"dispuso.el",
+"dispuso el",
+4
+]
+],
+"JER 51 26": [
+[
+0,
+"Nosesacarádetíni",
+"ni",
+5
+]
+],
+"JER 51 45": [
+[
+31,
+"mio:salve",
+"mio salve",
+5
+]
+],
+"JER 51 54": [
+[
+3,
+"orrán",
+"oiran",
+4
+]
+],
+"JER 52 4": [
+[
+13,
+"déElmo,",
+"decimo",
+2
+]
+],
+"LAM 1 1": [
+[
+18,
+"desamparadat:",
+"desamparada",
+3
+]
+],
+"LAM 1 3": [
+[
+2,
+"dispersdse",
+"dispersose",
+4
+]
+],
+"LAM 1 6": [
+[
+17,
+"descarmados",
+"descarriados",
+4
+]
+],
+"LAM 1 9": [
+[
+23,
+"nvira",
+"mira",
+5
+]
+],
+"LAM 1 12": [
+[
+28,
+"despoado",
+"despojado",
+3
+]
+],
+"LAM 1 13": [
+[
+30,
+"copsumida",
+"consumida",
+2
+]
+],
+"LAM 1 17": [
+[
+21,
+"circuanvalasen:",
+"circunvalasen",
+3
+]
+],
+"LAM 2 5": [
+[
+0,
+"ElSeñorse",
+"se",
+3
+]
+],
+"LAM 3 2": [
+[
+3,
+"oflicciones",
+"aflicciones",
+3
+]
+],
+"LAM 3 5": [
+[
+12,
+"amareguras",
+"amarguras",
+5
+]
+],
+"LAM 3 7": [
+[
+1,
+"cireunvaló",
+"circunvalo",
+5
+]
+],
+"LAM 3 12": [
+[
+0,
+"Entesósu",
+"su",
+4
+]
+],
+"LAM 3 16": [
+[
+5,
+"díndome",
+"dandome",
+4
+]
+],
+"LAM 3 18": [
+[
+10,
+"nvis",
+"mis",
+5
+]
+],
+"LAM 3 35": [
+[
+0,
+"Nipesa",
+"pesa",
+4
+]
+],
+"LAM 3 36": [
+[
+0,
+"Nidaña",
+"dana",
+5
+]
+],
+"LAM 3 61": [
+[
+0,
+"Tuoiste,",
+"oiste",
+3
+]
+],
+"LAM 4 18": [
+[
+0,
+"Alandar",
+"andar",
+5
+]
+],
+"LAM 5 18": [
+[
+7,
+"Sion:las",
+"sion las",
+2
+]
+],
+"BAR 6 53": [
+[
+19,
+"cornejetas,",
+"cornejitas",
+5
+]
+],
+"EZK 1 10": [
+[
+41,
+"umd",
+"una",
+3
+]
+],
+"EZK 1 11": [
+[
+5,
+"mireban",
+"miraban",
+4
+],
+[
+8,
+"háela",
+"hacia",
+5
+]
+],
+"EZK 1 20": [
+[
+9,
+"dirician",
+"dirigian",
+4
+]
+],
+"EZK 1 23": [
+[
+5,
+"vezan",
+"veian",
+3
+]
+],
+"EZK 3 18": [
+[
+21,
+"retralga",
+"retraiga",
+5
+]
+],
+"EZK 4 7": [
+[
+4,
+"aévado",
+"airado",
+4
+]
+],
+"EZK 5 15": [
+[
+33,
+"yvengadora",
+"vengadora",
+3
+]
+],
+"EZK 7 22": [
+[
+8,
+"¿mpw0s",
+"mptos",
+2
+]
+],
+"EZK 8 16": [
+[
+1,
+"meintrodujo",
+"introdujo",
+4
+]
+],
+"EZK 9 5": [
+[
+22,
+"restambes:",
+"restantes",
+3
+]
+],
+"EZK 10 5": [
+[
+26,
+"¿ruena,.",
+"truena",
+2
+]
+],
+"EZK 13 10": [
+[
+1,
+"hanenganado",
+"enganado",
+5
+]
+],
+"EZK 13 12": [
+[
+0,
+"Yasíique",
+"que",
+3
+]
+],
+"EZK 13 20": [
+[
+13,
+"lfisonjas,",
+"lisonjas",
+3
+]
+],
+"EZK 14 16": [
+[
+0,
+"SLestos",
+"estos",
+5
+]
+],
+"EZK 16 6": [
+[
+8,
+"ensticiada",
+"ensuciada",
+4
+]
+],
+"EZK 16 10": [
+[
+17,
+"cehidor",
+"cenidor",
+2
+]
+],
+"EZK 16 13": [
+[
+15,
+"hordados",
+"bordados",
+6
+]
+],
+"EZK 16 15": [
+[
+16,
+"Iujuriosa",
+"lujuriosa",
+3
+]
+],
+"EZK 16 17": [
+[
+27,
+"hamanas,",
+"humanas",
+6
+]
+],
+"EZK 16 21": [
+[
+14,
+"eonsagraste.",
+"consagraste",
+2
+]
+],
+"EZK 16 37": [
+[
+36,
+"desenbriré",
+"descubrire",
+3
+]
+],
+"EZK 16 39": [
+[
+19,
+"Jerusulem),",
+"jerusalem",
+3
+]
+],
+"EZK 16 41": [
+[
+28,
+"nmunea",
+"nunca",
+5
+]
+],
+"EZK 16 42": [
+[
+15,
+"cauisaste,",
+"causaste",
+3
+]
+],
+"EZK 16 57": [
+[
+20,
+"emidades)",
+"ciudades",
+5
+],
+[
+37,
+"eircuyen",
+"circuyen",
+5
+]
+],
+"EZK 17 5": [
+[
+30,
+"Judéu,",
+"judea",
+3
+],
+[
+63,
+"sembroóla",
+"sembrola",
+2
+]
+],
+"EZK 17 6": [
+[
+21,
+"douilo,",
+"aguila",
+2
+]
+],
+"EZK 17 15": [
+[
+29,
+"hizo;Y",
+"hizo y",
+3
+]
+],
+"EZK 17 22": [
+[
+35,
+"descollacio.",
+"descollado",
+3
+]
+],
+"EZK 17 23": [
+[
+27,
+"alberene",
+"albergue",
+4
+]
+],
+"EZK 18 9": [
+[
+0,
+"Siarreglare",
+"arreglare",
+4
+]
+],
+"EZK 18 19": [
+[
+51,
+"feltz.",
+"feliz",
+4
+]
+],
+"EZK 19 6": [
+[
+4,
+"vfros",
+"otros",
+4
+]
+],
+"EZK 20 14": [
+[
+30,
+"Eyypto.",
+"egypto",
+2
+]
+],
+"EZK 20 16": [
+[
+8,
+"seoun",
+"segun",
+5
+]
+],
+"EZK 20 28": [
+[
+40,
+"iritarme,",
+"irritarme",
+3
+]
+],
+"EZK 20 40": [
+[
+21,
+"ulgun",
+"algun",
+4
+]
+],
+"EZK 20 47": [
+[
+34,
+"apecará",
+"apagara",
+3
+]
+],
+"EZK 21 11": [
+[
+4,
+"añillar",
+"afilar",
+2
+]
+],
+"EZK 21 16": [
+[
+0,
+"Agúxzate,",
+"aguzate",
+4
+]
+],
+"EZK 22 6": [
+[
+9,
+"cacla",
+"cada",
+3
+]
+],
+"EZK 22 7": [
+[
+11,
+"calunniaron",
+"calumniaron",
+3
+]
+],
+"EZK 22 21": [
+[
+1,
+"consregaré,",
+"congregare",
+3
+]
+],
+"EZK 22 29": [
+[
+13,
+"aflielan",
+"afligian",
+4
+]
+],
+"EZK 22 30": [
+[
+20,
+"puenase",
+"pugnase",
+4
+]
+],
+"EZK 23 10": [
+[
+22,
+"lvijas",
+"hijas",
+3
+]
+],
+"EZK 23 25": [
+[
+19,
+"1gnominiosamente",
+"ignominiosamente",
+3
+]
+],
+"EZK 23 36": [
+[
+10,
+"Tuzgas",
+"juzgas",
+3
+]
+],
+"EZK 24 3": [
+[
+10,
+"alevórico,",
+"alegorico",
+3
+]
+],
+"EZK 24 22": [
+[
+19,
+"alimentarels",
+"alimentareis",
+2
+]
+],
+"EZK 26 4": [
+[
+9,
+"LorTes,",
+"torres",
+2
+]
+],
+"EZK 26 11": [
+[
+24,
+"insienes",
+"insignes",
+4
+]
+],
+"EZK 26 16": [
+[
+16,
+"Iinsienias,",
+"insignias",
+4
+]
+],
+"EZK 27 5": [
+[
+21,
+"Etbano",
+"libano",
+4
+]
+],
+"EZK 27 11": [
+[
+23,
+"coleaban",
+"colgaban",
+3
+]
+],
+"EZK 27 15": [
+[
+3,
+"Dedanm",
+"dedan",
+5
+]
+],
+"EZK 27 17": [
+[
+6,
+"nesociaban",
+"negociaban",
+5
+]
+],
+"EZK 27 18": [
+[
+19,
+"ticas,",
+"ricas",
+5
+]
+],
+"EZK 28 8": [
+[
+0,
+"Tematarán,",
+"mataran",
+4
+]
+],
+"EZK 29 6": [
+[
+0,
+"Yátiy",
+"y",
+3
+]
+],
+"EZK 29 19": [
+[
+31,
+"tepartirá",
+"repartira",
+3
+]
+],
+"EZK 29 20": [
+[
+2,
+"servicio-prestado",
+"servicio prestado",
+3
+]
+],
+"EZK 30 2": [
+[
+13,
+"prorampid",
+"prorumpid",
+2
+]
+],
+"EZK 30 8": [
+[
+19,
+"auxilares.",
+"auxiliares",
+2
+]
+],
+"EZK 30 10": [
+[
+9,
+"sentío",
+"gentio",
+4
+]
+],
+"EZK 32 7": [
+[
+4,
+"oscureceró",
+"oscurecere",
+5
+]
+],
+"EZK 32 30": [
+[
+38,
+"incitecuncisos",
+"incircuncisos",
+4
+],
+[
+50,
+"lenominta",
+"ignominia",
+5
+]
+],
+"EZK 34 3": [
+[
+2,
+"alimentals",
+"alimentais",
+4
+],
+[
+20,
+"apacentals",
+"apacentais",
+4
+]
+],
+"EZK 34 4": [
+[
+14,
+"recogistels",
+"recogisteis",
+3
+]
+],
+"EZK 34 18": [
+[
+25,
+"abreyados",
+"abrevados",
+5
+]
+],
+"EZK 35 13": [
+[
+2,
+"leyantasteis",
+"levantasteis",
+4
+],
+[
+10,
+"lanzastels",
+"lanzasteis",
+3
+]
+],
+"EZK 36 8": [
+[
+26,
+"Conutiverto.",
+"cautiverio",
+2
+]
+],
+"EZK 36 11": [
+[
+30,
+"tuvistels",
+"tuvisteis",
+2
+]
+],
+"EZK 36 31": [
+[
+13,
+"mirarels",
+"mirareis",
+2
+]
+],
+"EZK 36 33": [
+[
+0,
+"Hsto",
+"esto",
+2
+]
+],
+"EZK 37 7": [
+[
+30,
+"coyun-",
+"coyuntura",
+2
+]
+],
+"EZK 37 22": [
+[
+26,
+"nuncamas",
+"nunca mas",
+2
+],
+[
+36,
+"en'dos",
+"en dos",
+2
+]
+],
+"EZK 38 12": [
+[
+15,
+"descarearás",
+"descargaras",
+3
+]
+],
+"EZK 38 18": [
+[
+8,
+"Grog",
+"gog",
+3
+]
+],
+"EZK 38 20": [
+[
+1,
+"áxmi",
+"mi",
+3
+]
+],
+"EZK 39 15": [
+[
+1,
+"glirarán",
+"giraran",
+4
+]
+],
+"EZK 39 17": [
+[
+5,
+"norbra,",
+"hombre",
+3
+]
+],
+"EZK 40 16": [
+[
+41,
+"fguras",
+"figuras",
+2
+]
+],
+"EZK 40 22": [
+[
+27,
+"eradas,",
+"gradas",
+3
+]
+],
+"EZK 41 6": [
+[
+14,
+"cómoaras;",
+"camaras",
+4
+]
+],
+"EZK 41 20": [
+[
+0,
+"Estasesculturas",
+"esculturas",
+3
+]
+],
+"EZK 43 1": [
+[
+3,
+"Angelá",
+"angel a",
+2
+]
+],
+"EZK 43 11": [
+[
+1,
+"averegúéncense",
+"averguencense",
+2
+]
+],
+"EZK 44 10": [
+[
+9,
+"apostasta",
+"apostasia",
+5
+]
+],
+"EZK 44 20": [
+[
+16,
+"bijeras.",
+"tijeras",
+4
+]
+],
+"EZK 44 29": [
+[
+3,
+"corne",
+"carne",
+4
+]
+],
+"EZK 45 1": [
+[
+2,
+"comenzarels",
+"comenzareis",
+3
+]
+],
+"EZK 45 4": [
+[
+34,
+"santidacl.",
+"santidad",
+5
+]
+],
+"EZK 45 6": [
+[
+48,
+"NUNISITOS",
+"ministros",
+3
+]
+],
+"EZK 45 11": [
+[
+5,
+"jeuales,",
+"iguales",
+5
+]
+],
+"EZK 47 10": [
+[
+2,
+"pescadoresse",
+"pescadores se",
+3
+],
+[
+13,
+"Eneallim",
+"engallim",
+3
+]
+],
+"EZK 47 14": [
+[
+13,
+"jeualmente,",
+"igualmente",
+5
+]
+],
+"EZK 48 13": [
+[
+0,
+"Masúálos",
+"los",
+5
+]
+],
+"DAN 1 2": [
+[
+24,
+"traslacó",
+"traslado",
+4
+]
+],
+"DAN 1 7": [
+[
+31,
+"Abdenapo",
+"abdenago",
+6
+]
+],
+"DAN 1 11": [
+[
+19,
+"Anamas,",
+"ananias",
+4
+]
+],
+"DAN 1 18": [
+[
+22,
+"ennicos",
+"eunucos",
+6
+]
+],
+"DAN 2 9": [
+[
+23,
+"interpretacion-falaz",
+"interpretacion falaz",
+5
+]
+],
+"DAN 2 11": [
+[
+25,
+"etales",
+"cuales",
+6
+]
+],
+"DAN 2 15": [
+[
+11,
+"presuntó",
+"pregunto",
+6
+]
+],
+"DAN 2 20": [
+[
+1,
+"prorimpió",
+"prorumpio",
+5
+]
+],
+"DAN 2 28": [
+[
+43,
+"siomientes",
+"siguientes",
+2
+]
+],
+"DAN 2 47": [
+[
+5,
+"palabra:á",
+"palabra a",
+4
+]
+],
+"DAN 3 7": [
+[
+35,
+"postránelose",
+"postrandose",
+3
+]
+],
+"DAN 3 10": [
+[
+18,
+"Erompeta",
+"trompeta",
+3
+]
+],
+"DAN 3 98": [
+[
+22,
+"jelicidad.",
+"felicidad",
+4
+]
+],
+"DAN 4 5": [
+[
+9,
+"swyo",
+"suyo",
+5
+]
+],
+"DAN 4 9": [
+[
+5,
+"coplosísimos",
+"copiosisimos",
+4
+]
+],
+"DAN 4 16": [
+[
+50,
+"recalea",
+"recaiga",
+5
+]
+],
+"DAN 6 4": [
+[
+11,
+"reino;por",
+"reino por",
+5
+]
+],
+"DAN 6 8": [
+[
+28,
+"traspasatrle.",
+"traspasarle",
+2
+]
+],
+"DAN 7 2": [
+[
+13,
+"ehocaban",
+"chocaban",
+3
+]
+],
+"DAN 7 10": [
+[
+22,
+"¿nnuimerables,",
+"innumerables",
+3
+]
+],
+"DAN 8 4": [
+[
+0,
+"Víalearnero",
+"carnero",
+5
+]
+],
+"DAN 8 12": [
+[
+30,
+"amtoje,",
+"antoje",
+4
+]
+],
+"DAN 8 13": [
+[
+40,
+"peeado,",
+"pecado",
+5
+]
+],
+"DAN 8 17": [
+[
+20,
+"tierra,despavorido,",
+"tierra despavorido",
+3
+]
+],
+"DAN 8 24": [
+[
+18,
+"feurarse",
+"figurarse",
+4
+]
+],
+"DAN 9 4": [
+[
+12,
+"Díenate",
+"dignate",
+3
+]
+],
+"DAN 9 15": [
+[
+31,
+"conJesamos",
+"confesamos",
+2
+]
+],
+"DAN 9 19": [
+[
+31,
+"Hevan",
+"llevan",
+2
+]
+],
+"DAN 9 24": [
+[
+45,
+"ecuomplirá",
+"cumplira",
+2
+],
+[
+50,
+"prolocias",
+"profecia",
+2
+]
+],
+"DAN 11 1": [
+[
+2,
+"Gubriel,",
+"gabriel",
+4
+]
+],
+"DAN 11 30": [
+[
+25,
+"explayará:y",
+"explayara y",
+2
+]
+],
+"DAN 11 33": [
+[
+5,
+"luminarán",
+"iluminaran",
+3
+]
+],
+"DAN 11 37": [
+[
+11,
+"cdominado",
+"dominado",
+3
+]
+],
+"DAN 11 39": [
+[
+48,
+"gratúltamente",
+"gratuitamente",
+3
+]
+],
+"DAN 11 42": [
+[
+2,
+"aproplará",
+"apropiara",
+4
+]
+],
+"DAN 12 2": [
+[
+9,
+"descamsan",
+"descansan",
+2
+]
+],
+"DAN 13 4": [
+[
+16,
+"coneurrian",
+"concurrian",
+4
+]
+],
+"DAN 13 10": [
+[
+3,
+"elegos",
+"ciegos",
+4
+]
+],
+"DAN 13 54": [
+[
+20,
+"lentiseo",
+"lentisco",
+2
+]
+],
+"DAN 13 55": [
+[
+13,
+"mentido;pues",
+"mentido pues",
+4
+]
+],
+"DAN 14 3": [
+[
+6,
+"iba.todos",
+"iba todos",
+4
+]
+],
+"DAN 14 26": [
+[
+36,
+"adorabals.",
+"adorabais",
+3
+]
+],
+"HOS 1 7": [
+[
+2,
+"apladaré",
+"apiadare",
+5
+]
+],
+"HOS 2 15": [
+[
+0,
+"Dardle",
+"darele",
+3
+]
+],
+"HOS 2 23": [
+[
+13,
+"apladarme",
+"apiadarme",
+4
+]
+],
+"HOS 4 6": [
+[
+24,
+"deseckharé",
+"desechare",
+2
+]
+],
+"HOS 4 16": [
+[
+19,
+"timados",
+"timidos",
+4
+]
+],
+"HOS 4 18": [
+[
+21,
+"eubrirle",
+"cubrirle",
+4
+]
+],
+"HOS 6 4": [
+[
+21,
+"ómiebla",
+"niebla",
+2
+],
+[
+9,
+"Ephraim?¿Qué",
+"ephraim que",
+2
+]
+],
+"HOS 6 5": [
+[
+10,
+"castiguéY,",
+"castigue",
+3
+]
+],
+"HOS 7 5": [
+[
+10,
+"sraeLites:",
+"israelitas",
+2
+]
+],
+"HOS 7 7": [
+[
+5,
+"umpiédad",
+"impiedad",
+3
+]
+],
+"HOS 7 8": [
+[
+0,
+"Mezeclábase",
+"mezclabase",
+5
+]
+],
+"HOS 7 10": [
+[
+1,
+"Israélmirará",
+"mirara",
+3
+],
+[
+6,
+"maaleos",
+"humillada",
+3
+]
+],
+"HOS 7 15": [
+[
+3,
+"instruf,",
+"instrui",
+2
+],
+[
+12,
+"ellossolo",
+"ellos solo",
+2
+]
+],
+"HOS 8 10": [
+[
+22,
+"combivos,",
+"cautivos",
+4
+]
+],
+"HOS 9 2": [
+[
+11,
+"sustenóWl",
+"susten",
+2
+]
+],
+"HOS 9 4": [
+[
+10,
+"oratas",
+"gratas",
+5
+],
+[
+33,
+"¿nmaundo",
+"inmundo",
+3
+]
+],
+"HOS 9 13": [
+[
+25,
+"congwistador.",
+"conquistador",
+4
+]
+],
+"HOS 11 8": [
+[
+32,
+"eonmueyen",
+"conmueven",
+3
+]
+],
+"HOS 14 3": [
+[
+10,
+"y.decidle",
+"y decidle",
+3
+]
+],
+"HOS 14 4": [
+[
+8,
+"salye:",
+"salve",
+5
+],
+[
+19,
+"lamaremos",
+"llamaremos",
+4
+]
+],
+"HOS 14 7": [
+[
+15,
+"érbol",
+"arbol",
+3
+]
+],
+"HOS 14 8": [
+[
+12,
+"trigo:se",
+"trigo se",
+5
+]
+],
+"JOL 1 10": [
+[
+12,
+"los:sembrados,",
+"los sembrados",
+5
+]
+],
+"JOL 1 13": [
+[
+0,
+"Centos",
+"cenios",
+4
+]
+],
+"JOL 2 7": [
+[
+18,
+"desylará",
+"desviara",
+4
+]
+],
+"JOL 2 16": [
+[
+22,
+"nupeial",
+"nupcial",
+4
+]
+],
+"JOL 2 17": [
+[
+28,
+"entregánlola",
+"entregandola",
+3
+]
+],
+"JOL 2 28": [
+[
+9,
+"esplrita",
+"espiritu",
+2
+]
+],
+"AMO 1 1": [
+[
+30,
+"Jeroboun,",
+"jeroboam",
+4
+]
+],
+"AMO 3 6": [
+[
+13,
+"conmueya?",
+"conmueva",
+3
+]
+],
+"AMO 4 4": [
+[
+25,
+"taolos,",
+"idolos",
+2
+]
+],
+"AMO 5 5": [
+[
+3,
+"euidels",
+"cuideis",
+4
+],
+[
+11,
+"pasels",
+"paseis",
+2
+]
+],
+"AMO 5 8": [
+[
+5,
+"Areturo",
+"arcturo",
+4
+]
+],
+"AMO 5 11": [
+[
+25,
+"plantarels",
+"plantareis",
+5
+],
+[
+30,
+"llegarels",
+"llegareis",
+5
+]
+],
+"AMO 6 4": [
+[
+17,
+"comeéis",
+"comeis",
+4
+]
+],
+"AMO 6 5": [
+[
+9,
+"imitará",
+"imitar a",
+4
+]
+],
+"AMO 6 10": [
+[
+34,
+"¡Tienos",
+"tienes",
+4
+]
+],
+"AMO 8 2": [
+[
+2,
+"dijo:¿Qué",
+"dijo que",
+2
+],
+[
+31,
+"yaimpune",
+"ya impune",
+2
+]
+],
+"AMO 8 5": [
+[
+9,
+"céneros;",
+"generos",
+4
+]
+],
+"OBA 1 5": [
+[
+0,
+"Bilos",
+"los",
+3
+]
+],
+"OBA 1 15": [
+[
+12,
+"despojosen",
+"despojos en",
+3
+],
+[
+58,
+"gentes:aquello",
+"gentes aquello",
+5
+]
+],
+"OBA 1 16": [
+[
+34,
+"antquiladas.",
+"aniquiladas",
+2
+]
+],
+"JON 1 11": [
+[
+2,
+"dijeron:¿Qué",
+"dijeron que",
+5
+]
+],
+"JON 1 15": [
+[
+1,
+"tantoremaban",
+"remaban",
+4
+]
+],
+"JON 3 8": [
+[
+7,
+"awrreos",
+"arreos",
+2
+]
+],
+"MIC 1 2": [
+[
+21,
+"séulo",
+"sealo",
+3
+]
+],
+"MIC 2 4": [
+[
+45,
+"4ssyrio,",
+"assyrio",
+2
+]
+],
+"MIC 2 8": [
+[
+14,
+"Israebitas,",
+"israelitas",
+2
+]
+],
+"MIC 2 9": [
+[
+14,
+"sosiego;y",
+"sosiego y",
+4
+]
+],
+"MIC 2 10": [
+[
+28,
+"horro-",
+"horrorosa",
+2
+]
+],
+"MIC 3 9": [
+[
+26,
+"trastornals",
+"trastornais",
+5
+]
+],
+"MIC 4 7": [
+[
+20,
+"atligida;",
+"afligida",
+2
+]
+],
+"MIC 4 11": [
+[
+14,
+"apedicada;",
+"apedreada",
+5
+]
+],
+"MIC 5 3": [
+[
+13,
+"Vérgen",
+"virgen",
+2
+]
+],
+"MIC 5 8": [
+[
+10,
+"merlio",
+"medio",
+4
+],
+[
+16,
+"leou",
+"leon",
+4
+]
+],
+"MIC 5 13": [
+[
+11,
+"recluciré",
+"reducire",
+4
+]
+],
+"MIC 6 2": [
+[
+0,
+"CUigan",
+"oigan",
+5
+]
+],
+"MIC 6 5": [
+[
+40,
+"conocióses",
+"conocieses",
+3
+]
+],
+"MIC 6 7": [
+[
+15,
+"saerifiquenm,",
+"sacrifiquen",
+2
+]
+],
+"MIC 7 8": [
+[
+24,
+"cambtiverio,",
+"cautiverio",
+5
+]
+],
+"MIC 7 17": [
+[
+33,
+"Isratl.",
+"israel",
+3
+]
+],
+"NAM 1 1": [
+[
+9,
+"vevelacion",
+"revelacion",
+2
+]
+],
+"NAM 1 11": [
+[
+20,
+"pérfilos",
+"perfidos",
+2
+]
+],
+"NAM 2 4": [
+[
+0,
+"Seagolpan",
+"agolpan",
+4
+]
+],
+"NAM 2 11": [
+[
+5,
+"esaguarida",
+"esa guarida",
+5
+]
+],
+"NAM 3 2": [
+[
+0,
+"Uyese",
+"oyese",
+3
+],
+[
+21,
+"ayanza",
+"avanza",
+3
+]
+],
+"NAM 3 9": [
+[
+0,
+"Suinmensa",
+"inmensa",
+4
+]
+],
+"HAB 1 9": [
+[
+3,
+"botin:su",
+"botin su",
+4
+]
+],
+"HAB 1 11": [
+[
+6,
+"frastornaré",
+"trastornara",
+3
+]
+],
+"HAB 1 13": [
+[
+18,
+"iniquidad.¿Por",
+"iniquidad por",
+5
+]
+],
+"HAB 2 6": [
+[
+15,
+"satéricos",
+"satiricos",
+4
+]
+],
+"HAB 3 1": [
+[
+10,
+"respebwoso",
+"respetuoso",
+2
+]
+],
+"HAB 3 3": [
+[
+15,
+"Pharan,—Su",
+"pharan su",
+3
+]
+],
+"HAB 3 6": [
+[
+11,
+"tierra.—Echó",
+"echo",
+2
+]
+],
+"HAB 3 14": [
+[
+18,
+"destrozarme:—era",
+"destrozarme era",
+4
+]
+],
+"ZEP 2 4": [
+[
+5,
+"yermia",
+"yerma",
+2
+]
+],
+"ZEP 3 3": [
+[
+9,
+"ruglentes:",
+"rugientes",
+2
+]
+],
+"ZEP 3 7": [
+[
+5,
+"svraél,",
+"israel",
+3
+]
+],
+"ZEP 3 17": [
+[
+14,
+"salvará;en",
+"salvara en",
+3
+]
+],
+"HAG 1 4": [
+[
+0,
+"¿Conque.es",
+"es",
+4
+]
+],
+"HAG 2 4": [
+[
+27,
+"primera;Y",
+"primera y",
+6
+]
+],
+"ZEC 1 6": [
+[
+48,
+"procecleres.",
+"procederes",
+3
+]
+],
+"ZEC 6 9": [
+[
+2,
+"4nyel",
+"angel",
+3
+]
+],
+"ZEC 7 6": [
+[
+2,
+"comiails",
+"comiais",
+3
+]
+],
+"ZEC 9 2": [
+[
+16,
+"isnalmente",
+"igualmente",
+4
+]
+],
+"ZEC 9 7": [
+[
+30,
+"ebudad",
+"ciudad",
+4
+]
+],
+"ZEC 9 12": [
+[
+0,
+"Diriegid",
+"dirigid",
+5
+]
+],
+"ZEC 10 2": [
+[
+38,
+"erédulos",
+"credulos",
+2
+]
+],
+"ZEC 10 5": [
+[
+11,
+"enenvigos,",
+"enemigos",
+2
+]
+],
+"ZEC 11 3": [
+[
+7,
+"préóneipes,",
+"principes",
+2
+]
+],
+"ZEC 11 12": [
+[
+23,
+"covétron",
+"contaron",
+3
+]
+],
+"ZEC 13 3": [
+[
+22,
+"esparees",
+"esparces",
+5
+]
+],
+"ZEC 13 4": [
+[
+19,
+"cubrL",
+"cubri",
+2
+]
+],
+"ZEC 14 18": [
+[
+20,
+"castieyará",
+"castigara",
+3
+]
+],
+"MAL 2 10": [
+[
+20,
+"criado;Por",
+"criado por",
+5
+]
+],
+"MAL 2 11": [
+[
+0,
+"FPrevariceó",
+"prevarico",
+4
+]
+],
+"MAL 3 2": [
+[
+31,
+"jubonera",
+"jabonera",
+3
+]
+],
+"MAL 3 5": [
+[
+14,
+"punrticará",
+"purificara",
+3
+]
+],
+"MAL 3 9": [
+[
+15,
+"nltrajais",
+"ultrajais",
+5
+]
+],
+"MAL 3 13": [
+[
+3,
+"blastemos",
+"blasfemos",
+4
+]
+],
+"MAT 2 8": [
+[
+7,
+"¿éinformaos",
+"e informaos",
+3
+]
+],
+"MAT 3 11": [
+[
+31,
+"siquiero",
+"siquiera",
+2
+]
+],
+"MAT 4 23": [
+[
+0,
+"Elba",
+"iba",
+3
+]
+],
+"MAT 6 25": [
+[
+8,
+"congojeis",
+"acongojeis",
+6
+]
+],
+"MAT 6 28": [
+[
+3,
+"vestido¡á",
+"vestido a",
+3
+]
+],
+"MAT 8 2": [
+[
+0,
+"Enoesto,",
+"esto",
+5
+]
+],
+"MAT 8 26": [
+[
+25,
+"sigulóse",
+"siguiose",
+4
+]
+],
+"MAT 8 28": [
+[
+31,
+"naclie",
+"nadie",
+6
+]
+],
+"MAT 8 29": [
+[
+16,
+"Dios;Has",
+"dios has",
+4
+]
+],
+"MAT 9 9": [
+[
+15,
+"alceabalas,",
+"alcabalas",
+5
+]
+],
+"MAT 10 5": [
+[
+0,
+"Asestos",
+"estos",
+4
+]
+],
+"MAT 10 6": [
+[
+4,
+"antesen",
+"antes en",
+5
+]
+],
+"MAT 10 10": [
+[
+17,
+"urma",
+"arma",
+5
+]
+],
+"MAT 10 34": [
+[
+9,
+"traerla",
+"traer la",
+3
+]
+],
+"MAT 11 26": [
+[
+9,
+"agra«¿lo",
+"agrado",
+3
+]
+],
+"MAT 13 14": [
+[
+19,
+"entenderels;",
+"entendereis",
+6
+]
+],
+"MAT 13 30": [
+[
+19,
+"Uoged",
+"coged",
+6
+]
+],
+"MAT 13 55": [
+[
+18,
+"María;No",
+"maria no",
+6
+]
+],
+"MAT 14 9": [
+[
+2,
+"rey:sin",
+"rey sin",
+6
+]
+],
+"MAT 14 10": [
+[
+1,
+"asfenvió",
+"envio",
+5
+]
+],
+"MAT 14 12": [
+[
+0,
+"Aecudieron",
+"acudieron",
+4
+]
+],
+"MAT 15 3": [
+[
+9,
+"traspasalis",
+"traspasais",
+4
+]
+],
+"MAT 15 4": [
+[
+10,
+"mald1jere",
+"maldijere",
+4
+]
+],
+"MAT 15 25": [
+[
+10,
+"SOCÓNTeme.",
+"socorreme",
+5
+]
+],
+"MAT 15 28": [
+[
+4,
+"dice:¡Oh",
+"dice oh",
+2
+]
+],
+"MAT 16 1": [
+[
+7,
+"Sadducdos;",
+"saduceos",
+3
+],
+[
+10,
+"tentarlo,",
+"tentarle",
+5
+]
+],
+"MAT 16 26": [
+[
+0,
+"Porque¿de",
+"de",
+3
+]
+],
+"MAT 17 14": [
+[
+31,
+"mucho:pues",
+"mucho pues",
+4
+]
+],
+"MAT 18 12": [
+[
+19,
+"entonces?¿no",
+"entonces no",
+4
+]
+],
+"MAT 18 18": [
+[
+0,
+"Osempeño",
+"empeno",
+2
+]
+],
+"MAT 19 7": [
+[
+0,
+"Pero;¡por",
+"por",
+5
+]
+],
+"MAT 19 26": [
+[
+3,
+"blandumente,",
+"blandamente",
+4
+]
+],
+"MAT 20 8": [
+[
+0,
+"Puestoel",
+"el",
+4
+]
+],
+"MAT 20 30": [
+[
+21,
+"diciendo:¡Señor!",
+"diciendo senor",
+6
+]
+],
+"MAT 21 3": [
+[
+0,
+"(uesi",
+"si",
+5
+]
+],
+"MAT 21 32": [
+[
+33,
+"movistels",
+"movisteis",
+5
+],
+[
+15,
+"creisteis;al",
+"creisteis al",
+4
+]
+],
+"MAT 21 43": [
+[
+24,
+"ODYCUS",
+"obras",
+4
+]
+],
+"MAT 22 6": [
+[
+10,
+"lMenado",
+"llenado",
+5
+]
+],
+"MAT 22 12": [
+[
+2,
+"Amigo,¿cómo",
+"amigo como",
+6
+]
+],
+"MAT 23 9": [
+[
+3,
+"ajficionaros",
+"aficionaros",
+2
+]
+],
+"MAT 23 11": [
+[
+0,
+"En/fm,",
+"fin",
+5
+]
+],
+"MAT 23 16": [
+[
+3,
+"gulas",
+"guias",
+4
+]
+],
+"MAT 23 17": [
+[
+2,
+"ciegos!¿Qué",
+"ciegos que",
+5
+]
+],
+"MAT 23 23": [
+[
+8,
+"pagals",
+"pagais",
+6
+],
+[
+40,
+"deblerals",
+"debierais",
+4
+]
+],
+"MAT 23 24": [
+[
+14,
+"tragals",
+"tragais",
+5
+]
+],
+"MAT 23 34": [
+[
+24,
+"azotarels",
+"azotareis",
+3
+]
+],
+"MAT 24 22": [
+[
+8,
+"salyaria;",
+"salvaria",
+3
+]
+],
+"MAT 24 24": [
+[
+3,
+"Chbristos",
+"christos",
+3
+]
+],
+"MAT 24 35": [
+[
+10,
+"falNarán.",
+"fallaran",
+4
+]
+],
+"MAT 24 41": [
+[
+20,
+"perecerú.",
+"perecera",
+2
+]
+],
+"MAT 25 24": [
+[
+2,
+"Hegando",
+"llegando",
+5
+]
+],
+"MAT 25 35": [
+[
+20,
+"hospedastels",
+"hospedasteis",
+4
+]
+],
+"MAT 25 37": [
+[
+17,
+"comez:",
+"comer",
+4
+]
+],
+"MAT 25 44": [
+[
+7,
+"¡Señor!¡cuándo",
+"senor cuando",
+3
+]
+],
+"MAT 26 1": [
+[
+14,
+"disefpulos",
+"discipulos",
+5
+]
+],
+"MAT 26 17": [
+[
+0,
+"Inmstando",
+"instando",
+5
+]
+],
+"MAT 26 22": [
+[
+12,
+"¡Señor!¿soy",
+"senor soy",
+5
+]
+],
+"MAT 26 24": [
+[
+26,
+"mejorle",
+"mejor le",
+3
+]
+],
+"MAT 26 31": [
+[
+15,
+"abandonarels.",
+"abandonareis",
+5
+]
+],
+"MAT 26 53": [
+[
+19,
+"lesiones",
+"legiones",
+5
+]
+],
+"MAT 26 66": [
+[
+9,
+"KReo",
+"reo",
+5
+]
+],
+"MAT 27 4": [
+[
+16,
+"nosotros¿qué",
+"nosotros que",
+5
+]
+],
+"MAT 27 17": [
+[
+24,
+"Mestast",
+"mestas",
+2
+]
+],
+"MAT 27 32": [
+[
+19,
+"catgase",
+"cargase",
+4
+]
+],
+"MAT 27 34": [
+[
+0,
+"Allíle",
+"le",
+6
+]
+],
+"MAT 27 37": [
+[
+8,
+"denotabam",
+"denotaban",
+6
+]
+],
+"MAT 27 39": [
+[
+9,
+"escarneciam",
+"escarnecian",
+2
+]
+],
+"MRK 1 34": [
+[
+1,
+"curóámuchas",
+"muchas",
+4
+]
+],
+"MRK 2 8": [
+[
+22,
+"coarzones?",
+"corazones",
+3
+]
+],
+"MRK 3 17": [
+[
+19,
+"TOYOS",
+"rayos",
+2
+]
+],
+"MRK 3 28": [
+[
+11,
+"fúcilmente",
+"facilmente",
+4
+]
+],
+"MRK 4 9": [
+[
+9,
+"refexione.",
+"reflexione",
+2
+]
+],
+"MRK 4 21": [
+[
+25,
+"sobre-un",
+"sobre un",
+6
+]
+],
+"MRK 4 30": [
+[
+2,
+"diciendo:¿Á",
+"diciendo a",
+4
+]
+],
+"MRK 5 1": [
+[
+11,
+"Grerasenos.",
+"gerasenos",
+4
+]
+],
+"MRK 5 2": [
+[
+7,
+"enereúmeno",
+"energumeno",
+4
+]
+],
+"MRK 6 19": [
+[
+14,
+"conseguitlo",
+"conseguirlo",
+5
+]
+],
+"MRK 6 30": [
+[
+7,
+"miston",
+"mision",
+6
+]
+],
+"MRK 6 31": [
+[
+13,
+"reposarels",
+"reposareis",
+6
+]
+],
+"MRK 6 55": [
+[
+16,
+"lleyándolos",
+"llevandolos",
+3
+]
+],
+"MRK 7 8": [
+[
+9,
+"eserupulosidad",
+"escrupulosidad",
+3
+],
+[
+16,
+"layatorios",
+"lavatorios",
+3
+]
+],
+"MRK 7 18": [
+[
+13,
+"comprendels",
+"comprendeis",
+6
+]
+],
+"MRK 7 20": [
+[
+14,
+"manehan",
+"manchan",
+5
+]
+],
+"MRK 7 31": [
+[
+23,
+"Decápol.",
+"decapoli",
+5
+]
+],
+"MRK 7 36": [
+[
+6,
+"á¿nadie,",
+"a nadie",
+2
+]
+],
+"MRK 8 16": [
+[
+13,
+"no-hemos",
+"no hemos",
+6
+]
+],
+"MRK 8 27": [
+[
+10,
+"comorcanas",
+"comarcanas",
+5
+]
+],
+"MRK 8 30": [
+[
+17,
+"publicario",
+"publicarlo",
+4
+]
+],
+"MRK 9 12": [
+[
+13,
+"Buutista",
+"bautista",
+3
+]
+],
+"MRK 9 18": [
+[
+15,
+"vosotros;hasta",
+"vosotros hasta",
+5
+],
+[
+9,
+"incrédula!;hasta",
+"incredula hasta",
+3
+]
+],
+"MRK 10 1": [
+[
+22,
+"coneurrieron",
+"concurrieron",
+3
+]
+],
+"MRK 10 22": [
+[
+8,
+"aflisido,",
+"afligido",
+5
+]
+],
+"MRK 10 48": [
+[
+1,
+"reñníanle",
+"renianle",
+6
+]
+],
+"MRK 11 2": [
+[
+23,
+"e0ál",
+"cual",
+4
+]
+],
+"MRK 11 26": [
+[
+16,
+"OTUCIONES.",
+"oraciones",
+3
+]
+],
+"MRK 12 16": [
+[
+9,
+"1mácen,",
+"imagen",
+2
+]
+],
+"MRK 12 18": [
+[
+7,
+"niesan",
+"niegan",
+5
+]
+],
+"MRK 12 30": [
+[
+1,
+"asiamarás",
+"amaras",
+6
+]
+],
+"MRK 13 9": [
+[
+20,
+"gonellios",
+"concilios",
+5
+],
+[
+51,
+"docnina.",
+"doctrina",
+4
+]
+],
+"MRK 13 11": [
+[
+15,
+"disecurrais",
+"discurrais",
+6
+]
+],
+"MRK 13 32": [
+[
+22,
+"revelárosto,",
+"revelaroslo",
+3
+]
+],
+"MRK 14 15": [
+[
+10,
+"amueblada:",
+"mueblada",
+2
+]
+],
+"MRK 15 22": [
+[
+16,
+"Usario.",
+"osario",
+3
+]
+],
+"MRK 15 40": [
+[
+7,
+"1m1rando",
+"mirando",
+4
+]
+],
+"MRK 15 42": [
+[
+9,
+"parasceye",
+"parasceve",
+5
+]
+],
+"LUK 1 6": [
+[
+7,
+"L-vs,",
+"dios",
+5
+],
+[
+18,
+"irrepensiblemente",
+"irreprensiblemente",
+3
+]
+],
+"LUK 1 29": [
+[
+13,
+"sienificaria",
+"significaria",
+6
+]
+],
+"LUK 1 63": [
+[
+21,
+"adtmiraclon.",
+"admiracion",
+5
+]
+],
+"LUK 2 1": [
+[
+9,
+"Auorusto,",
+"augusto",
+5
+]
+],
+"LUK 2 21": [
+[
+0,
+"Llegado:el",
+"el",
+6
+]
+],
+"LUK 2 22": [
+[
+21,
+"presentarle:al",
+"presentarle al",
+6
+]
+],
+"LUK 2 42": [
+[
+1,
+"siendoel",
+"el",
+5
+]
+],
+"LUK 3 23": [
+[
+13,
+"ercia,",
+"creia",
+6
+]
+],
+"LUK 4 20": [
+[
+6,
+"entresósele",
+"entregosele",
+5
+]
+],
+"LUK 5 2": [
+[
+0,
+"Ensesto",
+"esto",
+6
+]
+],
+"LUK 5 12": [
+[
+7,
+"Guliléa,",
+"galilea",
+4
+]
+],
+"LUK 5 18": [
+[
+28,
+"Jesws,",
+"jesus",
+3
+]
+],
+"LUK 6 1": [
+[
+22,
+"restregándolas",
+"estregandolas",
+6
+]
+],
+"LUK 6 31": [
+[
+9,
+"quislerals",
+"quisierais",
+2
+]
+],
+"LUK 6 39": [
+[
+12,
+"ciego?¿no",
+"ciego no",
+4
+]
+],
+"LUK 6 42": [
+[
+47,
+"del-ojo",
+"del ojo",
+2
+]
+],
+"LUK 7 4": [
+[
+14,
+"condescéendiese:",
+"condescendiese",
+6
+]
+],
+"LUK 7 17": [
+[
+1,
+"esparciósela",
+"la",
+6
+]
+],
+"LUK 9 20": [
+[
+9,
+"Kiespondió",
+"respondio",
+5
+]
+],
+"LUK 9 40": [
+[
+0,
+"Herogado",
+"rogado",
+5
+]
+],
+"LUK 9 41": [
+[
+10,
+"perversa!¡hasta",
+"perversa hasta",
+4
+]
+],
+"LUK 9 55": [
+[
+13,
+"pertenecels",
+"perteneceis",
+5
+]
+],
+"LUK 10 20": [
+[
+14,
+"¿nmundos,",
+"inmundos",
+3
+]
+],
+"LUK 10 22": [
+[
+11,
+"naclie",
+"nadie",
+3
+]
+],
+"LUK 10 38": [
+[
+17,
+"hospecó",
+"hospedo",
+4
+]
+],
+"LUK 11 8": [
+[
+30,
+"impertinenecla",
+"impertinencia",
+4
+]
+],
+"LUK 11 12": [
+[
+11,
+"óalacran?",
+"o alacran",
+5
+]
+],
+"LUK 11 13": [
+[
+14,
+"¿evuánto",
+"cuanto",
+5
+]
+],
+"LUK 11 24": [
+[
+29,
+"salt",
+"sali",
+6
+]
+],
+"LUK 11 29": [
+[
+1,
+"conecurriesen",
+"concurriesen",
+4
+],
+[
+12,
+"hombreses",
+"hombres es",
+4
+]
+],
+"LUK 11 39": [
+[
+5,
+"Vosotros¡oh",
+"vosotros oh",
+2
+]
+],
+"LUK 11 47": [
+[
+4,
+"fabricals",
+"fabricais",
+6
+]
+],
+"LUK 11 51": [
+[
+32,
+"72Jurosa.",
+"rigorosa",
+2
+]
+],
+"LUK 11 53": [
+[
+4,
+"¿inritados",
+"irritados",
+3
+]
+],
+"LUK 12 15": [
+[
+40,
+"HOmopzE",
+"hombre",
+6
+]
+],
+"LUK 12 20": [
+[
+5,
+"Dios:¡Insensato!",
+"dios insensato",
+5
+]
+],
+"LUK 12 22": [
+[
+32,
+"vestirels",
+"vestireis",
+6
+]
+],
+"LUK 12 29": [
+[
+4,
+"aconeojadós",
+"acongojados",
+4
+]
+],
+"LUK 12 33": [
+[
+10,
+"FHaceos",
+"haceos",
+5
+],
+[
+6,
+"poseels,",
+"poseeis",
+5
+]
+],
+"LUK 12 44": [
+[
+8,
+"súupermtendencia",
+"superintendencia",
+6
+]
+],
+"LUK 12 56": [
+[
+1,
+"sisabeis",
+"sabeis",
+5
+]
+],
+"LUK 12 57": [
+[
+0,
+"0O¿cómo",
+"como",
+5
+]
+],
+"LUK 13 2": [
+[
+5,
+"Jesus:Pensais",
+"jesus pensais",
+4
+]
+],
+"LUK 13 6": [
+[
+1,
+"añadióoles",
+"anadioles",
+5
+]
+],
+"LUK 13 23": [
+[
+1,
+"unole",
+"le",
+6
+]
+],
+"LUK 14 12": [
+[
+14,
+"eonvides",
+"convides",
+5
+]
+],
+"LUK 14 14": [
+[
+9,
+"aséí",
+"asi",
+6
+]
+],
+"LUK 14 31": [
+[
+0,
+"0Uj¿cuáles",
+"es",
+6
+]
+],
+"LUK 15 1": [
+[
+9,
+"otrle",
+"oirle",
+6
+]
+],
+"LUK 15 5": [
+[
+9,
+"SOZOSO",
+"gozoso",
+5
+]
+],
+"LUK 15 16": [
+[
+11,
+"monduduras",
+"mondaduras",
+6
+]
+],
+"LUK 15 19": [
+[
+14,
+"tus'jornaleros,",
+"tus jornaleros",
+4
+]
+],
+"LUK 15 20": [
+[
+20,
+"enternecióronsele",
+"enternecieronsele",
+5
+],
+[
+12,
+"pasiro.",
+"padre",
+4
+]
+],
+"LUK 15 28": [
+[
+1,
+"oiresto,",
+"esto",
+6
+]
+],
+"LUK 16 8": [
+[
+27,
+"armadores",
+"amadores",
+5
+]
+],
+"LUK 16 9": [
+[
+6,
+"Granjeaos",
+"grangeaos",
+4
+]
+],
+"LUK 16 11": [
+[
+10,
+"flará",
+"fiara",
+6
+]
+],
+"LUK 16 15": [
+[
+6,
+"vendels",
+"vendeis",
+6
+]
+],
+"LUK 16 16": [
+[
+28,
+"morbificando",
+"mortificando",
+5
+]
+],
+"LUK 16 22": [
+[
+0,
+"Bueedió",
+"sucedio",
+6
+]
+],
+"LUK 16 24": [
+[
+15,
+"mojando.la",
+"mojando la",
+3
+]
+],
+"LUK 17 26": [
+[
+0,
+"Loqueacaeció",
+"acaecio",
+5
+]
+],
+"LUK 18 7": [
+[
+1,
+"¡ereereis",
+"creereis",
+3
+]
+],
+"LUK 18 19": [
+[
+9,
+"pwro",
+"puro",
+2
+]
+],
+"LUK 18 28": [
+[
+13,
+"segnídote.",
+"seguidote",
+6
+]
+],
+"LUK 19 4": [
+[
+7,
+"cabrabigo",
+"cabrahigo",
+5
+]
+],
+"LUK 19 12": [
+[
+15,
+"¿mvestidura",
+"investidura",
+3
+]
+],
+"LUK 19 15": [
+[
+5,
+"¿nvestidura",
+"investidura",
+6
+]
+],
+"LUK 19 23": [
+[
+0,
+"Pues¿cómo",
+"como",
+6
+]
+],
+"LUK 19 42": [
+[
+0,
+"¡Ah!si",
+"si",
+6
+]
+],
+"LUK 19 43": [
+[
+19,
+"contramauro,",
+"contramuro",
+5
+]
+],
+"LUK 20 27": [
+[
+20,
+"envredarle",
+"enredarle",
+3
+]
+],
+"LUK 20 34": [
+[
+8,
+"Imatrimonios",
+"matrimonios",
+6
+]
+],
+"LUK 20 36": [
+[
+25,
+"blegudo.",
+"llegado",
+5
+]
+],
+"LUK 21 16": [
+[
+24,
+"auuchos",
+"muchos",
+4
+]
+],
+"LUK 21 30": [
+[
+2,
+"emplezan",
+"empiezan",
+4
+]
+],
+"LUK 22 5": [
+[
+2,
+"holearon,",
+"holgaron",
+6
+]
+],
+"LUK 22 31": [
+[
+20,
+"cruba",
+"criba",
+6
+]
+],
+"LUK 22 32": [
+[
+22,
+"ebla",
+"ella",
+5
+]
+],
+"LUK 22 40": [
+[
+11,
+"—Ccaigals",
+"caigais",
+5
+]
+],
+"LUK 22 55": [
+[
+7,
+"sentándosetodos",
+"sentandose todos",
+3
+]
+],
+"LUK 22 68": [
+[
+9,
+"responderels,",
+"respondereis",
+4
+]
+],
+"LUK 23 2": [
+[
+3,
+"acusande,",
+"acusarle",
+6
+]
+],
+"LUK 23 15": [
+[
+7,
+"remitíá",
+"remiti a",
+3
+]
+],
+"LUK 23 33": [
+[
+8,
+"Usario,",
+"osario",
+2
+]
+],
+"LUK 23 39": [
+[
+19,
+"EÉstE",
+"este",
+3
+],
+[
+33,
+"ecruecificados,",
+"crucificados",
+3
+]
+],
+"LUK 23 45": [
+[
+0,
+"Elsolse",
+"se",
+6
+]
+],
+"LUK 23 52": [
+[
+12,
+"Jests",
+"jesus",
+5
+]
+],
+"LUK 24 24": [
+[
+13,
+"eterto",
+"cierto",
+6
+]
+],
+"LUK 24 25": [
+[
+3,
+"él:¡Oh",
+"el oh",
+3
+]
+],
+"LUK 24 49": [
+[
+3,
+"áenviaros",
+"a enviaros",
+6
+]
+],
+"JHN 1 9": [
+[
+7,
+"emanto",
+"cuanto",
+5
+]
+],
+"JHN 1 32": [
+[
+2,
+"enfoneces",
+"entonces",
+6
+]
+],
+"JHN 1 33": [
+[
+0,
+"Yoantes",
+"antes",
+5
+]
+],
+"JHN 1 45": [
+[
+14,
+"Moisésen",
+"moises en",
+3
+]
+],
+"JHN 2 8": [
+[
+0,
+"PDiíceles",
+"diceles",
+6
+],
+[
+9,
+"Mevadle",
+"llevadle",
+4
+]
+],
+"JHN 3 2": [
+[
+21,
+"imstruirnos:",
+"instruirnos",
+4
+]
+],
+"JHN 3 12": [
+[
+15,
+"ereereis",
+"creereis",
+5
+]
+],
+"JHN 3 23": [
+[
+8,
+"Balim:",
+"salim",
+6
+],
+[
+17,
+"coneurrian",
+"concurrian",
+6
+]
+],
+"JHN 3 30": [
+[
+7,
+"mengiie.",
+"mengue",
+4
+]
+],
+"JHN 4 6": [
+[
+0,
+"Aquíestaba",
+"estaba",
+5
+]
+],
+"JHN 4 25": [
+[
+2,
+"mujer:Sé",
+"mujer se",
+3
+]
+],
+"JHN 4 33": [
+[
+6,
+"otros:¿Si",
+"otros si",
+5
+]
+],
+"JHN 4 47": [
+[
+19,
+"Cand",
+"cana",
+5
+],
+[
+21,
+"Capharnamwm",
+"capharnaum",
+3
+]
+],
+"JHN 4 51": [
+[
+10,
+"ertados,",
+"criados",
+6
+]
+],
+"JHN 5 25": [
+[
+33,
+"reylvirán.",
+"reviviran",
+3
+]
+],
+"JHN 5 32": [
+[
+24,
+"desechanrle.",
+"desecharle",
+4
+]
+],
+"JHN 5 35": [
+[
+7,
+"briilaba.",
+"brillaba",
+5
+]
+],
+"JHN 5 44": [
+[
+18,
+"procurals",
+"procurais",
+4
+]
+],
+"JHN 5 45": [
+[
+19,
+"confials.",
+"confiais",
+5
+]
+],
+"JHN 5 46": [
+[
+7,
+"creerials",
+"creeriais",
+3
+]
+],
+"JHN 6 19": [
+[
+26,
+"ereyéndole",
+"creyendole",
+4
+]
+],
+"JHN 6 24": [
+[
+19,
+"dirigiéronsée",
+"dirigieronse",
+5
+]
+],
+"JHN 7 12": [
+[
+2,
+"mucholo",
+"mucho lo",
+6
+]
+],
+"JHN 7 20": [
+[
+3,
+"intentals",
+"intentais",
+5
+]
+],
+"JHN 7 22": [
+[
+24,
+"eireuncidar",
+"circuncidar",
+3
+]
+],
+"JHN 7 30": [
+[
+0,
+"Alolresto",
+"esto",
+6
+]
+],
+"JHN 7 52": [
+[
+3,
+"acaso:tú,",
+"acaso tu",
+5
+]
+],
+"JHN 8 15": [
+[
+0,
+"osorEOS",
+"vosotros",
+6
+]
+],
+"JHN 8 45": [
+[
+1,
+"míempero",
+"empero",
+6
+]
+],
+"JHN 9 13": [
+[
+0,
+"Llevaronpuesálos",
+"los",
+6
+]
+],
+"JHN 10 7": [
+[
+9,
+"cluro:",
+"claro",
+4
+]
+],
+"JHN 11 50": [
+[
+1,
+"reflexionals",
+"reflexionais",
+6
+]
+],
+"JHN 11 51": [
+[
+20,
+"¿nstrumento",
+"instrumento",
+3
+]
+],
+"JHN 13 19": [
+[
+14,
+"reconozcals",
+"reconozcais",
+6
+]
+],
+"JHN 14 3": [
+[
+9,
+"vendiré",
+"vendre",
+4
+]
+],
+"JHN 14 14": [
+[
+0,
+"Slalgo",
+"algo",
+5
+]
+],
+"JHN 14 27": [
+[
+1,
+"pazos",
+"os",
+6
+]
+],
+"JHN 14 28": [
+[
+17,
+"alegrarials",
+"alegrariais",
+6
+]
+],
+"JHN 15 10": [
+[
+20,
+"perseyero",
+"persevero",
+6
+]
+],
+"JHN 15 11": [
+[
+22,
+"conmpleto..",
+"completo",
+4
+]
+],
+"JHN 15 12": [
+[
+6,
+"ameéeis",
+"ameis",
+5
+]
+],
+"JHN 16 7": [
+[
+21,
+"4bogado",
+"abogado",
+4
+]
+],
+"JHN 17 17": [
+[
+10,
+"MÁSMIA.",
+"misma",
+5
+]
+],
+"JHN 17 19": [
+[
+11,
+"víctimo",
+"victima",
+4
+]
+],
+"JHN 17 22": [
+[
+13,
+"olimentándolos",
+"alimentandolos",
+4
+]
+],
+"JHN 18 13": [
+[
+0,
+"Deallíle",
+"le",
+5
+]
+],
+"JHN 18 23": [
+[
+0,
+"Díjoleá",
+"a",
+4
+]
+],
+"JHN 18 29": [
+[
+11,
+"bracis",
+"traeis",
+4
+]
+],
+"JHN 19 4": [
+[
+0,
+"Ejecutudo",
+"ejecutado",
+4
+],
+[
+19,
+"reconozcals",
+"reconozcais",
+4
+]
+],
+"JHN 19 17": [
+[
+17,
+"Usario,",
+"osario",
+2
+],
+[
+21,
+"Ólgotha",
+"golgotha",
+2
+]
+],
+"JHN 19 41": [
+[
+6,
+"eruecificado,",
+"crucificado",
+5
+]
+],
+"JHN 21 22": [
+[
+0,
+"Kespondióle",
+"respondiole",
+4
+]
+],
+"ACT 1 1": [
+[
+5,
+"libro¡oh",
+"libro oh",
+2
+]
+],
+"ACT 1 3": [
+[
+3,
+"se+habia",
+"se habia",
+5
+]
+],
+"ACT 1 16": [
+[
+10,
+"protetizado",
+"profetizado",
+5
+]
+],
+"ACT 2 15": [
+[
+5,
+"sospechals",
+"sospechais",
+5
+]
+],
+"ACT 2 31": [
+[
+0,
+"Prevyiendo",
+"previendo",
+5
+]
+],
+"ACT 2 36": [
+[
+2,
+"ciertísimamente",
+"certisimamente",
+5
+]
+],
+"ACT 3 15": [
+[
+18,
+"nosotros.somos",
+"nosotros somos",
+6
+]
+],
+"ACT 4 10": [
+[
+27,
+"erucificastels,",
+"crucificasteis",
+4
+]
+],
+"ACT 4 11": [
+[
+7,
+"desechastels",
+"desechasteis",
+3
+]
+],
+"ACT 4 29": [
+[
+5,
+"v9nas",
+"vanas",
+5
+]
+],
+"ACT 5 16": [
+[
+0,
+"Coneurría",
+"concurria",
+5
+]
+],
+"ACT 5 37": [
+[
+27,
+"dlisipados.",
+"disipados",
+4
+]
+],
+"ACT 5 38": [
+[
+7,
+"metals",
+"metais",
+6
+]
+],
+"ACT 6 10": [
+[
+9,
+"Espf",
+"espi",
+2
+]
+],
+"ACT 6 14": [
+[
+20,
+"observancioós",
+"observancias",
+5
+]
+],
+"ACT 7 25": [
+[
+9,
+"conocerilan",
+"conocerian",
+4
+]
+],
+"ACT 7 37": [
+[
+20,
+"legislacor,",
+"legislador",
+4
+]
+],
+"ACT 7 42": [
+[
+29,
+"Profetas:¡Oh",
+"profetas oh",
+4
+]
+],
+"ACT 7 43": [
+[
+15,
+"fisuras",
+"figuras",
+2
+]
+],
+"ACT 7 54": [
+[
+10,
+"erujian",
+"crujian",
+4
+]
+],
+"ACT 8 6": [
+[
+10,
+"escuechaba",
+"escuchaba",
+4
+]
+],
+"ACT 8 11": [
+[
+4,
+"adbesion",
+"adhesion",
+5
+]
+],
+"ACT 9 25": [
+[
+1,
+"vistadelo",
+"lo",
+5
+]
+],
+"ACT 10 45": [
+[
+28,
+"INCATCUNCISOS",
+"incircuncisos",
+3
+]
+],
+"ACT 10 46": [
+[
+9,
+"orandezas",
+"grandezas",
+6
+]
+],
+"ACT 11 15": [
+[
+17,
+"NOSOLLTOS",
+"nosotros",
+6
+]
+],
+"ACT 12 4": [
+[
+32,
+"ajusticiarie",
+"ajusticiarle",
+5
+]
+],
+"ACT 12 11": [
+[
+21,
+"lIibrádome",
+"libradome",
+2
+]
+],
+"ACT 12 24": [
+[
+8,
+"progreS0s,",
+"progresos",
+4
+]
+],
+"ACT 13 25": [
+[
+14,
+"imaginals,",
+"imaginais",
+4
+]
+],
+"ACT 14 14": [
+[
+29,
+"conyvirtais",
+"convirtais",
+6
+]
+],
+"ACT 14 24": [
+[
+9,
+"Attalia",
+"atalia",
+3
+]
+],
+"ACT 15 21": [
+[
+19,
+"synacrogas,",
+"sinagogas",
+3
+]
+],
+"ACT 15 27": [
+[
+0,
+"Osenviamos",
+"enviamos",
+5
+]
+],
+"ACT 15 29": [
+[
+24,
+"barels",
+"hareis",
+4
+]
+],
+"ACT 16 11": [
+[
+0,
+"Asíembarcándonos",
+"embarcandonos",
+6
+]
+],
+"ACT 16 13": [
+[
+39,
+"clicho",
+"dicho",
+6
+]
+],
+"ACT 16 27": [
+[
+6,
+"abiertaslas",
+"abiertas las",
+6
+]
+],
+"ACT 16 38": [
+[
+21,
+"temcr:",
+"temer",
+4
+]
+],
+"ACT 17 1": [
+[
+6,
+"Apollonia,",
+"apolonia",
+4
+]
+],
+"ACT 17 5": [
+[
+3,
+"imcrédaos,",
+"incredulos",
+3
+]
+],
+"ACT 17 16": [
+[
+3,
+"losestaba",
+"los estaba",
+3
+]
+],
+"ACT 17 30": [
+[
+15,
+"¡genorancia,",
+"ignorancia",
+6
+]
+],
+"ACT 17 33": [
+[
+10,
+"crentes.",
+"gentes",
+4
+]
+],
+"ACT 18 19": [
+[
+0,
+"Arribóáá",
+"a",
+5
+]
+],
+"ACT 18 26": [
+[
+21,
+"éinstruyéronle",
+"e instruyeronle",
+5
+]
+],
+"ACT 19 9": [
+[
+39,
+"Tyramno.",
+"tyranno",
+3
+]
+],
+"ACT 19 12": [
+[
+3,
+"Apucanto",
+"aplicando",
+4
+]
+],
+"ACT 19 21": [
+[
+31,
+"Koma.",
+"roma",
+5
+]
+],
+"ACT 19 29": [
+[
+16,
+"Grayo",
+"gayo",
+4
+],
+[
+20,
+"Macedon1os,",
+"macedonios",
+3
+]
+],
+"ACT 19 31": [
+[
+17,
+"compareclese",
+"compareciese",
+5
+]
+],
+"ACT 19 36": [
+[
+14,
+"soseguels,",
+"sosegueis",
+3
+]
+],
+"ACT 19 37": [
+[
+8,
+"sacríleeros,",
+"sacrilegos",
+4
+]
+],
+"ACT 20 15": [
+[
+12,
+"Chio,",
+"kio",
+2
+]
+],
+"ACT 21 15": [
+[
+7,
+"viajo,",
+"viaje",
+3
+]
+],
+"ACT 21 36": [
+[
+5,
+"erttando:",
+"gritando",
+5
+]
+],
+"ACT 23 18": [
+[
+1,
+"centuriontomándole",
+"tomandole",
+4
+]
+],
+"ACT 23 29": [
+[
+0,
+"AMlí",
+"alli",
+6
+]
+],
+"ACT 24 9": [
+[
+8,
+"atestieguando",
+"atestiguando",
+4
+]
+],
+"ACT 24 13": [
+[
+0,
+"Oenla",
+"la",
+4
+]
+],
+"ACT 24 20": [
+[
+9,
+"conorregados",
+"congregados",
+4
+]
+],
+"ACT 24 25": [
+[
+0,
+"Peroinculeando",
+"inculcando",
+6
+]
+],
+"ACT 25 11": [
+[
+30,
+"meimputan,",
+"me imputan",
+6
+]
+],
+"ACT 26 18": [
+[
+1,
+"abritles",
+"abrirles",
+6
+]
+],
+"ACT 27 7": [
+[
+14,
+"Gmnido,",
+"gnido",
+6
+]
+],
+"ACT 27 12": [
+[
+42,
+"Pomente.",
+"poniente",
+2
+]
+],
+"ACT 27 16": [
+[
+2,
+"¿mpetu",
+"impetu",
+3
+]
+],
+"ACT 27 41": [
+[
+22,
+"encollada",
+"encallada",
+3
+]
+],
+"ROM 1 16": [
+[
+3,
+"avergiienzo",
+"averguenzo",
+3
+]
+],
+"ROM 1 17": [
+[
+25,
+"perfeccrono",
+"perfecciona",
+4
+]
+],
+"ROM 1 18": [
+[
+10,
+"descarará",
+"descargara",
+4
+]
+],
+"ROM 1 28": [
+[
+20,
+"indienas",
+"indignas",
+6
+]
+],
+"ROM 1 29": [
+[
+22,
+"ehismosos",
+"chismosos",
+6
+]
+],
+"ROM 3 3": [
+[
+9,
+"ereldo:",
+"creido",
+6
+]
+],
+"ROM 3 22": [
+[
+28,
+"Fudio",
+"judio",
+3
+]
+],
+"ROM 4 16": [
+[
+28,
+"Abraham;no",
+"abraham no",
+2
+]
+],
+"ROM 5 16": [
+[
+0,
+"Nipasa",
+"pasa",
+4
+]
+],
+"ROM 5 18": [
+[
+37,
+"almo.",
+"alma",
+5
+]
+],
+"ROM 6 12": [
+[
+12,
+"obedezcals",
+"obedezcais",
+5
+]
+],
+"ROM 6 21": [
+[
+3,
+"sacastels",
+"sacasteis",
+6
+],
+[
+7,
+"desdrdenes",
+"desordenes",
+5
+]
+],
+"ROM 8 35": [
+[
+25,
+"persecucion?¿ó",
+"persecucion o",
+5
+]
+],
+"ROM 9 2": [
+[
+0,
+"Alaseguraros",
+"aseguraros",
+5
+]
+],
+"ROM 9 4": [
+[
+10,
+"lrijos",
+"hijos",
+4
+]
+],
+"ROM 9 5": [
+[
+4,
+"patriuwreas,",
+"patriarcas",
+4
+]
+],
+"ROM 9 11": [
+[
+18,
+"cunplióse",
+"cumpliese",
+6
+]
+],
+"ROM 9 12": [
+[
+9,
+"amamento",
+"llamamiento",
+5
+]
+],
+"ROM 9 31": [
+[
+14,
+"¡JUSCICHA",
+"justicia",
+5
+]
+],
+"ROM 10 19": [
+[
+26,
+"provoecaros",
+"provocaros",
+6
+],
+[
+45,
+"yenea",
+"venga",
+4
+]
+],
+"ROM 11 8": [
+[
+20,
+"contumatcia:",
+"contumacia",
+5
+]
+],
+"ROM 11 17": [
+[
+24,
+"injertado",
+"ingertado",
+4
+]
+],
+"ROM 11 21": [
+[
+12,
+"Suditos:",
+"judios",
+4
+]
+],
+"ROM 11 30": [
+[
+8,
+"crelais",
+"creiais",
+5
+]
+],
+"ROM 12 3": [
+[
+28,
+"leyanteis",
+"levanteis",
+5
+]
+],
+"ROM 12 8": [
+[
+23,
+"visilancia,",
+"vigilancia",
+6
+]
+],
+"ROM 12 19": [
+[
+2,
+"venguels",
+"vengueis",
+3
+]
+],
+"ROM 13 11": [
+[
+32,
+"Yecibimos",
+"recibimos",
+4
+]
+],
+"ROM 14 1": [
+[
+7,
+"Haco",
+"flaco",
+5
+]
+],
+"ROM 14 9": [
+[
+9,
+"rediiirnos",
+"redimirnos",
+3
+]
+],
+"ROM 14 10": [
+[
+32,
+"juegues,",
+"juzgues",
+3
+]
+],
+"ROM 15 3": [
+[
+27,
+"descartar",
+"descargar",
+5
+]
+],
+"ROM 15 10": [
+[
+11,
+"Pudtos",
+"judios",
+6
+]
+],
+"ROM 15 18": [
+[
+3,
+"atreyeré",
+"atrevere",
+4
+]
+],
+"ROM 15 19": [
+[
+20,
+"cirando",
+"girando",
+5
+]
+],
+"ROM 15 28": [
+[
+14,
+"la.caridad:",
+"la caridad",
+5
+]
+],
+"ROM 16 2": [
+[
+21,
+"negoelo",
+"negocio",
+4
+]
+],
+"ROM 16 15": [
+[
+11,
+"Olympiade,",
+"olimpiade",
+2
+]
+],
+"1CO 1 9": [
+[
+21,
+"PPOMESUS.",
+"promesas",
+5
+]
+],
+"1CO 1 15": [
+[
+15,
+"vosotros;¿ó6",
+"vosotros o",
+5
+]
+],
+"1CO 1 19": [
+[
+0,
+"Asfestá",
+"esta",
+5
+]
+],
+"1CO 1 20": [
+[
+4,
+"sabios?¿en",
+"sabios en",
+6
+]
+],
+"1CO 1 26": [
+[
+16,
+"osolrOs",
+"vosotros",
+6
+]
+],
+"1CO 1 27": [
+[
+22,
+"Hacos",
+"flacos",
+4
+]
+],
+"1CO 1 30": [
+[
+8,
+"vosOLIrOS",
+"vosotros",
+3
+]
+],
+"1CO 2 15": [
+[
+18,
+"discernitle.",
+"discernirle",
+6
+]
+],
+"1CO 4 9": [
+[
+16,
+"últitimos",
+"ultimos",
+3
+]
+],
+"1CO 4 13": [
+[
+3,
+"retornmamos",
+"retornamos",
+3
+]
+],
+"1CO 4 16": [
+[
+8,
+"astcomo",
+"asi",
+2
+]
+],
+"1CO 5 6": [
+[
+5,
+"eloriaros.",
+"gloriaros",
+4
+]
+],
+"1CO 5 10": [
+[
+34,
+"salleseis",
+"salieseis",
+5
+]
+],
+"1CO 6 4": [
+[
+0,
+"Situvierels",
+"tuviereis",
+5
+]
+],
+"1CO 7 11": [
+[
+11,
+"nupclas,",
+"nupcias",
+5
+]
+],
+"1CO 7 17": [
+[
+36,
+"lolesias.",
+"iglesias",
+5
+]
+],
+"1CO 7 18": [
+[
+13,
+"incireuneiso?",
+"incircunciso",
+2
+]
+],
+"1CO 7 25": [
+[
+26,
+"minasiro",
+"ministro",
+5
+]
+],
+"1CO 7 36": [
+[
+0,
+"Massiá",
+"a",
+3
+]
+],
+"1CO 9 22": [
+[
+0,
+"Hiíceme",
+"hiceme",
+5
+]
+],
+"1CO 9 24": [
+[
+28,
+"ganels.",
+"ganeis",
+4
+]
+],
+"1CO 10 25": [
+[
+12,
+"carmicerta,",
+"carniceria",
+3
+]
+],
+"1CO 11 2": [
+[
+26,
+"tenso",
+"tengo",
+4
+]
+],
+"1CO 11 7": [
+[
+25,
+"erloria",
+"gloria",
+3
+]
+],
+"1CO 11 14": [
+[
+13,
+"deSn",
+"que",
+4
+],
+[
+10,
+"opini0n",
+"opinion",
+2
+]
+],
+"1CO 11 18": [
+[
+13,
+"desuntones,",
+"desuniones",
+3
+]
+],
+"1CO 11 20": [
+[
+8,
+"dga:pes,",
+"agapes",
+4
+]
+],
+"1CO 11 28": [
+[
+2,
+"examiínese",
+"examinese",
+6
+]
+],
+"1CO 12 20": [
+[
+9,
+"GUETPO",
+"cuerpo",
+5
+]
+],
+"1CO 14 15": [
+[
+11,
+"mteligiblemente:",
+"inteligiblemente",
+4
+]
+],
+"1CO 14 20": [
+[
+7,
+"usode",
+"uso de",
+5
+]
+],
+"1CO 14 30": [
+[
+0,
+"Quesiá",
+"a",
+4
+],
+[
+10,
+"alero,",
+"algo",
+4
+]
+],
+"1CO 14 33": [
+[
+20,
+"iglesins",
+"iglesias",
+5
+]
+],
+"1CO 14 37": [
+[
+0,
+"Blalguno",
+"alguno",
+5
+]
+],
+"1CO 15 1": [
+[
+4,
+"renoyaros",
+"renovaros",
+6
+]
+],
+"1CO 15 2": [
+[
+13,
+"conservals",
+"conservais",
+3
+]
+],
+"1CO 15 13": [
+[
+8,
+"Msc",
+"dicen",
+4
+]
+],
+"1CO 15 15": [
+[
+5,
+"conyencidos",
+"convencidos",
+5
+]
+],
+"1CO 15 51": [
+[
+18,
+"11udados",
+"mudados",
+4
+]
+],
+"1CO 15 56": [
+[
+0,
+"Apuijon",
+"aguijon",
+6
+]
+],
+"1CO 16 3": [
+[
+0,
+"Enestando",
+"estando",
+4
+]
+],
+"2CO 1 6": [
+[
+43,
+"ljenalmente",
+"igualmente",
+6
+]
+],
+"2CO 2 2": [
+[
+5,
+"entristaros:",
+"contristaros",
+3
+]
+],
+"2CO 2 5": [
+[
+24,
+"agraylaros,",
+"agraviaros",
+6
+],
+[
+30,
+"afiigido.",
+"afligido",
+4
+]
+],
+"2CO 4 8": [
+[
+25,
+"Tecursos",
+"recursos",
+3
+]
+],
+"2CO 5 9": [
+[
+18,
+"saleamos",
+"salgamos",
+6
+]
+],
+"2CO 5 13": [
+[
+5,
+"enajenamos,",
+"enagenamos",
+4
+],
+[
+18,
+"vyos-",
+"vosotros",
+3
+]
+],
+"2CO 5 17": [
+[
+28,
+"renoyado,",
+"renovado",
+2
+]
+],
+"2CO 6 11": [
+[
+1,
+"dmor",
+"amor",
+5
+],
+[
+11,
+"jraneamente,",
+"francamente",
+3
+]
+],
+"2CO 7 11": [
+[
+19,
+"enidado",
+"cuidado",
+5
+],
+[
+26,
+"imcestauoso,",
+"incestuoso",
+4
+]
+],
+"2CO 7 15": [
+[
+28,
+"iltal",
+"filial",
+4
+]
+],
+"2CO 8 11": [
+[
+19,
+"enidado",
+"cuidado",
+5
+],
+[
+26,
+"imcestauoso,",
+"incestuoso",
+4
+]
+],
+"2CO 8 15": [
+[
+28,
+"iltal",
+"filial",
+4
+]
+],
+"2CO 8 19": [
+[
+11,
+"Toelesias",
+"iglesias",
+4
+]
+],
+"2CO 8 20": [
+[
+10,
+"vituperar,con",
+"vituperar con",
+6
+]
+],
+"2CO 9 3": [
+[
+33,
+"estabaíis",
+"estabais",
+2
+]
+],
+"2CO 9 8": [
+[
+36,
+"pprojimos",
+"projimos",
+5
+]
+],
+"2CO 9 13": [
+[
+17,
+"olorificar",
+"glorificar",
+3
+]
+],
+"2CO 10 2": [
+[
+20,
+"0sadía",
+"osadia",
+3
+]
+],
+"2CO 10 4": [
+[
+25,
+"ractocimios",
+"raciocinios",
+3
+]
+],
+"2CO 11 1": [
+[
+0,
+"¡Ohsi",
+"si",
+6
+]
+],
+"2CO 11 8": [
+[
+19,
+"VOSOLrOos.",
+"vosotros",
+4
+]
+],
+"2CO 11 19": [
+[
+6,
+"aguantals",
+"aguantais",
+6
+]
+],
+"2CO 11 30": [
+[
+0,
+"Siles",
+"es",
+5
+]
+],
+"2CO 11 32": [
+[
+0,
+"YFaunno",
+"no",
+3
+]
+],
+"2CO 12 4": [
+[
+24,
+"enplicarlas",
+"explicarlas",
+2
+]
+],
+"2CO 12 11": [
+[
+7,
+"alabarmne,",
+"alabarme",
+2
+]
+],
+"2CO 12 16": [
+[
+11,
+"pravado:",
+"gravado",
+4
+]
+],
+"2CO 12 17": [
+[
+0,
+"Mas¿acaso",
+"acaso",
+4
+]
+],
+"2CO 13 4": [
+[
+41,
+"VOSOLYOS",
+"vosotros",
+6
+]
+],
+"2CO 13 12": [
+[
+0,
+"FSaludaos",
+"saludaos",
+6
+]
+],
+"GAL 1 8": [
+[
+5,
+"óun",
+"o un",
+4
+]
+],
+"GAL 1 17": [
+[
+0,
+"Nipasará",
+"a",
+3
+]
+],
+"GAL 1 22": [
+[
+6,
+"vistalas",
+"vista las",
+3
+]
+],
+"GAL 2 19": [
+[
+11,
+"aníigua,",
+"antigua",
+4
+]
+],
+"GAL 3 12": [
+[
+19,
+"eumpliere,",
+"cumpliere",
+4
+]
+],
+"GAL 4 28": [
+[
+9,
+"figeurados",
+"figurados",
+5
+]
+],
+"GAL 5 11": [
+[
+25,
+"cawso",
+"causo",
+4
+]
+],
+"GAL 6 5": [
+[
+7,
+"juegado",
+"juzgado",
+4
+]
+],
+"GAL 6 7": [
+[
+0,
+"Noqueraisengañaros",
+"enganaros",
+5
+]
+],
+"GAL 6 12": [
+[
+7,
+"lt1sonjearos",
+"lisonjearos",
+3
+],
+[
+17,
+"cireuncidels,",
+"circuncideis",
+3
+]
+],
+"GAL 6 16": [
+[
+4,
+"siguleren",
+"siguieren",
+5
+]
+],
+"EPH 1 15": [
+[
+59,
+"toclos",
+"todos",
+6
+]
+],
+"EPH 2 1": [
+[
+0,
+"Élesel",
+"el",
+6
+]
+],
+"EPH 2 2": [
+[
+11,
+"slelo",
+"siglo",
+6
+]
+],
+"EPH 3 13": [
+[
+6,
+"cailgals",
+"caigais",
+4
+]
+],
+"EPH 4 13": [
+[
+9,
+"nuisma",
+"misma",
+3
+]
+],
+"EPH 5 13": [
+[
+7,
+"descubrS",
+"descubre",
+3
+]
+],
+"EPH 5 17": [
+[
+4,
+"indiseretos",
+"indiscretos",
+5
+]
+],
+"EPH 5 23": [
+[
+21,
+"méstico:",
+"mistico",
+5
+]
+],
+"EPH 6 23": [
+[
+0,
+"Pazálos",
+"los",
+5
+]
+],
+"PHP 1 3": [
+[
+12,
+"VOSOtTroOs",
+"vosotros",
+3
+]
+],
+"PHP 1 27": [
+[
+30,
+"perseverals",
+"perseverais",
+6
+]
+],
+"PHP 1 29": [
+[
+12,
+"erracia,",
+"gracia",
+6
+]
+],
+"PHP 2 18": [
+[
+7,
+"holearos,",
+"holgaros",
+5
+]
+],
+"PHP 3 12": [
+[
+17,
+"yosigo",
+"yo sigo",
+5
+]
+],
+"PHP 4 2": [
+[
+3,
+"Eyodia,",
+"evodia",
+5
+]
+],
+"PHP 4 10": [
+[
+32,
+"manajestarle.",
+"manifestarle",
+3
+]
+],
+"COL 1 7": [
+[
+6,
+"Epapbhras",
+"epaphras",
+3
+]
+],
+"COL 1 26": [
+[
+0,
+"Anuncióndoos",
+"anunciandoos",
+5
+]
+],
+"COL 2 1": [
+[
+21,
+"todawéa",
+"todavia",
+6
+]
+],
+"COL 2 11": [
+[
+24,
+"ereuneision",
+"circuncision",
+5
+]
+],
+"COL 2 15": [
+[
+17,
+"Jeyolos",
+"llevolos",
+3
+]
+],
+"COL 3 15": [
+[
+10,
+"divinz",
+"divina",
+6
+]
+],
+"COL 3 16": [
+[
+37,
+"edifietcton",
+"edificacion",
+4
+]
+],
+"COL 3 17": [
+[
+26,
+"emacias",
+"gracias",
+6
+]
+],
+"COL 4 4": [
+[
+9,
+"frme",
+"firme",
+4
+]
+],
+"COL 4 6": [
+[
+16,
+"acertels",
+"acerteis",
+5
+]
+],
+"COL 4 9": [
+[
+13,
+"compatriotu,",
+"compatriota",
+6
+]
+],
+"COL 4 11": [
+[
+11,
+"cireuneisos",
+"circuncisos",
+2
+],
+[
+26,
+"anuncior",
+"anunciar",
+3
+]
+],
+"1TH 1 3": [
+[
+0,
+"acordaándonos",
+"acordandonos",
+4
+]
+],
+"1TH 2 8": [
+[
+20,
+"Zasta",
+"hasta",
+5
+]
+],
+"1TH 2 15": [
+[
+33,
+"SOÍVucion",
+"salvacion",
+4
+]
+],
+"1TH 4 10": [
+[
+20,
+"crezcads",
+"crezcais",
+2
+]
+],
+"1TH 4 16": [
+[
+33,
+"priIMEeros.",
+"primeros",
+4
+]
+],
+"1TH 5 13": [
+[
+9,
+"eonservad",
+"conservad",
+4
+]
+],
+"1TH 5 20": [
+[
+4,
+"epreciadias",
+"apreciadlas",
+5
+]
+],
+"1TH 5 21": [
+[
+13,
+"Evangebto.",
+"evangelio",
+5
+]
+],
+"2TH 2 10": [
+[
+10,
+"imquidad",
+"iniquidad",
+6
+]
+],
+"2TH 2 11": [
+[
+20,
+"imjusÍiCvO.",
+"injusticia",
+2
+]
+],
+"2TH 3 13": [
+[
+7,
+"cansels",
+"canseis",
+6
+]
+],
+"2TH 3 14": [
+[
+22,
+"avergiience",
+"averguence",
+3
+]
+],
+"1TI 1 3": [
+[
+23,
+"ensenñasen",
+"ensenasen",
+6
+],
+[
+28,
+"NUESIVO",
+"nuestra",
+5
+]
+],
+"1TI 1 13": [
+[
+17,
+"l9norancia",
+"ignorancia",
+5
+]
+],
+"1TI 2 6": [
+[
+15,
+"ambiguas",
+"antiguas",
+4
+]
+],
+"1TI 2 14": [
+[
+9,
+"encañada",
+"enganada",
+5
+]
+],
+"1TI 3 8": [
+[
+9,
+"mor?gerados,",
+"morigerados",
+2
+],
+[
+24,
+"eranjería",
+"granjeria",
+2
+]
+],
+"1TI 3 13": [
+[
+8,
+"granjearán",
+"grangearan",
+4
+]
+],
+"1TI 3 15": [
+[
+17,
+"loelesia",
+"iglesia",
+6
+]
+],
+"1TI 4 3": [
+[
+20,
+"eyracias",
+"gracias",
+6
+]
+],
+"1TI 4 4": [
+[
+22,
+"praclas",
+"gracias",
+4
+]
+],
+"1TI 5 10": [
+[
+8,
+"haeducado",
+"ha educado",
+2
+]
+],
+"1TI 5 16": [
+[
+37,
+"desuwnparadas.",
+"desamparadas",
+4
+]
+],
+"1TI 5 19": [
+[
+7,
+"deposlcion",
+"deposicion",
+5
+]
+],
+"1TI 6 3": [
+[
+13,
+"imstrueciones",
+"instrucciones",
+2
+]
+],
+"1TI 6 6": [
+[
+17,
+"tivir.",
+"vivir",
+5
+]
+],
+"1TI 6 10": [
+[
+28,
+"ajlicciones.",
+"aflicciones",
+4
+]
+],
+"2TI 2 13": [
+[
+4,
+"¿njieles,",
+"infieles",
+5
+]
+],
+"2TI 2 20": [
+[
+41,
+"Iglesto.",
+"iglesia",
+4
+]
+],
+"2TI 2 24": [
+[
+0,
+"Alsieryo",
+"siervo",
+6
+]
+],
+"2TI 3 14": [
+[
+2,
+"vmado",
+"amado",
+3
+]
+],
+"2TI 4 3": [
+[
+26,
+"Tecurrirán",
+"recurriran",
+4
+]
+],
+"2TI 4 19": [
+[
+11,
+"Onesfphoro.",
+"onesiphoro",
+2
+]
+],
+"TIT 1 5": [
+[
+17,
+"falten,",
+"faltan",
+2
+]
+],
+"TIT 1 9": [
+[
+27,
+"redargilr",
+"redarguir",
+5
+]
+],
+"TIT 1 12": [
+[
+14,
+"Oretenses",
+"cretenses",
+4
+]
+],
+"TIT 2 2": [
+[
+8,
+"constuntes",
+"constantes",
+4
+]
+],
+"TIT 2 12": [
+[
+15,
+"religlosamente",
+"religiosamente",
+5
+]
+],
+"TIT 3 8": [
+[
+7,
+"arraiguels",
+"arraigues",
+4
+]
+],
+"TIT 3 13": [
+[
+6,
+"Zonas",
+"zenas",
+2
+]
+],
+"PHM 1 4": [
+[
+8,
+"Phalemon,",
+"filemon",
+3
+]
+],
+"PHM 1 13": [
+[
+19,
+"Evansello",
+"evangelio",
+4
+]
+],
+"PHM 1 14": [
+[
+17,
+"yolunbarto.",
+"voluntario",
+3
+]
+],
+"HEB 1 2": [
+[
+29,
+"evanto",
+"cuanto",
+4
+],
+[
+31,
+"cxistido",
+"existido",
+5
+]
+],
+"HEB 1 8": [
+[
+8,
+"tuyo¡oh",
+"tuyo oh",
+4
+]
+],
+"HEB 1 10": [
+[
+12,
+"eres¡oh",
+"eres oh",
+3
+]
+],
+"HEB 2 3": [
+[
+0,
+"¿Cómoleevitaremos",
+"evitaremos",
+5
+]
+],
+"HEB 3 10": [
+[
+0,
+"Yosobrellevé",
+"sobrelleve",
+4
+]
+],
+"HEB 5 4": [
+[
+0,
+"Ninadiese",
+"se",
+4
+],
+[
+1,
+"apropie",
+"apropia",
+2
+]
+],
+"HEB 5 7": [
+[
+8,
+"mMmorial,",
+"mortal",
+4
+],
+[
+10,
+"plegarlas",
+"plegarias",
+2
+]
+],
+"HEB 5 11": [
+[
+19,
+"fojedad",
+"flojedad",
+6
+]
+],
+"HEB 6 12": [
+[
+21,
+"lasga",
+"larga",
+4
+]
+],
+"HEB 7 6": [
+[
+23,
+"promesas?Y",
+"promesas y",
+4
+]
+],
+"HEB 7 7": [
+[
+0,
+"Yeno",
+"no",
+4
+]
+],
+"HEB 9 3": [
+[
+15,
+"Sanecta",
+"sancta",
+2
+]
+],
+"HEB 10 1": [
+[
+50,
+"SACriACaT",
+"sacrifican",
+4
+]
+],
+"HEB 10 25": [
+[
+24,
+"vyecino",
+"vecino",
+4
+]
+],
+"HEB 10 28": [
+[
+1,
+"queprevarique",
+"prevarique",
+6
+]
+],
+"HEB 10 34": [
+[
+10,
+"Jllevasteis",
+"llevasteis",
+4
+]
+],
+"HEB 11 14": [
+[
+6,
+"esta:suerte,",
+"esta suerte",
+3
+]
+],
+"HEB 11 35": [
+[
+25,
+"mejoren",
+"mejor en",
+5
+]
+],
+"HEB 12 1": [
+[
+12,
+"descareándonos",
+"descargandonos",
+6
+]
+],
+"HEB 12 2": [
+[
+33,
+"¡onominia,",
+"ignominia",
+6
+]
+],
+"HEB 12 7": [
+[
+3,
+"o0guantad",
+"aguantad",
+4
+]
+],
+"HEB 12 12": [
+[
+7,
+"lóngwidas",
+"languidas",
+4
+]
+],
+"HEB 12 27": [
+[
+14,
+"¿mstables",
+"instables",
+4
+]
+],
+"HEB 12 28": [
+[
+21,
+"acradando",
+"agradando",
+3
+]
+],
+"HEB 13 8": [
+[
+12,
+"slelos",
+"siglos",
+4
+]
+],
+"HEB 13 13": [
+[
+9,
+"alojaren",
+"alojamientos",
+2
+]
+],
+"JAS 1 16": [
+[
+4,
+"engañels",
+"enganeis",
+4
+]
+],
+"JAS 2 4": [
+[
+7,
+"¿nmjusto",
+"injusto",
+3
+]
+],
+"JAS 3 12": [
+[
+0,
+"O¿puede,",
+"puede",
+6
+]
+],
+"JAS 4 2": [
+[
+22,
+"alcanzals,",
+"alcanzais",
+4
+]
+],
+"JAS 4 14": [
+[
+4,
+"lenorais",
+"ignorais",
+4
+]
+],
+"JAS 4 15": [
+[
+0,
+"Porque¿qué",
+"que",
+4
+]
+],
+"JAS 4 16": [
+[
+15,
+"jactuncio",
+"jactancia",
+4
+]
+],
+"JAS 5 1": [
+[
+1,
+"pues¡oh",
+"oh",
+4
+],
+[
+15,
+"sobreyeniros",
+"sobreveniros",
+6
+]
+],
+"JAS 5 2": [
+[
+9,
+"roldas",
+"roidas",
+5
+]
+],
+"JAS 5 4": [
+[
+6,
+"pagastels",
+"pagasteis",
+6
+]
+],
+"1PE 1 13": [
+[
+6,
+"morlgerado",
+"morigerado",
+3
+]
+],
+"1PE 2 15": [
+[
+10,
+"tapels",
+"tapeis",
+6
+],
+[
+21,
+"¿m8enSatos",
+"insensatos",
+3
+]
+],
+"1PE 2 23": [
+[
+11,
+"prorumpla",
+"prorumpia",
+4
+]
+],
+"1PE 3 14": [
+[
+22,
+"conturbels.",
+"conturbeis",
+5
+]
+],
+"1PE 3 16": [
+[
+7,
+"cireunspeecion,",
+"circunspeccion",
+4
+]
+],
+"1PE 4 7": [
+[
+26,
+"Jervorosas.",
+"fervorosas",
+6
+]
+],
+"1PE 5 1": [
+[
+12,
+"copresbítero",
+"compresbitero",
+5
+]
+],
+"1PE 5 7": [
+[
+3,
+"«Wmoroso",
+"amoroso",
+5
+],
+[
+7,
+"solicibudes,",
+"solicitudes",
+4
+]
+],
+"1PE 5 12": [
+[
+33,
+"permanecels",
+"permaneceis",
+5
+]
+],
+"2PE 1 10": [
+[
+53,
+"pecarels",
+"pecareis",
+4
+]
+],
+"2PE 1 12": [
+[
+7,
+"adyertiros",
+"advertiros",
+6
+]
+],
+"2PE 1 13": [
+[
+13,
+"everpo",
+"cuerpo",
+5
+]
+],
+"2PE 2 6": [
+[
+20,
+"ylyirán",
+"viviran",
+4
+]
+],
+"2PE 2 12": [
+[
+32,
+"vereonzosos",
+"vergonzosos",
+4
+]
+],
+"2PE 2 14": [
+[
+19,
+"/igeras",
+"ligeras",
+3
+]
+],
+"2PE 2 18": [
+[
+25,
+"conpañíe",
+"compania",
+6
+]
+],
+"2PE 3 8": [
+[
+6,
+"lenorar",
+"ignorar",
+5
+]
+],
+"1JN 2 1": [
+[
+0,
+"Flijos",
+"hijitos",
+4
+]
+],
+"1JN 2 21": [
+[
+6,
+"ljenorantes",
+"ignorantes",
+4
+]
+],
+"1JN 2 23": [
+[
+18,
+"PeConoOce",
+"reconoce",
+5
+]
+],
+"1JN 2 27": [
+[
+37,
+"verdall,",
+"verdad",
+6
+]
+],
+"1JN 3 13": [
+[
+0,
+"Noextrañeis,",
+"extraneis",
+4
+]
+],
+"1JN 3 18": [
+[
+18,
+"sincerumente",
+"sinceramente",
+4
+]
+],
+"1JN 4 8": [
+[
+3,
+"esfe",
+"este",
+6
+]
+],
+"1JN 4 12": [
+[
+13,
+"amor.suyo,",
+"amor suyo",
+2
+]
+],
+"3JN 1 5": [
+[
+0,
+"COarísimo",
+"carisimo",
+5
+],
+[
+1,
+"mvio,",
+"mio",
+3
+]
+],
+"JUD 1 3": [
+[
+28,
+"valerosumente",
+"valerosamente",
+5
+]
+],
+"JUD 1 4": [
+[
+36,
+"desentrenada",
+"desenfrenada",
+2
+]
+],
+"JUD 1 15": [
+[
+6,
+"áredarguir",
+"a redarguir",
+4
+]
+],
+"JUD 1 19": [
+[
+13,
+"Jesu-Cluristo,",
+"jesuchristo",
+3
+]
+],
+"REV 1 5": [
+[
+34,
+"layó",
+"lavo",
+4
+]
+],
+"REV 1 15": [
+[
+8,
+"fumndido",
+"fundido",
+4
+]
+],
+"REV 2 12": [
+[
+7,
+"Péreamo",
+"pergamo",
+5
+]
+],
+"REV 2 25": [
+[
+0,
+"Peroguardad",
+"guardad",
+6
+]
+],
+"REV 3 9": [
+[
+0,
+"Yovoyátraer",
+"traer",
+3
+]
+],
+"REV 3 13": [
+[
+11,
+"Toelesias.",
+"iglesias",
+4
+]
+],
+"REV 5 11": [
+[
+0,
+"Vítambien,",
+"tambien",
+6
+]
+],
+"REV 6 12": [
+[
+0,
+"Víasimismo",
+"asimismo",
+2
+]
+],
+"REV 6 14": [
+[
+22,
+"lucsares",
+"lugares",
+3
+]
+],
+"REV 7 15": [
+[
+11,
+"Gblabúndole",
+"alabandole",
+4
+]
+],
+"REV 8 1": [
+[
+9,
+"sigulóse",
+"siguiose",
+3
+]
+],
+"REV 8 3": [
+[
+0,
+"Vinoentonces",
+"entonces",
+5
+]
+],
+"REV 8 12": [
+[
+35,
+"oseurecieron",
+"oscurecieron",
+3
+]
+],
+"REV 9 2": [
+[
+26,
+"oseurecidos",
+"oscurecidos",
+4
+]
+],
+"REV 9 17": [
+[
+23,
+"cúrdenas,",
+"cardenas",
+5
+]
+],
+"REV 10 1": [
+[
+0,
+"Vítambien",
+"tambien",
+4
+],
+[
+12,
+"y-sobre",
+"y sobre",
+5
+]
+],
+"REV 12 11": [
+[
+23,
+"eonfesado,",
+"confesado",
+3
+]
+],
+"REV 13 14": [
+[
+5,
+"embuucó",
+"embauco",
+3
+]
+],
+"REV 14 2": [
+[
+31,
+"tahlan",
+"tanian",
+4
+]
+],
+"REV 14 9": [
+[
+0,
+"Alestos",
+"estos",
+5
+]
+],
+"REV 15 7": [
+[
+14,
+"oro,-llenos",
+"oro llenos",
+6
+]
+],
+"REV 16 7": [
+[
+20,
+"julClos.",
+"juicios",
+4
+]
+],
+"REV 16 14": [
+[
+22,
+"coligrarlos",
+"coligarlos",
+5
+]
+],
+"REV 16 17": [
+[
+0,
+"Enjfin",
+"fin",
+5
+]
+],
+"REV 16 18": [
+[
+1,
+"siguléronse",
+"siguieronse",
+6
+]
+],
+"REV 18 3": [
+[
+8,
+"1rritante",
+"irritante",
+2
+]
+],
+"REV 18 19": [
+[
+7,
+"prorumplieron",
+"prorumpieron",
+5
+]
+],
+"REV 18 21": [
+[
+21,
+"ímpebo",
+"impetu",
+6
+]
+],
+"REV 18 22": [
+[
+16,
+"Huuta,",
+"flauta",
+6
+],
+[
+37,
+"atabona:",
+"atahona",
+5
+]
+],
+"REV 18 23": [
+[
+11,
+"olrse",
+"oirse",
+4
+]
+],
+"REV 19 5": [
+[
+22,
+"gralides.",
+"grandes",
+5
+]
+],
+"REV 19 7": [
+[
+0,
+"Gocémonos,",
+"gozemonos",
+4
+],
+[
+27,
+"atuviud.",
+"ataviada",
+3
+]
+],
+"REV 19 9": [
+[
+3,
+"4mgel:",
+"angel",
+5
+]
+],
+"REV 19 13": [
+[
+6,
+"selpicada",
+"salpicada",
+6
+]
+],
+"REV 19 17": [
+[
+28,
+"eongsregaos",
+"congregaos",
+5
+]
+],
+"REV 20 3": [
+[
+25,
+"complan",
+"cumplan",
+5
+]
+],
+"REV 20 9": [
+[
+8,
+"consamió:",
+"consumio",
+5
+]
+]
+}
+}
