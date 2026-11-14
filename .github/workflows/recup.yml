@@ -1,0 +1,19 @@
+name: Récupération Torres Amat
+on:
+  push: { branches: [recup-torres-amat], paths: ["tools/recup/**", ".github/workflows/recup.yml"] }
+permissions: { contents: write }
+concurrency: { group: recup-torres, cancel-in-progress: true }
+jobs:
+  recup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Récupération des versets manquants depuis l'OCR brut
+        run: python3 tools/recup/recup_torres.py public/bible tools/recup/recuperes.json
+      - name: Enregistrer
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/recup/recuperes.json && git commit -qm "Versets Torres Amat récupérés [skip ci]" && git push -q
