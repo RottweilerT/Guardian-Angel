@@ -82,7 +82,13 @@ def charger_geofabrik(dossier):
         log("    téléchargement de l'extrait Geofabrik Île-de-France…")
         urllib.request.urlretrieve(GEOFABRIK, pbf)
     sh("osmium", "getid", "-r", "-O", pbf, "r7444", "-o", os.path.join(w, "limite.osm.pbf"))
-    sh("osmium", "export", "-O", os.path.join(w, "limite.osm.pbf"), "-o", os.path.join(w, "limite.geojson"), "--geometry-types=polygon")
+    sh("osmium", "export", "-O", "-a", "type,id", os.path.join(w, "limite.osm.pbf"), "-o", os.path.join(w, "limite_tout.geojson"), "--geometry-types=polygon")
+    # getid -r ramène aussi les sous-zones (arrondissements) : ne garder que la relation 7444 elle-même
+    with open(os.path.join(w, "limite_tout.geojson"), encoding="utf-8") as f: lt = json.load(f)
+    paris = [ft for ft in lt["features"] if ft["properties"].get("@type") == "relation" and int(ft["properties"].get("@id", 0)) == 7444]
+    if len(paris) != 1: raise RuntimeError("limite officielle de Paris (relation 7444) introuvable dans l'extrait")
+    paris[0]["properties"] = {"name": "Paris"}
+    with open(os.path.join(w, "limite.geojson"), "w", encoding="utf-8") as f: json.dump({"type": "FeatureCollection", "features": paris}, f)
     sh("osmium", "extract", "-O", "-s", "smart", "-p", os.path.join(w, "limite.geojson"), pbf, "-o", os.path.join(w, "paris.osm.pbf"))
     sh("osmium", "tags-filter", "-O", os.path.join(w, "paris.osm.pbf"), "w/highway", "nwr/amenity=place_of_worship",
        "nwr/building=church,cathedral,chapel,basilica", "-o", os.path.join(w, "filtre.osm.pbf"))
