@@ -231,6 +231,22 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Preuve / autorisation | https://github.com/seven1m/open-bibles |
 | Utilisée dans l'application | oui |
 
+### Torres Amat (1823), édition de 1882 — transcription Biblia Elim 0.9.20
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/OmarGonD/biblia-elim |
+| Titulaire des droits | Texte : Félix Torres Amat (†1847), d'après José Miguel Petisco ; transcription : projet Biblia Elim (scans Internet Archive) |
+| Type | Texte biblique |
+| Licence | Domaine public (module déclaré « Public Domain » par le projet) |
+| Date de vérification | 2026-11-14 (fiche du module (modulos/mods.d/torresamat.conf : DistributionLicense=Public Domain), consultée le 2026-11-14) |
+| Conditions | Texte du domaine public ; la source de la transcription est citée. Transcription automatique non entièrement relue, signalée dans l'application. |
+| Attribution requise | — |
+| Usage commercial | autorisé |
+| Statut | `PUBLIC_DOMAIN` |
+| Preuve / autorisation | https://archive.org/details/la-sagrada-biblia-vulgata-tomo-iiv_202111 |
+| Utilisée dans l'application | oui |
+
 ## Ressources non intégrées — AUTORISATION À DEMANDER AVANT INTÉGRATION
 
 ### Traduction liturgique française (Missel romain, lectionnaire, Bible de la liturgie)

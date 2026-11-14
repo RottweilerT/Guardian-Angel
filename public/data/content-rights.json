@@ -370,6 +370,22 @@
    "preuve": "https://github.com/seven1m/open-bibles",
    "utilise": true,
    "demander_a": ""
+  },
+  {
+   "nom": "Torres Amat (1823), édition de 1882 — transcription Biblia Elim 0.9.20",
+   "reference": "https://github.com/OmarGonD/biblia-elim",
+   "titulaire": "Texte : Félix Torres Amat (†1847), d'après José Miguel Petisco ; transcription : projet Biblia Elim (scans Internet Archive)",
+   "type": "Texte biblique",
+   "licence": "Domaine public (module déclaré « Public Domain » par le projet)",
+   "verifie_le": "2026-11-14",
+   "mode_verification": "fiche du module (modulos/mods.d/torresamat.conf : DistributionLicense=Public Domain), consultée le 2026-11-14",
+   "conditions": "Texte du domaine public ; la source de la transcription est citée. Transcription automatique non entièrement relue, signalée dans l'application.",
+   "attribution": "",
+   "usage_commercial": true,
+   "statut": "PUBLIC_DOMAIN",
+   "preuve": "https://archive.org/details/la-sagrada-biblia-vulgata-tomo-iiv_202111",
+   "utilise": true,
+   "demander_a": ""
   }
  ]
 }

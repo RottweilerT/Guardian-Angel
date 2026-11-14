@@ -3,7 +3,8 @@
 import { esc, $ } from "../ui.js";
 import * as store from "../store.js";
 
-const LANGUES = { fr: "Français", en: "English", la: "Latina" };
+const LANGUES = { fr: "Français", en: "English", es: "Español", la: "Latina" };
+const MANQUE = `<span class="muted small">[verset pas encore transcrit]</span>`;
 let indexP = null;
 const cache = new Map();
 const loadIndex = () => (indexP ||= fetch("/bible/index.json").then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }).catch(e => { indexP = null; throw e; }));
@@ -57,7 +58,7 @@ export default async function bible(el, params) {
     <button class="btn ghost sm" id="bnext"${c >= nch ? " disabled" : ""}>Chapitre ${c < nch ? c + 1 : ""} →</button>
   </div>
   <div class="notice small" style="margin-top:18px"><strong>Textes :</strong><br>${ix.versions.map(x => `${esc(LANGUES[x.code])} — ${esc(x.titre)}, ${esc(x.tradition)}. ${esc(x.licence)}.`).join("<br>")}
-  <br>Trois traductions catholiques complètes (73 livres ; * = livre deutérocanonique), psaumes numérotés selon la Vulgate. Espagnol : aucune traduction catholique libre de droits n'est encore disponible sous forme numérique exploitable.</div>`;
+  <br>Quatre traductions catholiques (73 livres ; * = livre deutérocanonique), psaumes numérotés selon la Vulgate.</div>`;
 
   $("#bl", el).onchange = e => go(v, e.target.value, 1);
   $("#bc", el).onchange = e => go(v, b, e.target.value);
@@ -70,8 +71,9 @@ export default async function bible(el, params) {
     const ch = await loadBook(v, b);
     if (!document.body.contains(box)) return;
     const vv = ch && ch[c - 1];
-    box.innerHTML = vv && vv.length ? `<h2 class="sec serif">${esc(livre(version(ix, v), b)[1])} ${c}</h2><div class="card serif" style="line-height:1.75" lang="${v}">
-      ${vv.map(([n, t]) => `<span id="v${esc(n)}"${n === String(vs) ? ' style="background:var(--bg-soft);outline:2px solid var(--accent);border-radius:3px"' : ""}>${num(n)}${esc(t)} </span>`).join("")}</div>`
+    const avis = v === "es" ? `<div class="notice small">Transcription automatique de l'édition de 1882, en cours de correction : quelques coquilles et environ 5 % de versets manquants. En cas de doute, comparez avec le latin (bouton « Côte à côte »).</div>` : "";
+    box.innerHTML = vv && vv.length ? avis + `<h2 class="sec serif">${esc(livre(version(ix, v), b)[1])} ${c}</h2><div class="card serif" style="line-height:1.75" lang="${v}">
+      ${vv.map(([n, t]) => `<span id="v${esc(n)}"${n === String(vs) ? ' style="background:var(--bg-soft);outline:2px solid var(--accent);border-radius:3px"' : ""}>${num(n)}${t ? esc(t) : MANQUE} </span>`).join("")}</div>`
       : `<div class="empty">Ce chapitre n'est pas disponible dans cette version.</div>`;
   } else {
     const chs = await Promise.all(ix.versions.map(x => (livre(x, b) ? loadBook(x.code, b) : Promise.resolve(null))));
@@ -80,7 +82,7 @@ export default async function bible(el, params) {
     const nums = [...new Set(per.flatMap(m => [...m.keys()]))].sort((a, z) => parseInt(a, 10) - parseInt(z, 10) || a.localeCompare(z));
     box.innerHTML = `<h2 class="sec serif">${esc(L[1])} ${c}</h2>` + (nums.length ? nums.map(n => `<div class="card" id="v${esc(n)}" style="padding:10px 14px${n === String(vs) ? ";outline:2px solid var(--accent)" : ""}">
       <div class="small muted" style="margin-bottom:4px">Verset ${esc(n)}</div>
-      ${ix.versions.map((x, i) => `<p class="serif" lang="${x.code}" style="margin:4px 0"><span class="chip" style="margin-right:6px">${x.code.toUpperCase()}</span>${per[i].has(n) ? esc(per[i].get(n)) : `<span class="muted small">${livre(x, b) ? "—" : "livre absent de cette version"}</span>`}</p>`).join("")}</div>`).join("")
+      ${ix.versions.map((x, i) => `<p class="serif" lang="${x.code}" style="margin:4px 0"><span class="chip" style="margin-right:6px">${x.code.toUpperCase()}</span>${per[i].get(n) ? esc(per[i].get(n)) : per[i].has(n) ? MANQUE : `<span class="muted small">${livre(x, b) ? "—" : "livre absent de cette version"}</span>`}</p>`).join("")}</div>`).join("")
       : `<div class="empty">Chapitre indisponible.</div>`);
   }
   if (vs) { const t = document.getElementById("v" + vs); if (t) t.scrollIntoView({ block: "center" }); }

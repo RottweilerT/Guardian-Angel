@@ -39,11 +39,37 @@ def fillion(path, meta):
         livres.setdefault(r["book"], (nom, {}))[1].setdefault(int(r["chapter"]), []).append([str(r["verse"]), sp(r["text"])])
     return livres
 
+OSIS = dict(zip("Gen Exod Lev Num Deut Josh Judg Ruth 1Sam 2Sam 1Kgs 2Kgs 1Chr 2Chr Ezra Neh Tob Jdt Esth 1Macc 2Macc Job Ps Prov Eccl Song Wis Sir Isa Jer Lam Bar Ezek Dan Hos Joel Amos Obad Jonah Mic Nah Hab Zeph Hag Zech Mal Matt Mark Luke John Acts Rom 1Cor 2Cor Gal Eph Phil Col 1Thess 2Thess 1Tim 2Tim Titus Phlm Heb Jas 1Pet 2Pet 1John 2John 3John Jude Rev".split(), ORDRE))
+
+def sqlite_sword(path):
+    import sqlite3
+    c = sqlite3.connect(path); livres = {}
+    noms = {i: (o, n) for i, o, n in c.execute("select book_id, osis, name from books")}
+    for bid, ch, v, t in c.execute("select book_id, chapter, verse, text from verses order by book_id, chapter, verse"):
+        o, n = noms[bid]; t = sp(t or "")
+        # coquilles d'OCR sûres : « á » et « ó » isolés lus comme 4 et 0
+        t = re.sub(r"(?<!\S)[¿¡]?4(?=\s)", "á", t); t = re.sub(r"(?<!\S)[¿¡]?0(?=\s)", "ó", t)
+        if o in OSIS and t: livres.setdefault(OSIS[o], (n, {}))[1].setdefault(int(ch), []).append([str(v), t])
+    return livres
+
+def completer(livres, ref):
+    """Ajoute, vides, les versets présents dans la version de référence (Vulgate) mais absents : « non encore transcrit »."""
+    for b, (nom, chap) in livres.items():
+        if b not in ref: continue
+        for c, rvs in ref[b][1].items():
+            have = {v for v, _ in chap.get(c, [])}
+            manq = [[v, ""] for v, _ in rvs if v not in have]
+            if manq: chap[c] = sorted(chap.get(c, []) + manq, key=lambda x: (int(re.sub(r"\D.*", "", x[0]) or 0), x[0]))
+    return livres
+
 VERSIONS = [
   ("fr", "Bible Fillion (1904)", "français", "catholique", "Domaine public — édition numérique CC0 (github.com/janvier-s/bible-fillion)",
    lambda: fillion(f"{SRC}/janvier-s_bible-fillion/formats/json-flat/fillion-array-of-objects.json", f"{SRC}/janvier-s_bible-fillion/metadata/books.json")),
   ("en", "Douay-Rheims (1899, American Edition)", "English", "catholique", "Domaine public — via github.com/seven1m/open-bibles (eBible.org)",
    lambda: usfx(f"{SRC}/open-bibles/eng-dra.usfx.xml")),
+  ("es", "Torres Amat (1823), édition de 1882", "español", "catholique",
+   "Domaine public (Torres Amat † 1847) — texte reconstruit par reconnaissance optique de l'édition de 1882 (Internet Archive) par le projet Biblia Elim (github.com/OmarGonD/biblia-elim, version 0.9.20). Transcription non entièrement relue : quelques coquilles et environ 5 % de versets manquants",
+   lambda: completer(sqlite_sword(f"{SRC}/biblia-elim/modulos/sqlite/TorresAmat.sqlite"), usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml"))),
   ("la", "Vulgata Clementina", "latine", "catholique", "Domaine public — via github.com/seven1m/open-bibles",
    lambda: usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml")),
 ]
