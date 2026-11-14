@@ -304,7 +304,8 @@ def ecrire(path, obj):
 
 def verifier(fc):
     """Contrôles : structure GeoJSON, types de géométrie, coordonnées dans l'emprise de Paris, anneaux fermés, identifiants uniques."""
-    err = []; ids = set(); s, o, n, e = BBOX
+    err = []; ids = set(); s, o, n, e = BBOX; m = 0.03  # marge : tronçons qui franchissent la limite (bois, périphérique)
+    s, o, n, e = s - m, o - m, n + m, e + m
     def coords_ok(c):
         return isinstance(c, list) and len(c) == 2 and all(isinstance(v, (int, float)) for v in c) and o <= c[0] <= e and s <= c[1] <= n
     for f in fc["features"]:
@@ -409,6 +410,7 @@ def finir(o, date, arrs, er, ee, mode_r, mode_e):
     if erreurs: L += ["## Erreurs détectées", ""] + [f"- {x}" for x in erreurs[:200]]
     with open(os.path.join(o.dossier, "rapport_extraction.md"), "w", encoding="utf-8") as f: f.write("\n".join(L) + "\n")
     log(f"Terminé : {len(R)} tronçons ({len(noms)} noms), {len(E)} églises, {len(erreurs)} erreur(s).")
+    for x in erreurs[:10]: print(f"::error::{x}", flush=True)
     if erreurs: sys.exit(1)
 
 if __name__ == "__main__":
