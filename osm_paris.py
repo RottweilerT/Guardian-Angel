@@ -80,8 +80,12 @@ def charger_geofabrik(dossier):
     sh("osmium", "export", "-O", os.path.join(w, "limite.osm.pbf"), "-o", os.path.join(w, "limite.geojson"), "--geometry-types=polygon")
     sh("osmium", "extract", "-O", "-s", "smart", "-p", os.path.join(w, "limite.geojson"), pbf, "-o", os.path.join(w, "paris.osm.pbf"))
     sh("osmium", "tags-filter", "-O", os.path.join(w, "paris.osm.pbf"), "w/highway", "nwr/amenity=place_of_worship",
-       "nwr/building=church,cathedral,chapel,basilica", "r/admin_level=9", "-o", os.path.join(w, "filtre.osm.pbf"))
-    sh("osmium", "export", "-O", "-a", "type,id", "-f", "geojsonseq", os.path.join(w, "filtre.osm.pbf"), "-o", os.path.join(w, "filtre.geojsonseq"))
+       "nwr/building=church,cathedral,chapel,basilica", "-o", os.path.join(w, "filtre.osm.pbf"))
+    # Arrondissements : pris dans l'extrait complet (le découpage sur la limite de Paris couperait leurs contours extérieurs)
+    sh("osmium", "tags-filter", "-O", pbf, "r/admin_level=9", "-o", os.path.join(w, "arr.osm.pbf"))
+    sh("osmium", "cat", "-O", os.path.join(w, "filtre.osm.pbf"), os.path.join(w, "arr.osm.pbf"), "-o", os.path.join(w, "tout.osm.pbf"))
+    sh("osmium", "sort", "-O", os.path.join(w, "tout.osm.pbf"), "-o", os.path.join(w, "tout_trie.osm.pbf"))
+    sh("osmium", "export", "-O", "-a", "type,id", "-f", "geojsonseq", os.path.join(w, "tout_trie.osm.pbf"), "-o", os.path.join(w, "filtre.geojsonseq"))
     ll = lambda c: {"lon": c[0], "lat": c[1]}
     arrs, rues_e, egl_e = [], [], []
     with open(os.path.join(w, "filtre.geojsonseq"), encoding="utf-8") as f:
