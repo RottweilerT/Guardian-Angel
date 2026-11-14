@@ -1,6 +1,7 @@
 import { esc, $, toast, today, frDate, norm, loadChurches, churchLabel } from "../ui.js";
 import * as store from "../store.js";
 import { cloud } from "../cloud.js";
+import { passageLinks } from "./bible.js";
 
 const CATS = ["Messe", "Prière", "Lecture", "Retraite", "Autre"];
 let q = "", cat = "";
@@ -14,7 +15,7 @@ export default function journal(el, params) {
   el.innerHTML = `
   <section class="hero"><div class="kicker">Privé</div><h1>Journal spirituel</h1>
     <p>${store.isCloud() ? "Synchronisé avec votre compte, visible de vous seul." : "Enregistré sur cet appareil uniquement." + (cloud.ready ? ' <a href="#/profil">Se connecter</a> pour le retrouver partout.' : "")}</p><span class="orn"></span></section>
-  <div class="row between"><a class="btn" href="#/journal/nouveau">+ Nouvelle entrée</a><span class="small muted">${all.length} entrée${all.length > 1 ? "s" : ""}</span></div>
+  <div class="row between"><span class="row" style="gap:8px"><a class="btn" href="#/journal/nouveau">+ Nouvelle entrée</a><a class="btn gold" href="#/bible">📖 La Bible</a></span><span class="small muted">${all.length} entrée${all.length > 1 ? "s" : ""}</span></div>
   <div class="row" style="margin-top:12px">
     <input type="search" id="jq" placeholder="Rechercher dans mon journal…" aria-label="Rechercher" value="${esc(q)}" style="flex:2;min-width:180px">
     <select id="jc" aria-label="Catégorie" style="flex:1;min-width:120px"><option value="">Toutes</option>${CATS.map(c => `<option${c === cat ? " selected" : ""}>${c}</option>`).join("")}</select>
@@ -45,11 +46,14 @@ async function editor(el, id, churchId) {
     <datalist id="dl">${list.slice(0, 600).map(c => c.name ? `<option value="${esc(c.name)}">` : "").join("")}</datalist>
     <label for="fn">Notes (homélie, ce que je retiens)</label><textarea id="fn" maxlength="20000">${esc(v.notes || "")}</textarea>
     <label for="fp">Passages bibliques (ex. : Mt 25, 1-13 ; Ps 62)</label><input id="fp" maxlength="500" value="${esc(v.passages || "")}">
+    <p class="small" id="fpl" style="margin:4px 0 0"></p>
     <label for="fr">Réflexions personnelles</label><textarea id="fr" maxlength="20000" style="min-height:80px">${esc(v.reflexions || "")}</textarea>
     <label for="fi">Intentions de prière</label><textarea id="fi" maxlength="5000" style="min-height:70px">${esc(v.intentions || "")}</textarea>
     <div class="row" style="margin-top:18px"><button class="btn">Enregistrer</button><a class="btn ghost" href="#/journal">Annuler</a>
       ${e ? '<span style="flex:1"></span><button type="button" class="btn danger" id="jdel">Supprimer</button>' : ""}</div>
   </form>`;
+  const fpl = async () => { const t = $("#fp", el).value.trim(), h = t ? await passageLinks(t) : ""; const o = $("#fpl", el); if (o) o.innerHTML = h.includes("<a ") ? "Ouvrir dans la Bible : " + h : `<a href="#/bible">Ouvrir la Bible</a>`; };
+  $("#fp", el).addEventListener("input", fpl); fpl();
   $("#jf", el).onsubmit = async ev => {
     ev.preventDefault();
     const eglise = $("#fe", el).value.trim(), m = list.find(c => c.name && c.name === eglise);

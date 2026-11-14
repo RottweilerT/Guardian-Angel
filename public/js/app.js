@@ -10,6 +10,7 @@ import missions from "./views/missions.js";
 import passeport, { parcours } from "./views/passeport.js";
 import profil, { sources } from "./views/profil.js";
 import notifications from "./views/notifications.js";
+import bible from "./views/bible.js";
 import { refreshOnStartup } from "./push.js";
 
 const ROUTES = {
@@ -17,7 +18,7 @@ const ROUTES = {
   missel: { v: missel, nav: "missel", theme: "bleu" }, journal: { v: journal, nav: "journal", theme: "bleu" },
   missions: { v: missions, nav: "accueil", theme: "rouge" }, passeport: { v: passeport, nav: "accueil" },
   parcours: { v: parcours, nav: "accueil", theme: "rouge" }, profil: { v: profil, nav: "profil" }, sources: { v: sources, nav: "profil" },
-  notifications: { v: notifications, nav: "profil" }
+  notifications: { v: notifications, nav: "profil" }, bible: { v: bible, nav: "journal", theme: "bleu" }
 };
 let current = null;
 

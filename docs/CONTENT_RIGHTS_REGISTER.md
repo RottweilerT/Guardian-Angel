@@ -1,13 +1,13 @@
 # CONTENT_RIGHTS_REGISTER
 
 > Généré par `npm run rights` depuis `public/data/content-rights.json` — ne pas modifier à la main.
-> Registre de suivi ; ne constitue pas un avis juridique. Mise à jour : 2026-11-11.
+> Registre de suivi ; ne constitue pas un avis juridique. Mise à jour : 2026-11-14.
 
 Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée que si son statut est `PUBLIC_DOMAIN`, `OPEN_LICENSE_VERIFIED` ou `PERMISSION_GRANTED`.
 
 ## Ressources utilisées
 
-### OpenStreetMap — lieux de culte catholiques de Paris
+### OpenStreetMap — églises et rues de Paris (extraction du 2026-11-14)
 
 | Champ | Valeur |
 | --- | --- |
@@ -15,8 +15,8 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Titulaire des droits | Contributeurs d'OpenStreetMap / Fondation OpenStreetMap |
 | Type | Base de données géographique |
 | Licence | ODbL 1.0 |
-| Date de vérification | 2026-11-11 (connaissance générale de la licence, à reconfirmer sur la source avant publication) |
-| Conditions | Attribution obligatoire ; partage à l'identique de toute base dérivée ; extraction hebdomadaire par une seule requête Overpass. |
+| Date de vérification | 2026-11-14 (connaissance générale de la licence, à reconfirmer sur la source avant publication) |
+| Conditions | Attribution « © les contributeurs d'OpenStreetMap » avec lien vers openstreetmap.org/copyright, visible sur la carte, la liste et chaque fiche ; partage à l'identique (ODbL) des bases dérivées : churches.json et rues.json sont publiés sous ODbL 1.0, et les fichiers sources sont conservés dans le dépôt public (data/osm/). Extraction : extrait Geofabrik Île-de-France découpé sur la limite officielle de Paris (relation 7444). |
 | Attribution requise | © les contributeurs d'OpenStreetMap |
 | Usage commercial | autorisé |
 | Statut | `OPEN_LICENSE_VERIFIED` |
@@ -33,7 +33,7 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Licence | ODbL 1.0 (données) — politique d'usage des tuiles |
 | Date de vérification | 2026-11-11 (connaissance générale de la licence, à reconfirmer sur la source avant publication) |
 | Conditions | Usage léger toléré, sans garantie de service ; prévoir un fournisseur de tuiles dédié avant toute montée en charge. L'adresse IP du visiteur est transmise au serveur de tuiles à l'ouverture de la carte. |
-| Attribution requise | © OpenStreetMap |
+| Attribution requise | © les contributeurs d'OpenStreetMap |
 | Usage commercial | autorisé |
 | Statut | `OPEN_LICENSE_VERIFIED` |
 | Preuve / autorisation | — |
@@ -181,6 +181,70 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Usage commercial | autorisé |
 | Statut | `OPEN_LICENSE_VERIFIED` |
 | Preuve / autorisation | — |
+| Utilisée dans l'application | oui |
+
+### Bible Fillion (1904) — édition numérique janvier-s/bible-fillion
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/janvier-s/bible-fillion |
+| Titulaire des droits | Texte : abbé Louis-Claude Fillion (†1927) ; édition numérique : janvier-s |
+| Type | Texte biblique |
+| Licence | Domaine public (texte) ; CC0 1.0 (édition numérique) |
+| Date de vérification | 2026-11-14 (licence indiquée dans le dépôt source (README / LICENSE), consultée le 2026-11-14) |
+| Conditions | Reproduction libre ; aucune attribution exigée, la source est néanmoins citée dans l'application. |
+| Attribution requise | — |
+| Usage commercial | autorisé |
+| Statut | `PUBLIC_DOMAIN` |
+| Preuve / autorisation | https://github.com/janvier-s/bible-fillion |
+| Utilisée dans l'application | oui |
+
+### Douay-Rheims (1899, American Edition) — dépôt open-bibles
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/seven1m/open-bibles |
+| Titulaire des droits | Domaine public (source eBible.org) |
+| Type | Texte biblique |
+| Licence | Domaine public |
+| Date de vérification | 2026-11-14 (licence indiquée dans le dépôt source (README / LICENSE), consultée le 2026-11-14) |
+| Conditions | Reproduction libre ; aucune attribution exigée, la source est néanmoins citée dans l'application. |
+| Attribution requise | — |
+| Usage commercial | autorisé |
+| Statut | `PUBLIC_DOMAIN` |
+| Preuve / autorisation | https://github.com/seven1m/open-bibles |
+| Utilisée dans l'application | oui |
+
+### Reina-Valera (1909) — dépôt open-bibles
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/seven1m/open-bibles |
+| Titulaire des droits | Domaine public (source eBible.org) |
+| Type | Texte biblique |
+| Licence | Domaine public |
+| Date de vérification | 2026-11-14 (licence indiquée dans le dépôt source (README / LICENSE), consultée le 2026-11-14) |
+| Conditions | Reproduction libre ; aucune attribution exigée, la source est néanmoins citée dans l'application. |
+| Attribution requise | — |
+| Usage commercial | autorisé |
+| Statut | `PUBLIC_DOMAIN` |
+| Preuve / autorisation | https://github.com/seven1m/open-bibles |
+| Utilisée dans l'application | oui |
+
+### Vulgata Clementina — dépôt open-bibles
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/seven1m/open-bibles |
+| Titulaire des droits | Domaine public |
+| Type | Texte biblique |
+| Licence | Domaine public |
+| Date de vérification | 2026-11-14 (licence indiquée dans le dépôt source (README / LICENSE), consultée le 2026-11-14) |
+| Conditions | Reproduction libre ; aucune attribution exigée, la source est néanmoins citée dans l'application. |
+| Attribution requise | — |
+| Usage commercial | autorisé |
+| Statut | `PUBLIC_DOMAIN` |
+| Preuve / autorisation | https://github.com/seven1m/open-bibles |
 | Utilisée dans l'application | oui |
 
 ## Ressources non intégrées — AUTORISATION À DEMANDER AVANT INTÉGRATION

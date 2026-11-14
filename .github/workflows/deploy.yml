@@ -43,9 +43,11 @@ jobs:
           N=$(curl -fsS "$U/data/churches.json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).churches.length))")
           curl -fsS "$U/js/app.js" | grep -q "Guardian Angel — point d'entrée"
           curl -fsS -o /dev/null "$U/vendor/leaflet/leaflet.js"
+          B=$(curl -fsS "$U/bible/index.json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).versions.map(v=>v.code+':'+v.livres.length).join(' ')))")
+          curl -fsS "$U/bible/la/JHN.json" | grep -q "In principio erat Verbum"
           R=$(curl -fsS "$U/data/rues.json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).rues.length))")
           curl -fsS "$U/sw.js" | grep -q "notificationclick"
-          echo "::notice::Site en ligne vérifié : application v2 servie, bibliothèque de carte présente, $N églises et $R noms de voies publiés."
+          echo "::notice::Site en ligne vérifié : application v2 servie, bibliothèque de carte présente, $N églises et $R noms de voies publiés ; Bible : $B."
       - name: Nettoyage
         if: always()
         run: rm -f "$RUNNER_TEMP/sa.json"
