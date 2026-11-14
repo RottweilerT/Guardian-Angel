@@ -13,6 +13,20 @@ export const CONF = { catholique: "catholique", catholic: "catholique", roman_ca
   seventh_day_adventist: "adventiste", jehovahs_witness: "Témoins de Jéhovah", liberal_catholic: "catholique libérale (hors communion romaine)",
   mariavite: "mariavite (hors communion romaine)", quaker: "quaker", christian_community: "Communauté des chrétiens",
   methodist: "méthodiste", free_evangelical: "évangélique libre", romanian_orthodox: "orthodoxe roumaine", latter_day_saints: "mormone (Saints des Derniers Jours)" };
+// Code couleur par confession exacte : une famille = une teinte, une confession = une nuance
+const COULEURS = [
+  ["catholic", "#C9A227"], ["roman_catholic", "#C9A227"], ["greek_catholic", "#E07B1F"], ["coptic_catholic", "#B5541C"], ["maronite", "#8C3B12"],
+  ["protestant", "#1F5FAD"], ["lutheran", "#3B82D6"], ["reformed", "#0E3F7A"], ["evangelical", "#2BA3C9"], ["free_evangelical", "#7CC7E0"],
+  ["baptist", "#5468C9"], ["methodist", "#8FA3E8"], ["presbyterian", "#274690"], ["anglican", "#C2185B"], ["seventh_day_adventist", "#6A4FB3"], ["quaker", "#9E9AC8"],
+  ["orthodox", "#2E7D32"], ["russian_orthodox", "#66BB6A"], ["greek_orthodox", "#00897B"], ["romanian_orthodox", "#9CCC65"], ["serbian_orthodox", "#1B5E20"],
+  ["armenian_apostolic", "#C62828"], ["", "#9E9E9E"]];
+const COUL = new Map(COULEURS);
+const couleur = c => COUL.get(c.denomination || "") || "#616161";
+const point = c => `<span aria-hidden="true" style="display:inline-block;width:11px;height:11px;border-radius:50%;background:${couleur(c)};border:1px solid rgba(0,0,0,.35);margin-right:6px;vertical-align:baseline"></span>`;
+function legende(r) {
+  const n = new Map(); r.forEach(c => { const k = c.denomination === "roman_catholic" ? "catholic" : c.denomination || ""; n.set(k, (n.get(k) || 0) + 1); });
+  return COULEURS.filter(([k]) => k !== "roman_catholic" && n.has(k)).map(([k]) => `<span class="chip" style="margin:2px">${point({ denomination: k })}${esc(k ? CONF[k] || k : "non renseignée")} · ${n.get(k)}</span>`).join("");
+}
 const confLabel = c => (c.denomination ? CONF[c.denomination] || c.denomination.replace(/_/g, " ") : "confession non renseignée");
 let leafletP = null, map = null, layer = null;
 function loadLeaflet() {
@@ -59,6 +73,7 @@ export default async function carte(el, params) {
       <label class="field-inline" style="margin:0"><input type="checkbox" id="ff"${F.fav ? " checked" : ""}> favorites</label>
     </div>
     <div id="map" role="application" aria-label="Carte des églises"></div>
+    <div id="legende" class="small" aria-label="Légende des couleurs par confession"></div>
     <p class="osm-attr">Églises et rues : données ${ATTR} (licence ODbL 1.0) — extraction du ${esc((meta.extractedAt || "").slice(0, 10) || "?")}. Le filtre par tradition liturgique, date et heure n'est pas disponible : ces informations ne figurent dans aucune source ouverte vérifiée.</p>
     <p class="small muted" id="count" aria-live="polite"></p>
     <ul class="list" id="clist"></ul>
@@ -69,11 +84,12 @@ export default async function carte(el, params) {
     suggest();
     $("#count", el).textContent = r.length + " église" + (r.length > 1 ? "s" : "") + " sur " + list.length;
     $("#clist", el).innerHTML = r.slice(0, F.limit).map(c => `<li><a href="#/eglise/${encodeURIComponent(c.id)}" style="text-decoration:none;color:inherit;display:block">
-      <strong class="serif">${esc(churchLabel(c))}</strong>${favs().includes(c.id) ? " ★" : ""}${store.get("visits", c.id) ? ' <span class="chip">visitée</span>' : ""}<br>
+      ${point(c)}<strong class="serif">${esc(churchLabel(c))}</strong>${favs().includes(c.id) ? " ★" : ""}${store.get("visits", c.id) ? ' <span class="chip">visitée</span>' : ""}<br>
       <span class="small muted">${esc([c.catholique !== true ? confLabel(c) : "", c.address, arrLabel(c.arr)].filter(Boolean).join(" · ") || "Adresse non renseignée")}${c._d != null ? " · " + (c._d < 1 ? Math.round(c._d * 1000) + " m" : c._d.toFixed(1) + " km") : ""}</span></a></li>`).join("")
       || `<li class="muted">Aucune église ne correspond à ces critères.</li>`;
     $("#more", el).hidden = r.length <= F.limit;
-    if (layer) { layer.clearLayers(); r.forEach(c => { if (c.geom) window.L.polygon(c.geom, { color: "#7A5F22", weight: 1, fillColor: "#B89549", fillOpacity: .35, interactive: false }).addTo(layer); }); r.forEach(c => window.L.circleMarker([c.lat, c.lon], { radius: 6, color: "#7A5F22", weight: 1.5, fillColor: "#B89549", fillOpacity: .85 }).bindPopup(`<strong>${esc(churchLabel(c))}</strong><br><a href="#/eglise/${encodeURIComponent(c.id)}">Voir la fiche</a>`).addTo(layer)); }
+    $("#legende", el).innerHTML = legende(r);
+    if (layer) { layer.clearLayers(); r.forEach(c => { if (c.geom) window.L.polygon(c.geom, { color: couleur(c), weight: 1, fillColor: couleur(c), fillOpacity: .3, interactive: false }).addTo(layer); }); r.forEach(c => window.L.circleMarker([c.lat, c.lon], { radius: 6, color: "#333", weight: 1, fillColor: couleur(c), fillOpacity: .9 }).bindPopup(`<strong>${esc(churchLabel(c))}</strong><br><span class="small">${point(c)}${esc(confLabel(c))}</span><br><a href="#/eglise/${encodeURIComponent(c.id)}">Voir la fiche</a>`).addTo(layer)); }
   };
   $("#fq", el).oninput = e => { F.q = e.target.value; F.limit = 40; draw(); };
   // Recherche par rue : index des voies (data/osm/rues_paris.geojson), chargé seulement quand on tape un nom
@@ -125,7 +141,7 @@ export async function eglise(el, [id]) {
     <a class="btn ghost sm" href="#/journal/nouveau/${encodeURIComponent(c.id)}">Ajouter au journal</a>
   </div>
   <div class="card"><dl class="kv">
-    <dt>Confession</dt><dd>${esc(confLabel(c))}${c.culte === false ? ` <span class="chip">lieu de culte non signalé</span>` : ""}</dd>
+    <dt>Confession</dt><dd>${point(c)}${esc(confLabel(c))}${c.culte === false ? ` <span class="chip">lieu de culte non signalé</span>` : ""}</dd>
     <dt>Adresse</dt><dd>${esc(c.address || "Non renseignée")}</dd>
     <dt>Site officiel</dt><dd>${site ? `<a href="${esc(site)}" target="_blank" rel="noopener noreferrer">${esc(new URL(site).hostname)}</a>` : "Non renseigné"}</dd>
     <dt>Accessibilité</dt><dd>${{ yes: "Accessible en fauteuil roulant", limited: "Accès partiel en fauteuil roulant", no: "Non accessible en fauteuil roulant" }[c.wheelchair] || "Non renseignée"}</dd>
