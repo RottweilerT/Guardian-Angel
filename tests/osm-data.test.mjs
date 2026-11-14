@@ -1,12 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { buildChurches, buildStreets, CATHOLIQUES } from "../scripts/build-osm-data.mjs";
+import { buildChurches, buildStreets, CATHOLIQUES, EXCLUES } from "../scripts/build-osm-data.mjs";
 const J = p => JSON.parse(readFileSync(new URL(p, import.meta.url), "utf8"));
 
 test("données OSM : églises construites depuis le fichier téléchargé", () => {
   const fc = J("../data/osm/eglises_paris.geojson"), out = buildChurches(fc, J("../data/osm/complements.json").par_osm);
-  assert.equal(out.length, fc.features.length);
+  assert.equal(out.length, fc.features.filter(f => !EXCLUES.has(f.properties.denomination)).length);
+  assert.ok(!out.some(c => EXCLUES.has(c.denomination)));
   assert.equal(new Set(out.map(c => c.id)).size, out.length);
   for (const c of out) {
     assert.ok(c.lat > 48.8 && c.lat < 48.91 && c.lon > 2.22 && c.lon < 2.47, c.id);

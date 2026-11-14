@@ -13,6 +13,8 @@ const ATTRIBUTION = "© les contributeurs d'OpenStreetMap", LICENCE = "ODbL 1.0"
 // Confessions en communion avec Rome (rite latin et Églises catholiques orientales)
 export const CATHOLIQUES = new Set(["catholic", "roman_catholic", "greek_catholic", "coptic_catholic", "maronite",
   "armenian_catholic", "chaldean_catholic", "syriac_catholic", "melkite", "ukrainian_greek_catholic", "ruthenian"]);
+// Confessions retirées de l'application (décision du 14/11/2026)
+export const EXCLUES = new Set(["jehovahs_witness", "latter_day_saints", "christian_community", "liberal_catholic", "mariavite"]);
 const LIBELLES = {
   catholic: "catholique", roman_catholic: "catholique", greek_catholic: "catholique de rite byzantin", coptic_catholic: "copte catholique",
   maronite: "maronite (catholique)", armenian_catholic: "arménienne catholique", melkite: "melkite (catholique)",
@@ -32,7 +34,7 @@ export function buildChurches(fc, comp = {}) {
   const out = [];
   for (const f of fc.features || []) {
     const p = f.properties || {}, g = f.geometry || {};
-    if (typeof p.lat !== "number" || typeof p.lon !== "number") continue;
+    if (typeof p.lat !== "number" || typeof p.lon !== "number" || EXCLUES.has(p.denomination)) continue;
     const osm = p.osm_type + "/" + p.osm_ref, x = comp[osm] || {};
     const address = clean(p.adresse ? [p.adresse, p.code_postal].filter(Boolean).join(", ") : x.address, 200);
     const c = {
