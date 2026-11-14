@@ -31,7 +31,7 @@ TYPES_VOIE = {
     "footway": "chemin piéton", "path": "sentier", "steps": "escalier", "cycleway": "piste cyclable", "track": "chemin", "busway": "voie de bus",
     "bridleway": "allée cavalière"}
 
-Q_ARR = "[out:json][timeout:180];rel[\"boundary\"=\"administrative\"][\"admin_level\"=\"9\"][\"ref:INSEE\"~\"^751\"](48.80,2.22,48.91,2.47);out tags geom;"
+Q_ARR = "[out:json][timeout:180];rel[\"boundary\"=\"administrative\"][\"admin_level\"=\"9\"][\"ref:INSEE\"~\"^751\"](48.80,2.22,48.91,2.47);out geom;"
 SEL_RUES = 'way["highway"]["name"]'
 SEL_EGL = ['nwr["amenity"="place_of_worship"]["religion"="christian"]',
            'nwr["building"~"^(church|cathedral|chapel|basilica)$"]']
@@ -41,7 +41,7 @@ def requete_eglises(area): return f"[out:json][timeout:300];area(id:{area})->.a;
 
 def log(*a): print(*a, flush=True)
 
-def overpass(q, essais=2, delai=240):
+def overpass(q, essais=4, delai=240):
     """Envoie une requête Overpass, avec plusieurs serveurs et tentatives (attente croissante)."""
     derniere = None
     for t in range(essais):
@@ -56,7 +56,7 @@ def overpass(q, essais=2, delai=240):
                 return j.get("elements", [])
             except Exception as e:
                 derniere = e; log(f"::warning::Overpass {url} : {str(e)[:200]}")
-        time.sleep(15 * (t + 1))
+        time.sleep(45 * (t + 1))                      # serveurs saturés : on laisse du temps
     raise RuntimeError(f"Overpass indisponible : {derniere}")
 
 # ---------- Géométrie ----------
@@ -109,6 +109,8 @@ def arrondissements():
         ref = e.get("tags", {}).get("ref:INSEE", "")
         ext = [[pt(g) for g in m["geometry"]] for m in e.get("members", []) if m.get("type") == "way" and m.get("role") != "inner" and m.get("geometry")]
         out.append({"n": int(ref[3:]), "insee": ref, "osm_id": e["id"], "anneaux": ext})
+    out = [a for a in out if a["anneaux"]]
+    if len(out) < 20: raise RuntimeError(f"contours d'arrondissements incomplets ({len(out)}/20)")
     out.sort(key=lambda a: a["n"])
     return out
 
@@ -278,12 +280,12 @@ def main():
             except Exception as ex: log(f"    ! requête unique refusée ({str(ex)[:120]}) : repli par arrondissement")
         els = []
         for a in arrs:
-            try: part = overpass(fabrique(3600000000 + a["osm_id"]), essais=3)
+            try: part = overpass(fabrique(3600000000 + a["osm_id"]), essais=2)
             except Exception:
                 # dernier recours : emprise rectangulaire de l'arrondissement, filtrée ensuite par le polygone
                 xs = [c[0] for r in a["anneaux"] for c in r]; ys = [c[1] for r in a["anneaux"] for c in r]
                 bb = f"({min(ys)},{min(xs)},{max(ys)},{max(xs)})"
-                part = overpass(fabrique(PARIS_AREA).replace("area(id:%d)->.a;" % PARIS_AREA, "").replace("(area.a)", bb), essais=3)
+                part = overpass(fabrique(PARIS_AREA).replace("area(id:%d)->.a;" % PARIS_AREA, "").replace("(area.a)", bb), essais=4)
             els += part
             log(f"    {a['n']:>2}e : {len(part)} éléments"); time.sleep(5)
         return els, "par arrondissement (20 requêtes, doublons supprimés)"

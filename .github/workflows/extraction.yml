@@ -3,10 +3,11 @@ on:
   push: { branches: [donnees-osm-paris], paths: ["osm_paris.py", ".github/workflows/extraction.yml"] }
   workflow_dispatch:
 permissions: { contents: write }
+concurrency: { group: extraction-osm, cancel-in-progress: true }
 jobs:
   extraire:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
