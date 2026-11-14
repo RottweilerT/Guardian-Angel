@@ -12,8 +12,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - name: Extraction (Overpass)
-        run: python3 osm_paris.py --dossier donnees
+      - name: Extraction (Overpass, 45 min au plus)
+        id: overpass
+        continue-on-error: true
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then timeout 45m python3 osm_paris.py --dossier donnees; else exit 1; fi
+      - name: Méthode de secours (Geofabrik + osmium) si Overpass a échoué
+        if: steps.overpass.outcome != 'success'
+        run: |
+          echo "::warning::Overpass indisponible : extraction depuis l'extrait Geofabrik Île-de-France"
+          sudo apt-get -qq update && sudo apt-get -qq install -y osmium-tool >/dev/null
+          python3 osm_paris.py --source geofabrik --dossier donnees
       - name: Contrôle indépendant (GDAL / ogr2ogr, comme QGIS)
         run: |
           sudo apt-get -qq update && sudo apt-get -qq install -y gdal-bin >/dev/null

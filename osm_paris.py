@@ -59,6 +59,55 @@ def overpass(q, essais=4, delai=240):
         time.sleep(45 * (t + 1))                      # serveurs saturés : on laisse du temps
     raise RuntimeError(f"Overpass indisponible : {derniere}")
 
+# ---------- Source alternative : extrait Geofabrik + osmium (sans Overpass) ----------
+GEOFABRIK = "https://download.geofabrik.de/europe/france/ile-de-france-latest.osm.pbf"
+
+def sh(*cmd):
+    import subprocess
+    log("    $ " + " ".join(cmd)); subprocess.run(cmd, check=True)
+
+def charger_geofabrik(dossier):
+    """Télécharge l'extrait Île-de-France, le découpe sur la limite officielle de Paris (relation 7444) et
+    renvoie (arrondissements, éléments rues, éléments églises) au même format que l'API Overpass."""
+    import shutil
+    if not shutil.which("osmium"): raise RuntimeError("osmium-tool est requis pour --source geofabrik")
+    w = os.path.join(dossier, "_travail"); os.makedirs(w, exist_ok=True)
+    pbf = os.path.join(w, "idf.osm.pbf")
+    if not os.path.exists(pbf):
+        log("    téléchargement de l'extrait Geofabrik Île-de-France…")
+        urllib.request.urlretrieve(GEOFABRIK, pbf)
+    sh("osmium", "getid", "-r", "-O", pbf, "r7444", "-o", os.path.join(w, "limite.osm.pbf"))
+    sh("osmium", "export", "-O", os.path.join(w, "limite.osm.pbf"), "-o", os.path.join(w, "limite.geojson"), "--geometry-types=polygon")
+    sh("osmium", "extract", "-O", "-s", "smart", "-p", os.path.join(w, "limite.geojson"), pbf, "-o", os.path.join(w, "paris.osm.pbf"))
+    sh("osmium", "tags-filter", "-O", os.path.join(w, "paris.osm.pbf"), "w/highway", "nwr/amenity=place_of_worship",
+       "nwr/building=church,cathedral,chapel,basilica", "r/admin_level=9", "-o", os.path.join(w, "filtre.osm.pbf"))
+    sh("osmium", "export", "-O", "-a", "type,id", "-f", "geojsonseq", os.path.join(w, "filtre.osm.pbf"), "-o", os.path.join(w, "filtre.geojsonseq"))
+    ll = lambda c: {"lon": c[0], "lat": c[1]}
+    arrs, rues_e, egl_e = [], [], []
+    with open(os.path.join(w, "filtre.geojsonseq"), encoding="utf-8") as f:
+        for ligne in f:
+            ligne = ligne.strip().lstrip("\x1e")
+            if not ligne: continue
+            ft = json.loads(ligne); pr = ft["properties"]; g = ft["geometry"]
+            typ, oid = pr.pop("@type"), int(pr.pop("@id")); tags = pr
+            if tags.get("admin_level") == "9" and str(tags.get("ref:INSEE", "")).startswith("751") and g["type"] in ("Polygon", "MultiPolygon"):
+                polys = [g["coordinates"]] if g["type"] == "Polygon" else g["coordinates"]
+                arrs.append({"n": int(tags["ref:INSEE"][3:]), "insee": tags["ref:INSEE"], "osm_id": oid, "anneaux": [[[round(x, 7), round(y, 7)] for x, y in p[0]] for p in polys]})
+                continue
+            egl = (tags.get("amenity") == "place_of_worship" and tags.get("religion") == "christian") or tags.get("building") in ("church", "cathedral", "chapel", "basilica")
+            if g["type"] == "Point": e = {"type": "node", "id": oid, "lat": g["coordinates"][1], "lon": g["coordinates"][0], "tags": tags}
+            elif g["type"] == "LineString": e = {"type": "way", "id": oid, "tags": tags, "geometry": [ll(c) for c in g["coordinates"]]}
+            else:
+                polys = [g["coordinates"]] if g["type"] == "Polygon" else g["coordinates"]
+                if typ == "way": e = {"type": "way", "id": oid, "tags": tags, "geometry": [ll(c) for c in polys[0][0]]}
+                else: e = {"type": "relation", "id": oid, "tags": tags, "members": [{"type": "way", "role": "outer" if i == 0 else "inner", "geometry": [ll(c) for c in r]} for p in polys for i, r in enumerate(p)]}
+            if tags.get("highway") and tags.get("name") and e["type"] == "way": rues_e.append(e)
+            if egl: egl_e.append(e)
+    shutil.rmtree(w, ignore_errors=True)
+    if len(arrs) < 20: raise RuntimeError(f"contours d'arrondissements incomplets dans l'extrait ({len(arrs)}/20)")
+    arrs.sort(key=lambda a: a["n"])
+    return arrs, rues_e, egl_e
+
 # ---------- Géométrie ----------
 def pt(g): return [round(g["lon"], 7), round(g["lat"], 7)]
 
@@ -264,10 +313,16 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--dossier", default=".")
     ap.add_argument("--par-arrondissement", action="store_true", help="interroge chaque arrondissement séparément (rues et églises)")
+    ap.add_argument("--source", choices=["overpass", "geofabrik"], default="overpass", help="geofabrik : extrait Île-de-France + osmium, sans Overpass")
     ap.add_argument("--rues-en-une-requete", action="store_true", help="tente d'abord Paris en une seule requête pour les rues (lourd)")
     o = ap.parse_args(); os.makedirs(o.dossier, exist_ok=True)
     date = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
+    if o.source == "geofabrik":
+        log("1-3/4 Extrait Geofabrik Île-de-France (osmium)…")
+        arrs, er, ee = charger_geofabrik(o.dossier)
+        mode_r = mode_e = "extrait Geofabrik Île-de-France découpé sur la limite de Paris (osmium)"
+        return finir(o, date, arrs, er, ee, mode_r, mode_e)
     log("1/4 Limites des 20 arrondissements…")
     arrs = arrondissements()
     log(f"    {len(arrs)} arrondissements")
@@ -292,6 +347,9 @@ def main():
 
     log("2/4 Rues…"); er, mode_r = extraire("rues", requete_rues, unique=o.rues_en_une_requete)
     log("3/4 Églises…"); ee, mode_e = extraire("eglises", requete_eglises)
+    return finir(o, date, arrs, er, ee, mode_r, mode_e)
+
+def finir(o, date, arrs, er, ee, mode_r, mode_e):
     R = rues(er, arrs); E, fusions = eglises(ee, arrs)
 
     log("4/4 Écriture et vérification…")
@@ -310,7 +368,7 @@ def main():
     ca = Counter(p["arrondissement"] for p in rp)
     taille = lambda f: os.path.getsize(os.path.join(o.dossier, f)) / 1e6
     L = [f"# Rapport d'extraction — rues et églises de Paris (OpenStreetMap)", "",
-         f"- Date d'extraction (UTC) : **{date}**", f"- Source : OpenStreetMap via l'API Overpass — {ATTRIBUTION}", f"- Licence : {LICENCE}",
+         f"- Date d'extraction (UTC) : **{date}**", f"- Source : OpenStreetMap — {ATTRIBUTION}", f"- Licence : {LICENCE}",
          "- Périmètre : relation OSM 7444 « Paris » ; arrondissements : relations `admin_level=9` (`ref:INSEE` 75101 à 75120)",
          f"- Mode d'extraction : rues — {mode_r} ; églises — {mode_e}", "- Système de coordonnées : WGS84 (EPSG:4326), RFC 7946", "",
          "## Résultats", "", "| Fichier | Objets | Taille |", "| --- | --- | --- |",
