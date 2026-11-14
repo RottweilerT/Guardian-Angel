@@ -49,7 +49,36 @@ def sqlite_sword(path):
         o, n = noms[bid]; t = sp(t or "")
         # coquilles d'OCR sûres : « á » et « ó » isolés lus comme 4 et 0
         t = re.sub(r"(?<!\S)[¿¡]?4(?=\s)", "á", t); t = re.sub(r"(?<!\S)[¿¡]?0(?=\s)", "ó", t)
+        t = nettoyer_es(t)
         if o in OSIS and t: livres.setdefault(OSIS[o], (n, {}))[1].setdefault(int(ch), []).append([str(v), t])
+    return livres
+
+def nettoyer_es(t):
+    """Corrections automatiques sûres des artefacts d'OCR (aucun mot n'est inventé)."""
+    t = re.sub(r"(\w)\|\s+(?=[a-zñáéíóú])", r"\1", t)        # césure marquée par « | » : herma| nos → hermanos
+    t = re.sub(r"\s*\(?\|[!.]?\)?", "", t)                      # barres verticales isolées
+    t = re.sub(r"\S*[\[\]{}<>]\S*", lambda m: re.sub(r"[\[\]{}<>/]", "", m.group()) if re.search(r"[a-zñáéíóú]{3}", m.group()) else "", t)
+    t = re.sub(r"!\s*:", ":", t); t = re.sub(r"([,;:])\s*[,;:]+", r"\1", t)
+    t = re.sub(r"\s+([,.;:])", r"\1", t); t = re.sub(r"\s{2,}", " ", t).strip()
+    return t
+
+def separer_fusions(livres):
+    """Verset suivant collé dans le précédent par l'OCR (« … Maonathi. 14. Maonathi engendró … ») : on le sépare
+    seulement si ce verset suivant est absent et que son numéro apparaît après une fin de phrase."""
+    n = 0
+    for b, (nom, chap) in livres.items():
+        for c, vs in chap.items():
+            have = {v for v, _ in vs}; out = []
+            for v, t in vs:
+                cur_v, cur_t = v, t
+                while cur_v.isdigit():
+                    nx = str(int(cur_v) + 1)
+                    m = re.search(rf"(?<=[.;:?!])\s+{nx}[.,]\s+(?=[A-ZÁÉÍÓÚÑ¿¡])", cur_t)
+                    if nx in have or not m: break
+                    out.append([cur_v, cur_t[:m.start()].strip()]); cur_v, cur_t = nx, cur_t[m.end():].strip(); have.add(nx); n += 1
+                out.append([cur_v, cur_t])
+            chap[c] = out
+    print(f"  es : {n} versets séparés d'un verset voisin")
     return livres
 
 def completer(livres, ref):
@@ -69,7 +98,7 @@ VERSIONS = [
    lambda: usfx(f"{SRC}/open-bibles/eng-dra.usfx.xml")),
   ("es", "Torres Amat (1823), édition de 1882", "español", "catholique",
    "Domaine public (Torres Amat † 1847) — texte reconstruit par reconnaissance optique de l'édition de 1882 (Internet Archive) par le projet Biblia Elim (github.com/OmarGonD/biblia-elim, version 0.9.20). Transcription non entièrement relue : quelques coquilles et environ 5 % de versets manquants",
-   lambda: completer(sqlite_sword(f"{SRC}/biblia-elim/modulos/sqlite/TorresAmat.sqlite"), usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml"))),
+   lambda: completer(separer_fusions(sqlite_sword(f"{SRC}/biblia-elim/modulos/sqlite/TorresAmat.sqlite")), usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml"))),
   ("la", "Vulgata Clementina", "latine", "catholique", "Domaine public — via github.com/seven1m/open-bibles",
    lambda: usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml")),
 ]
