@@ -11,7 +11,8 @@ export const CONF = { catholique: "catholique", catholic: "catholique", roman_ca
   evangelical: "évangélique", baptist: "baptiste", anglican: "anglicane", presbyterian: "presbytérienne", orthodox: "orthodoxe",
   russian_orthodox: "orthodoxe russe", greek_orthodox: "orthodoxe grecque", serbian_orthodox: "orthodoxe serbe", armenian_apostolic: "apostolique arménienne",
   seventh_day_adventist: "adventiste", jehovahs_witness: "Témoins de Jéhovah", liberal_catholic: "catholique libérale (hors communion romaine)",
-  mariavite: "mariavite (hors communion romaine)", quaker: "quaker", christian_community: "Communauté des chrétiens" };
+  mariavite: "mariavite (hors communion romaine)", quaker: "quaker", christian_community: "Communauté des chrétiens",
+  methodist: "méthodiste", free_evangelical: "évangélique libre", romanian_orthodox: "orthodoxe roumaine", latter_day_saints: "mormone (Saints des Derniers Jours)" };
 const confLabel = c => (c.denomination ? CONF[c.denomination] || c.denomination.replace(/_/g, " ") : "confession non renseignée");
 let leafletP = null, map = null, layer = null;
 function loadLeaflet() {
