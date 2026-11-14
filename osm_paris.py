@@ -292,9 +292,9 @@ def eglises(elements, arrs):
     return feats, len(retires)
 
 # ---------- Fichiers ----------
-def collection(feats, nom, date):
+def collection(feats, nom, date, source="OpenStreetMap via l'API Overpass"):
     return {"type": "FeatureCollection", "name": nom,
-            "metadata": {"source": "OpenStreetMap via l'API Overpass", "attribution": ATTRIBUTION, "licence": LICENCE,
+            "metadata": {"source": source, "attribution": ATTRIBUTION, "licence": LICENCE,
                          "date_extraction_utc": date, "systeme_coordonnees": "WGS84 (EPSG:4326), ordre longitude, latitude (RFC 7946)",
                          "perimetre": "Commune de Paris — relation OSM 7444 (limite administrative officielle)", "nombre": len(feats)},
             "features": feats}
@@ -368,8 +368,9 @@ def finir(o, date, arrs, er, ee, mode_r, mode_e):
     R = rues(er, arrs); E, fusions = eglises(ee, arrs)
 
     log("4/4 Écriture et vérification…")
-    fr, fe = collection(R, "rues_paris", date), collection(E, "eglises_paris", date)
-    fa = collection(R + E, "rues_et_eglises_paris", date)
+    src = "OpenStreetMap — " + ("extrait Geofabrik Île-de-France + osmium" if "Geofabrik" in mode_r else "API Overpass")
+    fr, fe = collection(R, "rues_paris", date, src), collection(E, "eglises_paris", date, src)
+    fa = collection(R + E, "rues_et_eglises_paris", date, src)
     ecrire(os.path.join(o.dossier, "rues_paris.geojson"), fr)
     ecrire(os.path.join(o.dossier, "eglises_paris.geojson"), fe)
     ecrire(os.path.join(o.dossier, "rues_et_eglises_paris.geojson"), fa)
