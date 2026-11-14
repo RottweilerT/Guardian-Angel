@@ -231,7 +231,7 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Preuve / autorisation | https://github.com/seven1m/open-bibles |
 | Utilisée dans l'application | oui |
 
-### Torres Amat (1823), édition de 1882 — transcription Biblia Elim 0.9.20
+### Torres Amat (1823) — transcription Biblia Elim 0.9.20, complétée par 22 éditions numérisées (Internet Archive)
 
 | Champ | Valeur |
 | --- | --- |
@@ -240,7 +240,7 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Type | Texte biblique |
 | Licence | Domaine public (module déclaré « Public Domain » par le projet) |
 | Date de vérification | 2026-11-14 (fiche du module (modulos/mods.d/torresamat.conf : DistributionLicense=Public Domain), consultée le 2026-11-14) |
-| Conditions | Texte du domaine public ; la source de la transcription est citée. Transcription automatique non entièrement relue, signalée dans l'application. |
+| Conditions | Texte du domaine public. Versets manquants et coquilles corrigés par concordance entre éditions du XIXᵉ siècle numérisées sur Internet Archive (tools/bible/). Transcription non entièrement relue, signalée dans l'application ; versets restants affichés en latin. |
 | Attribution requise | — |
 | Usage commercial | autorisé |
 | Statut | `PUBLIC_DOMAIN` |

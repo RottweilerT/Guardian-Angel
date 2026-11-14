@@ -5,6 +5,8 @@ import * as store from "../store.js";
 
 const LANGUES = { fr: "Français", en: "English", es: "Español", la: "Latina" };
 const MANQUE = `<span class="muted small">[verset pas encore transcrit]</span>`;
+// Verset espagnol manquant : on montre le latin de la Vulgate, dont Torres Amat est la traduction
+const LATIN = t => `<em lang="la">${esc(t)}</em> <span class="chip" style="font-size:11px" title="Verset espagnol pas encore transcrit : texte latin de la Vulgate">latin</span>`;
 let indexP = null;
 const cache = new Map();
 const loadIndex = () => (indexP ||= fetch("/bible/index.json").then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }).catch(e => { indexP = null; throw e; }));
@@ -68,12 +70,12 @@ export default async function bible(el, params) {
   const box = $("#btext", el);
   const num = x => `<sup class="muted" style="font-size:.7em;margin-right:3px">${esc(x)}</sup>`;
   if (!tout) {
-    const ch = await loadBook(v, b);
+    const [ch, chLa] = await Promise.all([loadBook(v, b), v === "es" ? loadBook("la", b) : Promise.resolve(null)]);
     if (!document.body.contains(box)) return;
-    const vv = ch && ch[c - 1];
-    const avis = v === "es" ? `<div class="notice small">Transcription automatique de l'édition de 1882, en cours de correction : quelques coquilles et environ 5 % de versets manquants. En cas de doute, comparez avec le latin (bouton « Côte à côte »).</div>` : "";
+    const vv = ch && ch[c - 1], la = new Map((chLa && chLa[c - 1]) || []);
+    const avis = v === "es" ? `<div class="notice small">Transcription automatique de l'édition de 1882, complétée et corrigée en comparant 22 éditions numérisées. Il peut rester des coquilles ; les rares versets non encore transcrits sont donnés en latin (Vulgate), signalés « latin ».</div>` : "";
     box.innerHTML = vv && vv.length ? avis + `<h2 class="sec serif">${esc(livre(version(ix, v), b)[1])} ${c}</h2><div class="card serif" style="line-height:1.75" lang="${v}">
-      ${vv.map(([n, t]) => `<span id="v${esc(n)}"${n === String(vs) ? ' style="background:var(--bg-soft);outline:2px solid var(--accent);border-radius:3px"' : ""}>${num(n)}${t ? esc(t) : MANQUE} </span>`).join("")}</div>`
+      ${vv.map(([n, t]) => `<span id="v${esc(n)}"${n === String(vs) ? ' style="background:var(--bg-soft);outline:2px solid var(--accent);border-radius:3px"' : ""}>${num(n)}${t ? esc(t) : la.get(n) ? LATIN(la.get(n)) : MANQUE} </span>`).join("")}</div>`
       : `<div class="empty">Ce chapitre n'est pas disponible dans cette version.</div>`;
   } else {
     const chs = await Promise.all(ix.versions.map(x => (livre(x, b) ? loadBook(x.code, b) : Promise.resolve(null))));

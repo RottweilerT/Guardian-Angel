@@ -1,6 +1,6 @@
 """Convertit les textes bibliques ouverts en fichiers JSON par livre pour Guardian Angel.
 Usage : python3 -I bible_build.py <dossier_sources> <dossier_sortie>"""
-import json, os, re, sys, html
+import json, os, re, sys, html, collections
 SRC, OUT = sys.argv[1], sys.argv[2]
 ORDRE = ("GEN EXO LEV NUM DEU JOS JDG RUT 1SA 2SA 1KI 2KI 1CH 2CH EZR NEH TOB JDT EST 1MA 2MA JOB PSA PRO ECC SNG WIS SIR "
          "ISA JER LAM BAR EZK DAN HOS JOL AMO OBA JON MIC NAM HAB ZEP HAG ZEC MAL "
@@ -49,7 +49,109 @@ def sqlite_sword(path):
         o, n = noms[bid]; t = sp(t or "")
         # coquilles d'OCR sûres : « á » et « ó » isolés lus comme 4 et 0
         t = re.sub(r"(?<!\S)[¿¡]?4(?=\s)", "á", t); t = re.sub(r"(?<!\S)[¿¡]?0(?=\s)", "ó", t)
+        t = nettoyer_es(t)
         if o in OSIS and t: livres.setdefault(OSIS[o], (n, {}))[1].setdefault(int(ch), []).append([str(v), t])
+    return livres
+
+def nettoyer_es(t):
+    """Corrections automatiques sûres des artefacts d'OCR (aucun mot n'est inventé)."""
+    t = re.sub(r"(\w)\|\s+(?=[a-zñáéíóú])", r"\1", t)        # césure marquée par « | » : herma| nos → hermanos
+    t = re.sub(r"\s*\(?\|[!.]?\)?", "", t)                      # barres verticales isolées
+    t = re.sub(r"\S*[\[\]{}<>]\S*", lambda m: re.sub(r"[\[\]{}<>/]", "", m.group()) if re.search(r"[a-zñáéíóú]{3}", m.group()) else "", t)
+    t = re.sub(r"!\s*:", ":", t); t = re.sub(r"([,;:])\s*[,;:]+", r"\1", t)
+    t = re.sub(r"\s+([,.;:])", r"\1", t); t = re.sub(r"\s{2,}", " ", t).strip()
+    return t
+
+def separer_fusions(livres):
+    """Verset suivant collé dans le précédent par l'OCR (« … Maonathi. 14. Maonathi engendró … ») : on le sépare
+    seulement si ce verset suivant est absent et que son numéro apparaît après une fin de phrase."""
+    n = 0
+    for b, (nom, chap) in livres.items():
+        for c, vs in chap.items():
+            have = {v for v, _ in vs}; out = []
+            for v, t in vs:
+                cur_v, cur_t = v, t
+                while cur_v.isdigit():
+                    nx = str(int(cur_v) + 1)
+                    m = re.search(rf"(?<=[.;:?!])\s+{nx}[.,]\s+(?=[A-ZÁÉÍÓÚÑ¿¡])", cur_t)
+                    if nx in have or not m: break
+                    out.append([cur_v, cur_t[:m.start()].strip()]); cur_v, cur_t = nx, cur_t[m.end():].strip(); have.add(nx); n += 1
+                out.append([cur_v, cur_t])
+            chap[c] = out
+    print(f"  es : {n} versets séparés d'un verset voisin")
+    return livres
+
+import difflib, unicodedata
+def _n(w):
+    w = unicodedata.normalize("NFD", w.lower()); w = "".join(ch for ch in w if unicodedata.category(ch) != "Mn")
+    return re.sub(r"[^a-zn0-9]", "", w)
+_nw = lambda t: [x for x in (_n(w) for w in t.split()) if x and not x.isdigit()]
+def _propre(t):
+    t = re.sub(r"(\w)\*\s+(\w)", r"\1\2", t)                                 # can* tar → cantar
+    t = re.sub(r"[*^■•|]+", " ", t)
+    t = re.sub(r"(?<!\S)\d{1,3}(?=[\s,.;:]|$)[.,]?", "", t)                    # renvois de notes et numéros égarés
+    t = re.sub(r"(?<!\S)4(?=\s)", "á", t); t = re.sub(r"(?<!\S)0(?=\s)", "ó", t)
+    t = re.sub(r"^[^A-Za-zÁÉÍÓÚÑáéíóúñ¿¡«(]+", "", t)
+    t = re.sub(r"\s*(==.*|CAP[IÍ]TULO\s+[IVXLC]+.*)$", "", t)
+    for _ in range(3): t = re.sub(r"\s+(\S{1,2}|[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]+)$", "", t) if not re.search(r"[.:;?!]$", t) else t
+    t = re.sub(r"\s+([,.;:])", r"\1", t); t = re.sub(r"\s{2,}", " ", t).strip()
+    return t
+def _bruit(t):
+    return len(re.findall(r"\b\w*[a-zñ][A-ZÑ]\w*|\d|[^\w\s.,;:¿?¡!()«»'’-]", t))
+
+def recuperer(livres, ref, chemin):
+    """Applique la récupération faite sur 22 éditions numérisées de Torres Amat (tools/bible/recup_torres.py) :
+    1) verset collé dans le précédent : on coupe ; 2) verset absent : texte retenu seulement si deux éditions concordent."""
+    if not os.path.exists(chemin): return livres
+    RS = json.load(open(chemin, encoding="utf-8"))["resultats"]; st = collections.Counter()
+    for key, r in sorted(RS.items(), key=lambda x: "coupe_dans" not in x[1]):
+        b, c, v = key.split(); c = int(c)
+        if b not in livres or c not in livres[b][1]: continue
+        ch = livres[b][1][c]; pos = {vv: i for i, (vv, _) in enumerate(ch)}
+        if v not in pos or ch[pos[v]][1]: continue
+        lat = dict(map(tuple, ref[b][1].get(c, []))).get(v, "") if b in ref else ""
+        if "coupe_dans" in r and r["coupe_dans"] in pos:
+            h = pos[r["coupe_dans"]]; toks = ch[h][1].split(); hn = [_n(x) for x in toks]
+            k = next((k for k in range(3, len(hn) - 3) if hn[k:k + 4] == r["debut"]), None)
+            if k is None: st["coupe_introuvable"] += 1; continue
+            avant, apres = _propre(" ".join(toks[:k])), _propre(" ".join(toks[k:]))
+            if len(avant.split()) < 3 or len(apres.split()) < 3: continue
+            ch[h][1] = avant; ch[pos[v]][1] = apres; st["coupes"] += 1
+        elif "textes" in r:
+            T = {s_: _propre(t) for s_, t in r["textes"].items()}; T = {s_: t for s_, t in T.items() if len(_nw(t)) >= 3}
+            if len(T) < 2: st["une_seule_edition"] += 1; continue
+            W = {s_: _nw(t) for s_, t in T.items()}
+            sc = {s_: sum(difflib.SequenceMatcher(None, W[s_], W[o]).ratio() >= 0.75 for o in T if o != s_) for s_ in T}
+            ok = [s_ for s_ in T if sc[s_] >= 1]
+            if not ok: st["desaccord"] += 1; continue
+            best = min(ok, key=lambda s_: (_bruit(T[s_]), -sc[s_]))
+            nl, ne = len(lat.split()), len(W[best])
+            if not nl or not (0.75 * nl <= ne <= 2.0 * nl + 3) or _bruit(T[best]) > 3: st["controle"] += 1; continue
+            ch[pos[v]][1] = T[best]; st["textes"] += 1
+    # 3) verset collé ailleurs dans le chapitre (numéro mal lu) : le texte des éditions dit où il est
+    for key, r in RS.items():
+        b, c, v = key.split(); c = int(c)
+        if "textes" not in r or b not in livres or c not in livres[b][1]: continue
+        ch = livres[b][1][c]; pos = {vv: i for i, (vv, _) in enumerate(ch)}
+        if v not in pos or ch[pos[v]][1]: continue
+        W = [w for w in (_nw(_propre(t)) for t in r["textes"].values()) if len(w) >= 6]
+        if not W: continue   # une seule édition suffit ici : notre propre texte confirme le passage
+        for h, (hv, ht) in enumerate(ch):
+            if not ht or hv == v: continue
+            toks = ht.split(); hn = [_n(x) for x in toks]
+            hits = []
+            for w in W:
+                k = next((k for k in range(2, len(hn) - 3) if hn[k:k + 4] == w[:4]), None)
+                z = next((z for z in range(len(hn) - 1, (k or 0) + 3, -1) if k is not None and hn[z - 2:z + 1] == w[-3:]), None) if k is not None else None
+                if k is not None and z is None and 0.7 * len(w) <= len(hn) - k <= 1.4 * len(w) + 3: z = len(hn) - 1   # fin du verset hôte
+                if k is not None and z is not None: hits.append((k, z + 1))
+            if hits:
+                k, z = max(set(hits), key=hits.count)
+                piece = _propre(" ".join(toks[k:z])); rest = _propre(" ".join(toks[:k] + toks[z:]))
+                if len(piece.split()) >= 4 and len(rest.split()) >= 4:
+                    ch[pos[v]][1] = piece; ch[h][1] = rest; st["deplaces"] += 1
+                break
+    print("  es, récupération multi-éditions :", dict(st))
     return livres
 
 def completer(livres, ref):
@@ -69,7 +171,8 @@ VERSIONS = [
    lambda: usfx(f"{SRC}/open-bibles/eng-dra.usfx.xml")),
   ("es", "Torres Amat (1823), édition de 1882", "español", "catholique",
    "Domaine public (Torres Amat † 1847) — texte reconstruit par reconnaissance optique de l'édition de 1882 (Internet Archive) par le projet Biblia Elim (github.com/OmarGonD/biblia-elim, version 0.9.20). Transcription non entièrement relue : quelques coquilles et environ 5 % de versets manquants",
-   lambda: completer(sqlite_sword(f"{SRC}/biblia-elim/modulos/sqlite/TorresAmat.sqlite"), usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml"))),
+   lambda: (lambda la: completer(recuperer(completer(separer_fusions(sqlite_sword(f"{SRC}/biblia-elim/modulos/sqlite/TorresAmat.sqlite")), la), la,
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "bible", "torres_recup.json")), la))(usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml"))),
   ("la", "Vulgata Clementina", "latine", "catholique", "Domaine public — via github.com/seven1m/open-bibles",
    lambda: usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml")),
 ]

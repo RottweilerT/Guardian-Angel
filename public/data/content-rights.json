@@ -372,14 +372,14 @@
    "demander_a": ""
   },
   {
-   "nom": "Torres Amat (1823), édition de 1882 — transcription Biblia Elim 0.9.20",
+   "nom": "Torres Amat (1823) — transcription Biblia Elim 0.9.20, complétée par 22 éditions numérisées (Internet Archive)",
    "reference": "https://github.com/OmarGonD/biblia-elim",
    "titulaire": "Texte : Félix Torres Amat (†1847), d'après José Miguel Petisco ; transcription : projet Biblia Elim (scans Internet Archive)",
    "type": "Texte biblique",
    "licence": "Domaine public (module déclaré « Public Domain » par le projet)",
    "verifie_le": "2026-11-14",
    "mode_verification": "fiche du module (modulos/mods.d/torresamat.conf : DistributionLicense=Public Domain), consultée le 2026-11-14",
-   "conditions": "Texte du domaine public ; la source de la transcription est citée. Transcription automatique non entièrement relue, signalée dans l'application.",
+   "conditions": "Texte du domaine public. Versets manquants et coquilles corrigés par concordance entre éditions du XIXᵉ siècle numérisées sur Internet Archive (tools/bible/). Transcription non entièrement relue, signalée dans l'application ; versets restants affichés en latin.",
    "attribution": "",
    "usage_commercial": true,
    "statut": "PUBLIC_DOMAIN",

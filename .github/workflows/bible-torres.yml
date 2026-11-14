@@ -1,0 +1,22 @@
+name: Bible Torres Amat — corrections par vote entre éditions
+on:
+  workflow_dispatch:
+  push: { branches: [main], paths: ["tools/bible/corriger_torres.py", ".github/workflows/bible-torres.yml"] }
+permissions: { contents: write }
+concurrency: { group: bible-torres, cancel-in-progress: true }
+jobs:
+  corriger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Télécharger les OCR des éditions numérisées (Internet Archive)
+        run: python3 tools/bible/recup_torres.py public/bible /tmp/ocr/x.json --seulement-telecharger
+      - name: Vote entre éditions
+        run: python3 tools/bible/corriger_torres.py public/bible /tmp/ocr/cache tools/bible/torres_corrections.json 2> err.txt || { echo "::error::$(tail -c 900 err.txt | tr '\n' ' ')"; exit 1; }
+      - name: Enregistrer
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/bible/torres_corrections.json && git commit -qm "Bible : corrections Torres Amat par vote [skip ci]" && git push -q
