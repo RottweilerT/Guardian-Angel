@@ -2,6 +2,8 @@
 // Route : #/bible/<version|tout>/<LIVRE>/<chapitre>/<verset?>
 import { esc, $ } from "../ui.js";
 import * as store from "../store.js";
+import { cloud } from "../cloud.js";
+import { modal, toast } from "../ui.js";
 
 const LANGUES = { fr: "Français", en: "English", es: "Español", la: "Latina" };
 const MANQUE = `<span class="muted small">[verset pas encore transcrit]</span>`;
@@ -77,6 +79,21 @@ export default async function bible(el, params) {
     box.innerHTML = vv && vv.length ? avis + `<h2 class="sec serif">${esc(livre(version(ix, v), b)[1])} ${c}</h2><div class="card serif" style="line-height:1.75" lang="${v}">
       ${vv.map(([n, t]) => `<span id="v${esc(n)}"${n === String(vs) ? ' style="background:var(--bg-soft);outline:2px solid var(--accent);border-radius:3px"' : ""}>${num(n)}${t ? esc(t) : la.get(n) ? LATIN(la.get(n)) : MANQUE} </span>`).join("")}</div>`
       : `<div class="empty">Ce chapitre n'est pas disponible dans cette version.</div>`;
+    if (v === "es" && vv && vv.length) {
+      box.insertAdjacentHTML("beforeend", `<p class="small"><button class="btn ghost sm" id="bcoq">Signaler une coquille</button></p>`);
+      $("#bcoq", el).onclick = async () => {
+        if (!cloud.user) { toast("Connectez-vous (Profil) pour signaler une coquille"); return; }
+        const r = await modal(`<h2>Signaler une coquille</h2><p class="small muted">${esc(livre(version(ix, v), b)[1])} ${c}</p>
+          <label for="cv">Verset</label><select id="cv">${vv.map(([n]) => `<option${n === String(vs) ? " selected" : ""}>${esc(n)}</option>`).join("")}</select>
+          <label for="cm">Texte corrigé ou description de l'erreur</label><textarea id="cm" maxlength="1500" required></textarea>
+          <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn ghost" data-close="x">Annuler</button><button class="btn" id="cok">Envoyer</button></div>`,
+          (d, done) => { $("#cok", d).onclick = () => { const t = $("#cm", d).value.trim(); if (t) done(JSON.stringify({ n: $("#cv", d).value, t })); }; });
+        if (!r || r === "x") return;
+        const { n, t } = JSON.parse(r);
+        try { const { fs, db, user } = cloud; await fs.addDoc(fs.collection(db, "reports"), { uid: user.uid, churchId: `bible:es:${b}.${c}.${n}`.slice(0, 40), churchName: `Bible Torres Amat ${b} ${c},${n}`, message: t, status: "nouveau", createdAt: fs.serverTimestamp() }); toast("Merci, signalement envoyé"); }
+        catch { toast("Envoi impossible"); }
+      };
+    }
   } else {
     const chs = await Promise.all(ix.versions.map(x => (livre(x, b) ? loadBook(x.code, b) : Promise.resolve(null))));
     if (!document.body.contains(box)) return;

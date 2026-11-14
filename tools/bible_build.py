@@ -154,6 +154,33 @@ def recuperer(livres, ref, chemin):
     print("  es, récupération multi-éditions :", dict(st))
     return livres
 
+def corriger(livres, chemin):
+    """Coquilles d'OCR corrigées par vote entre éditions (tools/bible/corriger_torres.py) : mot inconnu du corpus,
+    même mot connu donné par au moins deux éditions, et ressemblance suffisante avec le mot remplacé."""
+    if not os.path.exists(chemin): return livres
+    C = json.load(open(chemin, encoding="utf-8"))["corrections"]; st = collections.Counter()
+    for key, lst in C.items():
+        b, c, v = key.split(); c = int(c)
+        if b not in livres or c not in livres[b][1]: continue
+        ch = livres[b][1][c]; pos = {vv: i for i, (vv, _) in enumerate(ch)}
+        if v not in pos: continue
+        toks = ch[pos[v]][1].split()
+        for e in lst:
+            k, old, u, n = e[:4]; forme = e[4] if len(e) > 4 else u
+            if k >= len(toks) or toks[k] != old: st["decale"] += 1; continue
+            m = re.match(r"^([^\wÁÉÍÓÚÑáéíóúñ]*)(.*?)([^\wÁÉÍÓÚÑáéíóúñ]*)$", old); pre, core, post = m.groups()
+            if " " in u and n < 3: st["coupure_douteuse"] += 1; continue
+            if difflib.SequenceMatcher(None, _n(core), u.replace(" ", "")).ratio() < 0.6: st["trop_different"] += 1; continue
+            if not re.fullmatch(r"[A-Za-zÁÉÍÓÚÑÜáéíóúñü ]+", forme or ""): forme = u
+            debut = k == 0 or re.search(r"[.:;?!]$", toks[k - 1] or "")
+            propre = forme[:1].isupper() and core[:1].isupper() and not debut
+            forme = forme if propre else forme.lower()
+            if debut and core[:1].isupper(): forme = forme[:1].upper() + forme[1:]
+            toks[k] = pre + forme + post; st["corriges"] += 1
+        ch[pos[v]][1] = " ".join(toks)
+    print("  es, corrections par vote :", dict(st))
+    return livres
+
 def completer(livres, ref):
     """Ajoute, vides, les versets présents dans la version de référence (Vulgate) mais absents : « non encore transcrit »."""
     for b, (nom, chap) in livres.items():
@@ -171,8 +198,8 @@ VERSIONS = [
    lambda: usfx(f"{SRC}/open-bibles/eng-dra.usfx.xml")),
   ("es", "Torres Amat (1823), édition de 1882", "español", "catholique",
    "Domaine public (Torres Amat † 1847) — texte reconstruit par reconnaissance optique de l'édition de 1882 (Internet Archive) par le projet Biblia Elim (github.com/OmarGonD/biblia-elim, version 0.9.20). Transcription non entièrement relue : quelques coquilles et environ 5 % de versets manquants",
-   lambda: (lambda la: completer(recuperer(completer(separer_fusions(sqlite_sword(f"{SRC}/biblia-elim/modulos/sqlite/TorresAmat.sqlite")), la), la,
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), "bible", "torres_recup.json")), la))(usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml"))),
+   lambda: (lambda la: corriger(completer(recuperer(completer(separer_fusions(sqlite_sword(f"{SRC}/biblia-elim/modulos/sqlite/TorresAmat.sqlite")), la), la,
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "bible", "torres_recup.json")), la), os.path.join(os.path.dirname(os.path.abspath(__file__)), "bible", "torres_corrections.json")))(usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml"))),
   ("la", "Vulgata Clementina", "latine", "catholique", "Domaine public — via github.com/seven1m/open-bibles",
    lambda: usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml")),
 ]
