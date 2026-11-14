@@ -59,7 +59,21 @@ def anchors(g3, seq, fin):
 
 ix = json.load(open(f"{BIB}/index.json"))
 livres = [b for b, _, _ in next(v for v in ix["versions"] if v["code"] == "es")["livres"]]
-cand, stats = collections.defaultdict(dict), collections.Counter()
+res, stats = collections.defaultdict(dict), collections.Counter()
+
+def segment(it_src, WP, WN, maxlen):
+    """mots de l'édition entre le début du verset P (connu) et le début du verset N (connu)"""
+    it, toks, idx, g3 = it_src
+    A, B = sorted(anchors(g3, WP, False)), sorted(anchors(g3, WN, False)); best = None
+    for a in A:
+        for bb in B:
+            if bb <= a + 2: continue
+            if bb - a > maxlen: break
+            if best is None or bb - a < best[1] - best[0]: best = (a, bb)
+            break
+    if not best: return None
+    return toks[idx[best[0]]: idx[best[1]]]
+
 for b in livres:
     es = json.load(open(f"{BIB}/es/{b}.json"))
     for ci, ch in enumerate(es):
@@ -70,32 +84,36 @@ for b in livres:
             while j < len(ch) and not ch[j][1]: j += 1
             run = ch[i:j]; stats["versets"] += len(run)
             if i == 0 or j == len(ch): stats["bord"] += len(run); i = j; continue
-            WA, WB = words(ch[i - 1][1]), words(ch[j][1]); nums = [v for v, _ in run]
-            for it, toks, idx, g3 in sources:
-                A, B = anchors(g3, WA, True), anchors(g3, WB, False); best = None
-                Bs = sorted(B)
-                for a in A:
-                    for bb in Bs:
-                        if bb <= a + 1: continue
-                        if bb - a > 90 * len(run) + 40: break
-                        if best is None or bb - a < best[1] - best[0]: best = (a, bb)
-                        break
-                if not best: continue
-                seg = toks[idx[best[0]] + 1: idx[best[1]]]
-                parts, cur, k = [], None, 0
-                for t in seg:
-                    tt = re.sub(r"[^\d]", "", t)
-                    if k < len(nums) and tt == nums[k] and len(t) <= len(tt) + 2:
-                        if cur is not None: parts.append(cur)
-                        cur = []; k += 1; continue
-                    if cur is not None: cur.append(t)
-                if cur is not None: parts.append(cur)
-                if len(run) == 1 and not parts: parts = [seg]
-                if len(parts) != len(run): continue
-                for v, p in zip(nums, parts):
-                    cand[f"{b} {ci + 1} {v}"][it] = re.sub(r"\s+", " ", " ".join(p)).strip()
+            P, Nn = ch[i - 1], ch[j]; WP, WN = words(P[1]), words(Nn[1])
+            maxlen = 2 * len(P[1].split()) + 90 * len(run) + 40
+            for v, _ in run:
+                debuts, textes = collections.Counter(), []
+                for src in sources:
+                    seg = segment(src, WP, WN, maxlen)
+                    if not seg: continue
+                    # repère du numéro v dans le segment
+                    for k, t in enumerate(seg):
+                        tt = re.sub(r"[^\d]", "", t)
+                        if tt == v and len(t) <= len(tt) + 2 and k > 2:
+                            after = [w for w in (nrm(x) for x in seg[k + 1:k + 12]) if w and not w.isdigit()][:4]
+                            if len(after) == 4: debuts[tuple(after)] += 1
+                            # texte jusqu'au numéro suivant
+                            stop = next((m for m in range(k + 1, len(seg)) if re.sub(r"[^\d]", "", seg[m]) == str(int(v) + 1) and len(seg[m]) <= 4), len(seg))
+                            textes.append((src[0], " ".join(seg[k + 1:stop])))
+                            break
+                # 1) le verset est collé dans le verset précédent : on cherche son début dans P
+                hp = [nrm(x) for x in P[1].split()]
+                coupe = None
+                for d, n in debuts.most_common():
+                    for k in range(3, len(hp) - 3):
+                        if hp[k:k + 4] == list(d) or (n >= 2 and sum(x == y for x, y in zip(hp[k:k + 4], d)) >= 3 and hp[k] == d[0]):
+                            coupe = (k, n); break
+                    if coupe: break
+                if coupe:
+                    res[f"{b} {ci + 1} {v}"] = {"coupe_dans": P[0], "mot": coupe[0], "editions": coupe[1]}; stats["coupes"] += 1
+                elif textes:
+                    res[f"{b} {ci + 1} {v}"] = {"textes": dict(textes)}; stats["textes"] += 1
+                else: stats["rien"] += 1
             i = j
-stats["avec_candidat"] = len(cand)
-stats["avec_2_editions"] = sum(1 for v in cand.values() if len(v) >= 2)
-json.dump({"sources": [s[0] for s in sources], "stats": stats, "candidats": cand}, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+json.dump({"sources": [s[0] for s in sources], "stats": stats, "resultats": res}, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
 print("::notice::" + " ".join(f"{k}={v}" for k, v in stats.items()))
