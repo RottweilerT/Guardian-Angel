@@ -1,0 +1,504 @@
+{
+"_note": "Compléments (accessibilité, horaires bruts, rattachement) issus de l'extraction OpenStreetMap/Overpass du 2026-11-12, absents de l'extraction Geofabrik. © les contributeurs d'OpenStreetMap, ODbL 1.0.",
+"par_osm": {
+"way/1056837790": {
+"wheelchair": "no",
+"address": "Quai des Célestins, 75004"
+},
+"node/913121651": {
+"wheelchair": "yes",
+"serviceTimes": "Tu 19:00; We 12:15",
+"website": "https://aumoneriedesgrandsmoulins.fr/"
+},
+"way/23762981": {
+"wheelchair": "limited",
+"website": "https://www.sacre-coeur-montmartre.com/"
+},
+"way/63640725": {
+"serviceTimes": "Tu-Sa 12:00; Su 09:00, 10:30, 19:00",
+"website": "https://basilique-ndps.fr/infos-pratiques/",
+"address": "55 Boulevard de Ménilmontant, 75011"
+},
+"way/54661742": {
+"wheelchair": "no",
+"serviceTimes": "Su 11:00, 18:00; Sa 11:00, 18:00; Mo-Fr 12:15, 19:00, Th 14:45",
+"website": "https://www.notredamedesvictoires.com/"
+},
+"way/64952290": {
+"website": "https://www.sainte-clotilde.com/",
+"address": "23 bis Rue Las Cases"
+},
+"node/2606259280": {
+"wheelchair": "limited",
+"serviceTimes": "Su 09:00,10:00,11:15,12:30,19:00; Mo-Fr 08:00,12:30,19:00; Sa 12:30,19:00"
+},
+"way/146912739": {
+"wheelchair": "yes"
+},
+"node/428049815": {
+"wheelchair": "yes"
+},
+"way/63200644": {
+"wheelchair": "limited"
+},
+"node/2808787632": {
+"serviceTimes": "Mo-Fr 12:15 \"Sauf en vacances universitaires\"; SH,PH off \"Pas de messe en vacances universitaires\"",
+"operator": "FSSPX"
+},
+"way/48433146": {
+"wheelchair": "no"
+},
+"way/320707523": {
+"website": "https://assomption-psa.org/"
+},
+"way/84198252": {
+"website": "https://messes.info/lieu/75/paris-16/christ-mediateur-religieuses-de-l-assomption"
+},
+"way/70185807": {
+"serviceTimes": "Mo-Sa 18:30, Tu 12:30, 18:30",
+"website": "https://maison-eymard.fr/"
+},
+"way/166684921": {
+"serviceTimes": "Su,PH 10:00; Jul-Aug off",
+"operator": "FSSPX",
+"website": "https://laportelatine.org/lieux/maison-saint-pie-x-siege-du-district-de-france-suresnes/chapelle-du-sacre-coeur-de-jesus-roi-de-france-paris-rue-gerbert"
+},
+"way/67557301": {
+"serviceTimes": "Jan 21 10:30",
+"website": "http://www.chapelle-expiatoire-paris.fr/"
+},
+"node/2606289749": {
+"wheelchair": "yes",
+"website": "http://ndconfiance.free.fr"
+},
+"way/244749667": {
+"website": "https://www.chapellenotredamedelamedaillemiraculeuse.com/"
+},
+"way/62379741": {
+"serviceTimes": "Su 11:00; Tu-Th 12:30"
+},
+"way/69332061": {
+"wheelchair": "no",
+"serviceTimes": "Su,PH 09:00,10:15,18:30 || Mo-Sa 18:30 || Jan-May,Oct-Dec Su,PH 11:45 || Jun,Sep Su,PH 11:45 \"sauf été\" || Jan-May,Oct-Dec Mo-Fr 07:45,12:15 || Jun,Sep Mo-Fr 07:45,12:15 \"sauf été\" || Jan-May,Oct-Dec Sa 11:00 || Jun,Sep Sa 11:00 \"sauf été\"",
+"operator": "FSSPX",
+"website": "https://laportelatine.org/lieux/chapelle-notre-dame-de-consolation-paris",
+"address": "23 Rue Jean-Goujon, 75008"
+},
+"way/219378497": {
+"serviceTimes": "Tu 12:30; Th,Su 18:30; Su 10:30"
+},
+"way/112461792": {
+"wheelchair": "no",
+"serviceTimes": "Sa 19:00; Su 10:00,11:15,18:30; Mo-Fr 11:15,19:00",
+"website": "https://www.ndsaintsacrement.org/"
+},
+"way/63638499": {
+"wheelchair": "yes"
+},
+"way/410503747": {
+"website": "http://chapellestbernard.free.fr/",
+"address": "34 Place Raoul Dautry"
+},
+"way/205699441": {
+"wheelchair": "no",
+"website": "https://www.saintgermaindecharonne.fr/info-pratique/les-lieux-acces/"
+},
+"way/112263440": {
+"wheelchair": "no"
+},
+"node/4375606406": {
+"website": "https://www.chemin-neuf.fr/",
+"address": "57 Rue du Simplon, 75018"
+},
+"way/78535716": {
+"serviceTimes": "Mo-Sa 15:30;Su 09:30"
+},
+"way/1056864734": {
+"website": "http://www.irishchaplaincyparis.fr/"
+},
+"way/399204077": {
+"wheelchair": "yes",
+"serviceTimes": "Sep-Jun Su 10:30; Th 18:30; SH Th off || Su 15:00 \"messe en portugais\"",
+"website": "https://www.saintpierredemontrouge.fr/adresses-utiles/"
+},
+"node/257082085": {
+"wheelchair": "limited"
+},
+"way/155071057": {
+"wheelchair": "yes"
+},
+"way/85616170": {
+"address": "4 Rue d'Auteuil, 75016"
+},
+"way/118528607": {
+"wheelchair": "yes"
+},
+"way/112331902": {
+"address": "65 Boulevard de Clichy, 75009"
+},
+"way/559104799": {
+"website": "https://www.couventsaintjacques.fr/",
+"address": "20-24 Rue des Tanneries, 75013"
+},
+"node/4579195553": {
+"website": "https://www.net1901.org/association/ASSOCIATION-POUR-LA-SAUVEGARDE-DE-LA-CRYPTE-NOTRE-DAME-DES-CHAMPS-A.S.C.N.D.C,1046672.html"
+},
+"way/54180046": {
+"wheelchair": "yes",
+"address": "Place de la Madeleine"
+},
+"way/49872150": {
+"wheelchair": "limited",
+"website": "https://latriniteparis.com/",
+"address": "Place d'Estienne d'Orves, 75009"
+},
+"way/80144693": {
+"website": "https://saintantoinedepadoue-paris.cef.fr/"
+},
+"way/70003069": {
+"website": "https://coeur-eucharistique.net/"
+},
+"way/112452790": {
+"website": "https://www.musee-armee.fr/votre-visite/les-espaces-du-musee/dome-des-invalides-tombeau-de-napoleon-ier.html",
+"address": "2 Place Vauban"
+},
+"way/130906379": {
+"wheelchair": "no",
+"website": "https://www.st-esprit.org/",
+"address": "186 Avenue Daumesnil"
+},
+"way/59846865": {
+"address": "1 Place Alphonse Laveran"
+},
+"way/85615121": {
+"wheelchair": "yes",
+"website": "https://notredamedauteuil.fr"
+},
+"way/63646922": {
+"wheelchair": "yes",
+"website": "https://www.notredameesperance.com/",
+"address": "47 Rue de la Roquette"
+},
+"way/78271179": {
+"wheelchair": "limited",
+"website": "https://www.notredamedebercy.com/"
+},
+"way/83830759": {
+"wheelchair": "yes",
+"website": "http://www.ndgrace-passy.com/"
+},
+"way/24303512": {
+"website": "https://www.ndaa.fr/"
+},
+"way/79084116": {
+"wheelchair": "no"
+},
+"way/64121803": {
+"wheelchair": "yes"
+},
+"way/78020496": {
+"website": "https://notredamedubonconseil.fr/"
+},
+"way/63233599": {
+"wheelchair": "no"
+},
+"way/54168792": {
+"wheelchair": "no",
+"website": "https://www.mission-catholique-polonaise.net/"
+},
+"way/83715715": {
+"website": "https://www.ndassomptiondepassy.com/",
+"address": "88 Rue de l'Assomption, 75016"
+},
+"way/63213611": {
+"address": "Rue de Meaux, 75019"
+},
+"way/70001850": {
+"wheelchair": "no",
+"serviceTimes": "Tu-Fr 08:00,17:00",
+"website": "https://www.notredamedelacroix.com"
+},
+"way/304186825": {
+"website": "http://www.nd-la-salette.org/"
+},
+"way/25688622": {
+"website": "https://www.notredamedelorette.org/"
+},
+"way/112461793": {
+"serviceTimes": "Mo-Fr 19:00; Sa 12:30",
+"website": "https://www.paroisse-ndl.fr"
+},
+"way/105535815": {
+"website": "https://www.nd-nazareth-paris.cef.fr/"
+},
+"way/55984117": {
+"wheelchair": "no",
+"website": "https://www.paris.catholique.fr/-Notre-Dame-des-Blancs-Manteaux,1290-.html"
+},
+"way/70001758": {
+"serviceTimes": "Tu-Sa 08:00",
+"website": "https://www.notredamedesotages.fr"
+},
+"way/79717909": {
+"wheelchair": "yes",
+"serviceTimes": "Mo-Fr 19:00; We 12:30,19:00; Sa 09:00,18:00; Su 10:30, 19:00",
+"website": "https://notredamedurosaire.fr/"
+},
+"way/112237139": {
+"wheelchair": "yes"
+},
+"way/78469927": {
+"wheelchair": "yes"
+},
+"way/63638108": {
+"wheelchair": "no",
+"website": "https://saint-ambroise.com/",
+"address": "71 Boulevard Voltaire"
+},
+"way/94236417": {
+"wheelchair": "no"
+},
+"way/67501490": {
+"wheelchair": "no"
+},
+"way/78005074": {
+"address": "11 Rue Affre"
+},
+"way/84324974": {
+"wheelchair": "limited",
+"website": "http://www.saintcharlesdemonceau.laparoisse.net/"
+},
+"way/79626601": {
+"wheelchair": "no",
+"website": "http://saintdominique-paris.com/"
+},
+"way/55359253": {
+"website": "http://paroissesaintephrem.blogspot.com/"
+},
+"way/55343672": {
+"serviceTimes": "Tu-Fr 12:15,18:45, Sa 11:00",
+"website": "https://www.saintetiennedumont.fr/"
+},
+"way/50371917": {
+"wheelchair": "no",
+"serviceTimes": "Su 09:45-10:45 \"Roman Rite - Ordinary form\";Su 11:00-12:45 \"Roman Rite - Extraordinary form\";Mo 12:45-13:30 \"Roman Rite - Ordinary form\";Mo,Fr 19:00-19:45 \"Roman Rite - Extraordinary form\";Sa 09:30-10:15 \"Roman Rite - Extraordinary form\"",
+"website": "https://www.saint-eugene.net"
+},
+"way/53762963": {
+"wheelchair": "no",
+"website": "https://www.saint-eustache.org/"
+},
+"way/84325824": {
+"website": "http://saintferdinanddesternes.cef.fr/"
+},
+"way/86277623": {
+"website": "https://www.saintfrancoisdemolitor.fr/",
+"address": "44 Rue Molitor"
+},
+"way/84317434": {
+"wheelchair": "no"
+},
+"way/84326196": {
+"wheelchair": "no"
+},
+"way/68893289": {
+"website": "https://www.sfx-paris.fr/",
+"address": "12 Place du Président-Mithouard"
+},
+"way/70147593": {
+"website": "https://www.saintgab.com/"
+},
+"way/63239488": {
+"website": "https://saintgeorgesdelavillette.fr/"
+},
+"way/62287173": {
+"website": "https://eglise-saintgermaindespres.fr",
+"address": "3 Place Saint-Germain des Prés, 75006"
+},
+"way/53770908": {
+"wheelchair": "yes",
+"website": "http://www.saintgermainauxerrois.cef.fr/",
+"address": "75001"
+},
+"way/70147142": {
+"website": "https://saintgermaindecharonne.fr"
+},
+"way/55477164": {
+"wheelchair": "no",
+"serviceTimes": "Su 11:00; Tu-Fr 12:30,18:00; Sa 12:15",
+"operator": "Fraternités Monastiques de Jérusalem",
+"website": "https://jerusalem.cef.fr/paris-saint-gervais"
+},
+"way/79084388": {
+"wheelchair": "yes",
+"website": "https://www.saint-hippolyte.net/"
+},
+"way/80853671": {
+"address": "9 Place Victor Hugo"
+},
+"way/24310193": {
+"website": "https://stignace.net/",
+"address": "33 Rue de Sèvres"
+},
+"way/60279510": {
+"wheelchair": "no",
+"serviceTimes": "Mo-Fr 12:05,19:00; Sa 12:05,18:30; Su 10:00,11:30,18:30"
+},
+"way/77807770": {
+"wheelchair": "limited",
+"website": "https://www.saintjeandemontmartre.com/",
+"address": "21 Rue des Abbesses, 75018"
+},
+"way/63212231": {
+"serviceTimes": "Tu-Sa 09:00,19:00; Fr-Sa 08:30; Su 09:00, 11:00, 18:30",
+"website": "https://sjbb.fr"
+},
+"way/23811420": {
+"wheelchair": "yes"
+},
+"way/70148329": {
+"wheelchair": "yes",
+"website": "https://www.saintjeanbosco.fr",
+"address": "79 Rue Alexandre Dumas, 75020"
+},
+"way/63370983": {
+"wheelchair": "no",
+"address": "70 Rue de Vaugirard"
+},
+"way/75747135": {
+"wheelchair": "no",
+"website": "https://www.stjosephdesepinettes.org/",
+"address": "40 Rue Pouchet, 75017"
+},
+"way/63203063": {
+"website": "https://saintjosephartisan.fr/",
+"address": "214 Rue La Fayette"
+},
+"way/19741083": {
+"wheelchair": "yes",
+"website": "https://www.sjlp-paris.org"
+},
+"way/14349317": {
+"website": "https://st-lambert.fr/"
+},
+"way/63200612": {
+"website": "http://www.asaintlaurent.com/index.php"
+},
+"way/15912913": {
+"wheelchair": "yes"
+},
+"way/53933240": {
+"wheelchair": "no",
+"website": "https://www.saintleuparis.catholique.fr/"
+},
+"way/69226577": {
+"wheelchair": "no"
+},
+"way/55314295": {
+"address": "19 bis Rue Saint-Louis en l'Île, 75004"
+},
+"way/259039017": {
+"website": "https://www.saintlucparis.com/"
+},
+"way/78534351": {
+"wheelchair": "yes",
+"serviceTimes": "Tu-Fr 12:15, Sa 09:30, Su 10:30"
+},
+"way/24406636": {
+"serviceTimes": "Tu-Fr 12:10,19:00, Sa-Su 09:30, Sa 18:30, Su 11:00,19:00"
+},
+"way/55742120": {
+"wheelchair": "limited",
+"website": "http://www.saintmerry.org/"
+},
+"way/75748771": {
+"website": "https://saintmichel-paris.fr/"
+},
+"way/43877261": {
+"wheelchair": "yes",
+"serviceTimes": "07:45,12:15,18:30; Su,PH 08:00,09:00,10:30,12:15,18:30",
+"operator": "FSSPX",
+"website": "https://www.saintnicolasduchardonnet.org/",
+"address": "23 Rue des Bernardins, 75005"
+},
+"way/56290843": {
+"website": "https://asaintnicolas.com/"
+},
+"way/56046786": {
+"wheelchair": "no"
+},
+"way/16929093": {
+"wheelchair": "yes",
+"serviceTimes": "18:30, Mo-Fr 08:00,12:15, Sa 09:15, Su 09:30,11:00",
+"website": "http://www.saintpierredemontrouge.catholique.fr/"
+},
+"way/69072238": {
+"website": "https://www.stpierredugroscaillou.com/"
+},
+"way/42722202": {
+"wheelchair": "no",
+"website": "http://www.saintrochparis.cef.fr/"
+},
+"way/19740659": {
+"wheelchair": "yes",
+"serviceTimes": "Mo-Fr 12:15,19:00; Sa 12:15; Su 10:30,12:00,19:00",
+"address": "3 Rue des Prêtres Saint-Séverin, 75005"
+},
+"way/16077204": {
+"serviceTimes": "Mo-Fr 07:00,09:00,12:05,18:45; Sa 18:30; Su 07:00,09:00,11:00,18:30",
+"website": "https://www.paroissesaintsulpice.paris/",
+"address": "2 Rue Palatine, 75006"
+},
+"way/63536576": {
+"website": "https://www.eglisesaintthomasdaquin.fr/"
+},
+"way/63197162": {
+"wheelchair": "no",
+"website": "https://paroissesvp.fr/",
+"address": "Place Franz Liszt, 75010"
+},
+"way/78470232": {
+"wheelchair": "no"
+},
+"way/63234079": {
+"serviceTimes": "Mo,Th 19:00; Tu-We,Fr-Sa 12:15; Su 11:00,18:30"
+},
+"way/77670243": {
+"wheelchair": "yes"
+},
+"way/87959071": {
+"website": "https://www.saintejeannedechantal.com/"
+},
+"way/75750389": {
+"wheelchair": "no",
+"website": "http://www.ste-marie-batignolles.com/"
+},
+"node/9439245513": {
+"website": "https://www.maisonozanam.com/",
+"address": "15 Rue René Blum, 75017"
+},
+"way/328240241": {
+"wheelchair": "no"
+},
+"way/104904040": {
+"website": "http://www.ndgrace-passy.com/"
+},
+"node/1981236443": {
+"wheelchair": "no",
+"address": "79 Rue Alexandre Dumas, 75020"
+},
+"way/70223975": {
+"wheelchair": "yes"
+},
+"relation/3344870": {
+"wheelchair": "yes",
+"operator": "Centre des monuments nationaux",
+"website": "http://sainte-chapelle.monuments-nationaux.fr/",
+"address": "8 Boulevard du Palais, 75001"
+},
+"node/12097151763": {
+"website": "https://www.salesien.com",
+"address": "393 B Rue des Pyrénées, 75020"
+}
+}
+}

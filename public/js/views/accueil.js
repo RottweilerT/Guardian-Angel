@@ -20,7 +20,7 @@ export default function accueil(el) {
   </form>
   <div class="grid" style="margin-top:16px">
     <a class="card" href="#/missel"><h3>Missel du jour</h3><p class="muted small">Ordinaire de la messe en latin, calendrier actuel ou de 1962, explications.</p></a>
-    <a class="card" href="#/carte"><h3>Carte des églises</h3><p class="muted small">Églises catholiques de Paris, sites des paroisses, accessibilité.</p></a>
+    <a class="card" href="#/carte"><h3>Carte des églises</h3><p class="muted small">Églises de Paris (OpenStreetMap), recherche par rue, sites des paroisses.</p></a>
     <a class="card" href="#/journal"><h3>Journal spirituel</h3><p class="muted small">${j ? j + " entrée" + (j > 1 ? "s" : "") : "Notes de messe, passages, intentions"} — privé.</p></a>
     <a class="card" href="#/passeport"><h3>Passeport des églises</h3><p class="muted small">${v ? v + " église" + (v > 1 ? "s" : "") + " visitée" + (v > 1 ? "s" : "") : "Gardez la mémoire de vos visites"} et parcours de découverte.</p></a>
     <a class="card" href="#/missions"><h3>Missions paroissiales</h3><p class="muted small">Proposer son aide aux paroisses : chorale, accueil, maraudes…</p></a>

@@ -25,7 +25,7 @@ Limites assumées : pas d'application native en magasin, pas de tâches serveur 
 | Moteur liturgique | `public/js/liturgie-romain.js`, `public/js/liturgie-1962.js` (fonctions pures, testées) |
 | Textes | `public/js/ordo.js` — deux formes modélisées séparément |
 | Gestion des droits | `public/data/content-rights.json` → `docs/CONTENT_RIGHTS_REGISTER.md` ; test bloquant si une ressource non autorisée est utilisée |
-| Services externes | `public/js/cloud.js` (Firebase), `scripts/fetch-churches.mjs` (OpenStreetMap) |
+| Services externes | `public/js/cloud.js` (Firebase), `scripts/build-osm-data.mjs` (fichiers OpenStreetMap téléchargés dans `data/osm/`) |
 | IA | Aucune fonction active (voir `docs/RISQUES_JURIDIQUES.md`) |
 | Notifications | `public/js/push.js`, `public/sw.js`, `server/notify.mjs` (GitHub Actions, toutes les 10 min) — voir `docs/NOTIFICATIONS.md` |
 | Sécurité | `firestore.rules`, en-têtes HTTP et CSP dans `firebase.json` ; aucun secret côté client (la clé de service n'existe que dans GitHub Secrets) |

@@ -2,9 +2,7 @@ name: Déploiement Firebase
 on:
   push:
     branches: [main]
-    paths: ["public/**", "scripts/fetch-churches.mjs", "scripts/check-firebase-sdk.mjs", "firebase.json", "firestore.rules", "firestore.indexes.json", ".github/workflows/deploy.yml"]
-  schedule:
-    - cron: "23 3 * * 1"   # chaque lundi : rafraîchit les données OpenStreetMap
+    paths: ["public/**", "data/osm/**", "scripts/build-osm-data.mjs", "scripts/check-firebase-sdk.mjs", "firebase.json", "firestore.rules", "firestore.indexes.json", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 concurrency: { group: deploy, cancel-in-progress: false }
 permissions:
@@ -23,8 +21,8 @@ jobs:
           npm install --no-save --no-audit --no-fund leaflet@1.9.4
           mkdir -p public/vendor/leaflet
           cp -r node_modules/leaflet/dist/leaflet.js node_modules/leaflet/dist/leaflet.css node_modules/leaflet/dist/images node_modules/leaflet/LICENSE public/vendor/leaflet/
-      - name: Données des églises (OpenStreetMap, ODbL)
-        run: node scripts/fetch-churches.mjs
+      - name: Données OpenStreetMap téléchargées (data/osm → églises et index des rues, ODbL)
+        run: node scripts/build-osm-data.mjs
       - name: SDK Firebase disponible sur le CDN (exports requis)
         run: node scripts/check-firebase-sdk.mjs
       - name: Configuration publique des notifications (clé VAPID publique, App Check)
@@ -45,14 +43,9 @@ jobs:
           N=$(curl -fsS "$U/data/churches.json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).churches.length))")
           curl -fsS "$U/js/app.js" | grep -q "Guardian Angel — point d'entrée"
           curl -fsS -o /dev/null "$U/vendor/leaflet/leaflet.js"
+          R=$(curl -fsS "$U/data/rues.json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).rues.length))")
           curl -fsS "$U/sw.js" | grep -q "notificationclick"
-          echo "::notice::Site en ligne vérifié : application v2 servie, bibliothèque de carte présente, $N églises publiées."
+          echo "::notice::Site en ligne vérifié : application v2 servie, bibliothèque de carte présente, $N églises et $R noms de voies publiés."
       - name: Nettoyage
         if: always()
         run: rm -f "$RUNNER_TEMP/sa.json"
-      - name: Conserver l'extraction dans le dépôt
-        run: |
-          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -- public/js/push-config.js
-          git add public/data/churches.json
-          git diff --cached --quiet || { git commit -qm "Données : extraction OpenStreetMap [skip ci]"; git push -q || echo "push ignoré"; }
