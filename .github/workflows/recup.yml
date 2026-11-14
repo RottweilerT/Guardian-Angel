@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Récupération des versets manquants depuis l'OCR brut
-        run: python3 tools/recup/recup_torres.py public/bible tools/recup/recuperes.json
+        run: python3 tools/recup/recup_torres.py public/bible tools/recup/recuperes.json 2> err.txt || { echo "::error::$(tail -c 900 err.txt | tr '\n' ' ')"; exit 1; }
       - name: Enregistrer
         run: |
           git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
