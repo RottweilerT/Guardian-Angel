@@ -64,7 +64,12 @@ GEOFABRIK = "https://download.geofabrik.de/europe/france/ile-de-france-latest.os
 
 def sh(*cmd):
     import subprocess
-    log("    $ " + " ".join(cmd)); subprocess.run(cmd, check=True)
+    log("    $ " + " ".join(cmd))
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if r.returncode:
+        msg = (r.stderr or r.stdout or "").strip().replace("\n", " | ")[-600:]
+        print(f"::error::{cmd[0]} {cmd[1]} : {msg}", flush=True)
+        raise subprocess.CalledProcessError(r.returncode, cmd)
 
 def charger_geofabrik(dossier):
     """Télécharge l'extrait Île-de-France, le découpe sur la limite officielle de Paris (relation 7444) et
@@ -83,8 +88,7 @@ def charger_geofabrik(dossier):
        "nwr/building=church,cathedral,chapel,basilica", "-o", os.path.join(w, "filtre.osm.pbf"))
     # Arrondissements : pris dans l'extrait complet (le découpage sur la limite de Paris couperait leurs contours extérieurs)
     sh("osmium", "tags-filter", "-O", pbf, "r/admin_level=9", "-o", os.path.join(w, "arr.osm.pbf"))
-    sh("osmium", "cat", "-O", os.path.join(w, "filtre.osm.pbf"), os.path.join(w, "arr.osm.pbf"), "-o", os.path.join(w, "tout.osm.pbf"))
-    sh("osmium", "sort", "-O", os.path.join(w, "tout.osm.pbf"), "-o", os.path.join(w, "tout_trie.osm.pbf"))
+    sh("osmium", "merge", "-O", os.path.join(w, "filtre.osm.pbf"), os.path.join(w, "arr.osm.pbf"), "-o", os.path.join(w, "tout_trie.osm.pbf"))
     sh("osmium", "export", "-O", "-a", "type,id", "-f", "geojsonseq", os.path.join(w, "tout_trie.osm.pbf"), "-o", os.path.join(w, "filtre.geojsonseq"))
     ll = lambda c: {"lon": c[0], "lat": c[1]}
     arrs, rues_e, egl_e = [], [], []
