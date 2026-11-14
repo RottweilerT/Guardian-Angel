@@ -44,8 +44,6 @@ VERSIONS = [
    lambda: fillion(f"{SRC}/janvier-s_bible-fillion/formats/json-flat/fillion-array-of-objects.json", f"{SRC}/janvier-s_bible-fillion/metadata/books.json")),
   ("en", "Douay-Rheims (1899, American Edition)", "English", "catholique", "Domaine public — via github.com/seven1m/open-bibles (eBible.org)",
    lambda: usfx(f"{SRC}/open-bibles/eng-dra.usfx.xml")),
-  ("es", "Reina-Valera (1909)", "español", "protestante (66 livres, sans les deutérocanoniques)", "Domaine public — via github.com/seven1m/open-bibles (eBible.org)",
-   lambda: usfx(f"{SRC}/open-bibles/spa-rv1909.usfx.xml")),
   ("la", "Vulgata Clementina", "latine", "catholique", "Domaine public — via github.com/seven1m/open-bibles",
    lambda: usfx(f"{SRC}/open-bibles/lat-clementine.usfx.xml")),
 ]

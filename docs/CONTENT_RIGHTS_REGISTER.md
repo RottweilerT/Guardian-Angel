@@ -215,22 +215,6 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Preuve / autorisation | https://github.com/seven1m/open-bibles |
 | Utilisée dans l'application | oui |
 
-### Reina-Valera (1909) — dépôt open-bibles
-
-| Champ | Valeur |
-| --- | --- |
-| Référence | https://github.com/seven1m/open-bibles |
-| Titulaire des droits | Domaine public (source eBible.org) |
-| Type | Texte biblique |
-| Licence | Domaine public |
-| Date de vérification | 2026-11-14 (licence indiquée dans le dépôt source (README / LICENSE), consultée le 2026-11-14) |
-| Conditions | Reproduction libre ; aucune attribution exigée, la source est néanmoins citée dans l'application. |
-| Attribution requise | — |
-| Usage commercial | autorisé |
-| Statut | `PUBLIC_DOMAIN` |
-| Preuve / autorisation | https://github.com/seven1m/open-bibles |
-| Utilisée dans l'application | oui |
-
 ### Vulgata Clementina — dépôt open-bibles
 
 | Champ | Valeur |
@@ -383,3 +367,19 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Preuve / autorisation | — |
 | Utilisée dans l'application | **non** |
 | Autorisation à demander à | Prestataire retenu ; prédicateur ; paroisse |
+
+### Reina-Valera (1909) — dépôt open-bibles
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/seven1m/open-bibles |
+| Titulaire des droits | Domaine public (source eBible.org) |
+| Type | Texte biblique |
+| Licence | Domaine public |
+| Date de vérification | 2026-11-14 (licence indiquée dans le dépôt source (README / LICENSE), consultée le 2026-11-14) |
+| Conditions | Retirée le 2026-11-14 : traduction protestante, l'application ne garde que des traductions catholiques. |
+| Attribution requise | — |
+| Usage commercial | autorisé |
+| Statut | `PUBLIC_DOMAIN` |
+| Preuve / autorisation | https://github.com/seven1m/open-bibles |
+| Utilisée dans l'application | **non** |

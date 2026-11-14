@@ -3,7 +3,7 @@
 import { esc, $ } from "../ui.js";
 import * as store from "../store.js";
 
-const LANGUES = { fr: "Français", en: "English", es: "Español", la: "Latina" };
+const LANGUES = { fr: "Français", en: "English", la: "Latina" };
 let indexP = null;
 const cache = new Map();
 const loadIndex = () => (indexP ||= fetch("/bible/index.json").then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }).catch(e => { indexP = null; throw e; }));
@@ -45,7 +45,7 @@ export default async function bible(el, params) {
   el.innerHTML = `<section class="hero"><div class="kicker">Écriture sainte</div><h1>La Bible</h1><span class="orn"></span></section>
   <div class="row" role="tablist" aria-label="Version">
     ${ix.versions.map(x => `<a class="btn ${x.code === v ? "" : "ghost"} sm" role="tab" aria-selected="${x.code === v}" href="#/bible/${x.code}/${b}/${c}">${LANGUES[x.code] || x.code}</a>`).join("")}
-    <a class="btn ${tout ? "" : "ghost"} sm" role="tab" aria-selected="${tout}" href="#/bible/tout/${b}/${c}">Les 4 côte à côte</a>
+    <a class="btn ${tout ? "" : "ghost"} sm" role="tab" aria-selected="${tout}" href="#/bible/tout/${b}/${c}">Côte à côte</a>
   </div>
   <div class="row" style="margin-top:10px">
     <select id="bl" aria-label="Livre" style="flex:2;min-width:170px"><optgroup label="Ancien Testament">${at.map(opt).join("")}</optgroup><optgroup label="Nouveau Testament">${nt.map(opt).join("")}</optgroup></select>
@@ -57,7 +57,7 @@ export default async function bible(el, params) {
     <button class="btn ghost sm" id="bnext"${c >= nch ? " disabled" : ""}>Chapitre ${c < nch ? c + 1 : ""} →</button>
   </div>
   <div class="notice small" style="margin-top:18px"><strong>Textes :</strong><br>${ix.versions.map(x => `${esc(LANGUES[x.code])} — ${esc(x.titre)}, ${esc(x.tradition)}. ${esc(x.licence)}.`).join("<br>")}
-  <br>* livre deutérocanonique, absent de la Reina-Valera. Les psaumes suivent la numérotation de la Vulgate en français, anglais et latin, et la numérotation hébraïque en espagnol (souvent décalée d'un).</div>`;
+  <br>Trois traductions catholiques complètes (73 livres ; * = livre deutérocanonique), psaumes numérotés selon la Vulgate. Espagnol : aucune traduction catholique libre de droits n'est encore disponible sous forme numérique exploitable.</div>`;
 
   $("#bl", el).onchange = e => go(v, e.target.value, 1);
   $("#bc", el).onchange = e => go(v, b, e.target.value);

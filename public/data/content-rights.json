@@ -347,12 +347,12 @@
    "licence": "Domaine public",
    "verifie_le": "2026-11-14",
    "mode_verification": "licence indiquée dans le dépôt source (README / LICENSE), consultée le 2026-11-14",
-   "conditions": "Reproduction libre ; aucune attribution exigée, la source est néanmoins citée dans l'application.",
+   "conditions": "Retirée le 2026-11-14 : traduction protestante, l'application ne garde que des traductions catholiques.",
    "attribution": "",
    "usage_commercial": true,
    "statut": "PUBLIC_DOMAIN",
    "preuve": "https://github.com/seven1m/open-bibles",
-   "utilise": true,
+   "utilise": false,
    "demander_a": ""
   },
   {

@@ -5,9 +5,9 @@ const J = p => JSON.parse(readFileSync(new URL(p, import.meta.url), "utf8"));
 
 test("Bible : quatre versions complètes et cohérentes", () => {
   const ix = J("../public/bible/index.json");
-  assert.deepEqual(ix.versions.map(v => v.code), ["fr", "en", "es", "la"]);
+  assert.deepEqual(ix.versions.map(v => v.code), ["fr", "en", "la"]);
   for (const v of ix.versions) {
-    assert.ok(v.livres.length >= (v.code === "es" ? 66 : 73), v.code);
+    assert.ok(v.livres.length === 73 && /catholique/.test(v.tradition), v.code);
     for (const [b, nom, n] of v.livres) {
       assert.ok(ix.ordre.includes(b) && nom && n > 0, v.code + " " + b);
       const ch = J(`../public/bible/${v.code}/${b}.json`);
