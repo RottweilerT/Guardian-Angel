@@ -1,7 +1,7 @@
 // Service worker unique de l'application :
 //  1. coque et données publiques disponibles hors ligne ;
 //  2. réception des notifications push (Firebase Cloud Messaging, messages « data » uniquement) et clic.
-const VERSION = "ga2-v12";
+const VERSION = "ga2-v13";
 const SHELL = ["/", "/index.html", "/css/ds.css", "/manifest.webmanifest", "/img/logo-96-v3.png", "/img/ecran-chargement.jpg", "/icons/icon-192-v3.png",
   ...["app", "ui", "cloud", "store", "ordo", "firebase-config", "push", "push-config", "liturgie-romain", "liturgie-1962"].map(f => "/js/" + f + ".js"),
   ...["accueil", "carte", "missel", "journal", "missions", "passeport", "profil", "notifications"].map(f => "/js/views/" + f + ".js"),

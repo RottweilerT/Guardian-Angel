@@ -30,7 +30,7 @@ function render(keepScroll) {
   $$(".nav a").forEach(a => { if (a.dataset.nav === route.nav) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   const y = window.scrollY;
   current = { name, params };
-  try { route.v(main, params); } catch (e) { console.error(e); main.innerHTML = `<div class="notice err">Une erreur est survenue à l'affichage de cette page.</div>`; }
+  try { const r = route.v(main, params); if (r && r.catch) r.catch(e => { console.error(e); main.innerHTML = `<div class="notice err">Une erreur est survenue à l'affichage de cette page.</div>`; }); } catch (e) { console.error(e); main.innerHTML = `<div class="notice err">Une erreur est survenue à l'affichage de cette page.</div>`; }
   if (keepScroll) window.scrollTo(0, y); else { window.scrollTo(0, 0); }
   $("#topAccount").textContent = cloud.user ? "Mon compte" : "Profil";
 }

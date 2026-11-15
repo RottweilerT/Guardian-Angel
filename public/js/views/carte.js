@@ -168,7 +168,7 @@ export async function eglise(el, [id]) {
     try {
       if (!store.get("journal", messeId)) await store.put("journal", messeId, { id: messeId, date: d, categorie: "Messe", eglise: churchLabel(c), egliseId: c.id, notes: "", passages: "", reflexions: "", intentions: "" });
       if (!store.get("visits", c.id)) await store.put("visits", c.id, { churchId: c.id, nom: churchLabel(c), date: d, note: "" });
-      store.prefs.set("messeEnCours", { date: d, id: messeId, eglise: churchLabel(c) });
+      store.prefs.setQuiet("messeEnCours", { date: d, id: messeId, eglise: churchLabel(c) });
       if (!dejaMesse) toast("Messe enregistrée dans votre journal");
     } catch { toast("Enregistrement impossible"); return; }
     location.hash = "#/missel/" + d;

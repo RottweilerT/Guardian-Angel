@@ -43,7 +43,7 @@ export default async function bible(el, params) {
   if (!livre(ref, b)) b = livre(ref, "JHN") ? "JHN" : ref.livres[0][0];
   const L = livre(ref, b), nch = L[2];
   c = Math.min(Math.max(parseInt(c, 10) || 1, 1), nch);
-  store.prefs.set("bible", { v, b, c });
+  store.prefs.setQuiet("bible", { v, b, c });
   const go = (nv, nb, nc) => { location.hash = `#/bible/${nv}/${nb}/${nc}`; };
   const at = ix.ordre.filter(x => !ix.nt.includes(x)), nt = ix.ordre.filter(x => ix.nt.includes(x));
   const opt = x => { const l = livre(ref, x); return l ? `<option value="${x}"${x === b ? " selected" : ""}>${esc(l[1])}${ix.deutero.includes(x) ? " *" : ""}</option>` : ""; };
