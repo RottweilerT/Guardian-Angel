@@ -19,7 +19,7 @@ export default function accueil(el) {
     <button class="btn">Rechercher</button>
   </form>
   <div class="grid" style="margin-top:16px">
-    <a class="card" href="#/missel"><h3>Missel du jour</h3><p class="muted small">Ordinaire de la messe en latin, calendrier actuel ou de 1962, explications.</p></a>
+    <a class="card" href="#/missel"><h3>Missel du jour</h3><p class="muted small">Le jour liturgique et le déroulement de la messe, forme ordinaire ou extraordinaire.</p></a>
     <a class="card" href="#/carte"><h3>Carte des églises</h3><p class="muted small">Églises de Paris (OpenStreetMap), recherche par rue, sites des paroisses.</p></a>
     <a class="card" href="#/bible"><h3>La Bible</h3><p class="muted small">Traductions catholiques en français, anglais, espagnol et latin, côte à côte.</p></a>
     <a class="card" href="#/journal"><h3>Journal spirituel</h3><p class="muted small">${j ? j + " entrée" + (j > 1 ? "s" : "") : "Notes de messe, passages, intentions"} — privé.</p></a>

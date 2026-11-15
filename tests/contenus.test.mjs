@@ -55,3 +55,14 @@ test("extraction OpenStreetMap : normalisation et arrondissements", () => {
   assert.equal(by("w1").serviceTimes, "Su 10:00"); assert.equal(by("n2").wheelchair, undefined);
   assert.ok(QUERY.includes("3600007444"));
 });
+
+import { ETAPES } from "../public/js/messe-etapes.js";
+test("missel : déroulement des deux formes, titres seulement", () => {
+  for (const f of ["ordinaire", "extraordinaire"]) {
+    const all = ETAPES[f].sections.flatMap(([s, e]) => e);
+    assert.ok(all.length >= 25, f);
+    for (const [t] of all) assert.ok(typeof t === "string" && t.length > 2);
+  }
+  const ef = ETAPES.extraordinaire.sections.flatMap(([, e]) => e.map(x => x[0]));
+  assert.ok(ef.includes("Dernier Évangile") && ef.includes("Introït"));
+});
