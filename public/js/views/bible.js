@@ -5,7 +5,7 @@ import * as store from "../store.js";
 import { cloud } from "../cloud.js";
 import { modal, toast } from "../ui.js";
 
-const LANGUES = { fr: "Français", en: "English", es: "Español", la: "Latina" };
+const LANGUES = { fr: "Français", en: "English", es: "Español", la: "Latin" };
 const MANQUE = `<span class="muted small">[verset pas encore transcrit]</span>`;
 // Verset espagnol manquant : on montre le latin de la Vulgate, dont Torres Amat est la traduction
 const LATIN = t => `<em lang="la">${esc(t)}</em> <span class="chip" style="font-size:11px" title="Verset espagnol pas encore transcrit : texte latin de la Vulgate">latin</span>`;
