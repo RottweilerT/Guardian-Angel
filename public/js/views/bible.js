@@ -38,6 +38,7 @@ export default async function bible(el, params) {
   try { ix = await loadIndex(); } catch { el.querySelector(".skeleton").outerHTML = `<div class="empty">La Bible n'a pas pu être chargée (hors ligne ?).</div>`; return; }
   if (!location.hash.startsWith("#/bible") && location.hash) return;
   const tout = v === "tout";
+  const cote = (store.prefs.get("bibleCote", null) || ["fr", "en", "es", "la"]).filter(x => version(ix, x));
   if (!tout && !version(ix, v)) v = "fr";
   const ref = version(ix, tout ? "fr" : v);
   if (!livre(ref, b)) b = livre(ref, "JHN") ? "JHN" : ref.livres[0][0];
@@ -53,6 +54,8 @@ export default async function bible(el, params) {
     ${ix.versions.map(x => `<a class="btn ${x.code === v ? "" : "ghost"} sm" role="tab" aria-selected="${x.code === v}" href="#/bible/${x.code}/${b}/${c}">${LANGUES[x.code] || x.code}</a>`).join("")}
     <a class="btn ${tout ? "" : "ghost"} sm" role="tab" aria-selected="${tout}" href="#/bible/tout/${b}/${c}">Côte à côte</a>
   </div>
+  ${tout ? `<div class="row" style="margin-top:10px;align-items:center" role="group" aria-label="Langues à comparer"><span class="small muted">Langues :</span>
+    ${ix.versions.map(x => `<label class="chip" style="cursor:pointer"><input type="checkbox" data-lg="${x.code}"${cote.includes(x.code) ? " checked" : ""} style="width:auto;margin:0 4px 0 0">${esc(LANGUES[x.code] || x.code)}</label>`).join("")}</div>` : ""}
   <div class="row" style="margin-top:10px">
     <select id="bl" aria-label="Livre" style="flex:2;min-width:170px"><optgroup label="Ancien Testament">${at.map(opt).join("")}</optgroup><optgroup label="Nouveau Testament">${nt.map(opt).join("")}</optgroup></select>
     <select id="bc" aria-label="Chapitre" style="flex:1;min-width:90px">${Array.from({ length: nch }, (_, i) => `<option value="${i + 1}"${i + 1 === c ? " selected" : ""}>Chapitre ${i + 1}</option>`).join("")}</select>
@@ -65,6 +68,11 @@ export default async function bible(el, params) {
   <div class="notice small" style="margin-top:18px"><strong>Textes :</strong><br>${ix.versions.map(x => `${esc(LANGUES[x.code])} — ${esc(x.titre)}, ${esc(x.tradition)}. ${esc(x.licence)}.`).join("<br>")}
   <br>Quatre traductions catholiques (73 livres ; * = livre deutérocanonique), psaumes numérotés selon la Vulgate.</div>`;
 
+  el.querySelectorAll("[data-lg]").forEach(cb => cb.onchange = () => {
+    const sel = [...el.querySelectorAll("[data-lg]:checked")].map(x => x.dataset.lg);
+    if (!sel.length) { cb.checked = true; return; }             // au moins une langue
+    store.prefs.setQuiet("bibleCote", sel); bible(el, [v, b, c, vs].filter(x => x !== undefined));
+  });
   $("#bl", el).onchange = e => go(v, e.target.value, 1);
   $("#bc", el).onchange = e => go(v, b, e.target.value);
   $("#bprev", el).onclick = () => go(v, b, c - 1);
@@ -96,13 +104,14 @@ export default async function bible(el, params) {
       };
     }
   } else {
-    const chs = await Promise.all(ix.versions.map(x => (livre(x, b) ? loadChap(x.code, b, c) : Promise.resolve(null))));
+    const vers = ix.versions.filter(x => cote.includes(x.code));
+    const chs = await Promise.all(vers.map(x => (livre(x, b) ? loadChap(x.code, b, c) : Promise.resolve(null))));
     if (!document.body.contains(box)) return;
-    const per = ix.versions.map((x, i) => new Map((chs[i] || []).map(([n, t]) => [n, t])));
+    const per = vers.map((x, i) => new Map((chs[i] || []).map(([n, t]) => [n, t])));
     const nums = [...new Set(per.flatMap(m => [...m.keys()]))].sort((a, z) => parseInt(a, 10) - parseInt(z, 10) || a.localeCompare(z));
     box.innerHTML = `<h2 class="sec serif">${esc(L[1])} ${c}</h2>` + (nums.length ? nums.map(n => `<div class="card" id="v${esc(n)}" style="padding:10px 14px${n === String(vs) ? ";outline:2px solid var(--accent)" : ""}">
       <div class="small muted" style="margin-bottom:4px">Verset ${esc(n)}</div>
-      ${ix.versions.map((x, i) => `<p class="serif" lang="${x.code}" style="margin:4px 0"><span class="chip" style="margin-right:6px">${x.code.toUpperCase()}</span>${per[i].get(n) ? esc(per[i].get(n)) : per[i].has(n) ? MANQUE : `<span class="muted small">${livre(x, b) ? "—" : "livre absent de cette version"}</span>`}</p>`).join("")}</div>`).join("")
+      ${vers.map((x, i) => `<p class="serif" lang="${x.code}" style="margin:4px 0"><span class="chip" style="margin-right:6px">${x.code.toUpperCase()}</span>${per[i].get(n) ? esc(per[i].get(n)) : per[i].has(n) ? MANQUE : `<span class="muted small">${livre(x, b) ? "—" : "livre absent de cette version"}</span>`}</p>`).join("")}</div>`).join("")
       : `<div class="empty">Chapitre indisponible.</div>`);
   }
   if (vs) { const t = document.getElementById("v" + vs); if (t) t.scrollIntoView({ block: "center" }); }
