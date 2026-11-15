@@ -32,6 +32,8 @@ export default async function missel(el, [dateP]) {
   </div>
   ${date !== today() ? `<p class="center small"><a href="#/missel">Revenir à aujourd'hui</a></p>` : ""}
   ${L.pasDeMesse ? `<div class="notice">Aujourd'hui, on ne célèbre pas la messe : l'Église commémore la Passion du Seigneur.</div>` : ""}`;
+  const mc = store.prefs.get("messeEnCours", null), enCours = mc && mc.date === date ? mc : null;
+  if (enCours) h += `<div class="notice small" style="margin-top:10px">⛪ Vous assistez à la messe à <strong>${esc(enCours.eglise)}</strong> — enregistrée dans votre journal. <a href="#/journal/e/${encodeURIComponent(enCours.id)}">Prendre des notes</a></div>`;
   const F = ETAPES[cal === "m1962" ? "extraordinaire" : "ordinaire"];
   let num = 0;
   h += `<section class="center" style="margin:14px 0 4px"><h2 class="serif" style="margin:0">${esc(F.titre)}</h2><p class="small muted" style="margin:2px 0 0">${esc(F.sousTitre)}</p></section>
@@ -40,7 +42,7 @@ export default async function missel(el, [dateP]) {
     h += `<h2 class="sec">${esc(section)}</h2><ol class="list">`;
     for (const [titre, latin, quand] of etapes) {
       num++;
-      const lien = /^(Homélie|Sermon)$/.test(titre) ? ` <a class="small" href="#/journal/nouveau">Prendre des notes</a>` : "";
+      const lien = /^(Homélie|Sermon)$/.test(titre) ? ` <a class="small" href="${enCours ? "#/journal/e/" + encodeURIComponent(enCours.id) : "#/journal/nouveau"}">Prendre des notes</a>` : "";
       h += `<li style="padding:8px 0;display:flex;gap:10px"><span class="muted small" style="min-width:1.6em;text-align:right">${num}.</span><span><strong class="serif">${esc(titre)}</strong>${latin && latin !== titre ? ` <em class="muted small" lang="la">— ${esc(latin)}</em>` : ""}${lien}${quand ? `<br><span class="small muted">${esc(quand)}</span>` : ""}</span></li>`;
     }
     h += `</ol>`;

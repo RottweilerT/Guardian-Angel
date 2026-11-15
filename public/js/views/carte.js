@@ -132,9 +132,11 @@ export async function eglise(el, [id]) {
   const c = list.find(x => x.id === id);
   if (!c) { el.innerHTML = `<div class="empty">Église introuvable. <a href="#/carte">Retour à la carte</a></div>`; return; }
   const fav = favs().includes(c.id), visit = store.get("visits", c.id), site = safeUrl(c.website);
+  const messeId = "messe-" + today() + "-" + c.id, dejaMesse = store.get("journal", messeId);
   const src = `OpenStreetMap, extraction du ${esc((meta.extractedAt || "").slice(0, 10) || "?")}`;
   el.innerHTML = `
   <section class="hero"><div class="kicker">${esc(arrLabel(c.arr) || "Paris")}</div><h1>${esc(churchLabel(c))}</h1><span class="orn"></span></section>
+  <p class="center" style="margin:0 0 12px"><button class="btn" id="bmesse">${dejaMesse ? "✓ Messe du jour enregistrée — ouvrir le missel" : "⛪ J'assiste à la messe ici"}</button></p>
   <div class="row">
     <button class="btn gold sm" id="bfav" aria-pressed="${fav}">${fav ? "★ Favorite" : "☆ Ajouter aux favorites"}</button>
     <button class="btn gold sm" id="bvis">${visit ? "✓ Visitée le " + esc(frDate(visit.date)) : "Marquer comme visitée"}</button>
@@ -160,6 +162,17 @@ export async function eglise(el, [id]) {
   <a class="small" href="https://www.openstreetmap.org/${esc(c.osm)}" target="_blank" rel="noopener noreferrer">Fiche OpenStreetMap</a></p>
   <p class="osm-attr">Données ${ATTR}, licence ODbL 1.0 — extraction du ${esc((meta.extractedAt || "").slice(0, 10) || "?")}.</p>`;
 
+  // Assister à la messe : enregistrement automatique dans le journal (et le passeport), puis ouverture du missel du jour
+  $("#bmesse", el).onclick = async () => {
+    const d = today();
+    try {
+      if (!store.get("journal", messeId)) await store.put("journal", messeId, { id: messeId, date: d, categorie: "Messe", eglise: churchLabel(c), egliseId: c.id, notes: "", passages: "", reflexions: "", intentions: "" });
+      if (!store.get("visits", c.id)) await store.put("visits", c.id, { churchId: c.id, nom: churchLabel(c), date: d, note: "" });
+      store.prefs.set("messeEnCours", { date: d, id: messeId, eglise: churchLabel(c) });
+      if (!dejaMesse) toast("Messe enregistrée dans votre journal");
+    } catch { toast("Enregistrement impossible"); return; }
+    location.hash = "#/missel/" + d;
+  };
   $("#bfav", el).onclick = () => { const f = favs(); store.prefs.set("favEglises", fav ? f.filter(x => x !== c.id) : [...f, c.id]); eglise(el, [id]); };
   $("#bvis", el).onclick = async () => {
     const r = await modal(`<h2>${visit ? "Ma visite" : "Marquer comme visitée"}</h2>
