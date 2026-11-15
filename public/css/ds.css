@@ -134,3 +134,10 @@ fieldset{border:1px solid var(--line)}
 @keyframes splashpt{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
 #splash.fin{opacity:0;visibility:hidden}
 @media (prefers-reduced-motion:reduce){#splash,#splash .splash-pt span{transition:none;animation:none}}
+/* Bible côte à côte : panneaux à faire glisser */
+.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;align-items:flex-start}
+.slides::-webkit-scrollbar{display:none}
+.slides .slide{flex:0 0 100%;min-width:100%;scroll-snap-align:start;scroll-snap-stop:always;box-sizing:border-box;padding:0 2px}
+.dots{display:flex;gap:7px;justify-content:center;margin:10px 0}
+.dots span{width:8px;height:8px;border-radius:50%;background:var(--line);transition:background .2s,transform .2s}
+.dots span.on{background:var(--accent);transform:scale(1.2)}

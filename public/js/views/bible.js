@@ -104,15 +104,33 @@ export default async function bible(el, params) {
       };
     }
   } else {
-    const vers = ix.versions.filter(x => cote.includes(x.code));
-    const chs = await Promise.all(vers.map(x => (livre(x, b) ? loadChap(x.code, b, c) : Promise.resolve(null))));
+    // Côte à côte : un panneau par langue, on glisse à gauche ou à droite pour changer de langue
+    const vers = ix.versions.filter(x => cote.includes(x.code) && livre(x, b));
+    const [chs, chLa] = await Promise.all([Promise.all(vers.map(x => loadChap(x.code, b, c))), loadChap("la", b, c)]);
     if (!document.body.contains(box)) return;
-    const per = vers.map((x, i) => new Map((chs[i] || []).map(([n, t]) => [n, t])));
-    const nums = [...new Set(per.flatMap(m => [...m.keys()]))].sort((a, z) => parseInt(a, 10) - parseInt(z, 10) || a.localeCompare(z));
-    box.innerHTML = `<h2 class="sec serif">${esc(L[1])} ${c}</h2>` + (nums.length ? nums.map(n => `<div class="card" id="v${esc(n)}" style="padding:10px 14px${n === String(vs) ? ";outline:2px solid var(--accent)" : ""}">
-      <div class="small muted" style="margin-bottom:4px">Verset ${esc(n)}</div>
-      ${vers.map((x, i) => `<p class="serif" lang="${x.code}" style="margin:4px 0"><span class="chip" style="margin-right:6px">${x.code.toUpperCase()}</span>${per[i].get(n) ? esc(per[i].get(n)) : per[i].has(n) ? MANQUE : `<span class="muted small">${livre(x, b) ? "—" : "livre absent de cette version"}</span>`}</p>`).join("")}</div>`).join("")
-      : `<div class="empty">Chapitre indisponible.</div>`);
+    const la = new Map(chLa || []), hl = n => n === String(vs) ? ' style="background:var(--bg-soft);outline:2px solid var(--accent);border-radius:3px"' : "";
+    const absents = ix.versions.filter(x => cote.includes(x.code) && !livre(x, b));
+    const panneau = (x, vv) => `<section class="slide" data-lg="${x.code}" lang="${x.code}" aria-label="${esc(LANGUES[x.code] || x.code)}">
+      <h2 class="sec serif">${esc(livre(x, b)[1])} ${c}</h2>
+      ${vv && vv.length ? `<div class="card serif" style="line-height:1.75">${vv.map(([n, t]) => `<span data-v="${esc(n)}"${hl(n)}>${num(n)}${t ? esc(t) : la.get(n) ? LATIN(la.get(n)) : MANQUE} </span>`).join("")}</div>` : `<div class="empty">Chapitre indisponible.</div>`}</section>`;
+    const depart = Math.max(0, vers.findIndex(x => x.code === store.prefs.get("bibleSlide", "fr")));
+    box.innerHTML = vers.length ? `
+      <div class="row" role="tablist" aria-label="Langue affichée" style="justify-content:center">${vers.map((x, k) => `<button class="btn ${k === depart ? "" : "ghost"} sm" role="tab" data-go="${k}" aria-selected="${k === depart}">${esc(LANGUES[x.code] || x.code)}</button>`).join("")}</div>
+      <p class="small muted center" style="margin:6px 0 0">Glissez vers la gauche ou la droite pour changer de langue</p>
+      <div class="slides" id="slides">${vers.map((x, k) => panneau(x, chs[k])).join("")}</div>
+      <div class="dots" aria-hidden="true">${vers.map((_, k) => `<span${k === depart ? ' class="on"' : ""}></span>`).join("")}</div>
+      ${absents.length ? `<p class="small muted center">Livre absent : ${absents.map(x => esc(LANGUES[x.code])).join(", ")}</p>` : ""}`
+      : `<div class="empty">Ce livre n'existe dans aucune des langues choisies.</div>`;
+    const sl = $("#slides", el);
+    if (sl) {
+      const tabs = [...box.querySelectorAll("[data-go]")], dots = [...box.querySelectorAll(".dots span")];
+      const actif = k => { tabs.forEach((t, i) => { t.classList.toggle("ghost", i !== k); t.setAttribute("aria-selected", i === k); }); dots.forEach((d, i) => d.classList.toggle("on", i === k)); store.prefs.setQuiet("bibleSlide", vers[k].code); };
+      sl.scrollLeft = depart * sl.clientWidth;
+      let tm; sl.addEventListener("scroll", () => { clearTimeout(tm); tm = setTimeout(() => actif(Math.round(sl.scrollLeft / sl.clientWidth)), 80); }, { passive: true });
+      tabs.forEach(t => t.onclick = () => sl.scrollTo({ left: +t.dataset.go * sl.clientWidth, behavior: "smooth" }));
+      if (vs) { const t = sl.querySelectorAll(`.slide`)[depart]?.querySelector(`[data-v="${CSS.escape(String(vs))}"]`); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - innerHeight / 3 }); }
+    }
+    return;
   }
   if (vs) { const t = document.getElementById("v" + vs); if (t) t.scrollIntoView({ block: "center" }); }
 }
