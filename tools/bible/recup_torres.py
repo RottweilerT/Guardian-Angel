@@ -58,6 +58,10 @@ def anchors(g3, seq, fin):
             out.add(p + (len(seq) - k - 1) if fin else p - k)
     return out
 
+def livre_json(bib, v, b):
+    """chapitres d'un livre (un fichier par chapitre : bible/<v>/<LIVRE>/<n>.json)"""
+    d = f"{bib}/{v}/{b}"
+    return [json.load(open(f"{d}/{n}.json")) for n in range(1, len(os.listdir(d)) + 1)]
 ix = json.load(open(f"{BIB}/index.json"))
 livres = [b for b, _, _ in next(v for v in ix["versions"] if v["code"] == "es")["livres"]]
 res, stats = collections.defaultdict(dict), collections.Counter()
@@ -76,7 +80,7 @@ def segment(it_src, WP, WN, maxlen):
     return toks[idx[best[0]]: idx[best[1]]]
 
 for b in livres:
-    es = json.load(open(f"{BIB}/es/{b}.json"))
+    es = livre_json(BIB, "es", b)
     for ci, ch in enumerate(es):
         i = 0
         while i < len(ch):

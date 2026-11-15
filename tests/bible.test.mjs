@@ -10,12 +10,11 @@ test("Bible : quatre versions complètes et cohérentes", () => {
     assert.ok(v.livres.length === 73 && /catholique/.test(v.tradition), v.code);
     for (const [b, nom, n] of v.livres) {
       assert.ok(ix.ordre.includes(b) && nom && n > 0, v.code + " " + b);
-      const ch = J(`../public/bible/${v.code}/${b}.json`);
-      assert.equal(ch.length, n, v.code + " " + b);
+      const ch = Array.from({ length: n }, (_, i) => J(`../public/bible/${v.code}/${b}/${i + 1}.json`));
       assert.ok(ch.flat().every(x => Array.isArray(x) && typeof x[1] === "string" && (x[1].length || v.code === "es")), v.code + " " + b);
     }
   }
-  assert.match(J("../public/bible/fr/JHN.json")[2][15][1], /Dieu a tant aimé le monde/);
-  assert.match(J("../public/bible/la/JHN.json")[0][0][1], /In principio erat Verbum/);
-  assert.match(J("../public/bible/es/JHN.json")[2][15][1], /amó tanto Dios al mundo/);
+  assert.match(J("../public/bible/fr/JHN/3.json")[15][1], /Dieu a tant aimé le monde/);
+  assert.match(J("../public/bible/la/JHN/1.json")[0][1], /In principio erat Verbum/);
+  assert.match(J("../public/bible/es/JHN/3.json")[15][1], /amó tanto Dios al mundo/);
 });

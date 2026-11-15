@@ -213,7 +213,10 @@ for code, titre, langue, tradition, licence, charger in VERSIONS:
         nom, chap = livres[b]
         chs = [chap.get(c, []) for c in range(1, max(chap) + 1)] if chap else []
         nv += sum(len(c) for c in chs)
-        json.dump(chs, open(f"{OUT}/{code}/{b}.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+        # un fichier par chapitre : on ne télécharge que ce qu'on lit
+        os.makedirs(f"{OUT}/{code}/{b}", exist_ok=True)
+        for n, ch in enumerate(chs, 1):
+            json.dump(ch, open(f"{OUT}/{code}/{b}/{n}.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
         liste.append([b, nom, len(chs)])
     index["versions"].append({"code": code, "titre": titre, "langue": langue, "tradition": tradition, "licence": licence, "livres": liste, "versets": nv})
     print(f"{code}: {len(liste)} livres, {nv} versets")

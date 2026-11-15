@@ -12,9 +12,10 @@ const LATIN = t => `<em lang="la">${esc(t)}</em> <span class="chip" style="font-
 let indexP = null;
 const cache = new Map();
 const loadIndex = () => (indexP ||= fetch("/bible/index.json").then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }).catch(e => { indexP = null; throw e; }));
-function loadBook(v, b) {
-  const k = v + "/" + b;
-  if (!cache.has(k)) cache.set(k, fetch(`/bible/${v}/${b}.json`).then(r => (r.ok ? r.json() : null)).catch(() => { cache.delete(k); return null; }));
+// Un fichier par chapitre (quelques Ko) : rien d'autre n'est téléchargé
+function loadChap(v, b, c) {
+  const k = `${v}/${b}/${c}`;
+  if (!cache.has(k)) cache.set(k, fetch(`/bible/${k}.json`).then(r => (r.ok ? r.json() : null)).catch(() => null).then(x => { if (!x) cache.delete(k); return x; }));
   return cache.get(k);
 }
 const version = (ix, v) => ix.versions.find(x => x.code === v);
@@ -72,9 +73,9 @@ export default async function bible(el, params) {
   const box = $("#btext", el);
   const num = x => `<sup class="muted" style="font-size:.7em;margin-right:3px">${esc(x)}</sup>`;
   if (!tout) {
-    const [ch, chLa] = await Promise.all([loadBook(v, b), v === "es" ? loadBook("la", b) : Promise.resolve(null)]);
+    const [vv, chLa] = await Promise.all([loadChap(v, b, c), v === "es" ? loadChap("la", b, c) : Promise.resolve(null)]);
     if (!document.body.contains(box)) return;
-    const vv = ch && ch[c - 1], la = new Map((chLa && chLa[c - 1]) || []);
+    const la = new Map(chLa || []);
     const avis = v === "es" ? `<div class="notice small">Transcription automatique de l'édition de 1882, complétée et corrigée en comparant 22 éditions numérisées. Il peut rester des coquilles ; les rares versets non encore transcrits sont donnés en latin (Vulgate), signalés « latin ».</div>` : "";
     box.innerHTML = vv && vv.length ? avis + `<h2 class="sec serif">${esc(livre(version(ix, v), b)[1])} ${c}</h2><div class="card serif" style="line-height:1.75" lang="${v}">
       ${vv.map(([n, t]) => `<span id="v${esc(n)}"${n === String(vs) ? ' style="background:var(--bg-soft);outline:2px solid var(--accent);border-radius:3px"' : ""}>${num(n)}${t ? esc(t) : la.get(n) ? LATIN(la.get(n)) : MANQUE} </span>`).join("")}</div>`
@@ -95,9 +96,9 @@ export default async function bible(el, params) {
       };
     }
   } else {
-    const chs = await Promise.all(ix.versions.map(x => (livre(x, b) ? loadBook(x.code, b) : Promise.resolve(null))));
+    const chs = await Promise.all(ix.versions.map(x => (livre(x, b) ? loadChap(x.code, b, c) : Promise.resolve(null))));
     if (!document.body.contains(box)) return;
-    const per = ix.versions.map((x, i) => new Map(((chs[i] && chs[i][c - 1]) || []).map(([n, t]) => [n, t])));
+    const per = ix.versions.map((x, i) => new Map((chs[i] || []).map(([n, t]) => [n, t])));
     const nums = [...new Set(per.flatMap(m => [...m.keys()]))].sort((a, z) => parseInt(a, 10) - parseInt(z, 10) || a.localeCompare(z));
     box.innerHTML = `<h2 class="sec serif">${esc(L[1])} ${c}</h2>` + (nums.length ? nums.map(n => `<div class="card" id="v${esc(n)}" style="padding:10px 14px${n === String(vs) ? ";outline:2px solid var(--accent)" : ""}">
       <div class="small muted" style="margin-bottom:4px">Verset ${esc(n)}</div>

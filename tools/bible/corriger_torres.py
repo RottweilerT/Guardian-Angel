@@ -18,9 +18,13 @@ for it, txt in srcs.items():
     for j in range(len(idx) - 3): g3[(N[idx[j]], N[idx[j + 1]], N[idx[j + 2]])].append(j)
     sources.append((it, toks, N, idx, g3))
 print("éditions :", len(sources))
+def livre_json(bib, v, b):
+    """chapitres d'un livre (un fichier par chapitre : bible/<v>/<LIVRE>/<n>.json)"""
+    d = f"{bib}/{v}/{b}"
+    return [json.load(open(f"{d}/{n}.json")) for n in range(1, len(os.listdir(d)) + 1)]
 ix = json.load(open(f"{BIB}/index.json"))
 livres = [b for b, _, _ in next(v for v in ix["versions"] if v["code"] == "es")["livres"]]
-data = {b: json.load(open(f"{BIB}/es/{b}.json")) for b in livres}
+data = {b: livre_json(BIB, "es", b) for b in livres}
 voc = collections.Counter(nrm(w) for b in livres for ch in data[b] for _, t in ch for w in t.split())
 for it, toks, N, idx, g3 in sources:
     voc.update(set(N))   # un mot présent dans les éditions compte aussi comme connu…
