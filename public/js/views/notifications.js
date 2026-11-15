@@ -72,7 +72,7 @@ async function admin(box) {
       <div style="flex:1;min-width:160px"><label for="nu">Lien de destination</label><input id="nu" list="nl" value="/" pattern="^/(#/.*)?$"><datalist id="nl">${LIENS.map(([v, l]) => `<option value="${v}">${l}</option>`).join("")}</datalist></div></div>
     <p class="small muted" style="margin:10px 0 4px">Aperçu</p>
     <div class="card soft" style="display:flex;gap:12px;align-items:flex-start;margin:0" aria-label="Aperçu de la notification">
-      <img src="/icons/icon-192-v2.png" alt="" width="40" height="40" style="border-radius:8px">
+      <img src="/icons/icon-192-v3.png" alt="" width="40" height="40" style="border-radius:8px">
       <div style="min-width:0"><strong id="pvT">Titre</strong><div class="small" id="pvB" style="white-space:pre-wrap">Message</div><div class="small muted">guardian-angel · <span id="pvU">/</span></div></div>
     </div>
     <p class="small muted" id="nerr" role="alert"></p>

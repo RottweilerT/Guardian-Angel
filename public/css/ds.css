@@ -122,3 +122,15 @@ h2.sec:after{content:"";flex:1;height:1px;background:var(--line)}
 .missel .notice{font-family:var(--sans)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 fieldset{border:1px solid var(--line)}
+
+/* Écran de chargement */
+#splash{position:fixed;inset:0;z-index:1000;background:#1c2f6b url(/img/ecran-chargement.jpg) center/cover no-repeat;display:flex;align-items:flex-end;justify-content:center;transition:opacity .6s ease,visibility .6s}
+#splash:before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,20,50,.35) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 62%,rgba(20,15,5,.55) 100%)}
+#splash .splash-txt{position:relative;text-align:center;margin-bottom:calc(9vh + env(safe-area-inset-bottom,0px));color:#fff}
+#splash .splash-nom{font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,8vw,44px);letter-spacing:.04em;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+#splash .splash-pt{margin-top:14px;display:flex;gap:8px;justify-content:center}
+#splash .splash-pt span{width:8px;height:8px;border-radius:50%;background:#E8C873;animation:splashpt 1.2s infinite ease-in-out}
+#splash .splash-pt span:nth-child(2){animation-delay:.2s}#splash .splash-pt span:nth-child(3){animation-delay:.4s}
+@keyframes splashpt{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+#splash.fin{opacity:0;visibility:hidden}
+@media (prefers-reduced-motion:reduce){#splash,#splash .splash-pt span{transition:none;animation:none}}

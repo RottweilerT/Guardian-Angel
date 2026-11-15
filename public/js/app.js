@@ -73,6 +73,14 @@ async function askConsent() {
 }
 
 render(false);
+// Écran de chargement : visible au moins 1,2 s, puis fondu (une seule fois par ouverture de l'application)
+(() => {
+  const s = document.getElementById("splash"); if (!s) return;
+  const t0 = performance.now(), fin = () => { s.classList.add("fin"); setTimeout(() => s.remove(), 700); };
+  const pret = () => setTimeout(fin, Math.max(0, 1200 - (performance.now() - t0)));
+  if (document.readyState === "complete") pret(); else window.addEventListener("load", pret, { once: true });
+  setTimeout(fin, 4000);   // jamais bloqué plus de 4 s
+})();
 initCloud(async user => {
   const mode = await store.onUserChange(user);
   render(true);
