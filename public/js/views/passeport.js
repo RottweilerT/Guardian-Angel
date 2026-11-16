@@ -1,4 +1,4 @@
-import { esc, $, frDate, fetchJson, loadChurches, churchLabel, norm } from "../ui.js";
+import { esc, $, frDate, fetchJson, loadChurches, churchLabel, norm, toast, toastAction, BTN_SUPPR, brancherSuppression } from "../ui.js";
 import * as store from "../store.js";
 
 let routesP = null;
@@ -10,11 +10,19 @@ export default async function passeport(el) {
   el.innerHTML = `
   <section class="hero"><div class="kicker">Mémoire de mes visites</div><h1>Passeport des églises</h1>
     <p>${visits.length ? visits.length + " église" + (visits.length > 1 ? "s" : "") + " visitée" + (visits.length > 1 ? "s" : "") : "Marquez une église comme visitée depuis sa fiche."}</p><span class="orn"></span></section>
-  ${visits.length ? `<ul class="list">${visits.map(v => `<li><a href="#/eglise/${encodeURIComponent(v.churchId)}" class="serif" style="text-decoration:none;color:inherit"><strong>${esc(v.nom)}</strong></a>
-     <br><span class="small muted">${esc(frDate(v.date))}</span>${v.note ? `<p class="small" style="white-space:pre-wrap;margin:4px 0 0">${esc(v.note)}</p>` : ""}</li>`).join("")}</ul>`
+  ${visits.length ? `<ul class="list" id="pvis">${visits.map(v => `<li style="display:flex;gap:10px;align-items:flex-start"><div style="flex:1"><a href="#/eglise/${encodeURIComponent(v.churchId)}" class="serif" style="text-decoration:none;color:inherit"><strong>${esc(v.nom)}</strong></a>
+     <br><span class="small muted">${esc(frDate(v.date))}</span>${v.note ? `<p class="small" style="white-space:pre-wrap;margin:4px 0 0">${esc(v.note)}</p>` : ""}</div>${BTN_SUPPR(v.churchId)}</li>`).join("")}</ul>`
     : `<div class="empty">Aucune visite enregistrée. <a href="#/carte">Ouvrir la carte</a></div>`}
   <h2 class="sec">Parcours de découverte</h2><div id="pr"><div class="skeleton"></div></div>
   <p class="small muted">Vos visites sont privées. Pas de points ni de classement : un simple carnet. L'ajout de photographies n'est pas encore disponible.</p>`;
+  const lv = $("#pvis", el);
+  if (lv) brancherSuppression(lv, async id => {
+    const old = store.get("visits", id);
+    try {
+      await store.del("visits", id); passeport(el);
+      if (old) { const { updatedAt, ...back } = old; toastAction("Visite retirée du passeport", "Annuler", async () => { await store.put("visits", id, back); passeport(el); }); }
+    } catch { toast("Suppression impossible"); passeport(el); }
+  });
   const routes = await loadRoutes();
   const box = $("#pr", el); if (!box) return;
   box.innerHTML = routes.length ? `<div class="grid">${routes.map(r => `<a class="card" href="#/parcours/${esc(r.id)}"><h3>${esc(r.titre)}</h3><p class="small muted">${esc(r.resume)}</p><span class="chip">${r.etapes.length} étapes</span></a>`).join("")}</div>` : `<div class="empty">Parcours indisponibles.</div>`;

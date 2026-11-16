@@ -1,7 +1,7 @@
 // Sermon : enregistrement audio, transcription en direct, notes personnelles horodatées,
 // puis préparation d'une demande de compte rendu à coller dans Claude.
 // L'audio reste sur l'appareil (IndexedDB) ; rien n'est envoyé à un serveur de l'application.
-import { esc, $, toast, today, frDate, modal } from "../ui.js";
+import { esc, $, toast, today, frDate, modal, BTN_SUPPR, brancherSuppression } from "../ui.js";
 import * as store from "../store.js";
 import * as sdb from "../sermon-db.js";
 
@@ -134,9 +134,11 @@ export default async function sermon(el, [id]) {
   ${SR ? " La transcription en direct, si vous la cochez, utilise la reconnaissance vocale du navigateur (avec Chrome, le son est analysé par les serveurs de Google)." : ""}</div>`
     : `<div class="notice">L'enregistrement audio n'est pas possible sur ce navigateur.</div>`}
   <h2 class="sec">Mes sermons</h2>
-  ${tous.length ? `<ul class="list">${tous.map(s => `<li><a href="#/sermon/${s.id}" style="text-decoration:none;color:inherit;display:block"><strong class="serif">${esc(s.eglise || "Sermon")}</strong> <span class="small muted">— ${esc(frDate(s.date))} · ${hms(s.duree)}</span><br>
-    <span class="small muted">${s.transcription.length} passage${s.transcription.length > 1 ? "s" : ""} transcrit${s.transcription.length > 1 ? "s" : ""} · ${s.notes.length} note${s.notes.length > 1 ? "s" : ""}${s.compteRendu ? " · compte rendu ✓" : ""}</span></a></li>`).join("")}</ul>`
+  ${tous.length ? `<ul class="list" id="slist">${tous.map(s => `<li style="display:flex;gap:10px;align-items:flex-start"><a href="#/sermon/${s.id}" style="text-decoration:none;color:inherit;display:block;flex:1"><strong class="serif">${esc(s.eglise || "Sermon")}</strong> <span class="small muted">— ${esc(frDate(s.date))} · ${hms(s.duree)}</span><br>
+    <span class="small muted">${s.transcription.length} passage${s.transcription.length > 1 ? "s" : ""} transcrit${s.transcription.length > 1 ? "s" : ""} · ${s.notes.length} note${s.notes.length > 1 ? "s" : ""}${s.compteRendu ? " · compte rendu ✓" : ""}</span></a>${BTN_SUPPR(s.id)}</li>`).join("")}</ul>`
     : `<div class="empty">Aucun sermon enregistré.</div>`}`;
+  const sl = $("#slist", el);
+  if (sl) brancherSuppression(sl, async id => { try { await sdb.remove(id); toast("Sermon supprimé (audio, notes, transcription)"); } catch { toast("Suppression impossible"); } sermon(el, []); });
   if (!ok) return;
   $("#sa", el).onchange = e => { $("#sgo", el).disabled = !e.target.checked; };
   $("#sgo", el).onclick = async () => {

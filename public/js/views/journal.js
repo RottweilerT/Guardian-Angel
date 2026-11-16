@@ -1,4 +1,4 @@
-import { esc, $, toast, today, frDate, norm, loadChurches, churchLabel } from "../ui.js";
+import { esc, $, toast, today, frDate, norm, loadChurches, churchLabel, toastAction, BTN_SUPPR, brancherSuppression } from "../ui.js";
 import * as store from "../store.js";
 import { cloud } from "../cloud.js";
 import { passageLinks } from "./bible.js";
@@ -21,12 +21,19 @@ export default function journal(el, params) {
     <select id="jc" aria-label="Catégorie" style="flex:1;min-width:120px"><option value="">Toutes</option>${CATS.map(c => `<option${c === cat ? " selected" : ""}>${c}</option>`).join("")}</select>
   </div>
   <div id="jl">${rows.length ? rows.map(e => `<a class="card" href="#/journal/e/${encodeURIComponent(e.id)}">
-      <div class="row between"><span class="small muted">${esc(frDate(e.date))}</span><span class="chip">${esc(e.categorie || "Messe")}</span></div>
+      <div class="row between"><span class="small muted">${esc(frDate(e.date))}</span><span class="row" style="gap:6px"><span class="chip">${esc(e.categorie || "Messe")}</span>${BTN_SUPPR(e.id)}</span></div>
       <h3 style="margin:4px 0">${esc(e.eglise || "Sans lieu")}</h3>
       <p class="small" style="white-space:pre-wrap;max-height:4.6em;overflow:hidden;margin:0">${esc(e.notes || e.reflexions || e.intentions || "")}</p>
       ${e.passages ? `<p class="small muted" style="margin:6px 0 0">${esc(e.passages)}</p>` : ""}</a>`).join("")
     : `<div class="empty">${all.length ? "Aucune entrée ne correspond." : "Votre journal est vide. Ajoutez une messe, une note d'homélie ou une intention de prière."}</div>`}</div>
   <div class="notice small">🎙 <a href="#/sermon">Enregistrer un sermon</a> : audio et notes gardés sur ce téléphone, transcription, puis compte rendu préparé avec Claude. À faire uniquement avec l'accord du prédicateur.</div>`;
+  brancherSuppression($("#jl", el), async id => {
+    const old = store.get("journal", id);
+    try {
+      await store.del("journal", id); journal(el, []);
+      if (old) { const { updatedAt, ...back } = old; toastAction("Entrée supprimée", "Annuler", async () => { await store.put("journal", id, back); journal(el, []); }); }
+    } catch { toast("Suppression impossible"); journal(el, []); }
+  });
   $("#jq", el).oninput = e => { q = e.target.value; const pos = e.target.selectionStart; journal(el, []); const i = $("#jq", el); i.focus(); i.setSelectionRange(pos, pos); };
   $("#jc", el).onchange = e => { cat = e.target.value; journal(el, []); };
 }
