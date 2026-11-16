@@ -85,7 +85,7 @@ export default async function bible(el, params) {
     if (!document.body.contains(box)) return;
     const la = new Map(chLa || []);
     const avis = v === "es" ? `<div class="notice small">Transcription automatique de l'édition de 1882, complétée et corrigée en comparant 22 éditions numérisées. Il peut rester des coquilles ; les rares versets non encore transcrits sont donnés en latin (Vulgate), signalés « latin ».</div>` : "";
-    box.innerHTML = vv && vv.length ? avis + `<h2 class="sec serif">${esc(livre(version(ix, v), b)[1])} ${c}</h2><div class="card serif" style="line-height:1.75" lang="${v}">
+    box.innerHTML = vv && vv.length ? avis + `<h2 class="sec serif">${esc(livre(version(ix, v), b)[1])} ${c}</h2><div class="card serif texte-bible" lang="${v}">
       ${vv.map(([n, t]) => `<span id="v${esc(n)}"${n === String(vs) ? ' style="background:var(--bg-soft);outline:2px solid var(--accent);border-radius:3px"' : ""}>${num(n)}${t ? esc(t) : la.get(n) ? LATIN(la.get(n)) : MANQUE} </span>`).join("")}</div>`
       : `<div class="empty">Ce chapitre n'est pas disponible dans cette version.</div>`;
     if (v === "es" && vv && vv.length) {
@@ -112,13 +112,13 @@ export default async function bible(el, params) {
     const absents = ix.versions.filter(x => cote.includes(x.code) && !livre(x, b));
     const panneau = (x, vv) => `<section class="slide" data-lg="${x.code}" lang="${x.code}" aria-label="${esc(LANGUES[x.code] || x.code)}">
       <h2 class="sec serif">${esc(livre(x, b)[1])} ${c}</h2>
-      ${vv && vv.length ? `<div class="card serif" style="line-height:1.75">${vv.map(([n, t]) => `<span data-v="${esc(n)}"${hl(n)}>${num(n)}${t ? esc(t) : la.get(n) ? LATIN(la.get(n)) : MANQUE} </span>`).join("")}</div>` : `<div class="empty">Chapitre indisponible.</div>`}</section>`;
+      ${vv && vv.length ? `<div class="card serif texte-bible">${vv.map(([n, t]) => `<span data-v="${esc(n)}"${hl(n)}>${num(n)}${t ? esc(t) : la.get(n) ? LATIN(la.get(n)) : MANQUE} </span>`).join("")}</div>` : `<div class="empty">Chapitre indisponible.</div>`}</section>`;
     const depart = Math.max(0, vers.findIndex(x => x.code === store.prefs.get("bibleSlide", "fr")));
     box.innerHTML = vers.length ? `
       <div class="row" role="tablist" aria-label="Langue affichée" style="justify-content:center">${vers.map((x, k) => `<button class="btn ${k === depart ? "" : "ghost"} sm" role="tab" data-go="${k}" aria-selected="${k === depart}">${esc(LANGUES[x.code] || x.code)}</button>`).join("")}</div>
       <p class="small muted center" style="margin:6px 0 0">Glissez vers la gauche ou la droite pour changer de langue</p>
       <div class="slides" id="slides">${vers.map((x, k) => panneau(x, chs[k])).join("")}</div>
-      <div class="dots" aria-hidden="true">${vers.map((_, k) => `<span${k === depart ? ' class="on"' : ""}></span>`).join("")}</div>
+      <div class="dots" aria-hidden="true">${vers.map((_, k) => `<span${k === depart ? ' class="on"' : ""}></span>`).join("")}<i class="ink"></i></div>
       ${absents.length ? `<p class="small muted center">Livre absent : ${absents.map(x => esc(LANGUES[x.code])).join(", ")}</p>` : ""}`
       : `<div class="empty">Ce livre n'existe dans aucune des langues choisies.</div>`;
     const sl = $("#slides", el);
@@ -126,7 +126,22 @@ export default async function bible(el, params) {
       const tabs = [...box.querySelectorAll("[data-go]")], dots = [...box.querySelectorAll(".dots span")];
       const actif = k => { tabs.forEach((t, i) => { t.classList.toggle("ghost", i !== k); t.setAttribute("aria-selected", i === k); }); dots.forEach((d, i) => d.classList.toggle("on", i === k)); store.prefs.setQuiet("bibleSlide", vers[k].code); };
       sl.scrollLeft = depart * sl.clientWidth;
-      let tm; sl.addEventListener("scroll", () => { clearTimeout(tm); tm = setTimeout(() => actif(Math.round(sl.scrollLeft / sl.clientWidth)), 80); }, { passive: true });
+      // Effet de profondeur (le texte glisse un peu moins vite que la page et s'estompe) et point « goutte d'encre »
+      const panneaux = [...sl.querySelectorAll(".slide .card")], ink = box.querySelector(".dots .ink");
+      const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let raf = 0;
+      const dessine = () => {
+        raf = 0; const w = sl.clientWidth || 1, p = sl.scrollLeft / w;
+        if (!calme) panneaux.forEach((c, k) => { const d = Math.max(-1, Math.min(1, p - k)); c.style.transform = `translateX(${d * w * 0.3}px)`; c.style.opacity = 1 - Math.abs(d) * 0.6; });
+        if (ink && dots.length) {
+          const step = dots.length > 1 ? dots[1].offsetLeft - dots[0].offsetLeft : 0, i = Math.min(Math.floor(p), dots.length - 1), f = Math.max(0, Math.min(1, p - i));
+          ink.style.left = dots[0].offsetLeft + i * step + (f > 0.5 ? (f - 0.5) * 2 * step : 0) + "px";
+          ink.style.width = 8 + (f <= 0.5 ? f * 2 : (1 - f) * 2) * step + "px";
+        }
+      };
+      dessine();
+      let tm; sl.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(dessine); clearTimeout(tm); tm = setTimeout(() => actif(Math.round(sl.scrollLeft / sl.clientWidth)), 80); }, { passive: true });
+      addEventListener("resize", () => { if (document.body.contains(sl)) dessine(); }, { passive: true });
       tabs.forEach(t => t.onclick = () => sl.scrollTo({ left: +t.dataset.go * sl.clientWidth, behavior: "smooth" }));
       if (vs) { const t = sl.querySelectorAll(`.slide`)[depart]?.querySelector(`[data-v="${CSS.escape(String(vs))}"]`); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - innerHeight / 3 }); }
     }

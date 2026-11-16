@@ -141,3 +141,11 @@ fieldset{border:1px solid var(--line)}
 .dots{display:flex;gap:7px;justify-content:center;margin:10px 0}
 .dots span{width:8px;height:8px;border-radius:50%;background:var(--line);transition:background .2s,transform .2s}
 .dots span.on{background:var(--accent);transform:scale(1.2)}
+/* Texte biblique justifié, mots coupés en fin de ligne selon la langue (lang="fr", "en", "es", "la") */
+.texte-bible{line-height:1.75;text-align:justify;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 3;overflow-wrap:break-word}
+.slides .slide{overflow:hidden}
+.slides .slide .card{will-change:transform,opacity}
+.dots{position:relative}
+.dots span.on{background:var(--line);transform:none}
+.dots .ink{position:absolute;top:0;height:8px;width:8px;border-radius:4px;background:var(--accent);pointer-events:none}
+@media (prefers-reduced-motion:reduce){.dots .ink{transition:none}}
