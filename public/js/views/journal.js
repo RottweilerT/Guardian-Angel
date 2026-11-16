@@ -15,7 +15,7 @@ export default function journal(el, params) {
   el.innerHTML = `
   <section class="hero"><div class="kicker">Privé</div><h1>Journal spirituel</h1>
     <p>${store.isCloud() ? "Synchronisé avec votre compte, visible de vous seul." : "Enregistré sur cet appareil uniquement." + (cloud.ready ? ' <a href="#/profil">Se connecter</a> pour le retrouver partout.' : "")}</p><span class="orn"></span></section>
-  <div class="row between"><span class="row" style="gap:8px"><a class="btn" href="#/journal/nouveau">+ Nouvelle entrée</a><a class="btn gold" href="#/bible">📖 La Bible</a></span><span class="small muted">${all.length} entrée${all.length > 1 ? "s" : ""}</span></div>
+  <div class="row between"><span class="row" style="gap:8px"><a class="btn" href="#/journal/nouveau">+ Nouvelle entrée</a><a class="btn gold" href="#/bible">📖 La Bible</a><a class="btn gold" href="#/sermon">🎙 Sermon</a></span><span class="small muted">${all.length} entrée${all.length > 1 ? "s" : ""}</span></div>
   <div class="row" style="margin-top:12px">
     <input type="search" id="jq" placeholder="Rechercher dans mon journal…" aria-label="Rechercher" value="${esc(q)}" style="flex:2;min-width:180px">
     <select id="jc" aria-label="Catégorie" style="flex:1;min-width:120px"><option value="">Toutes</option>${CATS.map(c => `<option${c === cat ? " selected" : ""}>${c}</option>`).join("")}</select>
@@ -26,7 +26,7 @@ export default function journal(el, params) {
       <p class="small" style="white-space:pre-wrap;max-height:4.6em;overflow:hidden;margin:0">${esc(e.notes || e.reflexions || e.intentions || "")}</p>
       ${e.passages ? `<p class="small muted" style="margin:6px 0 0">${esc(e.passages)}</p>` : ""}</a>`).join("")
     : `<div class="empty">${all.length ? "Aucune entrée ne correspond." : "Votre journal est vide. Ajoutez une messe, une note d'homélie ou une intention de prière."}</div>`}</div>
-  <div class="notice rights small">Enregistrement audio, transcription et résumé automatique des homélies : <strong>non disponibles</strong>. Ils supposent l'accord du prédicateur et un prestataire dont les conditions auront été vérifiées (voir « Sources et droits »).</div>`;
+  <div class="notice small">🎙 <a href="#/sermon">Enregistrer un sermon</a> : audio et notes gardés sur ce téléphone, transcription, puis compte rendu préparé avec Claude. À faire uniquement avec l'accord du prédicateur.</div>`;
   $("#jq", el).oninput = e => { q = e.target.value; const pos = e.target.selectionStart; journal(el, []); const i = $("#jq", el); i.focus(); i.setSelectionRange(pos, pos); };
   $("#jc", el).onchange = e => { cat = e.target.value; journal(el, []); };
 }

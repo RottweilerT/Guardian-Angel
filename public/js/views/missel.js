@@ -42,7 +42,7 @@ export default async function missel(el, [dateP]) {
     h += `<h2 class="sec">${esc(section)}</h2><ol class="list">`;
     for (const [titre, latin, quand] of etapes) {
       num++;
-      const lien = /^(Homélie|Sermon)$/.test(titre) ? ` <a class="small" href="${enCours ? "#/journal/e/" + encodeURIComponent(enCours.id) : "#/journal/nouveau"}">Prendre des notes</a>` : "";
+      const lien = /^(Homélie|Sermon)$/.test(titre) ? ` <a class="small" href="#/sermon">🎙 Enregistrer</a> · <a class="small" href="${enCours ? "#/journal/e/" + encodeURIComponent(enCours.id) : "#/journal/nouveau"}">Prendre des notes</a>` : "";
       h += `<li style="padding:8px 0;display:flex;gap:10px"><span class="muted small" style="min-width:1.6em;text-align:right">${num}.</span><span><strong class="serif">${esc(titre)}</strong>${latin && latin !== titre ? ` <em class="muted small" lang="la">— ${esc(latin)}</em>` : ""}${lien}${quand ? `<br><span class="small muted">${esc(quand)}</span>` : ""}</span></li>`;
     }
     h += `</ol>`;

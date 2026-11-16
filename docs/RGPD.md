@@ -45,3 +45,11 @@ Les catégories suivies peuvent révéler un intérêt religieux (comme tout l'u
 - [ ] Âge minimal (15 ans) et parcours pour les mineurs ; vérification à définir.
 - [ ] Chiffrement de bout en bout du journal : à étudier (les données sont chiffrées au repos par Google, mais lisibles par le sous-traitant).
 - [ ] Bandeau cookies : non nécessaire tant qu'aucun traceur non essentiel n'est déposé ; à réévaluer à chaque ajout de service.
+
+## Enregistrement des sermons (ajouté le 16/11/2026)
+
+- **Où sont les données** : l'audio, la transcription et les notes sont stockés uniquement sur l'appareil de l'utilisateur (IndexedDB, base « ga-sermons »). Ils ne sont jamais envoyés à Firebase ni à un serveur de l'application. Seul le compte rendu, si l'utilisateur choisit « Ajouter à mon journal », rejoint le journal (synchronisé avec le compte si l'utilisateur est connecté et a donné son consentement).
+- **Accord du prédicateur** : l'enregistrement ne démarre qu'après une case à cocher confirmant l'accord du prédicateur et un usage personnel. La voix est une donnée personnelle et l'homélie une œuvre de l'esprit : aucune diffusion n'est prévue par l'application.
+- **Transcription en direct** : elle utilise la reconnaissance vocale du navigateur (Web Speech API). Avec Chrome, le son est analysé par les serveurs de Google ; l'utilisateur en est informé et peut désactiver l'option avant de commencer.
+- **Compte rendu** : l'application prépare un texte que l'utilisateur copie lui-même dans Claude (Anthropic). Ce transfert est une action volontaire de l'utilisateur, soumise aux conditions de Claude.
+- **Suppression** : bouton « Supprimer ce sermon » (audio, notes et transcription) ; la suppression des données du site dans le navigateur efface aussi tout.
