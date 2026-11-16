@@ -140,8 +140,25 @@ export default async function sermon(el, [id]) {
   $("#sa", el).onchange = e => { $("#sgo", el).disabled = !e.target.checked; };
   $("#sgo", el).onclick = async () => {
     try { await demarrer({ eglise: $("#se", el).value.trim(), predicateur: $("#sp", el).value.trim(), direct: $("#sd", el).checked }); ecranEnregistrement(el); }
-    catch (e) { toast(e && e.name === "NotAllowedError" ? "Autorisez le micro pour enregistrer" : "Impossible de démarrer l'enregistrement"); }
+    catch (e) { aideMicro(el, e); }
   };
+}
+
+// Micro refusé : on explique la cause probable et quoi faire
+async function aideMicro(el, e) {
+  let etat = "";
+  try { etat = (await navigator.permissions.query({ name: "microphone" })).state; } catch {}
+  const politique = document.featurePolicy && !document.featurePolicy.allowsFeature("microphone");
+  let msg;
+  if (politique) msg = `L'application ouverte sur ce téléphone est encore l'ancienne version, qui bloquait le micro. <strong>Fermez complètement l'application</strong> (glissez-la hors de la liste des applications récentes), rouvrez-la, puis réessayez.`;
+  else if (etat === "denied") msg = `Le micro a été refusé pour ce site. Dans Chrome : <strong>⋮ → Paramètres → Paramètres des sites → Micro</strong>, retirez « guardian-angel-62a43.web.app » de la liste « Bloqué » (ou autorisez-le), puis réessayez. Si l'appli est installée sur l'écran d'accueil : appui long sur son icône → <strong>Infos sur l'appli → Autorisations → Micro → Autoriser</strong>.`;
+  else if (e && e.name === "NotFoundError") msg = "Aucun micro n'a été trouvé sur cet appareil.";
+  else if (e && e.name === "NotReadableError") msg = "Le micro est déjà utilisé par une autre application (appel, dictaphone…). Fermez-la puis réessayez.";
+  else if (e && e.name === "NotAllowedError") msg = `Le micro n'a pas été autorisé. Réessayez et choisissez <strong>« Autoriser »</strong> quand le téléphone le demande. Si rien ne s'affiche, fermez complètement l'application et rouvrez-la.`;
+  else msg = "Impossible de démarrer l'enregistrement (" + esc(e?.name || String(e)) + ").";
+  let box = document.getElementById("aideMicro");
+  if (!box) { box = document.createElement("div"); box.id = "aideMicro"; box.className = "notice err small"; $("#sgo", el)?.closest(".card")?.after(box); }
+  box.innerHTML = "🎙 " + msg; box.scrollIntoView({ block: "center", behavior: "smooth" });
 }
 
 function ecranEnregistrement(el) {
