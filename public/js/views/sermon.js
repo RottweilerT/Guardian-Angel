@@ -203,6 +203,14 @@ async function detail(el, id) {
   <div class="row" style="margin-top:8px"><button class="btn ghost sm" id="dTrSave">Enregistrer la transcription</button></div>
   <p style="margin-top:24px"><button class="btn danger sm" id="dDel">Supprimer ce sermon</button> <a class="small" href="#/sermon">Tous mes sermons</a></p>`;
 
+  // Les fichiers WebM produits par le navigateur n'indiquent pas leur durée : on force le calcul pour pouvoir avancer dans l'audio
+  const lecteur = el.querySelector("audio");
+  if (lecteur) lecteur.addEventListener("loadedmetadata", () => {
+    if (lecteur.duration === Infinity || isNaN(lecteur.duration)) {
+      lecteur.currentTime = 1e101;
+      lecteur.addEventListener("timeupdate", function f() { lecteur.removeEventListener("timeupdate", f); lecteur.currentTime = 0; });
+    }
+  }, { once: true });
   const lireTr = () => $("#dTr", el).value.split("\n").map(l => { const m = l.match(/^\[(\d+(?::\d+){1,2})\]\s*(.*)$/); if (!m) return l.trim() ? { t: 0, texte: l.trim() } : null; const p = m[1].split(":").map(Number); return { t: p.reduce((a, b) => a * 60 + b, 0), texte: m[2] }; }).filter(Boolean);
   $("#dTrSave", el).onclick = async () => { s.transcription = lireTr(); await sdb.save(s); toast("Transcription enregistrée"); };
   $("#dCopie", el).onclick = async () => {
