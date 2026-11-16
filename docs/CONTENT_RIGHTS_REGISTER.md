@@ -247,6 +247,38 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Preuve / autorisation | https://archive.org/details/la-sagrada-biblia-vulgata-tomo-iiv_202111 |
 | Utilisée dans l'application | oui |
 
+### Transformers.js 3.7.2 (bibliothèque, chargée depuis jsDelivr)
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/huggingface/transformers.js |
+| Titulaire des droits | Hugging Face |
+| Type | Logiciel / modèle |
+| Licence | Apache 2.0 |
+| Date de vérification | 2026-11-16 (licence indiquée par le projet, à reconfirmer sur la source) |
+| Conditions | Code exécuté dans le navigateur pour la transcription des sermons ; aucune donnée envoyée. |
+| Attribution requise | — |
+| Usage commercial | autorisé |
+| Statut | `OPEN_LICENSE_VERIFIED` |
+| Preuve / autorisation | https://github.com/huggingface/transformers.js |
+| Utilisée dans l'application | oui |
+
+### Modèle Whisper base (OpenAI), version ONNX onnx-community/whisper-base
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://huggingface.co/onnx-community/whisper-base |
+| Titulaire des droits | OpenAI (modèle) ; Hugging Face (conversion ONNX) |
+| Type | Logiciel / modèle |
+| Licence | MIT |
+| Date de vérification | 2026-11-16 (licence indiquée par le projet, à reconfirmer sur la source) |
+| Conditions | Modèle téléchargé par le navigateur depuis Hugging Face au premier usage ; la transcription se fait sur l'appareil. |
+| Attribution requise | — |
+| Usage commercial | autorisé |
+| Statut | `OPEN_LICENSE_VERIFIED` |
+| Preuve / autorisation | https://huggingface.co/onnx-community/whisper-base |
+| Utilisée dans l'application | oui |
+
 ## Ressources non intégrées — AUTORISATION À DEMANDER AVANT INTÉGRATION
 
 ### Traduction liturgique française (Missel romain, lectionnaire, Bible de la liturgie)

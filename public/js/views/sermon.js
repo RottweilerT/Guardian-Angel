@@ -125,12 +125,13 @@ export default async function sermon(el, [id]) {
   ${ok ? `<div class="card">
     <label for="se">Église</label><input id="se" maxlength="200" value="${esc(egliseJour)}">
     <label for="sp">Prédicateur (facultatif)</label><input id="sp" maxlength="120">
-    <label class="field-inline" style="margin-top:12px"><input type="checkbox" id="sd"${SR ? " checked" : " disabled"}> Transcription en direct${SR ? "" : " (non disponible sur ce navigateur)"}</label>
+    <label class="field-inline" style="margin-top:12px"><input type="checkbox" id="sd"${SR ? "" : " disabled"}> Transcription en direct pendant l'enregistrement${SR ? " (souvent impossible sur Android : le micro ne peut pas servir deux fois)" : " (non disponible sur ce navigateur)"}</label>
+    <p class="small muted" style="margin:4px 0 0">Sinon, la transcription se fait après le sermon, sur le téléphone, depuis la page du sermon.</p>
     <label class="field-inline"><input type="checkbox" id="sa"> Le prédicateur a donné son accord pour l'enregistrement, réservé à mon usage personnel</label>
     <p class="center" style="margin:14px 0 0"><button class="btn" id="sgo" disabled>● Commencer l'enregistrement</button></p>
   </div>
   <div class="notice small">Pendant l'enregistrement, l'écran reste allumé. Sur certains téléphones, changer d'application ou verrouiller l'écran peut interrompre l'enregistrement ; ce qui a déjà été enregistré est conservé.
-  ${SR ? " La transcription en direct utilise la reconnaissance vocale du navigateur (avec Chrome, le son est analysé par les serveurs de Google)." : ""}</div>`
+  ${SR ? " La transcription en direct, si vous la cochez, utilise la reconnaissance vocale du navigateur (avec Chrome, le son est analysé par les serveurs de Google)." : ""}</div>`
     : `<div class="notice">L'enregistrement audio n'est pas possible sur ce navigateur.</div>`}
   <h2 class="sec">Mes sermons</h2>
   ${tous.length ? `<ul class="list">${tous.map(s => `<li><a href="#/sermon/${s.id}" style="text-decoration:none;color:inherit;display:block"><strong class="serif">${esc(s.eglise || "Sermon")}</strong> <span class="small muted">— ${esc(frDate(s.date))} · ${hms(s.duree)}</span><br>
@@ -198,6 +199,9 @@ async function detail(el, id) {
   <h2 class="sec">Mes notes (${s.notes.length})</h2>
   ${s.notes.length ? `<ul class="list">${s.notes.map(n => `<li class="small"><span class="muted">${hms(n.t)}</span> <strong>${TYPES[n.type]?.[0] || ""} ${TYPES[n.type]?.[1] || ""}</strong> ${esc(n.texte)}${n.contexte ? `<br><span class="muted">« ${esc(n.contexte)} »</span>` : ""}</li>`).join("")}</ul>` : `<div class="empty">Aucune note.</div>`}
   <h2 class="sec">Transcription</h2>
+  ${blob ? `<div class="card soft"><p class="small" style="margin-top:0"><strong>Transcrire l'audio sur ce téléphone</strong> — l'audio ne quitte pas l'appareil. La première fois, le modèle de reconnaissance vocale (Whisper, environ 80 Mo) est téléchargé puis gardé ; préférez le Wi-Fi. Comptez quelques minutes, l'écran doit rester allumé.</p>
+    <button class="btn sm" id="dTrans">${s.transcription.length ? "Refaire la transcription" : "Transcrire l'audio"}</button>
+    <div id="dTrEtat" class="small" style="margin-top:8px"></div></div>` : ""}
   <p class="small muted">Transcription automatique : vous pouvez corriger les erreurs avant de copier la demande.</p>
   <textarea id="dTr" style="min-height:200px">${esc(s.transcription.map(x => `[${hms(x.t)}] ${x.texte}`).join("\n"))}</textarea>
   <div class="row" style="margin-top:8px"><button class="btn ghost sm" id="dTrSave">Enregistrer la transcription</button></div>
@@ -211,6 +215,33 @@ async function detail(el, id) {
       lecteur.addEventListener("timeupdate", function f() { lecteur.removeEventListener("timeupdate", f); lecteur.currentTime = 0; });
     }
   }, { once: true });
+  const bt = $("#dTrans", el);
+  if (bt) bt.onclick = async () => {
+    if (s.transcription.length && !bt.dataset.ok) { bt.dataset.ok = 1; bt.textContent = "Confirmer (remplace la transcription actuelle)"; return; }
+    bt.disabled = true; const etat = $("#dTrEtat", el), t0 = Date.now();
+    const dire = h => { if (document.body.contains(etat)) etat.innerHTML = h; };
+    let lock = null; try { lock = await navigator.wakeLock?.request("screen"); } catch {}
+    try {
+      dire("Préparation de l'audio…");
+      const ctx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+      const buf = await ctx.decodeAudioData(await blob.arrayBuffer()); ctx.close();
+      const audio = buf.getChannelData(0).slice();
+      const w = new Worker("/js/transcription-worker.js", { type: "module" });
+      const res = await new Promise((ok, ko) => {
+        w.onmessage = ({ data: m }) => {
+          if (m.type === "telechargement") dire(`Téléchargement du modèle : ${m.total ? Math.round(100 * m.loaded / m.total) + " %" : Math.round(m.loaded / 1e6) + " Mo"} (une seule fois)`);
+          else if (m.type === "pret") dire(`Transcription en cours (${m.appareil === "webgpu" ? "processeur graphique" : "processeur"})…`);
+          else if (m.type === "avance") dire(`Transcription en cours… ${Math.round(100 * m.fait / m.duree)} % · ${Math.round((Date.now() - t0) / 1000)} s`);
+          else if (m.type === "fini") ok(m.morceaux); else if (m.type === "erreur") ko(new Error(m.message));
+        };
+        w.onerror = e => ko(new Error(e.message || "le module de transcription n'a pas pu démarrer"));
+        w.postMessage({ type: "transcrire", audio }, [audio.buffer]);
+      });
+      w.terminate();
+      s.transcription = res; await sdb.save(s); toast("Transcription terminée"); detail(el, id);
+    } catch (e) { dire(`Transcription impossible : ${esc(e.message || String(e))}. Vérifiez la connexion pour le premier téléchargement du modèle.`); bt.disabled = false; }
+    finally { try { lock?.release(); } catch {} }
+  };
   const lireTr = () => $("#dTr", el).value.split("\n").map(l => { const m = l.match(/^\[(\d+(?::\d+){1,2})\]\s*(.*)$/); if (!m) return l.trim() ? { t: 0, texte: l.trim() } : null; const p = m[1].split(":").map(Number); return { t: p.reduce((a, b) => a * 60 + b, 0), texte: m[2] }; }).filter(Boolean);
   $("#dTrSave", el).onclick = async () => { s.transcription = lireTr(); await sdb.save(s); toast("Transcription enregistrée"); };
   $("#dCopie", el).onclick = async () => {

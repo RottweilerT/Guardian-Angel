@@ -386,6 +386,38 @@
    "preuve": "https://archive.org/details/la-sagrada-biblia-vulgata-tomo-iiv_202111",
    "utilise": true,
    "demander_a": ""
+  },
+  {
+   "nom": "Transformers.js 3.7.2 (bibliothèque, chargée depuis jsDelivr)",
+   "reference": "https://github.com/huggingface/transformers.js",
+   "titulaire": "Hugging Face",
+   "type": "Logiciel / modèle",
+   "licence": "Apache 2.0",
+   "verifie_le": "2026-11-16",
+   "mode_verification": "licence indiquée par le projet, à reconfirmer sur la source",
+   "conditions": "Code exécuté dans le navigateur pour la transcription des sermons ; aucune donnée envoyée.",
+   "attribution": "",
+   "usage_commercial": true,
+   "statut": "OPEN_LICENSE_VERIFIED",
+   "preuve": "https://github.com/huggingface/transformers.js",
+   "utilise": true,
+   "demander_a": ""
+  },
+  {
+   "nom": "Modèle Whisper base (OpenAI), version ONNX onnx-community/whisper-base",
+   "reference": "https://huggingface.co/onnx-community/whisper-base",
+   "titulaire": "OpenAI (modèle) ; Hugging Face (conversion ONNX)",
+   "type": "Logiciel / modèle",
+   "licence": "MIT",
+   "verifie_le": "2026-11-16",
+   "mode_verification": "licence indiquée par le projet, à reconfirmer sur la source",
+   "conditions": "Modèle téléchargé par le navigateur depuis Hugging Face au premier usage ; la transcription se fait sur l'appareil.",
+   "attribution": "",
+   "usage_commercial": true,
+   "statut": "OPEN_LICENSE_VERIFIED",
+   "preuve": "https://huggingface.co/onnx-community/whisper-base",
+   "utilise": true,
+   "demander_a": ""
   }
  ]
 }
