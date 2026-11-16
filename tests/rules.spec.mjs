@@ -58,7 +58,10 @@ test("candidatures et signalements", async () => {
   await assertSucceeds(getDoc(doc(as("boss"), "applications/m1_alice")));
   await assertSucceeds(deleteDoc(doc(as("alice"), "applications/m1_alice")));
   await assertSucceeds(setDoc(doc(as("alice"), "reports/r1"), { uid: "alice", churchId: "w1", churchName: "ND", message: "Horaire faux", status: "nouveau" }));
-  await assertFails(getDoc(doc(as("alice"), "reports/r1")));
+  await assertSucceeds(getDoc(doc(as("alice"), "reports/r1")));   // son propre signalement
+  await assertFails(getDoc(doc(as("bob"), "reports/r1")));
+  await assertFails(deleteDoc(doc(as("bob"), "reports/r1")));
+  await assertSucceeds(deleteDoc(doc(as("alice"), "reports/r1")));
   await assertFails(setDoc(doc(anon(), "reports/r2"), { uid: "x", message: "spam", status: "nouveau" }));
 });
 

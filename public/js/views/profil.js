@@ -1,4 +1,4 @@
-import { esc, $, toast, fetchJson } from "../ui.js";
+import { esc, $, toast, fetchJson, modal } from "../ui.js";
 import * as store from "../store.js";
 import { cloud, signIn, signOutUser } from "../cloud.js";
 
@@ -30,7 +30,17 @@ export default function profil(el) {
   <div class="card">
     <p class="small">Journal : ${store.list("journal").length} entrée(s) · Visites : ${store.list("visits").length} · Stockage : ${store.isCloud() ? "compte (Union européenne)" : "cet appareil"}.</p>
     <div class="row"><button class="btn ghost" id="exp">Exporter mes données (JSON)</button>
-    <button class="btn danger" id="del">${u ? "Supprimer mon compte et mes données" : "Effacer les données de cet appareil"}</button></div>
+    </div>
+  </div>
+  <h2 class="sec">Supprimer toutes mes données</h2>
+  <div class="card">
+    <p class="small" style="margin-top:0">Efface définitivement et sans retour possible :</p>
+    <ul class="small" style="margin:0 0 10px 18px;padding:0">
+      ${u ? "<li>votre compte (" + esc(u.email || "") + ") et tout ce qui y est enregistré : journal, visites, candidatures aux missions, signalements, abonnements aux notifications ;</li>" : ""}
+      <li>sur ce téléphone : journal et visites, sermons enregistrés (audio, notes, transcriptions), favoris, préférences, chapitres de la Bible et modèle de transcription gardés en cache.</li>
+    </ul>
+    <p class="small muted">Pensez à exporter vos données avant, si vous voulez les garder.${u ? " Les données copiées par vous dans d'autres services (par exemple un compte rendu collé dans Claude) ne sont pas concernées." : ""}</p>
+    <button class="btn danger" id="del">Supprimer définitivement toutes mes données</button>
   </div>
   <h2 class="sec">Notifications</h2>
   <div class="card"><p class="small">Alertes pour les nouvelles missions, les grandes fêtes et les annonces importantes.</p><a class="btn ghost" href="#/notifications">Gérer les notifications</a></div>
@@ -53,13 +63,22 @@ export default function profil(el) {
     if (u) { try { const { fs, db } = cloud; candidatures = (await fs.getDocs(fs.query(fs.collection(db, "applications"), fs.where("uid", "==", u.uid)))).docs.map(d => d.data()); } catch { /* aucune */ } }
     download("guardian-angel-mes-donnees.json", JSON.stringify(store.exportAll({ compte: u ? { email: u.email, nom: u.displayName } : null, candidatures }), null, 2));
   });
-  on("del", async e => {
-    const b = e.target;
-    if (!b.dataset.ok) { b.dataset.ok = 1; b.textContent = "Confirmer : suppression définitive"; setTimeout(() => { if (b.isConnected) profil(el); }, 6000); return; }
-    b.disabled = true;
-    try { if (u) await store.deleteAccount(); else store.eraseLocal(); toast("Données supprimées"); }
-    catch (err) { console.error(err); toast("Suppression interrompue : " + (err.code || err.message)); }
-    profil(el);
+  on("del", async () => {
+    const r = await modal(`<h2>Tout supprimer ?</h2>
+      <p class="small">Cette action est <strong>définitive</strong> : rien ne pourra être récupéré${u ? ", ni sur ce téléphone ni sur votre compte" : ""}.</p>
+      <label for="dConf">Pour confirmer, écrivez <strong>SUPPRIMER</strong></label><input id="dConf" autocomplete="off" autocapitalize="characters">
+      <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn ghost" data-close="x">Annuler</button><button class="btn danger" id="dOk" disabled>Supprimer</button></div>`,
+      (d, done) => { const i = $("#dConf", d), ok = $("#dOk", d); i.oninput = () => { ok.disabled = i.value.trim().toUpperCase() !== "SUPPRIMER"; }; ok.onclick = () => done("go"); });
+    if (r !== "go") return;
+    el.innerHTML = `<section class="hero"><h1>Suppression en cours…</h1><p>Ne fermez pas l'application.</p></section><ul class="list" id="etapes"></ul>`;
+    const etapes = {}, ul = $("#etapes", el);
+    const etape = (lib, st) => { if (!etapes[lib]) { etapes[lib] = document.createElement("li"); ul.appendChild(etapes[lib]); } etapes[lib].innerHTML = `${st === "ok" ? "✓" : st === "erreur" ? "⚠" : "…"} ${esc(lib)}`; };
+    const { toutEffacer } = await import("../effacement.js");
+    const erreurs = await toutEffacer(etape);
+    el.innerHTML = erreurs.length
+      ? `<section class="hero"><h1>Suppression incomplète</h1></section><div class="notice err small">Certaines données n'ont pas pu être supprimées :<br>${erreurs.map(esc).join("<br>")}<br><br>Si le message parle de « connexion récente », reconnectez-vous puis recommencez. Sinon, réessayez avec une bonne connexion.</div><p class="center"><a class="btn" href="#/profil" onclick="location.reload()">Retour</a></p>`
+      : `<section class="hero"><h1>Toutes vos données ont été supprimées</h1><p>L'application est revenue à son état de départ.</p><span class="orn"></span></section><p class="center"><button class="btn" id="fin">Terminer</button></p>`;
+    const f = $("#fin", el); if (f) f.onclick = () => { location.hash = "#/accueil"; location.reload(); };
   });
 }
 

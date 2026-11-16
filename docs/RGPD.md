@@ -54,3 +54,7 @@ Les catégories suivies peuvent révéler un intérêt religieux (comme tout l'u
 - **Compte rendu** : l'application prépare un texte que l'utilisateur copie lui-même dans Claude (Anthropic). Ce transfert est une action volontaire de l'utilisateur, soumise aux conditions de Claude.
 - **Suppression** : bouton « Supprimer ce sermon » (audio, notes et transcription) ; la suppression des données du site dans le navigateur efface aussi tout.
 - **Transcription après le sermon (ajout du 16/11/2026)** : elle se fait sur l'appareil avec le modèle Whisper (Transformers.js). L'audio n'est envoyé nulle part. Au premier usage, le navigateur télécharge la bibliothèque depuis jsDelivr et le modèle (~80 Mo) depuis Hugging Face : ces services voient l'adresse IP de l'appareil, comme pour tout téléchargement. La transcription en direct (reconnaissance vocale du navigateur) est désormais décochée par défaut.
+
+## Droit à l'effacement (16/11/2026)
+
+Profil → « Supprimer définitivement toutes mes données » : confirmation en écrivant SUPPRIMER, puis suppression des signalements, du compte et de ses sous-collections, des candidatures, des abonnements push (et de la session anonyme), de toutes les bases IndexedDB (sermons, Firebase), de tous les caches et de tout le stockage local. Les règles Firestore permettent désormais à chacun de lire et supprimer ses propres signalements.

@@ -98,7 +98,9 @@ service cloud.firestore {
         && request.resource.data.keys().hasOnly(['uid', 'churchId', 'churchName', 'message', 'status', 'createdAt'])
         && request.resource.data.status == 'nouveau' && request.resource.data.message is string && request.resource.data.message.size() <= 2000
         && str(request.resource.data, 'churchId', 40) && str(request.resource.data, 'churchName', 200);
-      allow read, update, delete: if isAdmin();
+      // chacun peut retrouver et supprimer ses propres signalements (droit à l'effacement)
+      allow read, delete: if isAdmin() || (isReal() && resource.data.uid == request.auth.uid);
+      allow update: if isAdmin();
     }
     match /{document=**} { allow read, write: if false; }
   }
