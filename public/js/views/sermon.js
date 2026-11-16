@@ -225,21 +225,40 @@ async function detail(el, id) {
       dire("Préparation de l'audio…");
       const ctx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
       const buf = await ctx.decodeAudioData(await blob.arrayBuffer()); ctx.close();
-      const audio = buf.getChannelData(0).slice();
-      const w = new Worker("/js/transcription-worker.js", { type: "module" });
-      const res = await new Promise((ok, ko) => {
+      const audio = buf.getChannelData(0).slice();   // copie : le worker peut la recevoir sans bloquer la page
+      const afficher = m => {
+        if (m.type === "telechargement") dire(`Téléchargement du modèle : ${m.total ? Math.round(100 * m.loaded / m.total) + " %" : Math.round(m.loaded / 1e6) + " Mo"} (une seule fois)`);
+        else if (m.type === "pret") dire(`Transcription en cours (${m.appareil === "webgpu" ? "processeur graphique" : "processeur"})…`);
+        else if (m.type === "avance") dire(`Transcription en cours… ${Math.round(100 * m.fait / m.duree)} % · ${Math.round((Date.now() - t0) / 1000)} s`);
+      };
+      // 1) dans un worker ; 2) si le worker ne démarre pas sur ce téléphone, directement dans la page
+      const parWorker = () => new Promise((ok, ko) => {
+        let w; try { w = new Worker("/js/transcription-worker.js", { type: "module" }); } catch (e) { ko({ demarrage: true, e }); return; }
+        let parti = false; const garde = setTimeout(() => { if (!parti) { w.terminate(); ko({ demarrage: true }); } }, 20000);
         w.onmessage = ({ data: m }) => {
-          if (m.type === "telechargement") dire(`Téléchargement du modèle : ${m.total ? Math.round(100 * m.loaded / m.total) + " %" : Math.round(m.loaded / 1e6) + " Mo"} (une seule fois)`);
-          else if (m.type === "pret") dire(`Transcription en cours (${m.appareil === "webgpu" ? "processeur graphique" : "processeur"})…`);
-          else if (m.type === "avance") dire(`Transcription en cours… ${Math.round(100 * m.fait / m.duree)} % · ${Math.round((Date.now() - t0) / 1000)} s`);
-          else if (m.type === "fini") ok(m.morceaux); else if (m.type === "erreur") ko(new Error(m.message));
+          if (m.type === "demarre") { parti = true; clearTimeout(garde); w.postMessage({ type: "transcrire", audio }, [audio.buffer]); }
+          else if (m.type === "fini") { w.terminate(); ok(m.morceaux); }
+          else if (m.type === "erreur") { w.terminate(); ko(new Error(m.message)); }
+          else afficher(m);
         };
-        w.onerror = e => ko(new Error(e.message || "le module de transcription n'a pas pu démarrer"));
-        w.postMessage({ type: "transcrire", audio }, [audio.buffer]);
+        w.onerror = e => { e.preventDefault?.(); clearTimeout(garde); w.terminate(); ko(parti ? new Error(e.message || "erreur du module de transcription") : { demarrage: true }); };
       });
-      w.terminate();
+      let res;
+      try { res = await parWorker(); }
+      catch (e) {
+        if (!e || !e.demarrage) throw e;
+        dire("Démarrage de la transcription…");
+        const { transcrire } = await import("/js/transcrire.js");
+        res = await transcrire(audio, afficher);
+      }
       s.transcription = res; await sdb.save(s); toast("Transcription terminée"); detail(el, id);
-    } catch (e) { dire(`Transcription impossible : ${esc(e.message || String(e))}. Vérifiez la connexion pour le premier téléchargement du modèle.`); bt.disabled = false; }
+    } catch (e) {
+      const m = String(e && e.message || e);
+      const aide = /import|fetch|module|Content Security|NetworkError|Load failed/i.test(m)
+        ? "Le moteur de transcription n'a pas pu être téléchargé. Vérifiez la connexion, puis fermez complètement l'application et rouvrez-la (une ancienne version peut encore être ouverte)."
+        : /memory|mémoire|allocation|OOM/i.test(m) ? "Le téléphone manque de mémoire pour ce sermon : fermez les autres applications et réessayez." : "Réessayez ; si le problème continue, envoyez une capture de ce message.";
+      dire(`Transcription impossible (${esc(m.slice(0, 200))}). ${aide}`); bt.disabled = false;
+    }
     finally { try { lock?.release(); } catch {} }
   };
   const lireTr = () => $("#dTr", el).value.split("\n").map(l => { const m = l.match(/^\[(\d+(?::\d+){1,2})\]\s*(.*)$/); if (!m) return l.trim() ? { t: 0, texte: l.trim() } : null; const p = m[1].split(":").map(Number); return { t: p.reduce((a, b) => a * 60 + b, 0), texte: m[2] }; }).filter(Boolean);
