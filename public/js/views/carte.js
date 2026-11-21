@@ -2,7 +2,7 @@ import { esc, $, toast, loadChurches, churchLabel, arrLabel, km, norm, safeUrl, 
 import * as store from "../store.js";
 import { cloud } from "../cloud.js";
 
-const F = { q: "", arr: "", conf: "catholiques", horaires: false, pmr: false, fav: false, here: null, hereLabel: "", limit: 40 };
+const F = { q: "", arr: "", horaires: false, pmr: false, fav: false, here: null, hereLabel: "", limit: 40 };
 const ATTR = "© les contributeurs d'<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">OpenStreetMap</a>";
 let ruesP = null;
 const loadRues = () => (ruesP ||= fetch("/data/rues.json").then(r => (r.ok ? r.json() : { rues: [] })).then(j => j.rues || []).catch(() => { ruesP = null; return []; }));
@@ -25,8 +25,19 @@ const couleur = c => COUL.get(c.denomination || "") || "#616161";
 const point = c => `<span aria-hidden="true" style="display:inline-block;width:11px;height:11px;border-radius:50%;background:${couleur(c)};border:1px solid rgba(0,0,0,.35);margin-right:6px;vertical-align:baseline"></span>`;
 function legende(r) {
   const n = new Map(); r.forEach(c => { const k = c.denomination === "roman_catholic" ? "catholic" : c.denomination || ""; n.set(k, (n.get(k) || 0) + 1); });
-  return COULEURS.filter(([k]) => k !== "roman_catholic" && n.has(k)).map(([k]) => `<span class="chip" style="margin:2px">${point({ denomination: k })}${esc(k ? CONF[k] || k : "non renseignée")} · ${n.get(k)}</span>`).join("");
+  return COULEURS.filter(([k]) => k !== "roman_catholic" && n.has(k)).map(([k]) => `<span class="chip" data-k="${esc(k)}" role="button" tabindex="0" title="N'afficher que cette confession" style="margin:2px;cursor:pointer">${point({ denomination: k })}${esc(k ? CONF[k] || k : "non renseignée")} · ${n.get(k)}</span>`).join("");
 }
+// Filtre par confession : familles et confessions exactes (clé "" = confession non renseignée dans OSM)
+const cle = c => (c.denomination === "roman_catholic" ? "catholic" : c.denomination || "");
+const FAMILLES = [
+  ["Catholiques", ["catholic", "greek_catholic", "coptic_catholic", "maronite"]],
+  ["Protestants", ["protestant", "lutheran", "reformed", "evangelical", "free_evangelical", "baptist", "methodist", "presbyterian", "anglican", "seventh_day_adventist", "quaker"]],
+  ["Orthodoxes et Églises orientales", ["orthodox", "russian_orthodox", "greek_orthodox", "romanian_orthodox", "serbian_orthodox", "armenian_apostolic"]],
+  ["Confession non renseignée", [""]]
+];
+const PAR_DEFAUT = [...FAMILLES[0][1], ""];
+const selConf = () => new Set(store.prefs.get("carteConf", null) || PAR_DEFAUT);
+const nomConf = k => (k ? (k === "catholic" ? "catholique (rite latin)" : CONF[k] || k.replace(/_/g, " ")) : "non renseignée");
 const confLabel = c => (c.denomination ? CONF[c.denomination] || c.denomination.replace(/_/g, " ") : "confession non renseignée");
 let leafletP = null, map = null, layer = null;
 function loadLeaflet() {
@@ -40,7 +51,8 @@ function loadLeaflet() {
 const favs = () => store.prefs.get("favEglises", []) || [];
 function filtered(list) {
   const q = norm(F.q), fv = favs();
-  let r = list.filter(c => (F.conf !== "catholiques" || c.catholique !== false) && (!q || norm(c.name + " " + (c.address || "")).includes(q)) && (!F.arr || String(c.arr) === F.arr)
+  const sc = selConf();
+  let r = list.filter(c => sc.has(cle(c)) && (!q || norm(c.name + " " + (c.address || "")).includes(q)) && (!F.arr || String(c.arr) === F.arr)
     && (!F.horaires || c.serviceTimes) && (!F.pmr || c.wheelchair === "yes") && (!F.fav || fv.includes(c.id)));
   if (F.here) r = r.map(c => ({ ...c, _d: km(F.here, c) })).sort((a, b) => a._d - b._d);
   else r = r.slice().sort((a, b) => churchLabel(a).localeCompare(churchLabel(b), "fr"));
@@ -62,10 +74,16 @@ export default async function carte(el, params) {
   body.innerHTML = `
     <div class="row">
       <input type="search" id="fq" placeholder="Église, adresse ou rue" aria-label="Filtrer par nom, adresse ou rue" value="${esc(F.q)}" style="flex:2;min-width:180px">
-      <select id="fconf" aria-label="Confession" style="flex:1;min-width:150px"><option value="catholiques">Catholiques</option><option value="toutes"${F.conf === "toutes" ? " selected" : ""}>Toutes confessions chrétiennes</option></select>
       <select id="farr" aria-label="Arrondissement" style="flex:1;min-width:130px"><option value="">Tous les arrondissements</option>${arrs.map(a => `<option value="${a}"${String(a) === F.arr ? " selected" : ""}>${arrLabel(a)}</option>`).join("")}</select>
     </div>
     <div id="rsug" class="row" style="margin-top:8px" aria-live="polite"></div>
+    <details id="fconf" style="margin-top:10px"><summary class="btn ghost sm" style="display:inline-flex;list-style:none;cursor:pointer" id="fconfT"></summary>
+      <div class="card" style="margin-top:8px;padding:12px">
+        <div class="row" style="gap:6px;margin-bottom:6px"><button class="btn ghost sm" data-preset="tout">Toutes</button><button class="btn ghost sm" data-preset="cath">Catholiques</button><button class="btn ghost sm" data-preset="prot">Protestants</button><button class="btn ghost sm" data-preset="orth">Orthodoxes</button></div>
+        ${FAMILLES.map(([fam, ks], fi) => { const pres = ks.filter(k => list.some(c => cle(c) === k)); if (!pres.length) return "";
+          return `<div style="margin-top:8px"><label class="field-inline" style="margin:0;font-weight:600"><input type="checkbox" data-fam="${fi}"> ${esc(fam)}</label>
+          <div class="row" style="gap:4px;margin:4px 0 0 22px">${pres.map(k => `<label class="chip" style="cursor:pointer"><input type="checkbox" data-conf="${esc(k)}" style="width:auto;margin:0 4px 0 0">${point({ denomination: k })}${esc(nomConf(k))} · ${list.filter(c => cle(c) === k).length}</label>`).join("")}</div></div>`; }).join("")}
+      </div></details>
     <div class="row" style="margin-top:10px">
       <button class="btn ghost sm" id="fhere" aria-pressed="${!!F.here}">${F.here ? (F.hereLabel ? "Autour de " + esc(F.hereLabel) + " ✕" : "Tri par distance ✓") : "Autour de moi"}</button>
       <label class="field-inline" style="margin:0"><input type="checkbox" id="fh"${F.horaires ? " checked" : ""}> offices renseignés</label>
@@ -89,6 +107,7 @@ export default async function carte(el, params) {
       || `<li class="muted">Aucune église ne correspond à ces critères.</li>`;
     $("#more", el).hidden = r.length <= F.limit;
     $("#legende", el).innerHTML = legende(r);
+    majConf();
     if (layer) { layer.clearLayers(); r.forEach(c => { if (c.geom) window.L.polygon(c.geom, { color: couleur(c), weight: 1, fillColor: couleur(c), fillOpacity: .3, interactive: false }).addTo(layer); }); r.forEach(c => window.L.circleMarker([c.lat, c.lon], { radius: 6, color: "#333", weight: 1, fillColor: couleur(c), fillOpacity: .9 }).bindPopup(`<strong>${esc(churchLabel(c))}</strong><br><span class="small">${point(c)}${esc(confLabel(c))}</span><br><a href="#/eglise/${encodeURIComponent(c.id)}">Voir la fiche</a>`).addTo(layer)); }
   };
   $("#fq", el).oninput = e => { F.q = e.target.value; F.limit = 40; draw(); };
@@ -103,7 +122,32 @@ export default async function carte(el, params) {
     box.innerHTML = hits.map((x, i) => `<button class="btn ghost sm" data-r="${i}">📍 ${esc(x[0])}${x[3].length ? " · " + esc(x[3].map(arrLabel).join(", ")) : ""}</button>`).join("");
     box.querySelectorAll("[data-r]").forEach(b => b.onclick = () => { const x = hits[+b.dataset.r]; F.here = { lat: x[1], lon: x[2] }; F.hereLabel = x[0]; F.q = ""; F.limit = 40; carte(el, []); });
   }
-  $("#fconf", el).onchange = e => { F.conf = e.target.value; draw(); };
+  // Panneau des confessions
+  const boite = $("#fconf", el);
+  function majConf() {
+    const sc = selConf(), toutes = FAMILLES.flatMap(f => f[1]).filter(k => list.some(c => cle(c) === k));
+    boite.querySelectorAll("[data-conf]").forEach(i => { i.checked = sc.has(i.dataset.conf); });
+    boite.querySelectorAll("[data-fam]").forEach(i => { const ks = FAMILLES[+i.dataset.fam][1].filter(k => toutes.includes(k)), n = ks.filter(k => sc.has(k)).length; i.checked = n === ks.length; i.indeterminate = n > 0 && n < ks.length; });
+    const n = toutes.filter(k => sc.has(k)).length;
+    $("#fconfT", el).textContent = "⛪ Confessions : " + (n === toutes.length ? "toutes" : n === 0 ? "aucune" : FAMILLES.find(([, ks]) => { const p = ks.filter(k => toutes.includes(k)); return p.length && p.every(k => sc.has(k)) && toutes.filter(k => sc.has(k)).every(k => ks.includes(k) || k === ""); })?.[0] || (n === 1 ? nomConf(toutes.find(k => sc.has(k))) : n + " sélectionnées")) + " ▾";
+  }
+  const regler = arr => { store.prefs.setQuiet("carteConf", [...new Set(arr)]); F.limit = 40; draw(); };
+  boite.addEventListener("change", e => {
+    const t = e.target, sc = selConf();
+    if (t.dataset.conf !== undefined) { if (t.checked) sc.add(t.dataset.conf); else sc.delete(t.dataset.conf); regler([...sc]); }
+    else if (t.dataset.fam !== undefined) { FAMILLES[+t.dataset.fam][1].forEach(k => t.checked ? sc.add(k) : sc.delete(k)); regler([...sc]); }
+  });
+  boite.querySelectorAll("[data-preset]").forEach(b => b.onclick = e => {
+    e.preventDefault();
+    regler({ tout: FAMILLES.flatMap(f => f[1]), cath: PAR_DEFAUT, prot: FAMILLES[1][1], orth: FAMILLES[2][1] }[b.dataset.preset]);
+  });
+  // Toucher une couleur de la légende : n'afficher que cette confession (re-toucher : revenir au choix précédent)
+  $("#legende", el).onclick = e => {
+    const ch = e.target.closest("[data-k]"); if (!ch) return;
+    const k = ch.dataset.k, sc = selConf();
+    if (sc.size === 1 && sc.has(k)) regler(store.prefs.get("carteConfAvant", null) || PAR_DEFAUT);
+    else { store.prefs.setQuiet("carteConfAvant", [...sc]); regler([k]); }
+  };
   $("#farr", el).onchange = e => { F.arr = e.target.value; draw(); };
   $("#fh", el).onchange = e => { F.horaires = e.target.checked; draw(); };
   $("#fp", el).onchange = e => { F.pmr = e.target.checked; draw(); };
