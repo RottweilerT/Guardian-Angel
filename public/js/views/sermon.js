@@ -15,17 +15,26 @@ const TYPES = { ok: ["✓", "Compris"], q: ["?", "Pas compris"], imp: ["★", "I
 const hms = s => { s = Math.max(0, Math.round(s || 0)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = s % 60; return (h ? h + ":" : "") + String(m).padStart(h ? 2 : 1, "0") + ":" + String(x).padStart(2, "0"); };
 const MIME = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/ogg;codecs=opus"].find(t => window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) || "";
 const CLAUDE = "https://claude.ai/new";
-const MES_NOTES = [
-  ["libre", "Mes notes", "Ce que je retiens, au fil du sermon…"],
-  ["marquants", "Passages qui m'ont marqué", "Une phrase, une image, un exemple…"],
-  ["questions", "Mes questions", "Ce que je me demande après ce sermon…"],
-  ["flou", "Ce que je n'ai pas compris", "Un mot, une idée, un passage resté obscur…"],
-  ["comprehension", "Ma compréhension du message", "En quelques phrases, ce que le prédicateur a voulu dire selon moi…"],
+// Légendes accolées à chaque note (une ou plusieurs par note)
+const LEGENDES = [
+  ["Compris", "✓"], ["Pas compris", "?"], ["Ma réflexion", "💭"], ["Dit par l'abbé", "🗣"],
+  ["Question", "❓"], ["Important", "★"], ["Référence biblique", "📖"], ["À vivre", "🎯"],
 ];
+const RE_LEG = new RegExp("\\s*\\[(" + LEGENDES.map(([l]) => l.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")\\]", "g");
+// texte libre → [{ texte, legendes[] }] (une ligne = une note)
+const lireNotes = t => (t || "").split("\n").map(l => ({ legendes: [...l.matchAll(RE_LEG)].map(m => m[1]), texte: l.replace(RE_LEG, "").trim() })).filter(n => n.texte);
+// anciennes notes (versions précédentes de l'onglet) → texte avec légendes
+function migrerNotes(s) {
+  if (s.notesTexte != null) return;
+  const L = { ok: "Compris", q: "Pas compris", imp: "Important" }, M = { questions: "Question", flou: "Pas compris", marquants: "Important", comprehension: "Ma réflexion" }, lignes = [];
+  for (const [k, v] of Object.entries(s.mesNotes || {})) for (const l of (v || "").split("\n")) if (l.trim()) lignes.push(l.trim() + (M[k] ? ` [${M[k]}]` : ""));
+  for (const n of s.notes || []) { const t = n.texte || (n.contexte ? `« ${n.contexte} »` : ""); if (t) lignes.push(t + (L[n.type] ? ` [${L[n.type]}]` : "") + (n.contexte && n.texte ? ` [Dit par l'abbé]` : "")); }
+  s.notesTexte = lignes.join("\n");
+}
 const IA = {
   plan: { titre: "Plan détaillé et expliqué", bouton: "Générer le plan détaillé" },
   resume: { titre: "Résumé du sermon", bouton: "Générer le résumé" },
-  approfondir: { titre: "Approfondissement avec mes notes", bouton: "Approfondir avec mes notes" },
+  approfondir: { titre: "Résumé de mes notes et approfondissement", bouton: "Résumer et approfondir mes notes" },
 };
 
 // ---------------------------------------------------------------- enregistrement (global : continue hors de la page)
@@ -57,7 +66,7 @@ async function demarrer(opts) {
   try { await navigator.storage?.persist?.(); } catch {}                       // évite que le navigateur efface l'audio pour faire de la place
   const id = "s" + Date.now().toString(36);
   const s = { id, date: today(), debut: new Date().toISOString(), eglise: opts.eglise || "", predicateur: opts.predicateur || "", accord: true, mime: MIME,
-    duree: 0, enCours: true, transcription: [], notes: [], mesNotes: {}, ia: {}, passages: [] };
+    duree: 0, enCours: true, transcription: [], notesTexte: "", ia: {}, passages: [] };
   await sdb.save(s);
   const rec = new MediaRecorder(flux, MIME ? { mimeType: MIME, audioBitsPerSecond: 32000 } : undefined);
   rec.ondataavailable = e => { if (e.data && e.data.size) sdb.addChunk(id, e.data).catch(() => toast("⚠ Sauvegarde de l'audio impossible : stockage plein ?")); };
@@ -187,9 +196,12 @@ const entete = s => `Sermon (homélie) catholique${s.eglise ? `, église ${s.egl
 const texteTr = s => s.transcription.map(x => `[${hms(x.t)}] ${x.texte}`).join("\n");
 const AVERT = "La transcription a été faite automatiquement : elle peut contenir des erreurs (noms propres, citations). Ne complète pas ce qui manque et n'invente aucun propos du prédicateur ; si un passage est incompréhensible, dis-le.";
 const mesNotesTexte = s => {
-  const n = MES_NOTES.map(([k, l]) => (s.mesNotes?.[k] || "").trim() && `${l} :\n${s.mesNotes[k].trim()}`).filter(Boolean);
-  const h = (s.notes || []).map(x => `- [${hms(x.t)}] ${TYPES[x.type]?.[1] || "Note"} : ${x.texte || "(sans texte)"}${x.contexte ? ` (le prédicateur disait : « ${x.contexte} »)` : ""}`);
-  return [...n, h.length ? "Notes prises pendant l'écoute :\n" + h.join("\n") : ""].filter(Boolean).join("\n\n") || "(aucune note)";
+  migrerNotes(s);
+  const notes = lireNotes(s.notesTexte);
+  if (!notes.length) return "(aucune note)";
+  const tout = notes.map((n, i) => `${i + 1}. ${n.texte}${n.legendes.length ? "  [" + n.legendes.join(", ") + "]" : "  [sans légende]"}`).join("\n");
+  const groupes = LEGENDES.map(([l]) => { const x = notes.map((n, i) => n.legendes.includes(l) ? i + 1 : 0).filter(Boolean); return x.length ? `- ${l} : notes ${x.join(", ")}` : ""; }).filter(Boolean).join("\n");
+  return `Mes notes, dans l'ordre (chaque note porte entre crochets la ou les légendes que je lui ai données) :\n${tout}\n\nRépartition par légende :\n${groupes || "(aucune légende)"}`;
 };
 function demande(type, s, passage) {
   if (type === "plan") return `${entete(s)}
@@ -223,30 +235,31 @@ Ne rapporte que ce qui a été dit ; n'ajoute pas d'idées qui ne sont pas dans 
 TRANSCRIPTION
 ${texteTr(s)}`;
   if (type === "approfondir") return `${entete(s)}
-${AVERT}
+${s.transcription.length ? AVERT : "Je n'ai pas de transcription : seulement mes notes."}
 
-Je suis un paroissien. Voici (1) la transcription du sermon, (2) le plan détaillé et le résumé obtenus, (3) mes notes personnelles.
-Aide-moi à approfondir ma compréhension, de façon pédagogique, bienveillante et rigoureuse :
-- les idées que j'ai bien comprises (cite le passage du sermon correspondant, avec [m:ss]) ;
-- pour chacune de mes notes, le passage du sermon qui s'y rapporte ;
-- les points que je semble avoir mal compris — seulement si le contenu du sermon le montre, en citant ce qu'il dit ; ne considère pas une interprétation personnelle comme une erreur sans t'appuyer sur le sermon ;
-- l'explication des éléments restés flous pour moi ;
-- les idées importantes du sermon absentes de mes notes ;
-- des réponses à mes questions ;
-- deux ou trois pistes pour prolonger ma réflexion et ma prière.
-Distingue toujours trois voix : « Le prédicateur : » (ce qui a été dit), « Vos notes : » (ce que j'ai écrit), « Explication : » (ce que tu ajoutes, en t'appuyant sur l'enseignement de l'Église catholique quand c'est utile).
+Je suis un paroissien. J'ai pris des notes pendant le sermon et j'ai mis une légende sur chacune : Compris, Pas compris, Ma réflexion (ce que j'ai pensé moi-même), Dit par l'abbé (ce que le prédicateur a dit), Question, Important, Référence biblique, À vivre.
+Fais-moi, en français, de façon pédagogique, bienveillante et rigoureuse :
+1. Un RÉSUMÉ DU SERMON À PARTIR DE MES NOTES, organisé ainsi :
+   - ce que l'abbé a clairement dit (notes « Dit par l'abbé ») ;
+   - ce que j'ai compris ;
+   - ce que je n'ai pas compris — explique chaque point simplement${s.transcription.length ? ", en citant le passage du sermon correspondant avec [m:ss]" : ""} ;
+   - mes propres réflexions (notes « Ma réflexion »), en les distinguant bien de ce qu'a dit l'abbé${s.transcription.length ? ", et en signalant si elles rejoignent ou non le sermon (sans jamais juger une réflexion fausse sans t'appuyer sur ce qu'il dit)" : ""} ;
+   - les réponses à mes questions ;
+   - ce que je retiens d'important et ce que je veux vivre.
+${s.transcription.length ? "2. Les idées importantes du sermon absentes de mes notes.\n3. Les notes dont la légende semble ne pas correspondre au sermon (par exemple une note « Dit par l'abbé » qu'on ne retrouve pas dans la transcription).\n4." : "2."} Deux ou trois pistes pour prolonger ma réflexion et ma prière.
+Distingue toujours trois voix : « L'abbé : » (ce qui a été dit), « Vos notes : » (ce que j'ai écrit), « Explication : » (ce que tu ajoutes, en t'appuyant sur l'enseignement de l'Église catholique quand c'est utile).
 
-(1) TRANSCRIPTION
+MES NOTES
+${mesNotesTexte(s)}
+${s.transcription.length ? `
+TRANSCRIPTION
 ${texteTr(s)}
 
-(2) PLAN DÉTAILLÉ
+PLAN DÉTAILLÉ
 ${s.ia?.plan?.texte || "(pas encore généré)"}
 
 RÉSUMÉ
-${s.ia?.resume?.texte || "(pas encore généré)"}
-
-(3) MES NOTES
-${mesNotesTexte(s)}`;
+${s.ia?.resume?.texte || "(pas encore généré)"}` : ""}`;
   return `${entete(s)}
 ${AVERT}
 
@@ -313,7 +326,7 @@ export default async function sermon(el, [id]) {
   };
 }
 const etapes = s => [s.duree ? "🎧 audio" : "", s.transcription?.length ? "📝 transcrit" : "", s.ia?.plan?.texte ? "🗂 plan" : "", s.ia?.resume?.texte ? "📌 résumé" : "",
-  Object.values(s.mesNotes || {}).some(x => (x || "").trim()) || s.notes?.length ? "✎ notes" : "", s.ia?.approfondir?.texte ? "🔎 approfondi" : "", s.interrompu ? "⚠ enregistrement interrompu" : ""].filter(Boolean).join(" · ") || "—";
+  (s.notesTexte || "").trim() || Object.values(s.mesNotes || {}).some(x => (x || "").trim()) || s.notes?.length ? "✎ notes" : "", s.ia?.approfondir?.texte ? "🔎 résumé de mes notes" : "", s.interrompu ? "⚠ enregistrement interrompu" : ""].filter(Boolean).join(" · ") || "—";
 const confidentialite = () => `<div class="notice small" style="margin-top:8px">
   <strong>Sur ce téléphone uniquement</strong> : l'audio, la transcription, les analyses collées et vos notes (base locale du navigateur). Ils ne sont pas envoyés aux serveurs de l'application.<br>
   <strong>Transcription</strong> : faite sur le téléphone (modèle Whisper, téléchargé une fois depuis Hugging Face via jsDelivr) ; l'audio n'est envoyé nulle part.<br>
@@ -350,7 +363,7 @@ async function page(el, id) {
   const blob = enregistrement ? null : await sdb.audio(id, s.mime).catch(() => null);
   if (urlAudio) URL.revokeObjectURL(urlAudio);
   urlAudio = blob ? URL.createObjectURL(blob) : "";
-  s.ia ||= {}; s.mesNotes ||= {}; s.passages ||= []; s.notes ||= [];
+  s.ia ||= {}; s.passages ||= []; migrerNotes(s);
   const ext = (s.mime || blob?.type || "").includes("mp4") ? "m4a" : (s.mime || "").includes("ogg") ? "ogg" : "webm";
   const job = JOBS.get(id), trCours = job?.etat === "cours";
   const trSt = trCours ? statut("cours", "Transcription en cours") : job?.etat === "erreur" || (s.trEtat && !s.trEtat.termine && s.transcription.length) ? statut("err", "Interrompue")
@@ -366,9 +379,7 @@ async function page(el, id) {
       <div class="chrono" id="srTemps" aria-live="off">${hms(duree())}</div>
       <div class="niveau"><div id="srNiv"></div></div>
       <div class="row" style="justify-content:center;margin-top:12px"><button class="btn ghost" id="srPause">${R.pause ? "▶ Reprendre" : "❚❚ Pause"}</button><button class="btn rouge" id="srFin">■ Arrêter et sauvegarder</button></div>
-      <p class="small muted" style="margin:10px 0 0">Sauvegarde automatique toutes les 5 s. Vous pouvez écrire vos notes plus bas, ou utiliser d'autres pages de l'application : l'enregistrement continue (pastille rouge en bas de l'écran). Verrouiller l'écran ou changer d'application peut l'interrompre sur certains téléphones.</p>
-      <div class="row" style="margin-top:8px">${Object.entries(TYPES).map(([k, [ic, l]]) => `<button class="btn ghost sm" data-n="${k}">${ic} ${l}</button>`).join("")}</div>
-      <p class="small muted" style="margin:4px 0 0">Marque un moment du sermon (le texte saisi dans « Mes notes » est joint).</p>
+      <p class="small muted" style="margin:10px 0 0">Sauvegarde automatique toutes les 5 s. Vous pouvez écrire vos notes juste en dessous, ou utiliser d'autres pages de l'application : l'enregistrement continue (pastille rouge en bas de l'écran). Verrouiller l'écran ou changer d'application peut l'interrompre sur certains téléphones.</p>
     </div>` : blob ? `${s.interrompu ? `<div class="notice small">L'enregistrement s'est arrêté avant la fin (application fermée ou téléphone en veille). Tout ce qui avait été enregistré jusque-là est conservé.</div>` : ""}
     <div class="lecteur" id="lecteur">
       <audio id="aud" preload="metadata" src="${urlAudio}"></audio>
@@ -391,18 +402,20 @@ async function page(el, id) {
     <div id="trZone"></div>`}
   </details>
 
-  <details class="bloc" open id="b3"><summary><h2 class="bloc-t"><span class="num">3</span> Comprendre le sermon</h2>${s.ia.plan?.texte && s.ia.resume?.texte ? statut("ok", "Plan et résumé") : s.ia.plan?.texte || s.ia.resume?.texte ? statut("cours", "En partie") : statut("", s.transcription.length ? "À générer" : "Après la transcription")}</summary>
+  <details class="bloc" open id="b3"><summary><h2 class="bloc-t"><span class="num">3</span> Mes notes</h2><span id="mnStatut">${(s.notesTexte || "").trim() ? statut("ok", "Enregistrées") : statut("", "À écrire")}</span></summary>
+    <textarea id="mnTexte" class="notes-texte" maxlength="30000" placeholder="Une note par ligne. Après chaque note, touchez une légende ci-dessous.">${esc(s.notesTexte || "")}</textarea>
+    <div class="legendes" id="mnLeg" role="toolbar" aria-label="Légendes">${LEGENDES.map(([l, ic]) => `<button type="button" class="leg" data-leg="${esc(l)}">${ic} ${esc(l)}</button>`).join("")}</div>
+    <p class="small muted" id="mnEtat" style="margin:4px 0 0">Une ligne = une note. La légende s'ajoute à la note où se trouve le curseur (ou à la précédente si la ligne est vide) ; touchez-la à nouveau pour l'enlever. Enregistrement automatique.</p>
+    <details class="sous" id="mnResume"${(s.notesTexte || "").trim() ? "" : " hidden"}><summary>Mes notes classées par légende</summary><div id="mnGroupes">${groupesNotes(s.notesTexte)}</div></details>
+    ${blocIA(s, "approfondir")}
+    <div class="row" style="margin-top:14px"><button class="btn gold sm" id="dJournal">${s.journalId ? "Mettre à jour dans mon journal" : "Ajouter à mon journal"}</button></div>
+  </details>
+
+  <details class="bloc" open id="b4"><summary><h2 class="bloc-t"><span class="num">4</span> Comprendre le sermon</h2>${s.ia.plan?.texte && s.ia.resume?.texte ? statut("ok", "Plan et résumé") : s.ia.plan?.texte || s.ia.resume?.texte ? statut("cours", "En partie") : statut("", s.transcription.length ? "À générer" : "Après la transcription")}</summary>
     ${blocIA(s, "plan")}${blocIA(s, "resume")}
     ${s.compteRendu ? `<details class="sous"><summary>Ancien compte rendu (version précédente de l'onglet)</summary><div class="rendu">${md(s.compteRendu)}</div></details>` : ""}
   </details>
 
-  <details class="bloc" open id="b4"><summary><h2 class="bloc-t"><span class="num">4</span> Mes notes et ma compréhension</h2>${Object.values(s.mesNotes).some(x => (x || "").trim()) || s.notes.length ? statut("ok", "Enregistrées") : statut("", "À écrire")}</summary>
-    ${MES_NOTES.map(([k, l, ph]) => `<label for="mn_${k}">${l}</label><textarea id="mn_${k}" data-mn="${k}" maxlength="10000" placeholder="${esc(ph)}" style="min-height:${k === "libre" ? 110 : 64}px">${esc(s.mesNotes[k] || "")}</textarea>`).join("")}
-    <p class="small muted" id="mnEtat" style="margin:4px 0 0">Enregistrement automatique.</p>
-    <div id="notesH">${notesHorodatees(s)}</div>
-    ${blocIA(s, "approfondir")}
-    <div class="row" style="margin-top:14px"><button class="btn gold sm" id="dJournal">${s.journalId ? "Mettre à jour dans mon journal" : "Ajouter à mon journal"}</button></div>
-  </details>
 
   <details class="small" style="margin-top:18px"><summary class="muted">Où vont mes données ?</summary>${confidentialite()}</details>
   <p style="margin-top:16px"><button class="btn danger sm" id="dDel">Supprimer ce sermon</button></p>
@@ -412,12 +425,6 @@ async function page(el, id) {
   if (enregistrement) {
     $("#srPause", el).onclick = () => { basculerPause(); page(el, id); };
     $("#srFin", el).onclick = async e => { e.currentTarget.disabled = true; await terminer(); toast("Sermon sauvegardé"); page(el, id); };
-    $$("[data-n]", el).forEach(b => b.onclick = async () => {
-      const ctx = R.s.transcription.slice(-1)[0]?.texte || "";
-      const t = ($("#mn_libre", el).value || "").trim().split("\n").pop().slice(0, 500);
-      R.s.notes.push({ t: Math.round(duree()), type: b.dataset.n, texte: b.dataset.n === "note" ? t : "", contexte: ctx.slice(0, 300) });
-      await sdb.save(R.s).catch(() => {}); $("#notesH", el).innerHTML = notesHorodatees(R.s); toast(`${TYPES[b.dataset.n][1]} — repère à ${hms(duree())}`);
-    });
     const niv = () => { const n = document.getElementById("srNiv"); if (!n || !R.actif || !R.an) return; const d = new Uint8Array(R.an.fftSize); R.an.getByteTimeDomainData(d); let m = 0; for (const v of d) m = Math.max(m, Math.abs(v - 128)); n.style.width = (R.pause ? 0 : Math.min(100, m)) + "%"; rafId = requestAnimationFrame(niv); };
     cancelAnimationFrame(rafId); niv();
     pastille();
@@ -460,24 +467,37 @@ async function page(el, id) {
   // ---- sections 3 et 4 : demandes à Claude et réponses collées
   brancherIA(el, id);
 
-  // ---- section 4 : notes (sauvegarde automatique)
+  // ---- section 3 : notes avec légendes (sauvegarde automatique)
+  const ta = $("#mnTexte", el);
   let minuterie = 0;
-  $$("[data-mn]", el).forEach(ta => ta.addEventListener("input", () => {
-    $("#mnEtat", el).textContent = "Modification…";
-    clearTimeout(minuterie);
-    minuterie = setTimeout(async () => {
-      const cur = enregistrement && R.s ? R.s : await sdb.get(id);
-      cur.mesNotes = cur.mesNotes || {};
-      $$("[data-mn]", el).forEach(t => { cur.mesNotes[t.dataset.mn] = t.value; });
-      cur.notesModifiees = new Date().toISOString();
-      try { await sdb.save(cur); const e = document.getElementById("mnEtat"); if (e) e.textContent = "✓ Enregistré à " + new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }); }
-      catch { const e = document.getElementById("mnEtat"); if (e) e.textContent = "⚠ Enregistrement impossible (stockage plein ?)"; }
-    }, 700);
-  }));
-  $("#notesH", el).addEventListener("click", async e => {
-    const b = e.target.closest("[data-supnote]"); if (!b) return;
+  const enregistrerNotes = async () => {
     const cur = enregistrement && R.s ? R.s : await sdb.get(id);
-    cur.notes.splice(+b.dataset.supnote, 1); await sdb.save(cur); $("#notesH", el).innerHTML = notesHorodatees(cur);
+    migrerNotes(cur); cur.notesTexte = ta.value; cur.notesModifiees = new Date().toISOString();
+    try {
+      await sdb.save(cur);
+      const e = document.getElementById("mnEtat"); if (e) e.textContent = "✓ Enregistré à " + new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+      const g = document.getElementById("mnGroupes"); if (g) { g.innerHTML = groupesNotes(ta.value); document.getElementById("mnResume").hidden = !ta.value.trim(); }
+      const st = document.getElementById("mnStatut"); if (st) st.innerHTML = ta.value.trim() ? statut("ok", "Enregistrées") : statut("", "À écrire");
+    } catch { const e = document.getElementById("mnEtat"); if (e) e.textContent = "⚠ Enregistrement impossible (stockage plein ?)"; }
+  };
+  const plusTard = () => { clearTimeout(minuterie); $("#mnEtat", el).textContent = "Modification…"; minuterie = setTimeout(enregistrerNotes, 600); };
+  ta.addEventListener("input", plusTard);
+  // le clavier ne doit pas se fermer quand on touche une légende
+  $("#mnLeg", el).addEventListener("pointerdown", e => { if (e.target.closest("[data-leg]")) e.preventDefault(); });
+  $("#mnLeg", el).addEventListener("click", e => {
+    const b = e.target.closest("[data-leg]"); if (!b) return;
+    const v = ta.value, pos = ta.selectionEnd ?? v.length, lignes = v.split("\n");
+    let i = v.slice(0, pos).split("\n").length - 1;
+    if (!lignes[i]?.replace(RE_LEG, "").trim()) { let k = i - 1; while (k >= 0 && !lignes[k].replace(RE_LEG, "").trim()) k--; if (k < 0) { toast("Écrivez d'abord une note"); ta.focus(); return; } i = k; }
+    const tag = `[${b.dataset.leg}]`, ligne = lignes[i];
+    lignes[i] = ligne.includes(tag) ? ligne.replace(" " + tag, "").replace(tag, "") : ligne.replace(/\s+$/, "") + " " + tag;
+    const avant = lignes.slice(0, i + 1).join("\n").length;
+    let curseur = avant;
+    if (!ligne.includes(tag) && i === lignes.length - 1) { lignes.push(""); curseur = avant + 1; }        // nouvelle ligne prête pour la note suivante
+    else if (!ligne.includes(tag) && !lignes[i + 1]?.trim()) curseur = avant + 1;
+    ta.value = lignes.join("\n"); ta.focus(); ta.setSelectionRange(curseur, curseur);
+    b.classList.add("vu"); setTimeout(() => b.classList.remove("vu"), 400);
+    plusTard();
   });
 
   // ---- horodatages cliquables (transcription, analyses) → position dans l'audio
@@ -507,9 +527,11 @@ async function page(el, id) {
   };
 }
 
-function notesHorodatees(s) {
-  if (!s.notes?.length) return "";
-  return `<p class="small muted" style="margin:12px 0 4px">Repères pris pendant l'écoute :</p><ul class="list small">${s.notes.map((n, i) => `<li style="display:flex;gap:8px;align-items:flex-start"><button class="ts" data-t="${hms(n.t)}">${hms(n.t)}</button><span style="flex:1"><strong>${TYPES[n.type]?.[0] || ""} ${TYPES[n.type]?.[1] || ""}</strong> ${esc(n.texte || "")}${n.contexte ? `<br><span class="muted">« ${esc(n.contexte)} »</span>` : ""}</span><button class="lien" data-supnote="${i}" aria-label="Supprimer ce repère">✕</button></li>`).join("")}</ul>`;
+// Notes regroupées par légende (affichage immédiat, sans IA)
+function groupesNotes(texte) {
+  const notes = lireNotes(texte); if (!notes.length) return "";
+  const bloc = (titre, liste) => liste.length ? `<p class="small" style="margin:10px 0 2px"><strong>${titre}</strong> <span class="muted">(${liste.length})</span></p><ul class="small" style="margin:0;padding-left:20px">${liste.map(n => `<li>${esc(n.texte)}</li>`).join("")}</ul>` : "";
+  return LEGENDES.map(([l, ic]) => bloc(`${ic} ${esc(l)}`, notes.filter(n => n.legendes.includes(l)))).join("") + bloc("Sans légende", notes.filter(n => !n.legendes.length));
 }
 
 function brancherLecteur(el, s) {
@@ -588,14 +610,14 @@ function rafraichirTranscription(id, s, complet) {
 
 // Bloc d'analyse (plan, résumé, approfondissement) : demander à Claude, coller la réponse, la relire et la copier
 function blocIA(s, type) {
-  const r = (s.ia || {})[type] || {}, def = IA[type], possible = (s.transcription || []).length > 0;
+  const r = (s.ia || {})[type] || {}, def = IA[type], possible = type === "approfondir" ? !!(s.notesTexte || "").trim() || (s.transcription || []).length > 0 : (s.transcription || []).length > 0;
   const etat = r.texte ? statut("ok", "Terminé · " + new Date(r.date).toLocaleDateString("fr-FR")) : r.demandeLe ? statut("cours", "En attente de la réponse") : statut("", "À générer");
-  const manque = type === "approfondir" && !Object.values(s.mesNotes || {}).some(x => (x || "").trim()) && !s.notes?.length;
+  const manque = type === "approfondir" && !(s.notesTexte || "").trim();
   return `<div class="ia" id="ia_${type}">
     <div class="row between"><h3 class="serif" style="margin:0">${def.titre}</h3>${etat}</div>
     ${r.texte ? `<details class="sous" open><summary>Lire</summary><div class="rendu">${md(r.texte)}</div></details>` : ""}
     <div class="row" style="gap:6px;margin-top:8px"><button class="btn${r.texte ? " ghost" : ""} sm" data-ia="${type}"${possible ? "" : " disabled"}>${r.texte ? "↻ Refaire" : "✦ " + def.bouton}</button>${r.texte ? `<button class="btn ghost sm" data-iacopie="${type}">⧉ Copier</button>` : ""}</div>
-    ${!possible ? `<p class="small muted" style="margin:6px 0 0">Disponible après la transcription.</p>` : manque ? `<p class="small muted" style="margin:6px 0 0">Écrivez d'abord quelques notes ci-dessus.</p>` : ""}
+    ${!possible ? `<p class="small muted" style="margin:6px 0 0">${type === "approfondir" ? "Écrivez d'abord quelques notes ci-dessus." : "Disponible après la transcription."}</p>` : manque ? `<p class="small muted" style="margin:6px 0 0">Écrivez d'abord quelques notes ci-dessus.</p>` : type === "approfondir" ? `<p class="small muted" style="margin:6px 0 0">Résumé du sermon à partir de vos notes et de leurs légendes${(s.transcription || []).length ? ", vérifié avec la transcription" : " (la transcription, si vous la faites, sera aussi utilisée)"}.</p>` : ""}
     ${possible && (r.demandeLe || !r.texte) ? `<details class="sous"${r.demandeLe && !r.texte ? " open" : ""}><summary>${r.texte ? "Remplacer par une nouvelle réponse" : "Coller la réponse de Claude"}</summary>
       <textarea data-iarep="${type}" style="min-height:120px" placeholder="Collez ici la réponse de Claude"></textarea>
       <button class="btn sm" data-iasave="${type}" style="margin-top:6px">Enregistrer la réponse</button></details>` : ""}
