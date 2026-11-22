@@ -43,7 +43,7 @@ export function rendu1962(ordo, messe, { liens } = {}) {
     if (!pr.length && !p.la.length) continue;
     num++;
     const lien = liens && p.cle === "The Gospel" ? `<p class="small" style="font-family:var(--sans)">Sermon : ${liens}</p>` : "";
-    h += `<details${pr.length ? " open" : ""}><summary><span class="muted small">${num}.</span> ${esc(p.titre)}${pr.length ? ` <span class="chip sm">propre du jour</span>` : ""}</summary>
+    h += `<details${pr.length ? " open" : ""}><summary><span><span class="muted small">${num}.</span> ${esc(p.titre)}${pr.length ? ` <span class="chip sm">propre du jour</span>` : ""}</span></summary>
       <div class="body">${p.la.map(t => `<div class="ordinaire">${latin(t)}</div>`).join("")}${pr.map(section).join("")}${lien}</div></details>`;
   }
   return h;

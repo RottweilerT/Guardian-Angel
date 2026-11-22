@@ -1,0 +1,30 @@
+name: Missel (forme ordinaire) — lectures jour par jour
+# Chaque mois : références d'Ambo Liturgical Calendars (MIT) + texte de la Bible Fillion (domaine public).
+on:
+  workflow_dispatch:
+  schedule: [{ cron: "41 3 2 * *" }]
+  push: { branches: [main], paths: ["tools/missel-ordinaire/**", ".github/workflows/missel-ordinaire.yml"] }
+permissions: { contents: write, actions: write }
+concurrency: { group: missel-ordinaire, cancel-in-progress: true }
+jobs:
+  construire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Sources
+        run: |
+          git clone -q --depth 1 https://github.com/igorlaguiar/ambo-liturgical-calendars.git /tmp/ambo
+          git clone -q --depth 1 --filter=blob:none --sparse https://github.com/seven1m/open-bibles.git /tmp/ob && git -C /tmp/ob sparse-checkout set --no-cone /eng-web.usfx.xml
+      - name: Construire
+        run: |
+          DEBUT=$(date -d "$(date +%Y-%m-01) -1 month" +%F); FIN=$(date -d "$(date +%Y-%m-01) +26 months -1 day" +%F)
+          node tools/missel-ordinaire/build.mjs /tmp/ambo/data/v1/ordinary/general-roman /tmp/ob/eng-web.usfx.xml "$DEBUT" "$FIN"
+      - name: Enregistrer et déployer
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/missel-ordinaire
+          if git commit -qm "Missel (forme ordinaire) : lectures mises à jour"; then git push -q && gh workflow run deploy.yml --ref main; fi

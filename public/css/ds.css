@@ -161,3 +161,5 @@ fieldset{border:1px solid var(--line)}
 .missel .ordinaire+.propre{border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
 .missel summary .chip.sm{font-size:11px;padding:1px 7px;font-family:var(--sans);font-weight:400}
 .missel{overflow-wrap:anywhere}
+.missel .etape{padding:10px 14px;font-weight:600}
+.missel .etape .expl,.missel details .expl{font-weight:400;margin:2px 0 0}

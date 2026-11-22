@@ -197,19 +197,19 @@
   },
   {
    "nom": "Missel de 1962 : propres du jour, offertoire et canon (latin)",
-   "reference": "",
-   "titulaire": "—",
+   "reference": "https://github.com/DivinumOfficium/divinum-officium",
+   "titulaire": "Texte ancien du domaine public ; numérisation : projet Divinum Officium (MIT)",
    "type": "Texte liturgique",
    "licence": "Texte ancien du domaine public ; éditions modernes protégées",
-   "verifie_le": "2026-11-11",
-   "mode_verification": "connaissance générale de la licence, à reconfirmer sur la source avant publication",
-   "conditions": "À intégrer uniquement depuis une source dont le texte et la numérisation sont libres ; ne pas recopier une édition contemporaine.",
-   "attribution": "",
-   "usage_commercial": null,
-   "statut": "LEGAL_REVIEW_REQUIRED",
-   "preuve": "",
-   "utilise": false,
-   "demander_a": "Éditeur de l'édition retenue, le cas échéant"
+   "verifie_le": "2026-11-22",
+   "mode_verification": "fichier LICENSE du dépôt consulté le 2026-11-22",
+   "conditions": "Texte latin repris depuis la numérisation libre de Divinum Officium (via Missale Meum), et non d'une édition contemporaine.",
+   "attribution": "Divinum Officium",
+   "usage_commercial": true,
+   "statut": "PUBLIC_DOMAIN",
+   "preuve": "https://github.com/DivinumOfficium/divinum-officium/blob/master/LICENSE",
+   "utilise": true,
+   "demander_a": ""
   },
   {
    "nom": "Traductions françaises du missel de 1962",
@@ -466,6 +466,38 @@
    "attribution": "",
    "statut": "PERMISSION_REQUIRED",
    "preuve": ""
+  },
+  {
+   "verifie_le": "2026-11-22",
+   "usage_commercial": true,
+   "utilise": true,
+   "demander_a": "",
+   "nom": "Ambo Liturgical Calendars — références des lectures (forme ordinaire)",
+   "reference": "https://github.com/igorlaguiar/ambo-liturgical-calendars",
+   "titulaire": "Igor Aguiar",
+   "type": "Données (références bibliques)",
+   "licence": "MIT",
+   "mode_verification": "fichier LICENSE du dépôt consulté le 2026-11-22",
+   "conditions": "Références seulement (aucun texte de lectionnaire). Calendrier romain général, adapté au calendrier de France par l'application.",
+   "attribution": "Ambo Liturgical Calendars (Igor Aguiar, licence MIT)",
+   "statut": "OPEN_LICENSE_VERIFIED",
+   "preuve": "https://github.com/igorlaguiar/ambo-liturgical-calendars/blob/main/LICENSE"
+  },
+  {
+   "verifie_le": "2026-11-22",
+   "usage_commercial": true,
+   "utilise": true,
+   "demander_a": "",
+   "nom": "World English Bible — dépôt open-bibles",
+   "reference": "https://github.com/seven1m/open-bibles",
+   "titulaire": "Domaine public (eBible.org)",
+   "type": "Texte biblique",
+   "licence": "Domaine public",
+   "mode_verification": "README du dépôt consulté le 2026-11-22",
+   "conditions": "Utilisée seulement à la construction des données, pour faire correspondre les numérotations des versets ; non affichée.",
+   "attribution": "",
+   "statut": "PUBLIC_DOMAIN",
+   "preuve": "https://github.com/seven1m/open-bibles"
   }
  ]
 }

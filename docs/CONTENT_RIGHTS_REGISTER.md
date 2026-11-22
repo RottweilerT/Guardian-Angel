@@ -167,6 +167,22 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Preuve / autorisation | Fourniture directe par le porteur du projet — justificatif à joindre |
 | Utilisée dans l'application | oui |
 
+### Missel de 1962 : propres du jour, offertoire et canon (latin)
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/DivinumOfficium/divinum-officium |
+| Titulaire des droits | Texte ancien du domaine public ; numérisation : projet Divinum Officium (MIT) |
+| Type | Texte liturgique |
+| Licence | Texte ancien du domaine public ; éditions modernes protégées |
+| Date de vérification | 2026-11-22 (fichier LICENSE du dépôt consulté le 2026-11-22) |
+| Conditions | Texte latin repris depuis la numérisation libre de Divinum Officium (via Missale Meum), et non d'une édition contemporaine. |
+| Attribution requise | Divinum Officium |
+| Usage commercial | autorisé |
+| Statut | `PUBLIC_DOMAIN` |
+| Preuve / autorisation | https://github.com/DivinumOfficium/divinum-officium/blob/master/LICENSE |
+| Utilisée dans l'application | oui |
+
 ### Firebase Cloud Messaging (notifications web)
 
 | Champ | Valeur |
@@ -311,6 +327,38 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Preuve / autorisation | https://github.com/DivinumOfficium/divinum-officium/blob/master/LICENSE |
 | Utilisée dans l'application | oui |
 
+### Ambo Liturgical Calendars — références des lectures (forme ordinaire)
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/igorlaguiar/ambo-liturgical-calendars |
+| Titulaire des droits | Igor Aguiar |
+| Type | Données (références bibliques) |
+| Licence | MIT |
+| Date de vérification | 2026-11-22 (fichier LICENSE du dépôt consulté le 2026-11-22) |
+| Conditions | Références seulement (aucun texte de lectionnaire). Calendrier romain général, adapté au calendrier de France par l'application. |
+| Attribution requise | Ambo Liturgical Calendars (Igor Aguiar, licence MIT) |
+| Usage commercial | autorisé |
+| Statut | `OPEN_LICENSE_VERIFIED` |
+| Preuve / autorisation | https://github.com/igorlaguiar/ambo-liturgical-calendars/blob/main/LICENSE |
+| Utilisée dans l'application | oui |
+
+### World English Bible — dépôt open-bibles
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/seven1m/open-bibles |
+| Titulaire des droits | Domaine public (eBible.org) |
+| Type | Texte biblique |
+| Licence | Domaine public |
+| Date de vérification | 2026-11-22 (README du dépôt consulté le 2026-11-22) |
+| Conditions | Utilisée seulement à la construction des données, pour faire correspondre les numérotations des versets ; non affichée. |
+| Attribution requise | — |
+| Usage commercial | autorisé |
+| Statut | `PUBLIC_DOMAIN` |
+| Preuve / autorisation | https://github.com/seven1m/open-bibles |
+| Utilisée dans l'application | oui |
+
 ## Ressources non intégrées — AUTORISATION À DEMANDER AVANT INTÉGRATION
 
 ### Traduction liturgique française (Missel romain, lectionnaire, Bible de la liturgie)
@@ -346,23 +394,6 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Preuve / autorisation | — |
 | Utilisée dans l'application | **non** |
 | Autorisation à demander à | Libreria Editrice Vaticana / Dicastère pour le Culte divin |
-
-### Missel de 1962 : propres du jour, offertoire et canon (latin)
-
-| Champ | Valeur |
-| --- | --- |
-| Référence | — |
-| Titulaire des droits | — |
-| Type | Texte liturgique |
-| Licence | Texte ancien du domaine public ; éditions modernes protégées |
-| Date de vérification | 2026-11-11 (connaissance générale de la licence, à reconfirmer sur la source avant publication) |
-| Conditions | À intégrer uniquement depuis une source dont le texte et la numérisation sont libres ; ne pas recopier une édition contemporaine. |
-| Attribution requise | — |
-| Usage commercial | à déterminer |
-| Statut | `LEGAL_REVIEW_REQUIRED` |
-| Preuve / autorisation | — |
-| Utilisée dans l'application | **non** |
-| Autorisation à demander à | Éditeur de l'édition retenue, le cas échéant |
 
 ### Traductions françaises du missel de 1962
 

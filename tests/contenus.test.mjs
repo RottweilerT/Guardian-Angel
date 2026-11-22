@@ -86,3 +86,28 @@ test("missel de 1962 : données jour par jour (latin + lectures Fillion, aucune 
   for (const p of o.parties) for (const t of p.la) assert.ok(!/today|Mass|Priest/.test(t), "rubrique anglaise dans l'ordinaire : " + t.slice(0, 40));
   assert.deepEqual(J("../public/missel1962/jours/2026-11-22.json").messes[0].sections.find(s => s.id === "Evangelium").ref, "Matt 24:15-35");
 });
+
+test("missel (forme ordinaire) : lectures du jour, références + Bible Fillion seulement", () => {
+  const dir = new URL("../public/missel-ordinaire/jours/", import.meta.url);
+  const fichiers = readdirSync(dir);
+  assert.ok(fichiers.length >= 300);
+  let avecTexte = 0, total = 0;
+  for (const f of fichiers) {
+    const d = J("../public/missel-ordinaire/jours/" + f);
+    assert.equal(d.date + ".json", f);
+    assert.ok(d.lectures.some(l => l.id === "gospel"), f + " : évangile");
+    for (const l of d.lectures) {
+      assert.deepEqual(Object.keys(l).filter(k => !["id", "titre", "ref", "ref_fr", "livre", "ref_vulgate", "courte", "fr"].includes(k)), [], f);
+      total++; if (l.fr) avecTexte++;
+    }
+  }
+  assert.ok(avecTexte / total > 0.95, "au moins 95 % des lectures avec leur texte");
+  // 1er dimanche de l'Avent 2026 (année B) : Isaïe 63-64, Psaume 80 (79 Vulgate), 1 Co 1, Marc 13
+  const a = J("../public/missel-ordinaire/jours/2026-11-29.json").lectures;
+  assert.match(a[0].fr, /Vous êtes notre père/);
+  assert.equal(a[1].ref_vulgate.split(":")[0], "79");
+  assert.match(a.find(l => l.id === "gospel").ref, /^Mark 13/);
+  // France : Saint-Sacrement le dimanche 30 mai 2027, Épiphanie le 3 janvier 2027
+  assert.match(J("../public/missel-ordinaire/jours/2027-05-30.json").celebration_en, /Body and Blood/);
+  assert.match(J("../public/missel-ordinaire/jours/2027-01-03.json").celebration_en, /^The Epiphany/);
+});

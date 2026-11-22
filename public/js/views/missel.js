@@ -3,6 +3,7 @@ import { liturgie, fromIso, iso, COUL } from "../liturgie-romain.js";
 import { liturgie1962 } from "../liturgie-1962.js";
 import { ETAPES } from "../messe-etapes.js";
 import { ordo1962, jour1962, rendu1962 } from "../missel1962.js";
+import { jourOrdinaire, renduOrdinaire } from "../missel-ordinaire.js";
 import * as store from "../store.js";
 
 const seg = (id, opts, cur) => `<div class="seg" id="${id}" role="group">${opts.map(([v, l]) => `<button data-v="${v}" aria-pressed="${v === cur}">${l}</button>`).join("")}</div>`;
@@ -55,7 +56,17 @@ export default async function missel(el, [dateP]) {
     brancher();
     return;
   }
-  const F = ETAPES[cal === "m1962" ? "extraordinaire" : "ordinaire"];
+  if (cal === "romain") {
+    const J2 = await jourOrdinaire(date), F2 = ETAPES.ordinaire;
+    h += `<section class="center" style="margin:14px 0 4px"><h2 class="serif" style="margin:0">${esc(F2.titre)}</h2><p class="small muted" style="margin:2px 0 0">${esc(F2.sousTitre)}</p></section>
+    ${J2 ? "" : `<div class="notice small">Les lectures de ce jour ne sont pas encore disponibles${date >= "2027-01-04" && date <= "2027-01-09" || date === "2027-05-27" ? " (calendrier de France différent du calendrier général ce jour-là)" : ""}.</div>`}
+    <div class="missel">${renduOrdinaire(F2, J2, { liens: liensSermon })}</div>
+    <p class="small muted center" style="margin-top:14px">Parties latines : textes anciens du domaine public. Lectures : références du lectionnaire romain (Ambo Liturgical Calendars, licence MIT), texte de la Bible de l'abbé Fillion (domaine public, numérotation de la Vulgate). Oraisons, antiennes, refrains des psaumes et traduction liturgique officielle non intégrés (droits réservés).</p>`;
+    el.innerHTML = h;
+    brancher();
+    return;
+  }
+  const F = ETAPES.extraordinaire;
   let num = 0;
   h += `<section class="center" style="margin:14px 0 4px"><h2 class="serif" style="margin:0">${esc(F.titre)}</h2><p class="small muted" style="margin:2px 0 0">${esc(F.sousTitre)}</p></section>
   <div class="notice small">Déroulement de la messe : les textes de chaque étape seront ajoutés plus tard.</div>`;
