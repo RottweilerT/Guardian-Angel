@@ -34,3 +34,12 @@ export async function remove(id) {
     c.onsuccess = () => { const cur = c.result; if (cur) { cur.delete(); cur.continue(); } };
   });
 }
+// Nombre de morceaux de 5 s déjà enregistrés (estimation de la durée d'un enregistrement interrompu)
+export const nbMorceaux = sermon => tx(["morceaux"], "readonly", t => req(t.objectStore("morceaux").index("sermon").count(IDBKeyRange.only(sermon))));
+// Supprime seulement l'audio (garde transcription, analyses et notes)
+export async function supprimerAudio(id) {
+  await tx(["morceaux"], "readwrite", t => {
+    const c = t.objectStore("morceaux").index("sermon").openCursor(IDBKeyRange.only(id));
+    c.onsuccess = () => { const cur = c.result; if (cur) { cur.delete(); cur.continue(); } };
+  });
+}

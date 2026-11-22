@@ -1,290 +1,620 @@
-// Sermon : enregistrement audio, transcription en direct, notes personnelles horodatées,
-// puis préparation d'une demande de compte rendu à coller dans Claude.
-// L'audio reste sur l'appareil (IndexedDB) ; rien n'est envoyé à un serveur de l'application.
-import { esc, $, toast, today, frDate, modal, BTN_SUPPR, brancherSuppression } from "../ui.js";
+// Onglet « Sermon » : un seul espace vertical pour suivre tout le parcours d'un sermon.
+//   1. Audio du sermon      — enregistrement (pause, reprise, sauvegarde toutes les 5 s), lecteur (×1, ×1,5, ×2)
+//   2. Transcription        — sur l'appareil (Whisper), par tranches, reprise possible ; lecture, correction, copie,
+//                             analyse d'un passage sélectionné
+//   3. Comprendre le sermon — plan détaillé et résumé
+//   4. Mes notes            — notes personnelles + approfondissement croisé (sermon / analyses / notes)
+// IA : choix de l'utilisateur, « Copier vers Claude » — chaque bouton prépare une demande complète, la copie et ouvre Claude ;
+// la réponse est collée dans l'application et conservée. Rien n'est envoyé automatiquement à un service d'IA.
+// Stockage : uniquement sur l'appareil (IndexedDB « ga-sermons »).
+import { esc, $, $$, toast, today, frDate, modal, BTN_SUPPR, brancherSuppression } from "../ui.js";
 import * as store from "../store.js";
 import * as sdb from "../sermon-db.js";
 
-const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const TYPES = { ok: ["✓", "Compris"], q: ["?", "Pas compris"], imp: ["★", "Important"], note: ["✎", "Note"] };
-const hms = s => { s = Math.max(0, Math.round(s)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = s % 60; return (h ? h + ":" : "") + String(m).padStart(h ? 2 : 1, "0") + ":" + String(x).padStart(2, "0"); };
+const hms = s => { s = Math.max(0, Math.round(s || 0)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = s % 60; return (h ? h + ":" : "") + String(m).padStart(h ? 2 : 1, "0") + ":" + String(x).padStart(2, "0"); };
 const MIME = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/ogg;codecs=opus"].find(t => window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) || "";
+const CLAUDE = "https://claude.ai/new";
+const MES_NOTES = [
+  ["libre", "Mes notes", "Ce que je retiens, au fil du sermon…"],
+  ["marquants", "Passages qui m'ont marqué", "Une phrase, une image, un exemple…"],
+  ["questions", "Mes questions", "Ce que je me demande après ce sermon…"],
+  ["flou", "Ce que je n'ai pas compris", "Un mot, une idée, un passage resté obscur…"],
+  ["comprehension", "Ma compréhension du message", "En quelques phrases, ce que le prédicateur a voulu dire selon moi…"],
+];
+const IA = {
+  plan: { titre: "Plan détaillé et expliqué", bouton: "Générer le plan détaillé" },
+  resume: { titre: "Résumé du sermon", bouton: "Générer le résumé" },
+  approfondir: { titre: "Approfondissement avec mes notes", bouton: "Approfondir avec mes notes" },
+};
 
-// État d'enregistrement global : il continue si l'on change de page dans l'application
+// ---------------------------------------------------------------- enregistrement (global : continue hors de la page)
 const R = { actif: false };
 let rafId = 0;
-
+const duree = () => !R.actif ? 0 : (R.cumul + (R.pause ? 0 : (Date.now() - R.depart) / 1000));
 function pastille() {
   let p = document.getElementById("pastilleSermon");
-  if (R.actif && !p) {
-    p = document.createElement("a"); p.id = "pastilleSermon"; p.href = "#/sermon";
+  const ici = location.hash === "#/sermon/" + R.id;
+  if (R.actif && !ici && !p) {
+    p = document.createElement("a"); p.id = "pastilleSermon"; p.href = "#/sermon/" + R.id;
     p.style.cssText = "position:fixed;left:50%;transform:translateX(-50%);bottom:calc(74px + env(safe-area-inset-bottom,0px));z-index:900;background:#B3261E;color:#fff;border-radius:999px;padding:7px 14px;font-size:14px;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.25)";
     document.body.appendChild(p);
   }
-  if (!R.actif && p) p.remove();
+  if ((!R.actif || ici) && p) { p.remove(); p = null; }
   if (p) p.textContent = `● ${R.pause ? "En pause" : "Enregistrement"} ${hms(duree())}`;
 }
-const duree = () => !R.actif ? 0 : (R.cumul + (R.pause ? 0 : (Date.now() - R.depart) / 1000));
-setInterval(() => { if (R.actif) { pastille(); const t = document.getElementById("srTemps"); if (t) t.textContent = hms(duree()); } }, 1000);
+setInterval(() => {
+  if (!R.actif) return;
+  pastille();
+  const t = document.getElementById("srTemps"); if (t) t.textContent = hms(duree());
+  if (R.s && Date.now() - (R.dernier || 0) > 15000) { R.dernier = Date.now(); R.s.duree = Math.round(duree()); sdb.save(R.s).catch(() => {}); }
+}, 1000);
+window.addEventListener("hashchange", pastille);
+const avantFermeture = e => { if (R.actif) { e.preventDefault(); e.returnValue = ""; } };
 
 async function demarrer(opts) {
   const flux = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
+  try { await navigator.storage?.persist?.(); } catch {}                       // évite que le navigateur efface l'audio pour faire de la place
   const id = "s" + Date.now().toString(36);
-  const s = { id, date: today(), debut: new Date().toISOString(), eglise: opts.eglise || "", predicateur: opts.predicateur || "", accord: true, mime: MIME, duree: 0, transcription: [], notes: [], compteRendu: "" };
+  const s = { id, date: today(), debut: new Date().toISOString(), eglise: opts.eglise || "", predicateur: opts.predicateur || "", accord: true, mime: MIME,
+    duree: 0, enCours: true, transcription: [], notes: [], mesNotes: {}, ia: {}, passages: [] };
   await sdb.save(s);
   const rec = new MediaRecorder(flux, MIME ? { mimeType: MIME, audioBitsPerSecond: 32000 } : undefined);
-  rec.ondataavailable = e => { if (e.data && e.data.size) sdb.addChunk(id, e.data).catch(() => {}); };
+  rec.ondataavailable = e => { if (e.data && e.data.size) sdb.addChunk(id, e.data).catch(() => toast("⚠ Sauvegarde de l'audio impossible : stockage plein ?")); };
+  rec.onerror = () => toast("⚠ L'enregistrement a été interrompu par le téléphone ; l'audio déjà enregistré est conservé.");
   rec.start(5000);                                    // un morceau toutes les 5 s : rien n'est perdu si l'appli se ferme
-  Object.assign(R, { actif: true, pause: false, id, s, flux, rec, depart: Date.now(), cumul: 0, interim: "" });
+  Object.assign(R, { actif: true, pause: false, id, s, flux, rec, depart: Date.now(), cumul: 0, dernier: Date.now() });
+  flux.getAudioTracks()[0]?.addEventListener("ended", () => { if (R.actif) toast("⚠ Le micro a été coupé par le téléphone ; arrêtez et sauvegardez."); });
   try { R.lock = await navigator.wakeLock?.request("screen"); } catch {}
   document.addEventListener("visibilitychange", reverrouiller);
-  // Niveau sonore, pour voir que le micro capte bien
+  window.addEventListener("beforeunload", avantFermeture);
   try { const ac = new AudioContext(), an = ac.createAnalyser(); an.fftSize = 512; ac.createMediaStreamSource(flux).connect(an); R.ac = ac; R.an = an; } catch {}
-  if (opts.direct && SR) transcrire();
-  pastille();
+  return id;
 }
 async function reverrouiller() { if (R.actif && document.visibilityState === "visible") try { R.lock = await navigator.wakeLock?.request("screen"); } catch {} }
-
-function transcrire() {
-  const r = new SR(); r.lang = "fr-FR"; r.continuous = true; r.interimResults = true;
-  r.onresult = e => {
-    let interim = "";
-    for (let i = e.resultIndex; i < e.results.length; i++) {
-      const x = e.results[i];
-      if (x.isFinal) { const t = x[0].transcript.trim(); if (t) { R.s.transcription.push({ t: Math.round(duree()), texte: t }); sdb.save(R.s).catch(() => {}); } }
-      else interim += x[0].transcript;
-    }
-    R.interim = interim; majTranscription();
-  };
-  r.onerror = e => { R.srErreur = e.error; if (e.error === "not-allowed" || e.error === "service-not-allowed") R.srStop = true; majTranscription(); };
-  r.onend = () => { if (R.actif && !R.pause && !R.srStop) setTimeout(() => { try { r.start(); } catch {} }, 250); };   // la reconnaissance s'arrête d'elle-même : on la relance
-  R.sr = r; R.srStop = false;
-  try { r.start(); } catch {}
-}
-function majTranscription() {
-  const b = document.getElementById("srTexte"); if (!b) return;
-  const fin = R.s.transcription.slice(-6);
-  b.innerHTML = (fin.length || R.interim ? fin.map(x => `<span class="muted small">${hms(x.t)}</span> ${esc(x.texte)}`).join("<br>") + (R.interim ? `<br><em class="muted">${esc(R.interim)}</em>` : "")
-    : `<span class="muted small">${R.srErreur ? "Transcription en direct interrompue (" + esc(R.srErreur) + "). L'audio continue d'être enregistré." : "La transcription apparaîtra ici…"}</span>`);
-  b.scrollTop = b.scrollHeight;
-}
 function basculerPause() {
   if (!R.actif) return;
-  if (R.pause) { R.rec.resume(); R.depart = Date.now(); R.pause = false; if (R.sr && !R.srStop) try { R.sr.start(); } catch {} }
-  else { R.rec.pause(); R.cumul += (Date.now() - R.depart) / 1000; R.pause = true; try { R.sr?.stop(); } catch {} }
+  if (R.pause) { R.rec.resume(); R.depart = Date.now(); R.pause = false; }
+  else { R.rec.pause(); R.cumul += (Date.now() - R.depart) / 1000; R.pause = true; }
   pastille();
 }
 async function terminer() {
-  const s = R.s; s.duree = Math.round(duree());
-  R.srStop = true; try { R.sr?.stop(); } catch {}
+  const s = R.s; s.duree = Math.round(duree()); s.enCours = false;
   await new Promise(res => { R.rec.onstop = res; try { R.rec.stop(); } catch { res(); } });
   R.flux.getTracks().forEach(t => t.stop()); try { R.ac?.close(); } catch {} try { R.lock?.release(); } catch {}
   document.removeEventListener("visibilitychange", reverrouiller);
+  window.removeEventListener("beforeunload", avantFermeture);
   cancelAnimationFrame(rafId);
-  Object.assign(R, { actif: false, sr: null, rec: null, flux: null });
+  Object.assign(R, { actif: false, rec: null, flux: null, s: null });
   await sdb.save(s); pastille();
-  return s.id;
+  return s;
 }
-function ajouterNote(type, texte) {
-  const ctx = R.s.transcription.slice(-1)[0]?.texte || "";
-  R.s.notes.push({ t: Math.round(duree()), type, texte: texte || "", contexte: texte ? "" : ctx.slice(0, 300) });
-  sdb.save(R.s).catch(() => {});
+// Enregistrement resté « en cours » alors que l'application a été fermée : on le récupère tel quel
+async function recuperer(s) {
+  if (!s.enCours || (R.actif && R.id === s.id)) return s;
+  const n = await sdb.nbMorceaux(s.id).catch(() => 0);
+  Object.assign(s, { enCours: false, interrompu: true, duree: Math.max(s.duree || 0, n * 5) });
+  await sdb.save(s);
+  return s;
 }
 
-// Texte préparé pour Claude
-function demande(s) {
-  const n = s.notes.map(x => `- [${hms(x.t)}] ${TYPES[x.type]?.[1] || "Note"} : ${x.texte || "(sans texte)"}${x.contexte ? ` — au moment où le prédicateur disait : « ${x.contexte} »` : ""}`).join("\n") || "(aucune note)";
-  const tr = s.transcription.map(x => `[${hms(x.t)}] ${x.texte}`).join("\n") || "(pas de transcription : je n'ai que mes notes)";
-  return `Je t'envoie la transcription automatique d'un sermon (homélie) catholique et mes notes personnelles prises pendant l'écoute.
-${s.eglise ? `Église : ${s.eglise}. ` : ""}Date : ${frDate(s.date)}.${s.predicateur ? ` Prédicateur : ${s.predicateur}.` : ""} Durée : ${hms(s.duree)}.
+// ---------------------------------------------------------------- transcription (par tranches de 5 min, reprise possible)
+const JOBS = new Map();          // id → { etat, pct, msg }
+const TRANCHE = 300;
+function decoupe(audio, debut) { // fin de tranche placée dans un silence, pour ne pas couper un mot
+  const sr = 16000, cible = debut + TRANCHE * sr;
+  if (cible >= audio.length) return audio.length;
+  let best = cible, min = Infinity;
+  for (let p = cible - 5 * sr; p < Math.min(audio.length - 1600, cible + 5 * sr); p += 1600) {
+    let e = 0; for (let i = p; i < p + 1600; i += 4) e += audio[i] * audio[i];
+    if (e < min) { min = e; best = p + 800; }
+  }
+  return best;
+}
+function majEtatTranscription(id) {
+  const box = document.getElementById("trEtat"); if (!box || box.dataset.id !== id) return;
+  const j = JOBS.get(id);
+  box.innerHTML = j ? `${j.etat === "erreur" ? "⚠ " : ""}${esc(j.msg)}${j.etat !== "erreur" ? `<div class="barre"><div style="width:${Math.round(j.pct || 0)}%"></div></div>` : ""}` : "";
+}
+async function transcrireSermon(id, { reprendre }) {
+  if (JOBS.get(id)?.etat === "cours") return;
+  const j = { etat: "cours", pct: 0, msg: "Préparation de l'audio…" }; JOBS.set(id, j);
+  const dire = (msg, pct) => { j.msg = msg; if (pct != null) j.pct = pct; majEtatTranscription(id); };
+  let lock = null, w = null; try { lock = await navigator.wakeLock?.request("screen"); } catch {}
+  try {
+    let s = await sdb.get(id);
+    const blob = await sdb.audio(id, s.mime);
+    if (!blob) throw new Error("audio introuvable");
+    const ctx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+    const buf = await ctx.decodeAudioData(await blob.arrayBuffer()); ctx.close();
+    const audio = buf.getChannelData(0), total = audio.length / 16000;
+    let fait = reprendre && s.trEtat ? s.trEtat.fait || 0 : 0;
+    if (!fait) { s.transcription = []; }
+    s.trEtat = { fait, total, termine: false }; await sdb.save(s);
+    // un moteur : worker si possible, sinon dans la page
+    let moteur = null;
+    const viaWorker = () => new Promise((ok, ko) => {
+      try { w = new Worker("/js/transcription-worker.js", { type: "module" }); } catch { ko(); return; }
+      const garde = setTimeout(() => { w.terminate(); w = null; ko(); }, 20000);
+      w.onmessage = ({ data: m }) => { if (m.type === "demarre") { clearTimeout(garde); ok(); } };
+      w.onerror = e => { e.preventDefault?.(); clearTimeout(garde); w?.terminate(); w = null; ko(); };
+    });
+    try {
+      await viaWorker();
+      moteur = (tr, suivi) => new Promise((ok, ko) => {
+        w.onmessage = ({ data: m }) => { if (m.type === "fini") ok(m.morceaux); else if (m.type === "erreur") ko(new Error(m.message)); else suivi(m); };
+        w.onerror = e => { e.preventDefault?.(); ko(new Error(e.message || "erreur du module de transcription")); };
+        w.postMessage({ type: "transcrire", audio: tr }, [tr.buffer]);
+      });
+    } catch {
+      const { transcrire } = await import("/js/transcrire.js");
+      moteur = (tr, suivi) => transcrire(tr, suivi);
+    }
+    while (fait < total - 1) {
+      const a = Math.round(fait * 16000), b = decoupe(audio, a), tr = audio.slice(a, b), dt = (b - a) / 16000;
+      const morceaux = await moteur(tr, m => {
+        if (m.type === "telechargement") dire(`Téléchargement du modèle de reconnaissance vocale : ${m.total ? Math.round(100 * m.loaded / m.total) + " %" : Math.round(m.loaded / 1e6) + " Mo"} (une seule fois)`, 0);
+        else if (m.type === "avance") dire(`Transcription en cours… ${hms(fait + Math.min(m.fait, dt))} sur ${hms(total)}`, 100 * (fait + Math.min(m.fait, dt)) / total);
+        else if (m.type === "pret") dire(`Transcription en cours… ${hms(fait)} sur ${hms(total)}`, 100 * fait / total);
+      });
+      s = await sdb.get(id);                                   // relu : l'utilisateur a pu écrire des notes entre-temps
+      s.transcription.push(...morceaux.map(x => ({ t: Math.round(fait + x.t), texte: x.texte })));
+      fait += dt; s.trEtat = { fait, total, termine: fait >= total - 1 };
+      await sdb.save(s);
+      dire(`Transcription en cours… ${hms(fait)} sur ${hms(total)} (enregistrée au fur et à mesure)`, 100 * fait / total);
+      rafraichirTranscription(id, s);
+    }
+    j.etat = "fini"; dire("Transcription terminée.", 100);
+    toast("Transcription terminée");
+    const fin = await sdb.get(id);
+    rafraichirTranscription(id, fin, true);
+    if (document.getElementById("trEtat")?.dataset.id === id) for (const type of Object.keys(IA)) {     // les analyses deviennent possibles
+      const box = document.getElementById("ia_" + type); if (box) box.outerHTML = blocIA(fin, type);
+    }
+    if (document.getElementById("trEtat")?.dataset.id === id) brancherIA(document, id);
+  } catch (e) {
+    const m = String(e && e.message || e);
+    const aide = /import|fetch|module|Content Security|NetworkError|Load failed/i.test(m)
+      ? "Le moteur de transcription n'a pas pu être téléchargé : vérifiez la connexion, puis fermez complètement l'application et rouvrez-la."
+      : /memory|mémoire|allocation|OOM/i.test(m) ? "Le téléphone manque de mémoire : fermez les autres applications puis « Reprendre »." : "Vous pouvez reprendre là où la transcription s'est arrêtée.";
+    j.etat = "erreur"; dire(`Transcription interrompue (${m.slice(0, 160)}). ${aide}`);
+    rafraichirTranscription(id, await sdb.get(id).catch(() => null), true);
+  } finally { try { lock?.release(); } catch {} try { w?.terminate(); } catch {} }
+}
 
-La transcription a été faite automatiquement : elle peut contenir des erreurs de mots, surtout pour les noms propres et les citations.
+// ---------------------------------------------------------------- demandes préparées pour Claude
+const entete = s => `Sermon (homélie) catholique${s.eglise ? `, église ${s.eglise}` : ""}, ${frDate(s.date)}${s.predicateur ? `, prédicateur : ${s.predicateur}` : ""}, durée ${hms(s.duree)}.`;
+const texteTr = s => s.transcription.map(x => `[${hms(x.t)}] ${x.texte}`).join("\n");
+const AVERT = "La transcription a été faite automatiquement : elle peut contenir des erreurs (noms propres, citations). Ne complète pas ce qui manque et n'invente aucun propos du prédicateur ; si un passage est incompréhensible, dis-le.";
+const mesNotesTexte = s => {
+  const n = MES_NOTES.map(([k, l]) => (s.mesNotes?.[k] || "").trim() && `${l} :\n${s.mesNotes[k].trim()}`).filter(Boolean);
+  const h = (s.notes || []).map(x => `- [${hms(x.t)}] ${TYPES[x.type]?.[1] || "Note"} : ${x.texte || "(sans texte)"}${x.contexte ? ` (le prédicateur disait : « ${x.contexte} »)` : ""}`);
+  return [...n, h.length ? "Notes prises pendant l'écoute :\n" + h.join("\n") : ""].filter(Boolean).join("\n\n") || "(aucune note)";
+};
+function demande(type, s, passage) {
+  if (type === "plan") return `${entete(s)}
+${AVERT}
 
-Merci de me rédiger, en français :
-1. Un résumé en 5 lignes maximum.
-2. Un compte rendu détaillé et organisé : le thème principal, le plan du sermon en parties avec titres, les idées clés, les passages de la Bible et les références citées (avec leur référence exacte si tu peux l'identifier), les appels concrets à la vie chrétienne.
-3. Une partie « Ce que je n'avais pas compris » : pour chacune de mes notes « Pas compris », explique simplement le point, en t'appuyant sur ce que disait le prédicateur à ce moment-là et sur l'enseignement de l'Église catholique.
-4. Une partie « Ce que j'ai retenu » à partir de mes notes « Compris » et « Important ».
-5. Deux ou trois questions pour prolonger la méditation, et une courte prière en lien avec le sermon.
-Signale clairement ce qui vient du sermon et ce que tu ajoutes toi-même.
-
-MES NOTES
-${n}
+Rédige en français un PLAN DÉTAILLÉ ET EXPLIQUÉ de ce sermon, assez complet pour retrouver tout le raisonnement du prédicateur :
+1. Le thème central.
+2. Le contexte général et l'introduction du prédicateur.
+3. Les grandes parties, dans leur ordre réel (avec un titre chacune et le moment approximatif [m:ss]).
+4. Pour chaque partie : les sous-parties et les idées développées, expliquées en quelques phrases (pas seulement des titres).
+5. Les arguments, exemples et illustrations utilisés.
+6. Les références bibliques mentionnées (avec la référence exacte quand elle est identifiable ; signale celles qui sont incertaines).
+7. L'explication des principaux enseignements.
+8. Les applications pratiques et spirituelles proposées.
+9. La conclusion et le message final.
+Distingue toujours ce que le prédicateur a dit (marqué « Sermon : ») de ce que tu ajoutes pour expliquer (marqué « Explication : »). Utilise des titres (#, ##) et des listes.
 
 TRANSCRIPTION
-${tr}`;
+${texteTr(s)}`;
+  if (type === "resume") return `${entete(s)}
+${AVERT}
+
+Rédige en français un RÉSUMÉ clair, fidèle et court (15 lignes au maximum) de ce sermon :
+- le sujet principal ;
+- le message essentiel du prédicateur ;
+- les principales idées à retenir ;
+- les enseignements spirituels importants ;
+- les applications concrètes pour la vie quotidienne, s'il y en a.
+Ne rapporte que ce qui a été dit ; n'ajoute pas d'idées qui ne sont pas dans le sermon.
+
+TRANSCRIPTION
+${texteTr(s)}`;
+  if (type === "approfondir") return `${entete(s)}
+${AVERT}
+
+Je suis un paroissien. Voici (1) la transcription du sermon, (2) le plan détaillé et le résumé obtenus, (3) mes notes personnelles.
+Aide-moi à approfondir ma compréhension, de façon pédagogique, bienveillante et rigoureuse :
+- les idées que j'ai bien comprises (cite le passage du sermon correspondant, avec [m:ss]) ;
+- pour chacune de mes notes, le passage du sermon qui s'y rapporte ;
+- les points que je semble avoir mal compris — seulement si le contenu du sermon le montre, en citant ce qu'il dit ; ne considère pas une interprétation personnelle comme une erreur sans t'appuyer sur le sermon ;
+- l'explication des éléments restés flous pour moi ;
+- les idées importantes du sermon absentes de mes notes ;
+- des réponses à mes questions ;
+- deux ou trois pistes pour prolonger ma réflexion et ma prière.
+Distingue toujours trois voix : « Le prédicateur : » (ce qui a été dit), « Vos notes : » (ce que j'ai écrit), « Explication : » (ce que tu ajoutes, en t'appuyant sur l'enseignement de l'Église catholique quand c'est utile).
+
+(1) TRANSCRIPTION
+${texteTr(s)}
+
+(2) PLAN DÉTAILLÉ
+${s.ia?.plan?.texte || "(pas encore généré)"}
+
+RÉSUMÉ
+${s.ia?.resume?.texte || "(pas encore généré)"}
+
+(3) MES NOTES
+${mesNotesTexte(s)}`;
+  return `${entete(s)}
+${AVERT}
+
+Explique-moi précisément, en français, le PASSAGE ci-dessous de ce sermon : ce que le prédicateur veut dire, les mots ou références difficiles, et comment ce passage s'inscrit dans l'ensemble du sermon (la transcription complète est donnée en contexte). Distingue ce qui est dit dans le sermon (« Sermon : ») de tes explications (« Explication : »).
+
+PASSAGE
+« ${passage} »
+
+TRANSCRIPTION COMPLÈTE (contexte)
+${texteTr(s)}`;
+}
+async function envoyerVersClaude(texte) {
+  let copie = false;
+  try { await navigator.clipboard.writeText(texte); copie = true; } catch {}
+  const court = encodeURIComponent(texte).length < 7000;
+  window.open(court ? CLAUDE + "?q=" + encodeURIComponent(texte) : CLAUDE, "_blank", "noopener");
+  if (copie) toast(court ? "Demande prête dans Claude (aussi copiée)" : "Demande copiée : collez-la dans Claude, puis rapportez la réponse ici");
+  else await modal(`<h2>Copier la demande</h2><p class="small">Copiez ce texte et collez-le dans Claude.</p><textarea style="min-height:240px" readonly>${esc(texte)}</textarea><div class="row" style="justify-content:flex-end;margin-top:10px"><button class="btn" data-close="x">Fermer</button></div>`, d => d.querySelector("textarea").select());
 }
 
+// Petit rendu Markdown (titres, listes, gras) pour les réponses de Claude
+function md(t) {
+  const lignes = esc(t || "").split("\n"); let h = "", liste = null;
+  const ferme = () => { if (liste) { h += `</${liste}>`; liste = null; } };
+  const inl = x => x.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/(^|[^*])\*([^*\n]+)\*/g, "$1<em>$2</em>").replace(/\[(\d+:\d\d(?::\d\d)?)\]/g, `<button class="ts" data-t="$1">$1</button>`);
+  for (const l of lignes) {
+    let m;
+    if ((m = l.match(/^\s*(#{1,4})\s+(.*)$/))) { ferme(); h += `<h${Math.min(5, m[1].length + 2)} class="serif">${inl(m[2])}</h${Math.min(5, m[1].length + 2)}>`; }
+    else if ((m = l.match(/^\s*[-*•]\s+(.*)$/))) { if (liste !== "ul") { ferme(); h += "<ul>"; liste = "ul"; } h += `<li>${inl(m[1])}</li>`; }
+    else if ((m = l.match(/^\s*\d+[.)]\s+(.*)$/))) { if (liste !== "ol") { ferme(); h += "<ol>"; liste = "ol"; } h += `<li>${inl(m[1])}</li>`; }
+    else if (!l.trim()) ferme();
+    else { ferme(); h += `<p>${inl(l)}</p>`; }
+  }
+  ferme(); return h;
+}
+const secondes = t => t.split(":").map(Number).reduce((a, b) => a * 60 + b, 0);
+
+// ---------------------------------------------------------------- page d'accueil de l'onglet
 export default async function sermon(el, [id]) {
-  if (id) return detail(el, id);
-  if (R.actif) return ecranEnregistrement(el);
+  if (id) return page(el, id);
+  if (R.actif) { location.hash = "#/sermon/" + R.id; return; }
   const mc = store.prefs.get("messeEnCours", null), egliseJour = mc && mc.date === today() ? mc.eglise : "";
-  const tous = (await sdb.list().catch(() => [])).sort((a, b) => (b.debut || "").localeCompare(a.debut || ""));
+  const tous = (await Promise.all((await sdb.list().catch(() => [])).map(recuperer))).sort((a, b) => (b.debut || "").localeCompare(a.debut || ""));
   const ok = !!(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
-  el.innerHTML = `<section class="hero"><div class="kicker">Homélie</div><h1>Enregistrer le sermon</h1><p>Audio, transcription et notes restent sur ce téléphone.</p><span class="orn"></span></section>
-  ${ok ? `<div class="card">
+  el.innerHTML = `<section class="hero"><div class="kicker">Homélie</div><h1>Sermon</h1><p>J'enregistre → je réécoute → je transcris → je comprends → j'approfondis avec mes notes.</p><span class="orn"></span></section>
+  ${ok ? `<section class="bloc"><h2 class="bloc-t"><span class="num">1</span> Enregistrer un nouveau sermon</h2>
     <label for="se">Église</label><input id="se" maxlength="200" value="${esc(egliseJour)}">
     <label for="sp">Prédicateur (facultatif)</label><input id="sp" maxlength="120">
-    <label class="field-inline" style="margin-top:12px"><input type="checkbox" id="sd"${SR ? "" : " disabled"}> Transcription en direct pendant l'enregistrement${SR ? " (souvent impossible sur Android : le micro ne peut pas servir deux fois)" : " (non disponible sur ce navigateur)"}</label>
-    <p class="small muted" style="margin:4px 0 0">Sinon, la transcription se fait après le sermon, sur le téléphone, depuis la page du sermon.</p>
-    <label class="field-inline"><input type="checkbox" id="sa"> Le prédicateur a donné son accord pour l'enregistrement, réservé à mon usage personnel</label>
-    <p class="center" style="margin:14px 0 0"><button class="btn" id="sgo" disabled>● Commencer l'enregistrement</button></p>
-  </div>
-  <div class="notice small">Pendant l'enregistrement, l'écran reste allumé. Sur certains téléphones, changer d'application ou verrouiller l'écran peut interrompre l'enregistrement ; ce qui a déjà été enregistré est conservé.
-  ${SR ? " La transcription en direct, si vous la cochez, utilise la reconnaissance vocale du navigateur (avec Chrome, le son est analysé par les serveurs de Google)." : ""}</div>`
-    : `<div class="notice">L'enregistrement audio n'est pas possible sur ce navigateur.</div>`}
+    <label class="field-inline" style="margin-top:12px"><input type="checkbox" id="sa"> Le prédicateur a donné son accord pour l'enregistrement, réservé à mon usage personnel</label>
+    <p class="center" style="margin:14px 0 0"><button class="btn gros" id="sgo" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" style="stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg> Enregistrer le sermon</button></p>
+    <p class="small muted" style="margin:10px 0 0">L'audio est sauvegardé sur ce téléphone toutes les 5 secondes : rien n'est perdu si l'application se ferme. L'écran reste allumé pendant l'enregistrement.</p>
+  </section>` : `<div class="notice">L'enregistrement audio n'est pas possible sur ce navigateur.</div>`}
   <h2 class="sec">Mes sermons</h2>
   ${tous.length ? `<ul class="list" id="slist">${tous.map(s => `<li style="display:flex;gap:10px;align-items:flex-start"><a href="#/sermon/${s.id}" style="text-decoration:none;color:inherit;display:block;flex:1"><strong class="serif">${esc(s.eglise || "Sermon")}</strong> <span class="small muted">— ${esc(frDate(s.date))} · ${hms(s.duree)}</span><br>
-    <span class="small muted">${s.transcription.length} passage${s.transcription.length > 1 ? "s" : ""} transcrit${s.transcription.length > 1 ? "s" : ""} · ${s.notes.length} note${s.notes.length > 1 ? "s" : ""}${s.compteRendu ? " · compte rendu ✓" : ""}</span></a>${BTN_SUPPR(s.id)}</li>`).join("")}</ul>`
-    : `<div class="empty">Aucun sermon enregistré.</div>`}`;
+    <span class="small muted">${etapes(s)}</span></a>${BTN_SUPPR(s.id)}</li>`).join("")}</ul>` : `<div class="empty">Aucun sermon enregistré.</div>`}
+  <details class="small" style="margin-top:18px"><summary class="muted">Où vont mes données ?</summary>${confidentialite()}</details>`;
   const sl = $("#slist", el);
-  if (sl) brancherSuppression(sl, async id => { try { await sdb.remove(id); toast("Sermon supprimé (audio, notes, transcription)"); } catch { toast("Suppression impossible"); } sermon(el, []); });
+  if (sl) brancherSuppression(sl, async sid => { try { await sdb.remove(sid); toast("Sermon supprimé (audio, transcription, analyses, notes)"); } catch { toast("Suppression impossible"); } sermon(el, []); });
   if (!ok) return;
   $("#sa", el).onchange = e => { $("#sgo", el).disabled = !e.target.checked; };
   $("#sgo", el).onclick = async () => {
-    try { await demarrer({ eglise: $("#se", el).value.trim(), predicateur: $("#sp", el).value.trim(), direct: $("#sd", el).checked }); ecranEnregistrement(el); }
+    try { const nid = await demarrer({ eglise: $("#se", el).value.trim(), predicateur: $("#sp", el).value.trim() }); location.hash = "#/sermon/" + nid; }
     catch (e) { aideMicro(el, e); }
   };
 }
+const etapes = s => [s.duree ? "🎧 audio" : "", s.transcription?.length ? "📝 transcrit" : "", s.ia?.plan?.texte ? "🗂 plan" : "", s.ia?.resume?.texte ? "📌 résumé" : "",
+  Object.values(s.mesNotes || {}).some(x => (x || "").trim()) || s.notes?.length ? "✎ notes" : "", s.ia?.approfondir?.texte ? "🔎 approfondi" : "", s.interrompu ? "⚠ enregistrement interrompu" : ""].filter(Boolean).join(" · ") || "—";
+const confidentialite = () => `<div class="notice small" style="margin-top:8px">
+  <strong>Sur ce téléphone uniquement</strong> : l'audio, la transcription, les analyses collées et vos notes (base locale du navigateur). Ils ne sont pas envoyés aux serveurs de l'application.<br>
+  <strong>Transcription</strong> : faite sur le téléphone (modèle Whisper, téléchargé une fois depuis Hugging Face via jsDelivr) ; l'audio n'est envoyé nulle part.<br>
+  <strong>Analyses par IA</strong> : rien n'est envoyé automatiquement. Les boutons préparent une demande (transcription, et vos notes pour « Approfondir ») et ouvrent Claude ; le texte n'est transmis à Anthropic que si vous l'y envoyez.<br>
+  <strong>Suppression</strong> : bouton ✕ ou « Supprimer ce sermon » ; « Supprimer l'audio seulement » libère de la place en gardant le texte. Profil → « Supprimer toutes mes données » efface aussi tous les sermons.</div>`;
 
-// Micro refusé : on explique la cause probable et quoi faire
+// Micro refusé : cause probable et solution
 async function aideMicro(el, e) {
   let etat = "";
   try { etat = (await navigator.permissions.query({ name: "microphone" })).state; } catch {}
   const politique = document.featurePolicy && !document.featurePolicy.allowsFeature("microphone");
   let msg;
-  if (politique) msg = `L'application ouverte sur ce téléphone est encore l'ancienne version, qui bloquait le micro. <strong>Fermez complètement l'application</strong> (glissez-la hors de la liste des applications récentes), rouvrez-la, puis réessayez.`;
-  else if (etat === "denied") msg = `Le micro a été refusé pour ce site. Dans Chrome : <strong>⋮ → Paramètres → Paramètres des sites → Micro</strong>, retirez « guardian-angel-62a43.web.app » de la liste « Bloqué » (ou autorisez-le), puis réessayez. Si l'appli est installée sur l'écran d'accueil : appui long sur son icône → <strong>Infos sur l'appli → Autorisations → Micro → Autoriser</strong>.`;
+  if (politique) msg = `L'application ouverte sur ce téléphone est encore l'ancienne version, qui bloquait le micro. <strong>Fermez complètement l'application</strong>, rouvrez-la, puis réessayez.`;
+  else if (etat === "denied") msg = `Le micro a été refusé pour ce site. Dans Chrome : <strong>⋮ → Paramètres → Paramètres des sites → Micro</strong>, autorisez « guardian-angel-62a43.web.app », puis réessayez. Si l'appli est installée : appui long sur son icône → <strong>Infos sur l'appli → Autorisations → Micro → Autoriser</strong>.`;
   else if (e && e.name === "NotFoundError") msg = "Aucun micro n'a été trouvé sur cet appareil.";
   else if (e && e.name === "NotReadableError") msg = "Le micro est déjà utilisé par une autre application (appel, dictaphone…). Fermez-la puis réessayez.";
-  else if (e && e.name === "NotAllowedError") msg = `Le micro n'a pas été autorisé. Réessayez et choisissez <strong>« Autoriser »</strong> quand le téléphone le demande. Si rien ne s'affiche, fermez complètement l'application et rouvrez-la.`;
+  else if (e && e.name === "NotAllowedError") msg = `Le micro n'a pas été autorisé. Réessayez et choisissez <strong>« Autoriser »</strong> quand le téléphone le demande.`;
   else msg = "Impossible de démarrer l'enregistrement (" + esc(e?.name || String(e)) + ").";
   let box = document.getElementById("aideMicro");
-  if (!box) { box = document.createElement("div"); box.id = "aideMicro"; box.className = "notice err small"; $("#sgo", el)?.closest(".card")?.after(box); }
+  if (!box) { box = document.createElement("div"); box.id = "aideMicro"; box.className = "notice err small"; $("#sgo", el)?.closest(".bloc")?.after(box); }
   box.innerHTML = "🎙 " + msg; box.scrollIntoView({ block: "center", behavior: "smooth" });
 }
 
-function ecranEnregistrement(el) {
-  el.innerHTML = `<section class="hero" style="padding-bottom:10px"><div class="kicker">${esc(R.s.eglise || "Sermon")}</div><h1 id="srTemps">${hms(duree())}</h1>
-    <div style="height:8px;background:var(--line);border-radius:4px;max-width:240px;margin:8px auto 0;overflow:hidden"><div id="srNiv" style="height:100%;width:0;background:#B3261E;transition:width .1s"></div></div></section>
-  <div class="row" style="justify-content:center"><button class="btn ghost" id="srPause">${R.pause ? "▶ Reprendre" : "❚❚ Pause"}</button><button class="btn" id="srFin">■ Terminer</button></div>
-  ${R.sr || R.srErreur ? `<h2 class="sec">Transcription en direct</h2><div class="card small" id="srTexte" style="max-height:170px;overflow:auto"></div>` : ""}
-  <h2 class="sec">Mes notes</h2>
-  <textarea id="srNote" maxlength="2000" placeholder="Ce que je comprends, une question, une idée…" style="min-height:70px"></textarea>
-  <div class="row" style="margin-top:8px">${Object.entries(TYPES).map(([k, [ic, l]]) => `<button class="btn ${k === "note" ? "" : "ghost"} sm" data-n="${k}">${ic} ${l}</button>`).join("")}</div>
-  <p class="small muted">« Pas compris » sans texte : la phrase que le prédicateur vient de dire est gardée avec la note.</p>
-  <ul class="list" id="srNotes"></ul>`;
-  const listeNotes = () => { $("#srNotes", el).innerHTML = R.s.notes.slice().reverse().map(n => `<li class="small"><span class="muted">${hms(n.t)}</span> <strong>${TYPES[n.type][0]} ${TYPES[n.type][1]}</strong> ${esc(n.texte || (n.contexte ? "« " + n.contexte + " »" : ""))}</li>`).join(""); };
-  listeNotes(); majTranscription();
-  el.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
-    const t = $("#srNote", el).value.trim(); if (b.dataset.n === "note" && !t) { $("#srNote", el).focus(); return; }
-    ajouterNote(b.dataset.n, t); $("#srNote", el).value = ""; listeNotes(); toast("Note ajoutée à " + hms(duree()));
-  });
-  $("#srPause", el).onclick = () => { basculerPause(); ecranEnregistrement(el); };
-  $("#srFin", el).onclick = async () => { const id = await terminer(); location.hash = "#/sermon/" + id; };
-  const niv = () => { const n = document.getElementById("srNiv"); if (!n || !R.actif || !R.an) return; const d = new Uint8Array(R.an.fftSize); R.an.getByteTimeDomainData(d); let m = 0; for (const v of d) m = Math.max(m, Math.abs(v - 128)); n.style.width = Math.min(100, m / 1.0) + "%"; rafId = requestAnimationFrame(niv); };
-  cancelAnimationFrame(rafId); niv();
-}
+// ---------------------------------------------------------------- page d'un sermon : les 4 sections
+const statut = (cls, txt) => `<span class="statut ${cls}">${txt}</span>`;
+let urlAudio = "";
 
-async function detail(el, id) {
-  const s = await sdb.get(id);
+async function page(el, id) {
+  let s = await sdb.get(id);
   if (!s) { el.innerHTML = `<div class="empty">Sermon introuvable. <a href="#/sermon">Retour</a></div>`; return; }
-  const blob = await sdb.audio(id, s.mime).catch(() => null), url = blob ? URL.createObjectURL(blob) : "";
+  s = await recuperer(s);
+  if (R.actif && R.id === id) s = R.s;
+  const enregistrement = R.actif && R.id === id;
+  const blob = enregistrement ? null : await sdb.audio(id, s.mime).catch(() => null);
+  if (urlAudio) URL.revokeObjectURL(urlAudio);
+  urlAudio = blob ? URL.createObjectURL(blob) : "";
+  s.ia ||= {}; s.mesNotes ||= {}; s.passages ||= []; s.notes ||= [];
   const ext = (s.mime || blob?.type || "").includes("mp4") ? "m4a" : (s.mime || "").includes("ogg") ? "ogg" : "webm";
-  el.innerHTML = `<section class="hero"><div class="kicker">${esc(frDate(s.date))} · ${hms(s.duree)}</div><h1>${esc(s.eglise || "Sermon")}</h1>${s.predicateur ? `<p>${esc(s.predicateur)}</p>` : ""}<span class="orn"></span></section>
-  ${url ? `<audio controls src="${url}" style="width:100%"></audio><p class="small"><a href="${url}" download="sermon-${s.date}.${ext}">Télécharger l'audio</a></p>` : `<div class="notice small">Pas d'audio enregistré.</div>`}
-  <h2 class="sec">Compte rendu par Claude</h2>
-  <div class="card"><p class="small" style="margin-top:0">1. Copiez la demande préparée (transcription + vos notes). 2. Ouvrez Claude et collez-la. 3. Collez la réponse ci-dessous pour la garder.</p>
-    <div class="row"><button class="btn" id="dCopie">Copier la demande</button><a class="btn ghost" href="https://claude.ai/new" target="_blank" rel="noopener">Ouvrir Claude</a></div>
-    <label for="dCR" style="margin-top:12px">Compte rendu et résumé</label><textarea id="dCR" maxlength="20000" style="min-height:160px" placeholder="Collez ici la réponse de Claude">${esc(s.compteRendu || "")}</textarea>
-    <div class="row" style="margin-top:8px"><button class="btn ghost sm" id="dSave">Enregistrer</button><button class="btn gold sm" id="dJournal">Ajouter à mon journal</button></div></div>
-  <h2 class="sec">Mes notes (${s.notes.length})</h2>
-  ${s.notes.length ? `<ul class="list">${s.notes.map(n => `<li class="small"><span class="muted">${hms(n.t)}</span> <strong>${TYPES[n.type]?.[0] || ""} ${TYPES[n.type]?.[1] || ""}</strong> ${esc(n.texte)}${n.contexte ? `<br><span class="muted">« ${esc(n.contexte)} »</span>` : ""}</li>`).join("")}</ul>` : `<div class="empty">Aucune note.</div>`}
-  <h2 class="sec">Transcription</h2>
-  ${blob ? `<div class="card soft"><p class="small" style="margin-top:0"><strong>Transcrire l'audio sur ce téléphone</strong> — l'audio ne quitte pas l'appareil. La première fois, le modèle de reconnaissance vocale (Whisper, environ 80 Mo) est téléchargé puis gardé ; préférez le Wi-Fi. Comptez quelques minutes, l'écran doit rester allumé.</p>
-    <button class="btn sm" id="dTrans">${s.transcription.length ? "Refaire la transcription" : "Transcrire l'audio"}</button>
-    <div id="dTrEtat" class="small" style="margin-top:8px"></div></div>` : ""}
-  <p class="small muted">Transcription automatique : vous pouvez corriger les erreurs avant de copier la demande.</p>
-  <textarea id="dTr" style="min-height:200px">${esc(s.transcription.map(x => `[${hms(x.t)}] ${x.texte}`).join("\n"))}</textarea>
-  <div class="row" style="margin-top:8px"><button class="btn ghost sm" id="dTrSave">Enregistrer la transcription</button></div>
-  <p style="margin-top:24px"><button class="btn danger sm" id="dDel">Supprimer ce sermon</button> <a class="small" href="#/sermon">Tous mes sermons</a></p>`;
+  const job = JOBS.get(id), trCours = job?.etat === "cours";
+  const trSt = trCours ? statut("cours", "Transcription en cours") : job?.etat === "erreur" || (s.trEtat && !s.trEtat.termine && s.transcription.length) ? statut("err", "Interrompue")
+    : s.transcription.length ? statut("ok", "Terminée") : statut("", enregistrement ? "Après l'enregistrement" : "À faire");
+  const vit = store.prefs.get("sermonVitesse", 1);
 
-  // Les fichiers WebM produits par le navigateur n'indiquent pas leur durée : on force le calcul pour pouvoir avancer dans l'audio
-  const lecteur = el.querySelector("audio");
-  if (lecteur) lecteur.addEventListener("loadedmetadata", () => {
-    if (lecteur.duration === Infinity || isNaN(lecteur.duration)) {
-      lecteur.currentTime = 1e101;
-      lecteur.addEventListener("timeupdate", function f() { lecteur.removeEventListener("timeupdate", f); lecteur.currentTime = 0; });
-    }
-  }, { once: true });
-  const bt = $("#dTrans", el);
-  if (bt) bt.onclick = async () => {
-    if (s.transcription.length && !bt.dataset.ok) { bt.dataset.ok = 1; bt.textContent = "Confirmer (remplace la transcription actuelle)"; return; }
-    bt.disabled = true; const etat = $("#dTrEtat", el), t0 = Date.now();
-    const dire = h => { if (document.body.contains(etat)) etat.innerHTML = h; };
-    let lock = null; try { lock = await navigator.wakeLock?.request("screen"); } catch {}
-    try {
-      dire("Préparation de l'audio…");
-      const ctx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
-      const buf = await ctx.decodeAudioData(await blob.arrayBuffer()); ctx.close();
-      const audio = buf.getChannelData(0).slice();   // copie : le worker peut la recevoir sans bloquer la page
-      const afficher = m => {
-        if (m.type === "telechargement") dire(`Téléchargement du modèle : ${m.total ? Math.round(100 * m.loaded / m.total) + " %" : Math.round(m.loaded / 1e6) + " Mo"} (une seule fois)`);
-        else if (m.type === "pret") dire(`Transcription en cours (${m.appareil === "webgpu" ? "processeur graphique" : "processeur"})…`);
-        else if (m.type === "avance") dire(`Transcription en cours… ${Math.round(100 * m.fait / m.duree)} % · ${Math.round((Date.now() - t0) / 1000)} s`);
-      };
-      // 1) dans un worker ; 2) si le worker ne démarre pas sur ce téléphone, directement dans la page
-      const parWorker = () => new Promise((ok, ko) => {
-        let w; try { w = new Worker("/js/transcription-worker.js", { type: "module" }); } catch (e) { ko({ demarrage: true, e }); return; }
-        let parti = false; const garde = setTimeout(() => { if (!parti) { w.terminate(); ko({ demarrage: true }); } }, 20000);
-        w.onmessage = ({ data: m }) => {
-          if (m.type === "demarre") { parti = true; clearTimeout(garde); w.postMessage({ type: "transcrire", audio }, [audio.buffer]); }
-          else if (m.type === "fini") { w.terminate(); ok(m.morceaux); }
-          else if (m.type === "erreur") { w.terminate(); ko(new Error(m.message)); }
-          else afficher(m);
-        };
-        w.onerror = e => { e.preventDefault?.(); clearTimeout(garde); w.terminate(); ko(parti ? new Error(e.message || "erreur du module de transcription") : { demarrage: true }); };
-      });
-      let res;
-      try { res = await parWorker(); }
-      catch (e) {
-        if (!e || !e.demarrage) throw e;
-        dire("Démarrage de la transcription…");
-        const { transcrire } = await import("/js/transcrire.js");
-        res = await transcrire(audio, afficher);
-      }
-      s.transcription = res; await sdb.save(s); toast("Transcription terminée"); detail(el, id);
-    } catch (e) {
-      const m = String(e && e.message || e);
-      const aide = /import|fetch|module|Content Security|NetworkError|Load failed/i.test(m)
-        ? "Le moteur de transcription n'a pas pu être téléchargé. Vérifiez la connexion, puis fermez complètement l'application et rouvrez-la (une ancienne version peut encore être ouverte)."
-        : /memory|mémoire|allocation|OOM/i.test(m) ? "Le téléphone manque de mémoire pour ce sermon : fermez les autres applications et réessayez." : "Réessayez ; si le problème continue, envoyez une capture de ce message.";
-      dire(`Transcription impossible (${esc(m.slice(0, 200))}). ${aide}`); bt.disabled = false;
-    }
-    finally { try { lock?.release(); } catch {} }
+  el.innerHTML = `<div id="pgSermon"><section class="hero" style="padding-bottom:16px"><div class="kicker">${esc(frDate(s.date))}${s.duree ? " · " + hms(s.duree) : ""}</div><h1>${esc(s.eglise || "Sermon")}</h1>${s.predicateur ? `<p>${esc(s.predicateur)}</p>` : ""}
+    <p class="small" style="margin-top:6px"><a href="#/sermon">‹ Tous mes sermons</a></p></section>
+
+  <details class="bloc" open id="b1"><summary><h2 class="bloc-t"><span class="num">1</span> Audio du sermon</h2>${enregistrement ? statut(R.pause ? "pause" : "rec", R.pause ? "En pause" : "Enregistrement") : blob ? statut("ok", "Sauvegardé") : statut("err", "Pas d'audio")}</summary>
+    ${enregistrement ? `<div class="enreg">
+      <div class="voyant${R.pause ? " pause" : ""}" aria-hidden="true"></div>
+      <div class="chrono" id="srTemps" aria-live="off">${hms(duree())}</div>
+      <div class="niveau"><div id="srNiv"></div></div>
+      <div class="row" style="justify-content:center;margin-top:12px"><button class="btn ghost" id="srPause">${R.pause ? "▶ Reprendre" : "❚❚ Pause"}</button><button class="btn rouge" id="srFin">■ Arrêter et sauvegarder</button></div>
+      <p class="small muted" style="margin:10px 0 0">Sauvegarde automatique toutes les 5 s. Vous pouvez écrire vos notes plus bas, ou utiliser d'autres pages de l'application : l'enregistrement continue (pastille rouge en bas de l'écran). Verrouiller l'écran ou changer d'application peut l'interrompre sur certains téléphones.</p>
+      <div class="row" style="margin-top:8px">${Object.entries(TYPES).map(([k, [ic, l]]) => `<button class="btn ghost sm" data-n="${k}">${ic} ${l}</button>`).join("")}</div>
+      <p class="small muted" style="margin:4px 0 0">Marque un moment du sermon (le texte saisi dans « Mes notes » est joint).</p>
+    </div>` : blob ? `${s.interrompu ? `<div class="notice small">L'enregistrement s'est arrêté avant la fin (application fermée ou téléphone en veille). Tout ce qui avait été enregistré jusque-là est conservé.</div>` : ""}
+    <div class="lecteur" id="lecteur">
+      <audio id="aud" preload="metadata" src="${urlAudio}"></audio>
+      <div class="row" style="gap:6px;flex-wrap:nowrap">
+        <button class="btn rond" id="lPlay" aria-label="Lecture">▶</button>
+        <input type="range" id="lPos" min="0" max="${Math.max(1, s.duree || 1)}" step="1" value="0" aria-label="Position dans l'enregistrement" style="flex:1">
+      </div>
+      <div class="row between small" style="margin-top:6px"><span id="lTemps" class="muted">0:00 / ${hms(s.duree)}</span>
+        <span class="row" style="gap:4px"><button class="btn ghost sm" id="lMoins" aria-label="Reculer de 15 secondes">−15 s</button><button class="btn ghost sm" id="lPlus" aria-label="Avancer de 15 secondes">+15 s</button></span></div>
+      <div class="row" style="justify-content:center;margin-top:8px"><div class="seg" id="lVit" role="group" aria-label="Vitesse de lecture">${[[1, "×1"], [1.5, "×1,5"], [2, "×2"]].map(([v, l]) => `<button type="button" data-v="${v}" aria-pressed="${v === vit}">${l}</button>`).join("")}</div></div>
+      <p class="small" style="margin:8px 0 0"><a href="${urlAudio}" download="sermon-${s.date}.${ext}">Télécharger l'audio</a> · <button class="lien" id="lSupAudio">Supprimer l'audio seulement</button></p>
+    </div>` : `<div class="notice small">Aucun audio pour ce sermon${s.transcription.length ? " (supprimé ; la transcription et les analyses sont conservées)" : ""}.</div>`}
+  </details>
+
+  <details class="bloc" open id="b2"><summary><h2 class="bloc-t"><span class="num">2</span> Transcription du sermon</h2><span id="trStatut">${trSt}</span></summary>
+    ${enregistrement ? `<p class="small muted">Disponible dès que l'enregistrement est arrêté et sauvegardé.</p>` : `
+    ${blob ? `<div id="trBoutons"></div>
+      <p class="small muted" style="margin:6px 0 0">Sur ce téléphone, sans envoyer l'audio. La première fois, le modèle (~80 Mo) est téléchargé : préférez le Wi-Fi. Comptez environ 1 à 3 minutes par tranche de 5 minutes ; laissez l'écran allumé. Le texte est enregistré tranche par tranche : en cas d'interruption, on reprend là où on s'était arrêté.</p>` : ""}
+    <div id="trEtat" data-id="${esc(id)}" data-audio="${blob ? 1 : ""}" class="small" style="margin-top:8px"></div>
+    <div id="trZone"></div>`}
+  </details>
+
+  <details class="bloc" open id="b3"><summary><h2 class="bloc-t"><span class="num">3</span> Comprendre le sermon</h2>${s.ia.plan?.texte && s.ia.resume?.texte ? statut("ok", "Plan et résumé") : s.ia.plan?.texte || s.ia.resume?.texte ? statut("cours", "En partie") : statut("", s.transcription.length ? "À générer" : "Après la transcription")}</summary>
+    ${blocIA(s, "plan")}${blocIA(s, "resume")}
+    ${s.compteRendu ? `<details class="sous"><summary>Ancien compte rendu (version précédente de l'onglet)</summary><div class="rendu">${md(s.compteRendu)}</div></details>` : ""}
+  </details>
+
+  <details class="bloc" open id="b4"><summary><h2 class="bloc-t"><span class="num">4</span> Mes notes et ma compréhension</h2>${Object.values(s.mesNotes).some(x => (x || "").trim()) || s.notes.length ? statut("ok", "Enregistrées") : statut("", "À écrire")}</summary>
+    ${MES_NOTES.map(([k, l, ph]) => `<label for="mn_${k}">${l}</label><textarea id="mn_${k}" data-mn="${k}" maxlength="10000" placeholder="${esc(ph)}" style="min-height:${k === "libre" ? 110 : 64}px">${esc(s.mesNotes[k] || "")}</textarea>`).join("")}
+    <p class="small muted" id="mnEtat" style="margin:4px 0 0">Enregistrement automatique.</p>
+    <div id="notesH">${notesHorodatees(s)}</div>
+    ${blocIA(s, "approfondir")}
+    <div class="row" style="margin-top:14px"><button class="btn gold sm" id="dJournal">${s.journalId ? "Mettre à jour dans mon journal" : "Ajouter à mon journal"}</button></div>
+  </details>
+
+  <details class="small" style="margin-top:18px"><summary class="muted">Où vont mes données ?</summary>${confidentialite()}</details>
+  <p style="margin-top:16px"><button class="btn danger sm" id="dDel">Supprimer ce sermon</button></p>
+  <div class="barre-selection" id="selBar" hidden><button class="btn" id="selGo">🔎 Analyser ce passage avec l'IA</button></div></div>`;
+
+  // ---- section 1 : enregistrement ou lecteur
+  if (enregistrement) {
+    $("#srPause", el).onclick = () => { basculerPause(); page(el, id); };
+    $("#srFin", el).onclick = async e => { e.currentTarget.disabled = true; await terminer(); toast("Sermon sauvegardé"); page(el, id); };
+    $$("[data-n]", el).forEach(b => b.onclick = async () => {
+      const ctx = R.s.transcription.slice(-1)[0]?.texte || "";
+      const t = ($("#mn_libre", el).value || "").trim().split("\n").pop().slice(0, 500);
+      R.s.notes.push({ t: Math.round(duree()), type: b.dataset.n, texte: b.dataset.n === "note" ? t : "", contexte: ctx.slice(0, 300) });
+      await sdb.save(R.s).catch(() => {}); $("#notesH", el).innerHTML = notesHorodatees(R.s); toast(`${TYPES[b.dataset.n][1]} — repère à ${hms(duree())}`);
+    });
+    const niv = () => { const n = document.getElementById("srNiv"); if (!n || !R.actif || !R.an) return; const d = new Uint8Array(R.an.fftSize); R.an.getByteTimeDomainData(d); let m = 0; for (const v of d) m = Math.max(m, Math.abs(v - 128)); n.style.width = (R.pause ? 0 : Math.min(100, m)) + "%"; rafId = requestAnimationFrame(niv); };
+    cancelAnimationFrame(rafId); niv();
+    pastille();
+  } else if (blob) brancherLecteur(el, s);
+  $("#lSupAudio", el)?.addEventListener("click", async e => {
+    const b = e.currentTarget; if (!b.dataset.ok) { b.dataset.ok = 1; b.textContent = "Confirmer : supprimer l'audio (le texte est gardé)"; return; }
+    await sdb.supprimerAudio(id); toast("Audio supprimé"); page(el, id);
+  });
+
+  // ---- section 2 : transcription
+  if (!enregistrement) {
+    majEtatTranscription(id);
+    rafraichirTranscription(id, s, true);
+  }
+
+  // ---- sélection d'un passage → analyse
+  let selection = "";
+  const bar = $("#selBar", el);
+  const surSelection = () => {
+    if (!document.body.contains(bar)) { document.removeEventListener("selectionchange", surSelection); return; }
+    const zone = $("#trZone", el); let t = "";
+    const ta = $("#trEdit", el);
+    if (ta && document.activeElement === ta) t = ta.value.slice(ta.selectionStart, ta.selectionEnd);
+    else { const sel = document.getSelection(); if (sel && sel.rangeCount && zone && zone.contains(sel.anchorNode) && zone.contains(sel.focusNode)) t = sel.toString(); }
+    t = t.replace(/\[\d+:\d\d(?::\d\d)?\]\s*/g, "").replace(/\s+/g, " ").trim();
+    if (t.length >= 12) { selection = t; bar.hidden = false; } else if (!t) setTimeout(() => { if (!document.getSelection()?.toString()) bar.hidden = true; }, 400);
   };
-  const lireTr = () => $("#dTr", el).value.split("\n").map(l => { const m = l.match(/^\[(\d+(?::\d+){1,2})\]\s*(.*)$/); if (!m) return l.trim() ? { t: 0, texte: l.trim() } : null; const p = m[1].split(":").map(Number); return { t: p.reduce((a, b) => a * 60 + b, 0), texte: m[2] }; }).filter(Boolean);
-  $("#dTrSave", el).onclick = async () => { s.transcription = lireTr(); await sdb.save(s); toast("Transcription enregistrée"); };
-  $("#dCopie", el).onclick = async () => {
-    s.transcription = lireTr(); await sdb.save(s);
-    const txt = demande(s);
-    try { await navigator.clipboard.writeText(txt); toast("Demande copiée : collez-la dans Claude"); }
-    catch { await modal(`<h2>Copier la demande</h2><textarea style="min-height:240px" readonly>${esc(txt)}</textarea><div class="row" style="justify-content:flex-end;margin-top:10px"><button class="btn" data-close="x">Fermer</button></div>`, () => {}); }
+  document.addEventListener("selectionchange", surSelection);
+  $("#selGo", el).onclick = async () => {
+    if (!selection) return;
+    const cur = await sdb.get(id);
+    const p = { id: "p" + Date.now().toString(36), passage: selection.slice(0, 3000), reponse: "", date: new Date().toISOString() };
+    cur.passages = [...(cur.passages || []), p]; await sdb.save(cur);
+    await envoyerVersClaude(demande("passage", cur, p.passage));
+    bar.hidden = true; document.getSelection()?.removeAllRanges();
+    rafraichirTranscription(id, cur, true);
+    setTimeout(() => document.getElementById("pass_" + p.id)?.scrollIntoView({ block: "center", behavior: "smooth" }), 100);
   };
-  $("#dSave", el).onclick = async () => { s.compteRendu = $("#dCR", el).value; await sdb.save(s); toast("Compte rendu enregistré"); };
+
+  // ---- sections 3 et 4 : demandes à Claude et réponses collées
+  brancherIA(el, id);
+
+  // ---- section 4 : notes (sauvegarde automatique)
+  let minuterie = 0;
+  $$("[data-mn]", el).forEach(ta => ta.addEventListener("input", () => {
+    $("#mnEtat", el).textContent = "Modification…";
+    clearTimeout(minuterie);
+    minuterie = setTimeout(async () => {
+      const cur = enregistrement && R.s ? R.s : await sdb.get(id);
+      cur.mesNotes = cur.mesNotes || {};
+      $$("[data-mn]", el).forEach(t => { cur.mesNotes[t.dataset.mn] = t.value; });
+      cur.notesModifiees = new Date().toISOString();
+      try { await sdb.save(cur); const e = document.getElementById("mnEtat"); if (e) e.textContent = "✓ Enregistré à " + new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }); }
+      catch { const e = document.getElementById("mnEtat"); if (e) e.textContent = "⚠ Enregistrement impossible (stockage plein ?)"; }
+    }, 700);
+  }));
+  $("#notesH", el).addEventListener("click", async e => {
+    const b = e.target.closest("[data-supnote]"); if (!b) return;
+    const cur = enregistrement && R.s ? R.s : await sdb.get(id);
+    cur.notes.splice(+b.dataset.supnote, 1); await sdb.save(cur); $("#notesH", el).innerHTML = notesHorodatees(cur);
+  });
+
+  // ---- horodatages cliquables (transcription, analyses) → position dans l'audio
+  $("#pgSermon", el).addEventListener("click", e => {
+    const b = e.target.closest(".ts[data-t]"); if (!b) return;
+    const a = $("#aud", el); if (!a) return;
+    a.currentTime = secondes(b.dataset.t); a.play().catch(() => {});
+    $("#b1", el).open = true; $("#lecteur", el)?.scrollIntoView({ block: "center", behavior: "smooth" });
+  });
+
   $("#dJournal", el).onclick = async () => {
-    s.compteRendu = $("#dCR", el).value; await sdb.save(s);
+    const cur = await sdb.get(id); if (!cur) return;
     const mc = store.prefs.get("messeEnCours", null);
-    const jid = s.journalId || (mc && mc.date === s.date && store.get("journal", mc.id) ? mc.id : store.newId());
-    const e = store.get("journal", jid) || { id: jid, date: s.date, categorie: "Messe", eglise: s.eglise, egliseId: "", notes: "", passages: "", reflexions: "", intentions: "" };
-    const mesNotes = s.notes.map(n => `[${hms(n.t)}] ${TYPES[n.type]?.[1] || "Note"} : ${n.texte || (n.contexte ? "« " + n.contexte + " »" : "")}`).join("\n");
+    const jid = cur.journalId || (mc && mc.date === cur.date && store.get("journal", mc.id) ? mc.id : store.newId());
+    const e = store.get("journal", jid) || { id: jid, date: cur.date, categorie: "Messe", eglise: cur.eglise, egliseId: "", notes: "", passages: "", reflexions: "", intentions: "" };
+    const notesTxt = [cur.ia?.resume?.texte && "Résumé du sermon :\n" + cur.ia.resume.texte, cur.ia?.plan?.texte && "Plan détaillé :\n" + cur.ia.plan.texte].filter(Boolean).join("\n\n") || cur.compteRendu || e.notes || "";
+    const refl = [mesNotesTexte(cur) !== "(aucune note)" && mesNotesTexte(cur), cur.ia?.approfondir?.texte && "Approfondissement :\n" + cur.ia.approfondir.texte].filter(Boolean).join("\n\n");
     try {
-      await store.put("journal", jid, { ...e, notes: (s.compteRendu || e.notes || "").slice(0, 20000), reflexions: [e.reflexions, mesNotes && "Notes prises pendant le sermon :\n" + mesNotes].filter(Boolean).join("\n\n").slice(0, 20000) });
-      s.journalId = jid; await sdb.save(s); toast("Ajouté à votre journal");
+      await store.put("journal", jid, { ...e, notes: notesTxt.slice(0, 20000), reflexions: (refl || e.reflexions || "").slice(0, 20000) });
+      cur.journalId = jid; await sdb.save(cur); toast("Journal mis à jour");
     } catch { toast("Enregistrement impossible"); }
   };
   $("#dDel", el).onclick = async e => {
-    const b = e.currentTarget; if (!b.dataset.ok) { b.dataset.ok = 1; b.textContent = "Confirmer la suppression (audio, notes, transcription)"; return; }
-    await sdb.remove(id); if (url) URL.revokeObjectURL(url); toast("Sermon supprimé"); location.hash = "#/sermon";
+    const b = e.currentTarget; if (!b.dataset.ok) { b.dataset.ok = 1; b.textContent = "Confirmer la suppression (audio, transcription, analyses, notes)"; return; }
+    if (R.actif && R.id === id) await terminer();
+    await sdb.remove(id); if (urlAudio) URL.revokeObjectURL(urlAudio); urlAudio = ""; toast("Sermon supprimé"); location.hash = "#/sermon";
   };
+}
+
+function notesHorodatees(s) {
+  if (!s.notes?.length) return "";
+  return `<p class="small muted" style="margin:12px 0 4px">Repères pris pendant l'écoute :</p><ul class="list small">${s.notes.map((n, i) => `<li style="display:flex;gap:8px;align-items:flex-start"><button class="ts" data-t="${hms(n.t)}">${hms(n.t)}</button><span style="flex:1"><strong>${TYPES[n.type]?.[0] || ""} ${TYPES[n.type]?.[1] || ""}</strong> ${esc(n.texte || "")}${n.contexte ? `<br><span class="muted">« ${esc(n.contexte)} »</span>` : ""}</span><button class="lien" data-supnote="${i}" aria-label="Supprimer ce repère">✕</button></li>`).join("")}</ul>`;
+}
+
+function brancherLecteur(el, s) {
+  const a = $("#aud", el), pos = $("#lPos", el), tps = $("#lTemps", el), play = $("#lPlay", el);
+  let total = s.duree || 0, glisse = false;
+  a.playbackRate = store.prefs.get("sermonVitesse", 1);
+  const maj = () => { if (!glisse) pos.value = a.currentTime; tps.textContent = `${hms(a.currentTime)} / ${hms(total)}`; };
+  a.addEventListener("loadedmetadata", () => {
+    if (a.duration === Infinity || isNaN(a.duration)) {          // WebM du navigateur : durée inconnue, on la force
+      a.currentTime = 1e101;
+      a.addEventListener("timeupdate", function f() { a.removeEventListener("timeupdate", f); if (isFinite(a.duration)) { total = a.duration; pos.max = total; } a.currentTime = 0; maj(); });
+    } else { total = a.duration; pos.max = total; maj(); }
+  }, { once: true });
+  a.addEventListener("timeupdate", maj);
+  a.addEventListener("play", () => { play.textContent = "❚❚"; play.setAttribute("aria-label", "Pause"); });
+  a.addEventListener("pause", () => { play.textContent = "▶"; play.setAttribute("aria-label", "Lecture"); });
+  a.addEventListener("ended", () => { play.textContent = "▶"; });
+  play.onclick = () => (a.paused ? a.play().catch(() => toast("Lecture impossible")) : a.pause());
+  pos.addEventListener("input", () => { glisse = true; tps.textContent = `${hms(pos.value)} / ${hms(total)}`; });
+  pos.addEventListener("change", () => { a.currentTime = +pos.value; glisse = false; });
+  $("#lMoins", el).onclick = () => { a.currentTime = Math.max(0, a.currentTime - 15); };
+  $("#lPlus", el).onclick = () => { a.currentTime = Math.min(total || a.currentTime + 15, a.currentTime + 15); };
+  $("#lVit", el).onclick = e => {
+    const v = +e.target.closest("button")?.dataset.v; if (!v) return;
+    a.playbackRate = v; store.prefs.setQuiet("sermonVitesse", v);
+    $$("#lVit button", el).forEach(b => b.setAttribute("aria-pressed", +b.dataset.v === v));
+  };
+}
+
+// Zone de la transcription : lecture (horodatages cliquables), correction, copie, analyses de passages
+function rafraichirTranscription(id, s, complet) {
+  const z = document.getElementById("trZone"); if (!z || !s || document.getElementById("trEtat")?.dataset.id !== id) return;
+  if (!complet && document.getElementById("trEdit")) return;            // ne pas déranger une correction en cours
+  const st = document.getElementById("trStatut");
+  const j = JOBS.get(id);
+  if (st) st.innerHTML = j?.etat === "cours" ? statut("cours", "Transcription en cours") : j?.etat === "erreur" || (s.trEtat && !s.trEtat.termine && s.transcription.length) ? statut("err", "Interrompue") : s.transcription.length ? statut("ok", "Terminée") : statut("", "À faire");
+  const bt = document.getElementById("trBoutons");
+  if (bt) {
+    const cours = j?.etat === "cours";
+    bt.innerHTML = `<div class="row" style="gap:8px">${s.trEtat && !s.trEtat.termine && s.transcription.length && !cours ? `<button class="btn" id="trGo">↻ Reprendre la transcription (${hms(s.trEtat.fait)} / ${hms(s.trEtat.total)})</button>` : ""}
+      <button class="btn${s.transcription.length ? " ghost" : ""}" id="trNouv"${cours ? " disabled" : ""}>${s.transcription.length ? "Refaire la transcription" : "📝 Transcrire le sermon"}</button></div>`;
+    const go = reprendre => { transcrireSermon(id, { reprendre }); rafraichirTranscription(id, s, true); };
+    const bN = document.getElementById("trNouv");
+    bN.onclick = () => { if (s.transcription.length && !bN.dataset.ok) { bN.dataset.ok = 1; bN.textContent = "Confirmer (remplace la transcription actuelle)"; return; } go(false); };
+    document.getElementById("trGo")?.addEventListener("click", () => go(true));
+  }
+  if (!s.transcription.length) { z.innerHTML = ""; return; }
+  z.innerHTML = `<div class="row" style="gap:6px;margin-top:10px"><button class="btn ghost sm" id="trCopie">⧉ Copier le texte</button><button class="btn ghost sm" id="trCorr">✎ Corriger</button></div>
+    <div class="tr-texte" id="trTexte" tabindex="0" aria-label="Transcription">${s.transcription.map(x => `<p><button class="ts" data-t="${hms(x.t)}">${hms(x.t)}</button> ${esc(x.texte)}</p>`).join("")}</div>
+    <p class="small muted" style="margin:6px 0 0">Sélectionnez une phrase ou un passage : le bouton « Analyser ce passage avec l'IA » apparaît en bas de l'écran. Touchez un horodatage pour réécouter ce moment.</p>
+    ${(s.passages || []).length ? `<h3 class="serif" style="margin:16px 0 6px">Passages analysés</h3>${s.passages.map(p => `<details class="sous" id="pass_${esc(p.id)}"${p.reponse ? "" : " open"}><summary>« ${esc(p.passage.slice(0, 90))}${p.passage.length > 90 ? "…" : ""} » ${p.reponse ? statut("ok", "Expliqué") : statut("cours", "En attente de la réponse")}</summary>
+      <blockquote class="small">${esc(p.passage)}</blockquote>
+      ${p.reponse ? `<div class="rendu">${md(p.reponse)}</div>` : ""}
+      <label for="pr_${esc(p.id)}" class="small">${p.reponse ? "Modifier l'explication" : "Collez ici la réponse de Claude"}</label><textarea id="pr_${esc(p.id)}" data-passage="${esc(p.id)}" style="min-height:${p.reponse ? 60 : 110}px">${esc(p.reponse)}</textarea>
+      <div class="row" style="margin-top:6px;gap:6px"><button class="btn sm" data-psave="${esc(p.id)}">Enregistrer</button><button class="btn ghost sm" data-pagain="${esc(p.id)}">Redemander à Claude</button>${p.reponse ? `<button class="btn ghost sm" data-pcopie="${esc(p.id)}">⧉ Copier</button>` : ""}<button class="btn ghost sm" data-psup="${esc(p.id)}">✕</button></div></details>`).join("")}` : ""}`;
+  $("#trCopie", z).onclick = async () => { try { await navigator.clipboard.writeText(s.transcription.map(x => x.texte).join("\n")); toast("Transcription copiée"); } catch { toast("Copie impossible : sélectionnez le texte"); } };
+  $("#trCorr", z).onclick = () => {
+    const texte = $("#trTexte", z);
+    texte.outerHTML = `<textarea id="trEdit" class="tr-texte" style="min-height:300px">${esc(s.transcription.map(x => `[${hms(x.t)}] ${x.texte}`).join("\n"))}</textarea>`;
+    $("#trCorr", z).outerHTML = `<button class="btn sm" id="trFini">✓ Terminer la correction</button>`;
+    const ta = $("#trEdit", z), etat = document.createElement("p"); etat.className = "small muted"; etat.style.margin = "4px 0 0"; etat.textContent = "Corrigez le texte ; gardez les repères [m:ss] en début de ligne. Enregistrement automatique."; ta.after(etat);
+    let m = 0;
+    const lire = () => ta.value.split("\n").map(l => { const r = l.match(/^\[(\d+(?::\d+){1,2})\]\s*(.*)$/); if (!r) return l.trim() ? { t: null, texte: l.trim() } : null; return { t: secondes(r[1]), texte: r[2] }; }).filter(Boolean)
+      .reduce((acc, x) => { if (x.t == null) { if (acc.length) acc[acc.length - 1].texte += " " + x.texte; else acc.push({ t: 0, texte: x.texte }); } else acc.push(x); return acc; }, []);
+    const sauver = async () => { const cur = await sdb.get(id); cur.transcription = lire(); cur.trCorrigee = new Date().toISOString(); await sdb.save(cur); s.transcription = cur.transcription; etat.textContent = "✓ Corrections enregistrées à " + new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }); };
+    ta.addEventListener("input", () => { clearTimeout(m); etat.textContent = "Modification…"; m = setTimeout(sauver, 800); });
+    $("#trFini", z).onclick = async () => { clearTimeout(m); await sauver(); rafraichirTranscription(id, await sdb.get(id), true); };
+    ta.focus();
+  };
+  const passage = async (pid, fn) => { const cur = await sdb.get(id); const p = cur.passages.find(x => x.id === pid); if (p) { await fn(cur, p); await sdb.save(cur); } return cur; };
+  $$("[data-psave]", z).forEach(b => b.onclick = async () => { const cur = await passage(b.dataset.psave, (c, p) => { p.reponse = $(`[data-passage="${b.dataset.psave}"]`, z).value.trim(); }); toast("Explication enregistrée"); rafraichirTranscription(id, cur, true); });
+  $$("[data-pagain]", z).forEach(b => b.onclick = async () => { const cur = await sdb.get(id); const p = cur.passages.find(x => x.id === b.dataset.pagain); if (p) envoyerVersClaude(demande("passage", cur, p.passage)); });
+  $$("[data-pcopie]", z).forEach(b => b.onclick = async () => { const cur = await sdb.get(id); const p = cur.passages.find(x => x.id === b.dataset.pcopie); try { await navigator.clipboard.writeText(p.reponse); toast("Explication copiée"); } catch { toast("Copie impossible"); } });
+  $$("[data-psup]", z).forEach(b => b.onclick = async () => { if (!b.dataset.ok) { b.dataset.ok = 1; b.textContent = "Supprimer ?"; return; } const cur = await sdb.get(id); cur.passages = cur.passages.filter(x => x.id !== b.dataset.psup); await sdb.save(cur); rafraichirTranscription(id, cur, true); });
+}
+
+// Bloc d'analyse (plan, résumé, approfondissement) : demander à Claude, coller la réponse, la relire et la copier
+function blocIA(s, type) {
+  const r = (s.ia || {})[type] || {}, def = IA[type], possible = (s.transcription || []).length > 0;
+  const etat = r.texte ? statut("ok", "Terminé · " + new Date(r.date).toLocaleDateString("fr-FR")) : r.demandeLe ? statut("cours", "En attente de la réponse") : statut("", "À générer");
+  const manque = type === "approfondir" && !Object.values(s.mesNotes || {}).some(x => (x || "").trim()) && !s.notes?.length;
+  return `<div class="ia" id="ia_${type}">
+    <div class="row between"><h3 class="serif" style="margin:0">${def.titre}</h3>${etat}</div>
+    ${r.texte ? `<details class="sous" open><summary>Lire</summary><div class="rendu">${md(r.texte)}</div></details>` : ""}
+    <div class="row" style="gap:6px;margin-top:8px"><button class="btn${r.texte ? " ghost" : ""} sm" data-ia="${type}"${possible ? "" : " disabled"}>${r.texte ? "↻ Refaire" : "✦ " + def.bouton}</button>${r.texte ? `<button class="btn ghost sm" data-iacopie="${type}">⧉ Copier</button>` : ""}</div>
+    ${!possible ? `<p class="small muted" style="margin:6px 0 0">Disponible après la transcription.</p>` : manque ? `<p class="small muted" style="margin:6px 0 0">Écrivez d'abord quelques notes ci-dessus.</p>` : ""}
+    ${possible && (r.demandeLe || !r.texte) ? `<details class="sous"${r.demandeLe && !r.texte ? " open" : ""}><summary>${r.texte ? "Remplacer par une nouvelle réponse" : "Coller la réponse de Claude"}</summary>
+      <textarea data-iarep="${type}" style="min-height:120px" placeholder="Collez ici la réponse de Claude"></textarea>
+      <button class="btn sm" data-iasave="${type}" style="margin-top:6px">Enregistrer la réponse</button></details>` : ""}
+  </div>`;
+}
+function brancherIA(el, id) {
+  $$("[data-ia]", el).forEach(b => b.onclick = async () => {
+    const cur = await sdb.get(id); const type = b.dataset.ia;
+    cur.ia = cur.ia || {}; cur.ia[type] = { ...(cur.ia[type] || {}), demandeLe: new Date().toISOString() }; await sdb.save(cur);
+    await envoyerVersClaude(demande(type, cur));
+    const box = document.getElementById("ia_" + type); if (box) { box.outerHTML = blocIA(cur, type); brancherIA(el, id); document.querySelector(`[data-iarep="${type}"]`)?.closest("details")?.setAttribute("open", ""); }
+  });
+  $$("[data-iasave]", el).forEach(b => b.onclick = async () => {
+    const type = b.dataset.iasave, t = $(`[data-iarep="${type}"]`, el).value.trim();
+    if (!t) { toast("Collez d'abord la réponse de Claude"); return; }
+    const cur = await sdb.get(id); cur.ia = cur.ia || {}; cur.ia[type] = { texte: t, date: new Date().toISOString() }; await sdb.save(cur);
+    toast(IA[type].titre + " enregistré"); const box = document.getElementById("ia_" + type); if (box) { box.outerHTML = blocIA(cur, type); brancherIA(el, id); }
+  });
+  $$("[data-iacopie]", el).forEach(b => b.onclick = async () => {
+    const cur = await sdb.get(id); try { await navigator.clipboard.writeText(cur.ia[b.dataset.iacopie].texte); toast("Copié"); } catch { toast("Copie impossible"); }
+  });
 }

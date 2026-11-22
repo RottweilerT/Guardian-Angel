@@ -186,3 +186,46 @@ fieldset{border:1px solid var(--line)}
 [data-mode="nuit"] .leaflet-container{background:#1b1e24}
 [data-mode="nuit"] .leaflet-popup-content-wrapper,[data-mode="nuit"] .leaflet-popup-tip,[data-mode="nuit"] .leaflet-bar a,[data-mode="nuit"] .leaflet-control-attribution{background:var(--surface);color:var(--fg)}
 [data-mode="nuit"] .leaflet-control-attribution a{color:var(--accent-fg)}
+
+/* ---------- Sermon ---------- */
+.bloc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 16px 16px;margin:14px 0;box-shadow:var(--shadow)}
+section.bloc{padding-top:14px}
+.bloc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0 8px}
+.bloc>summary::-webkit-details-marker{display:none}
+.bloc:not([open])>summary{padding-bottom:12px}
+.bloc-t{font-size:19px;margin:0;display:flex;align-items:center;gap:10px}
+.bloc-t .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--bg);font-family:var(--sans);font-size:14px;font-weight:600;flex:none}
+.statut{font-size:12px;border-radius:999px;padding:2px 9px;border:1px solid var(--line);color:var(--muted);white-space:nowrap;flex:none}
+.statut.ok{color:var(--ok);border-color:currentColor}
+.statut.cours{color:var(--accent-fg);border-color:currentColor}
+.statut.err{color:var(--danger);border-color:currentColor}
+.statut.rec,.statut.pause{color:#fff;background:#B3261E;border-color:#B3261E}
+.statut.pause{background:var(--muted);border-color:var(--muted)}
+.btn.gros{padding:14px 26px;font-size:17px}
+.btn.rouge{background:#B3261E;border-color:#B3261E;color:#fff}
+.btn.rond{width:46px;height:46px;padding:0;border-radius:50%;font-size:17px;flex:none}
+button.lien{background:none;border:0;padding:0;font:inherit;color:var(--accent-fg);text-decoration:underline;cursor:pointer}
+.enreg{text-align:center;padding:6px 0 2px}
+.voyant{width:16px;height:16px;border-radius:50%;background:#B3261E;margin:0 auto 4px;animation:voyant 1.2s infinite ease-in-out}
+.voyant.pause{animation:none;background:var(--muted)}
+@keyframes voyant{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(179,38,30,.5)}50%{opacity:.55;box-shadow:0 0 0 8px rgba(179,38,30,0)}}
+.chrono{font-family:var(--serif);font-size:44px;font-variant-numeric:tabular-nums;line-height:1.1}
+.niveau{height:8px;background:var(--line);border-radius:4px;max-width:240px;margin:8px auto 0;overflow:hidden}
+.niveau div{height:100%;width:0;background:#B3261E;transition:width .1s}
+.lecteur input[type=range]{padding:0;border:0;background:transparent;accent-color:var(--accent-fg);height:28px}
+.barre{height:6px;background:var(--line);border-radius:3px;margin-top:6px;overflow:hidden}
+.barre div{height:100%;background:var(--accent);transition:width .4s}
+.tr-texte{max-height:55vh;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:10px;background:var(--bg);font-family:var(--serif);font-size:calc(17px*var(--lecture));line-height:1.6;-webkit-user-select:text;user-select:text}
+textarea.tr-texte{width:100%;font-family:var(--serif)}
+.tr-texte p{margin:0 0 8px}
+.ts{font-family:var(--sans);font-size:11.5px;color:var(--accent-fg);background:var(--bg-soft);border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-right:4px;cursor:pointer;vertical-align:1px;-webkit-user-select:none;user-select:none}
+.barre-selection{position:fixed;left:0;right:0;bottom:calc(70px + env(safe-area-inset-bottom,0px));z-index:950;display:flex;justify-content:center;pointer-events:none}
+.barre-selection .btn{pointer-events:auto;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.ia{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.bloc>.ia:first-of-type{border-top:0;margin-top:0}
+details.sous{margin-top:8px}
+details.sous>summary{cursor:pointer;font-size:14px;color:var(--accent-fg)}
+.rendu{font-size:15.5px;line-height:1.6;margin-top:8px;max-height:65vh;overflow:auto;padding-right:4px}
+.rendu h3,.rendu h4,.rendu h5{margin:14px 0 6px;font-size:1.05em}
+.rendu ul,.rendu ol{margin:4px 0 10px;padding-left:22px}
+.bloc blockquote{margin:8px 0;padding:6px 10px;border-left:3px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-style:italic}

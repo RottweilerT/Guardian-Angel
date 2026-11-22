@@ -26,7 +26,7 @@ export default function journal(el, params) {
       <p class="small" style="white-space:pre-wrap;max-height:4.6em;overflow:hidden;margin:0">${esc(e.notes || e.reflexions || e.intentions || "")}</p>
       ${e.passages ? `<p class="small muted" style="margin:6px 0 0">${esc(e.passages)}</p>` : ""}</a>`).join("")
     : `<div class="empty">${all.length ? "Aucune entrée ne correspond." : "Votre journal est vide. Ajoutez une messe, une note d'homélie ou une intention de prière."}</div>`}</div>
-  <div class="notice small">🎙 <a href="#/sermon">Enregistrer un sermon</a> : audio et notes gardés sur ce téléphone, transcription, puis compte rendu préparé avec Claude. À faire uniquement avec l'accord du prédicateur.</div>`;
+  <div class="notice small">🎙 <a href="#/sermon">Sermon</a> : enregistrement, réécoute, transcription sur le téléphone, plan et résumé préparés avec Claude, notes personnelles et approfondissement. À faire uniquement avec l'accord du prédicateur.</div>`;
   brancherSuppression($("#jl", el), async id => {
     const old = store.get("journal", id);
     try {

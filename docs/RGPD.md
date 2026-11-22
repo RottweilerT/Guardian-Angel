@@ -58,3 +58,8 @@ Les catégories suivies peuvent révéler un intérêt religieux (comme tout l'u
 ## Droit à l'effacement (16/11/2026)
 
 Profil → « Supprimer définitivement toutes mes données » : confirmation en écrivant SUPPRIMER, puis suppression des signalements, du compte et de ses sous-collections, des candidatures, des abonnements push (et de la session anonyme), de toutes les bases IndexedDB (sermons, Firebase), de tous les caches et de tout le stockage local. Les règles Firestore permettent désormais à chacun de lire et supprimer ses propres signalements.
+
+### Refonte de l'onglet Sermon (22/11/2026)
+- Tout reste sur l'appareil (IndexedDB « ga-sermons ») : audio (morceaux de 5 s), transcription (enregistrée tranche par tranche), réponses de Claude collées par l'utilisateur, notes personnelles. Le navigateur est invité à rendre ce stockage persistant (`navigator.storage.persist`).
+- Analyses par IA (explication d'un passage, plan détaillé, résumé, approfondissement avec les notes) : **aucun envoi automatique**. Chaque bouton prépare une demande, la copie dans le presse-papiers et ouvre claude.ai (le début de la demande peut figurer dans l'adresse ouverte, paramètre `q`). Le texte n'est transmis à Anthropic que si l'utilisateur l'envoie dans Claude ; pour « Approfondir avec mes notes », la demande contient les notes personnelles — l'utilisateur en est informé dans « Où vont mes données ? ».
+- Suppression : un sermon entier, ou l'audio seul (le texte est gardé) ; « Supprimer toutes mes données » efface la base.
