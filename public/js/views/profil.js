@@ -1,4 +1,4 @@
-import { esc, $, toast, fetchJson, modal } from "../ui.js";
+import { esc, $, $$, toast, fetchJson, modal } from "../ui.js";
 import * as store from "../store.js";
 import { cloud, signIn, signOutUser } from "../cloud.js";
 
@@ -19,6 +19,11 @@ export default function profil(el) {
       : cloud.ready ? `<p>Un compte est facultatif. Il sert uniquement à retrouver votre journal et votre passeport sur plusieurs appareils, et à proposer votre aide aux paroisses.</p><button class="btn" id="in">Se connecter avec Google</button>
           <p class="small muted" style="margin-top:8px">Connexion par e-mail et mot de passe : à venir.</p>`
       : `<p class="muted">Connexion indisponible (hors ligne ou service non configuré).</p>`}
+  </div>
+  <h2 class="sec">Apparence</h2>
+  <div class="card">
+    <div class="seg" id="papp" role="group" aria-label="Apparence">${[["jour", "☀ Normal"], ["nuit", "☾ Nuit"], ["auto", "Automatique"]].map(([v, l]) => `<button type="button" data-v="${v}" aria-pressed="${v === store.prefs.get("apparence", "jour")}">${l}</button>`).join("")}</div>
+    <p class="small muted" style="margin-top:8px">« Automatique » suit le réglage clair/sombre du téléphone. Le bouton ☾ en haut de l'écran bascule aussi entre les deux modes.</p>
   </div>
   <h2 class="sec">Préférences liturgiques</h2>
   <div class="card">
@@ -56,6 +61,7 @@ export default function profil(el) {
   const on = (id, fn) => { const b = $("#" + id, el); if (b) b.onclick = fn; };
   on("in", () => signIn().catch(e => toast("Connexion impossible : " + (e.code || e.message))));
   on("out", async () => { await signOutUser(); toast("Déconnecté"); });
+  $("#papp", el).onclick = e => { const v = e.target.closest("button")?.dataset.v; if (!v) return; store.prefs.setQuiet("apparence", v); window.gaApparence?.(v); $$("#papp button", el).forEach(b => b.setAttribute("aria-pressed", b.dataset.v === v)); };
   $("#pc", el).onchange = e => store.prefs.set("calendrier", e.target.value);
   $("#pl", el).onchange = e => store.prefs.set("langue", e.target.value);
   on("exp", async () => {

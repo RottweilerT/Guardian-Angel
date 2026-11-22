@@ -16,7 +16,7 @@ export const prefs = {
   set: (k, v) => { ls.set("pref-" + k, v); emit(); },
   // mémorise sans redessiner la page (sinon une vue qui enregistre pendant son affichage tourne en boucle)
   setQuiet: (k, v) => ls.set("pref-" + k, v),
-  all: () => Object.fromEntries(["calendrier", "langue", "taille", "favEglises", "favJours"].map(k => [k, ls.get("pref-" + k, null)]))
+  all: () => Object.fromEntries(["calendrier", "langue", "taille", "apparence", "favEglises", "favJours"].map(k => [k, ls.get("pref-" + k, null)]))
 };
 
 const cache = { journal: {}, visits: {} };

@@ -36,6 +36,12 @@ function render(keepScroll) {
   $("#topAccount").textContent = cloud.user ? "Mon compte" : "Profil";
 }
 window.addEventListener("hashchange", () => render(false));
+// Bouton ☾ / ☀ : bascule immédiate entre mode normal et mode nuit
+$("#bMode").onclick = () => {
+  const v = document.documentElement.dataset.mode === "nuit" ? "jour" : "nuit";
+  store.prefs.setQuiet("apparence", v); window.gaApparence?.(v);
+  if (current?.name === "profil") render(true);
+};
 // Les données ont changé : on redessine, sauf si l'utilisateur est en train de saisir.
 // État des notifications ou de la session modifié : on redessine la page Notifications si elle est affichée.
 ["ga:push", "ga:auth"].forEach(ev => window.addEventListener(ev, () => { if (current?.name === "notifications" && !$("#dlg").open) render(true); }));
