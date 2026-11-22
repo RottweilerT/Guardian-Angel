@@ -1,6 +1,6 @@
 {
  "titre": "CONTENT_RIGHTS_REGISTER",
- "mise_a_jour": "2026-11-14",
+ "mise_a_jour": "2026-11-22",
  "avertissement": "Registre de suivi ; ne constitue pas un avis juridique.",
  "ressources": [
   {
@@ -418,6 +418,54 @@
    "preuve": "https://huggingface.co/onnx-community/whisper-base",
    "utilise": true,
    "demander_a": ""
+  },
+  {
+   "verifie_le": "2026-11-22",
+   "mode_verification": "fichier LICENSE du dépôt consulté le 2026-11-22",
+   "usage_commercial": true,
+   "utilise": true,
+   "demander_a": "",
+   "nom": "Missale Meum — calendrier et propres du missel de 1962",
+   "reference": "https://github.com/mmolenda/missalemeum",
+   "titulaire": "Marcin Molenda",
+   "type": "Logiciel (calcul liturgique) et données",
+   "licence": "MIT",
+   "conditions": "Conserver la mention de copyright et la licence MIT. Utilisé hors ligne, à la construction des données (tools/missel1962/build.py).",
+   "attribution": "Missale Meum (Marcin Molenda, licence MIT)",
+   "statut": "OPEN_LICENSE_VERIFIED",
+   "preuve": "https://github.com/mmolenda/missalemeum/blob/master/LICENSE"
+  },
+  {
+   "verifie_le": "2026-11-22",
+   "mode_verification": "fichier LICENSE du dépôt consulté le 2026-11-22",
+   "usage_commercial": true,
+   "utilise": true,
+   "demander_a": "",
+   "nom": "Divinum Officium — textes latins du missel de 1962",
+   "reference": "https://github.com/DivinumOfficium/divinum-officium",
+   "titulaire": "Projet Divinum Officium (logiciel) ; textes latins du Missale Romanum de 1962 (domaine public)",
+   "type": "Texte liturgique latin",
+   "licence": "MIT (projet) ; domaine public (textes latins anciens)",
+   "conditions": "Seuls les textes LATINS et les intitulés des fêtes sont repris. Les traductions françaises des prières (propriété de l'abbaye Sainte-Madeleine du Barroux) et l'ordinaire français issu de Sancta Missa ne sont PAS utilisés.",
+   "attribution": "Divinum Officium",
+   "statut": "PUBLIC_DOMAIN",
+   "preuve": "https://github.com/DivinumOfficium/divinum-officium/blob/master/LICENSE"
+  },
+  {
+   "verifie_le": "2026-11-22",
+   "mode_verification": "fichier LICENSE du dépôt consulté le 2026-11-22",
+   "usage_commercial": null,
+   "utilise": false,
+   "demander_a": "Abbaye Sainte-Madeleine du Barroux",
+   "nom": "Divinum Officium — traductions françaises des propres (abbaye du Barroux)",
+   "reference": "https://github.com/DivinumOfficium/divinum-officium/tree/master/web/www/missa/Francais",
+   "titulaire": "Abbaye Sainte-Madeleine du Barroux",
+   "type": "Traduction liturgique",
+   "licence": "Droits réservés",
+   "conditions": "Non intégré.",
+   "attribution": "",
+   "statut": "PERMISSION_REQUIRED",
+   "preuve": ""
   }
  ]
 }

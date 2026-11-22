@@ -1,7 +1,7 @@
 # CONTENT_RIGHTS_REGISTER
 
 > Généré par `npm run rights` depuis `public/data/content-rights.json` — ne pas modifier à la main.
-> Registre de suivi ; ne constitue pas un avis juridique. Mise à jour : 2026-11-14.
+> Registre de suivi ; ne constitue pas un avis juridique. Mise à jour : 2026-11-22.
 
 Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée que si son statut est `PUBLIC_DOMAIN`, `OPEN_LICENSE_VERIFIED` ou `PERMISSION_GRANTED`.
 
@@ -279,6 +279,38 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Preuve / autorisation | https://huggingface.co/onnx-community/whisper-base |
 | Utilisée dans l'application | oui |
 
+### Missale Meum — calendrier et propres du missel de 1962
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/mmolenda/missalemeum |
+| Titulaire des droits | Marcin Molenda |
+| Type | Logiciel (calcul liturgique) et données |
+| Licence | MIT |
+| Date de vérification | 2026-11-22 (fichier LICENSE du dépôt consulté le 2026-11-22) |
+| Conditions | Conserver la mention de copyright et la licence MIT. Utilisé hors ligne, à la construction des données (tools/missel1962/build.py). |
+| Attribution requise | Missale Meum (Marcin Molenda, licence MIT) |
+| Usage commercial | autorisé |
+| Statut | `OPEN_LICENSE_VERIFIED` |
+| Preuve / autorisation | https://github.com/mmolenda/missalemeum/blob/master/LICENSE |
+| Utilisée dans l'application | oui |
+
+### Divinum Officium — textes latins du missel de 1962
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/DivinumOfficium/divinum-officium |
+| Titulaire des droits | Projet Divinum Officium (logiciel) ; textes latins du Missale Romanum de 1962 (domaine public) |
+| Type | Texte liturgique latin |
+| Licence | MIT (projet) ; domaine public (textes latins anciens) |
+| Date de vérification | 2026-11-22 (fichier LICENSE du dépôt consulté le 2026-11-22) |
+| Conditions | Seuls les textes LATINS et les intitulés des fêtes sont repris. Les traductions françaises des prières (propriété de l'abbaye Sainte-Madeleine du Barroux) et l'ordinaire français issu de Sancta Missa ne sont PAS utilisés. |
+| Attribution requise | Divinum Officium |
+| Usage commercial | autorisé |
+| Statut | `PUBLIC_DOMAIN` |
+| Preuve / autorisation | https://github.com/DivinumOfficium/divinum-officium/blob/master/LICENSE |
+| Utilisée dans l'application | oui |
+
 ## Ressources non intégrées — AUTORISATION À DEMANDER AVANT INTÉGRATION
 
 ### Traduction liturgique française (Missel romain, lectionnaire, Bible de la liturgie)
@@ -431,3 +463,20 @@ Règle appliquée (et vérifiée par les tests) : une ressource n'est utilisée 
 | Statut | `PUBLIC_DOMAIN` |
 | Preuve / autorisation | https://github.com/seven1m/open-bibles |
 | Utilisée dans l'application | **non** |
+
+### Divinum Officium — traductions françaises des propres (abbaye du Barroux)
+
+| Champ | Valeur |
+| --- | --- |
+| Référence | https://github.com/DivinumOfficium/divinum-officium/tree/master/web/www/missa/Francais |
+| Titulaire des droits | Abbaye Sainte-Madeleine du Barroux |
+| Type | Traduction liturgique |
+| Licence | Droits réservés |
+| Date de vérification | 2026-11-22 (fichier LICENSE du dépôt consulté le 2026-11-22) |
+| Conditions | Non intégré. |
+| Attribution requise | — |
+| Usage commercial | à déterminer |
+| Statut | `PERMISSION_REQUIRED` |
+| Preuve / autorisation | — |
+| Utilisée dans l'application | **non** |
+| Autorisation à demander à | Abbaye Sainte-Madeleine du Barroux |

@@ -1,0 +1,31 @@
+name: Missel 1962 — données jour par jour
+# Prolonge chaque mois la période couverte (du mois précédent à +26 mois) avec Missale Meum (MIT) et Divinum Officium (MIT, latin du domaine public).
+on:
+  workflow_dispatch:
+  schedule: [{ cron: "17 3 2 * *" }]
+  push: { branches: [main], paths: ["tools/missel1962/**", ".github/workflows/missel1962.yml"] }
+permissions: { contents: write, actions: write }
+concurrency: { group: missel1962, cancel-in-progress: true }
+jobs:
+  construire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Missale Meum et Divinum Officium (versions figées)
+        run: |
+          git clone -q https://github.com/mmolenda/missalemeum.git /tmp/mm && git -C /tmp/mm checkout -q d5ba915
+          git -C /tmp/mm submodule update -q --init --depth 50 backend/resources/divinum-officium || git -C /tmp/mm submodule update -q --init backend/resources/divinum-officium
+          pip install -q "python-dateutil~=2.9.0" "icalendar~=7.0.0" "trans~=2.1.0" "mistune~=3.2.0" "PyYAML~=6.0.3" "diskcache==5.6.3" "click~=8.3.1"
+      - name: Construire
+        run: |
+          DEBUT=$(date -d "$(date +%Y-%m-01) -1 month" +%F); FIN=$(date -d "$(date +%Y-%m-01) +26 months -1 day" +%F)
+          cd /tmp/mm/backend && PYTHONPATH=. python3 "$GITHUB_WORKSPACE/tools/missel1962/build.py" "$GITHUB_WORKSPACE/public" "$DEBUT" "$FIN" 2> /tmp/err.txt || { echo "::error::$(tail -c 900 /tmp/err.txt | tr '\n' ' ')"; exit 1; }
+      - name: Enregistrer et déployer
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/missel1962
+          if git commit -qm "Missel 1962 : données mises à jour"; then git push -q && gh workflow run deploy.yml --ref main; fi

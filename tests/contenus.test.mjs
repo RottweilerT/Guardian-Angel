@@ -66,3 +66,23 @@ test("missel : déroulement des deux formes, titres seulement", () => {
   const ef = ETAPES.extraordinaire.sections.flatMap(([, e]) => e.map(x => x[0]));
   assert.ok(ef.includes("Dernier Évangile") && ef.includes("Introït"));
 });
+
+test("missel de 1962 : données jour par jour (latin + lectures Fillion, aucune traduction protégée)", () => {
+  const dir = new URL("../public/missel1962/jours/", import.meta.url);
+  const fichiers = readdirSync(dir);
+  assert.ok(fichiers.length >= 365, "au moins un an de données");
+  for (const f of fichiers) {
+    const d = J("../public/missel1962/jours/" + f);
+    assert.equal(d.date + ".json", f);
+    assert.ok(d.titre_fr, f + " : intitulé français");
+    assert.ok(d.messes.length >= 1, f);
+    for (const m of d.messes) for (const s of m.sections) {
+      assert.ok(s.id && s.titre && typeof s.la === "string", f + " " + s.id);
+      if ("fr" in s) assert.ok(/^(Lectio|Evangelium|Passio)/.test(s.id), f + " : français hors lectures bibliques (" + s.id + ")");
+    }
+  }
+  const o = J("../public/missel1962/ordo.json");
+  assert.ok(o.parties.length >= 25);
+  for (const p of o.parties) for (const t of p.la) assert.ok(!/today|Mass|Priest/.test(t), "rubrique anglaise dans l'ordinaire : " + t.slice(0, 40));
+  assert.deepEqual(J("../public/missel1962/jours/2026-11-22.json").messes[0].sections.find(s => s.id === "Evangelium").ref, "Matt 24:15-35");
+});
