@@ -58,7 +58,7 @@ jobs:
           echo "jour=$(TZ=Europe/Paris date +%F)" >> "$GITHUB_OUTPUT"
       - name: Garder la copie du jour 30 jours (artefact)
         if: steps.chiffre.outputs.change == '1'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: sauvegarde-${{ steps.chiffre.outputs.jour }}
           path: ${{ runner.temp }}/copie/base.json.enc
