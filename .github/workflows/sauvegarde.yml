@@ -1,0 +1,56 @@
+name: Sauvegarde de la base
+
+# Chaque nuit, copie TOUTE la base Firestore (projet guardian-angel-62a43, sous-collections comprises)
+# dans sauvegarde/base.json.enc. Le dépôt est public et la base contient des données sensibles (journal spirituel) :
+# la copie est chiffrée (AES-256, clé dérivée par PBKDF2) avec le secret du dépôt SAUVEGARDE_CLE ; sans cette clé, personne ne peut la lire.
+# Un nouveau fichier n'est enregistré que si la base a changé ; l'historique Git garde toutes les versions.
+# Vérifier : Action « Vérifier la sauvegarde ». Remettre une version : Action « Restaurer la base ».
+on:
+  schedule:
+    - cron: "23 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: { group: sauvegarde, cancel-in-progress: false }
+
+jobs:
+  sauvegarde:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Vérifier le secret de chiffrement
+        env: { CLE: "${{ secrets.SAUVEGARDE_CLE }}" }
+        run: |
+          if [ -z "$CLE" ]; then echo "::error::Le secret SAUVEGARDE_CLE manque dans les réglages du dépôt (Settings → Secrets and variables → Actions)"; exit 1; fi
+          if [ ${#CLE} -lt 24 ]; then echo "::error::Le secret SAUVEGARDE_CLE est trop court (24 caractères au minimum)"; exit 1; fi
+      - run: npm install --no-save --no-audit --no-fund firebase-admin@13
+      - name: Lire toute la base
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+        run: |
+          umask 077
+          node server/sauvegarde.mjs exporter "$RUNNER_TEMP/base.json"
+      - name: Chiffrer et enregistrer
+        env: { CLE: "${{ secrets.SAUVEGARDE_CLE }}" }
+        run: |
+          mkdir -p sauvegarde
+          new=$(openssl dgst -sha256 -hmac "$CLE" "$RUNNER_TEMP/base.json" | awk '{print $NF}')
+          old=$(cat sauvegarde/empreinte.txt 2>/dev/null || true)
+          if [ "$new" = "$old" ]; then echo "::notice::Base inchangée depuis la dernière sauvegarde"; rm -f "$RUNNER_TEMP/base.json"; exit 0; fi
+          openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -in "$RUNNER_TEMP/base.json" -out sauvegarde/base.json.enc -pass env:CLE
+          # contrôle immédiat : la copie chiffrée se relit avec la même clé
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in sauvegarde/base.json.enc -pass env:CLE | cmp -s - "$RUNNER_TEMP/base.json" \
+            || { echo "::error::La copie chiffrée ne se relit pas à l'identique"; exit 1; }
+          echo "$new" > sauvegarde/empreinte.txt
+          rm -f "$RUNNER_TEMP/base.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sauvegarde/
+          git commit -qm "Sauvegarde chiffrée de la base [skip ci]"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

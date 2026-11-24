@@ -1,0 +1,50 @@
+name: Restaurer la base
+
+# Remet dans Firestore le contenu d'une sauvegarde chiffrée (sauvegarde/base.json.enc).
+# Chaque document de la sauvegarde est réécrit tel qu'il était ; les documents créés depuis ne sont pas effacés.
+# À lancer à la main uniquement : onglet Actions → « Restaurer la base » → Run workflow, en tapant RESTAURER.
+# Conseil : lancer d'abord « Vérifier la sauvegarde » sur la même version.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Commit de la sauvegarde à remettre (laisser vide = la plus récente)"
+        required: false
+        default: ""
+      confirmer:
+        description: "Tape RESTAURER pour confirmer"
+        required: true
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency: { group: sauvegarde, cancel-in-progress: false }
+
+jobs:
+  restaurer:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.confirmer == 'RESTAURER' }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Déchiffrer la sauvegarde
+        env:
+          CLE: ${{ secrets.SAUVEGARDE_CLE }}
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          umask 077
+          if [ -n "$VERSION" ]; then git show "$VERSION:sauvegarde/base.json.enc" > "$RUNNER_TEMP/base.enc"; else cp sauvegarde/base.json.enc "$RUNNER_TEMP/base.enc"; fi
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in "$RUNNER_TEMP/base.enc" -out "$RUNNER_TEMP/base.json" -pass env:CLE \
+            || { echo "::error::Déchiffrement impossible : mauvaise clé SAUVEGARDE_CLE"; exit 1; }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install --no-save --no-audit --no-fund firebase-admin@13
+      - name: Réécrire les documents
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+        run: node server/sauvegarde.mjs restaurer "$RUNNER_TEMP/base.json"
+      - if: always()
+        run: rm -f "$RUNNER_TEMP/base.json" "$RUNNER_TEMP/base.enc"

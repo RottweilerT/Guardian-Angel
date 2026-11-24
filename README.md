@@ -44,6 +44,14 @@ Manuel : `firebase login` puis `npm run deploy`.
 
 **Désigner un administrateur** (publication des missions, lecture des signalements) : console Firebase → Firestore → créer le document `admins/{UID}` (l'UID se lit dans Authentication → Utilisateurs), avec un champ quelconque, par exemple `role: "admin"`.
 
+## Sauvegardes de la base (onglet Actions)
+
+- **Sauvegarde de la base** (`sauvegarde.yml`) : chaque nuit (02:23 UTC), copie de **toute** la base Firestore, sous-collections comprises, chiffrée en AES-256 dans `sauvegarde/base.json.enc`. Un nouveau fichier n'est enregistré que si la base a changé ; l'historique Git garde toutes les versions.
+- **Vérifier la sauvegarde** (`verifier-sauvegarde.yml`) : chaque lundi et à la main ; déchiffre, contrôle le format, prépare la restauration sans rien écrire et compare à la base actuelle (nombres uniquement dans le journal).
+- **Restaurer la base** (`restaurer.yml`) : à la main, en tapant `RESTAURER` ; réécrit chaque document sauvegardé (les documents créés depuis restent).
+- Secrets requis : `SAUVEGARDE_CLE` (clé de chiffrement, 24 caractères minimum, **à conserver aussi hors de GitHub** : sans elle les sauvegardes sont illisibles) et `FIREBASE_SERVICE_ACCOUNT` (déjà utilisé pour le déploiement).
+- Code : `server/sauvegarde.mjs` (+ `server/sauvegarde-lib.mjs`, testé par `tests/sauvegarde.test.mjs`).
+
 ## Structure
 
 ```
