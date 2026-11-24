@@ -46,11 +46,14 @@ Manuel : `firebase login` puis `npm run deploy`.
 
 ## Sauvegardes de la base (onglet Actions)
 
-- **Sauvegarde de la base** (`sauvegarde.yml`) : chaque nuit (02:23 UTC), copie de **toute** la base Firestore, sous-collections comprises, chiffrée en AES-256 dans `sauvegarde/base.json.enc`. Un nouveau fichier n'est enregistré que si la base a changé ; l'historique Git garde toutes les versions.
-- **Vérifier la sauvegarde** (`verifier-sauvegarde.yml`) : chaque lundi et à la main ; déchiffre, contrôle le format, prépare la restauration sans rien écrire et compare à la base actuelle (nombres uniquement dans le journal).
-- **Restaurer la base** (`restaurer.yml`) : à la main, en tapant `RESTAURER` ; réécrit chaque document sauvegardé (les documents créés depuis restent).
-- Secrets requis : `SAUVEGARDE_CLE` (clé de chiffrement, 24 caractères minimum, **à conserver aussi hors de GitHub** : sans elle les sauvegardes sont illisibles) et `FIREBASE_SERVICE_ACCOUNT` (déjà utilisé pour le déploiement).
-- Code : `server/sauvegarde.mjs` (+ `server/sauvegarde-lib.mjs`, testé par `tests/sauvegarde.test.mjs`).
+- **Sauvegarde de la base** (`sauvegarde.yml`) : chaque nuit (02:23 UTC), copie de **toute** la base Firestore, sous-collections comprises, chiffrée en AES-256 (PBKDF2). Copie faite seulement si la base a changé.
+  - la plus récente : branche **`sauvegardes`** (une seule version, réécrite à chaque fois ; ne jamais la fusionner dans `main`) ;
+  - les copies quotidiennes : **artefacts** des exécutions, nommés `sauvegarde-AAAA-MM-JJ`, effacés automatiquement au bout de **30 jours**.
+- **Vérifier la sauvegarde** (`verifier-sauvegarde.yml`) : chaque lundi et à la main (champ vide = la plus récente, ou une date `AAAA-MM-JJ`) ; déchiffre, contrôle le format, prépare la restauration sans rien écrire et compare à la base actuelle (nombres uniquement dans le journal).
+- **Restaurer la base** (`restaurer.yml`) : à la main, en tapant `RESTAURER` (même choix de version) ; réécrit chaque document sauvegardé (les documents créés depuis restent).
+- Secrets requis : `SAUVEGARDE_CLE` (clé de chiffrement, **conservée aussi hors de GitHub** : sans elle les sauvegardes sont illisibles) et `FIREBASE_SERVICE_ACCOUNT`.
+- Code : `server/sauvegarde.mjs`, `server/sauvegarde-lib.mjs` (testé par `tests/sauvegarde.test.mjs`), `scripts/recuperer-sauvegarde.sh`.
+- Historique : une seule copie chiffrée du 25/11/2026 reste dans l'historique de `main` (commit `c2359d2`, dossier `sauvegarde/`, supprimé depuis) ; elle se restaure en donnant cet identifiant comme version.
 
 ## Structure
 

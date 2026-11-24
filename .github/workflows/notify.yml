@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with: { node-version: 22 }
       - run: npm install --no-save --no-audit --no-fund firebase-admin@13
       - name: Traiter et envoyer
@@ -29,6 +29,6 @@ jobs:
     if: github.event.schedule == '37 3 * * 1'
     permissions: { actions: write }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: gautamkrishnar/keepalive-workflow@v2
         with: { use_api: true }

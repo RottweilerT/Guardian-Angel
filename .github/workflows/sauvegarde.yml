@@ -1,14 +1,17 @@
 name: Sauvegarde de la base
 
-# Chaque nuit, copie TOUTE la base Firestore (projet guardian-angel-62a43, sous-collections comprises)
-# dans sauvegarde/base.json.enc. Le dépôt est public et la base contient des données sensibles (journal spirituel) :
-# la copie est chiffrée (AES-256, clé dérivée par PBKDF2) avec le secret du dépôt SAUVEGARDE_CLE ; sans cette clé, personne ne peut la lire.
-# Un nouveau fichier n'est enregistré que si la base a changé ; l'historique Git garde toutes les versions.
-# Vérifier : Action « Vérifier la sauvegarde ». Remettre une version : Action « Restaurer la base ».
+# Chaque nuit, copie TOUTE la base Firestore (projet guardian-angel-62a43, sous-collections comprises), chiffrée
+# (AES-256, clé dérivée par PBKDF2) avec le secret du dépôt SAUVEGARDE_CLE : sans cette clé, personne ne peut la lire.
+# Conservation limitée (données personnelles) :
+#   - la copie la plus récente est sur la branche « sauvegardes », qui ne garde qu'UNE version (réécrite à chaque fois) ;
+#   - chaque copie quotidienne est aussi gardée 30 jours comme artefact de l'exécution, puis effacée par GitHub.
+# Une donnée supprimée de la base disparaît donc de toutes les copies au bout de 30 jours au plus.
+# Une copie n'est faite que si la base a changé. Vérifier : « Vérifier la sauvegarde ». Remettre : « Restaurer la base ».
 on:
   schedule:
     - cron: "23 2 * * *"
   workflow_dispatch:
+  push: { branches: [main], paths: [".github/workflows/sauvegarde.yml", "server/sauvegarde*.mjs"] }
 
 permissions:
   contents: write
@@ -20,8 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with: { node-version: 22 }
       - name: Vérifier le secret de chiffrement
         env: { CLE: "${{ secrets.SAUVEGARDE_CLE }}" }
@@ -36,21 +39,45 @@ jobs:
         run: |
           umask 077
           node server/sauvegarde.mjs exporter "$RUNNER_TEMP/base.json"
-      - name: Chiffrer et enregistrer
+      - name: Chiffrer
+        id: chiffre
         env: { CLE: "${{ secrets.SAUVEGARDE_CLE }}" }
         run: |
-          mkdir -p sauvegarde
+          umask 077
           new=$(openssl dgst -sha256 -hmac "$CLE" "$RUNNER_TEMP/base.json" | awk '{print $NF}')
-          old=$(cat sauvegarde/empreinte.txt 2>/dev/null || true)
-          if [ "$new" = "$old" ]; then echo "::notice::Base inchangée depuis la dernière sauvegarde"; rm -f "$RUNNER_TEMP/base.json"; exit 0; fi
-          openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -in "$RUNNER_TEMP/base.json" -out sauvegarde/base.json.enc -pass env:CLE
-          # contrôle immédiat : la copie chiffrée se relit avec la même clé
-          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in sauvegarde/base.json.enc -pass env:CLE | cmp -s - "$RUNNER_TEMP/base.json" \
+          old=$( (git fetch -q origin sauvegardes 2>/dev/null && git show FETCH_HEAD:empreinte.txt) || true)
+          if [ "$new" = "$old" ]; then echo "::notice::Base inchangée depuis la dernière sauvegarde"; rm -f "$RUNNER_TEMP/base.json"; echo "change=0" >> "$GITHUB_OUTPUT"; exit 0; fi
+          mkdir -p "$RUNNER_TEMP/copie"
+          openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -in "$RUNNER_TEMP/base.json" -out "$RUNNER_TEMP/copie/base.json.enc" -pass env:CLE
+          # contrôle immédiat : la copie chiffrée se relit à l'identique avec la même clé
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in "$RUNNER_TEMP/copie/base.json.enc" -pass env:CLE | cmp -s - "$RUNNER_TEMP/base.json" \
             || { echo "::error::La copie chiffrée ne se relit pas à l'identique"; exit 1; }
-          echo "$new" > sauvegarde/empreinte.txt
+          echo "$new" > "$RUNNER_TEMP/copie/empreinte.txt"
           rm -f "$RUNNER_TEMP/base.json"
+          echo "change=1" >> "$GITHUB_OUTPUT"
+          echo "jour=$(TZ=Europe/Paris date +%F)" >> "$GITHUB_OUTPUT"
+      - name: Garder la copie du jour 30 jours (artefact)
+        if: steps.chiffre.outputs.change == '1'
+        uses: actions/upload-artifact@v5
+        with:
+          name: sauvegarde-${{ steps.chiffre.outputs.jour }}
+          path: ${{ runner.temp }}/copie/base.json.enc
+          retention-days: 30
+          if-no-files-found: error
+          overwrite: true
+      - name: Remplacer la copie la plus récente (branche « sauvegardes », une seule version)
+        if: steps.chiffre.outputs.change == '1'
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add sauvegarde/
-          git commit -qm "Sauvegarde chiffrée de la base [skip ci]"
-          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
+          git switch -q --orphan sauvegardes-nouvelle
+          git rm -rq --cached . 2>/dev/null || true
+          git clean -fdxq
+          cp "$RUNNER_TEMP/copie/base.json.enc" "$RUNNER_TEMP/copie/empreinte.txt" .
+          printf '%s\n' "# Sauvegarde chiffrée de la base Firestore de Guardian Angel" "" \
+            "Copie la plus récente uniquement (cette branche est réécrite à chaque sauvegarde). Chiffrement AES-256-CBC, PBKDF2 200 000 itérations, clé : secret SAUVEGARDE_CLE." \
+            "Copies des 30 derniers jours : artefacts des exécutions « Sauvegarde de la base ». Ne pas fusionner cette branche dans main." > LISEZMOI.md
+          git add base.json.enc empreinte.txt LISEZMOI.md
+          git commit -qm "Sauvegarde chiffrée de la base ($(TZ=Europe/Paris date '+%F %H:%M'))"
+          git push -qf origin HEAD:refs/heads/sauvegardes
+          echo "::notice::Sauvegarde enregistrée (branche sauvegardes + copie du jour gardée 30 jours)"

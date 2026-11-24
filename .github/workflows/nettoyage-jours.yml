@@ -1,0 +1,43 @@
+name: Nettoyage — collection « jours » (ponctuel)
+
+# Supprime la collection Firestore « jours » : lectures du jour importées par la première version de l'application
+# (workflow « Import des lectures », retiré lors de la refonte v2). Aucun code actuel ne l'utilise et elle ne contient
+# aucune donnée personnelle. Elle figure dans la sauvegarde chiffrée du 25/11/2026 (commit c2359d2), restaurable si besoin.
+# Sécurité : refuse d'agir si la collection contient plus de 50 documents (on en attend 8).
+on:
+  push: { branches: [main], paths: [".github/workflows/nettoyage-jours.yml"] }
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency: { group: sauvegarde, cancel-in-progress: false }
+
+jobs:
+  nettoyer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - run: npm install --no-save --no-audit --no-fund firebase-admin@13
+      - name: Supprimer la collection « jours »
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+        run: |
+          node --input-type=module -e '
+          import { initializeApp, cert } from "firebase-admin/app";
+          import { getFirestore } from "firebase-admin/firestore";
+          const sa = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT || "{}");
+          if (!sa.private_key) { console.log("::error::FIREBASE_SERVICE_ACCOUNT manquant"); process.exit(1); }
+          initializeApp({ credential: cert(sa), projectId: process.env.FIREBASE_PROJECT_ID || sa.project_id });
+          const db = getFirestore(), col = db.collection("jours");
+          const refs = await col.listDocuments();
+          console.log(`Documents trouvés dans « jours » : ${refs.length}`);
+          if (refs.length > 50) { console.log("::error::Plus de 50 documents : suppression refusée par sécurité"); process.exit(1); }
+          await db.recursiveDelete(col);
+          const reste = (await col.listDocuments()).length;
+          console.log(`::notice::Collection « jours » : ${refs.length} document(s) supprimé(s), reste ${reste}`);
+          if (reste) process.exit(1);
+          '

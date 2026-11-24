@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with: { python-version: "3.12" }
       - name: Télécharger les OCR des éditions numérisées (Internet Archive)
         run: python3 tools/bible/recup_torres.py public/bible /tmp/ocr/x.json --seulement-telecharger

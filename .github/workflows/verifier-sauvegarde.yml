@@ -1,7 +1,7 @@
 name: Vérifier la sauvegarde
 
 # Test SANS RISQUE de la sauvegarde : rien n'est écrit dans Firestore ni dans le dépôt.
-# 1. Déchiffre sauvegarde/base.json.enc avec le secret SAUVEGARDE_CLE (preuve que la clé est la bonne).
+# 1. Récupère la sauvegarde (la plus récente, ou la copie d'un jour) et la déchiffre avec le secret SAUVEGARDE_CLE (preuve que la clé est la bonne).
 # 2. Vérifie que le contenu est complet et au bon format pour « Restaurer la base ».
 # 3. Prépare chaque document exactement comme la restauration le ferait (types Firestore compris), sans l'envoyer.
 # 4. Compare avec la base actuelle (lecture seule) : identiques, modifiés depuis, ajoutés, disparus.
@@ -13,39 +13,42 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Commit de la sauvegarde à vérifier (laisser vide = la plus récente)"
+        description: "Sauvegarde à vérifier : vide = la plus récente, ou une date AAAA-MM-JJ (30 derniers jours)"
         required: false
         default: ""
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   verifier:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with: { fetch-depth: 0 }
       - name: Déchiffrer la sauvegarde
+        id: recup
         env:
           CLE: ${{ secrets.SAUVEGARDE_CLE }}
           VERSION: ${{ github.event.inputs.version }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           umask 077
           if [ -z "$CLE" ]; then echo "::error::Le secret SAUVEGARDE_CLE manque dans les réglages du dépôt"; exit 1; fi
-          if [ -n "$VERSION" ]; then git show "$VERSION:sauvegarde/base.json.enc" > "$RUNNER_TEMP/base.enc"
-          elif [ -f sauvegarde/base.json.enc ]; then cp sauvegarde/base.json.enc "$RUNNER_TEMP/base.enc"
-          else echo "::error::Aucune sauvegarde dans le dépôt : lancez d'abord « Sauvegarde de la base »"; exit 1; fi
+          bash scripts/recuperer-sauvegarde.sh "$RUNNER_TEMP/base.enc"
           if ! openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in "$RUNNER_TEMP/base.enc" -out "$RUNNER_TEMP/base.json" -pass env:CLE 2>/dev/null; then
             echo "::error::Déchiffrement impossible : la clé SAUVEGARDE_CLE ne correspond pas à celle qui a chiffré cette sauvegarde"; exit 1
           fi
           echo "::notice::Déchiffrement réussi : la clé est la bonne"
           # date de la sauvegarde vérifiée (date du commit) : alerte si elle a plus de 3 jours
-          age=$(( ( $(date +%s) - $(git log -1 --format=%ct -- sauvegarde/base.json.enc) ) / 86400 ))
-          echo "Dernière sauvegarde : il y a $age jour(s)"
-          if [ -z "$VERSION" ] && [ "$age" -gt 3 ]; then echo "::warning::La dernière sauvegarde enregistrée date de $age jours (normal seulement si la base n'a pas changé)"; fi
-      - uses: actions/setup-node@v4
+          if [ -z "$VERSION" ]; then
+            age=$(( ( $(date +%s) - $(git log -1 --format=%ct FETCH_HEAD) ) / 86400 ))
+            echo "Dernière sauvegarde : il y a $age jour(s)"
+            if [ "$age" -gt 3 ]; then echo "::warning::La dernière sauvegarde enregistrée date de $age jours (normal seulement si la base n'a pas changé)"; fi
+          fi
+      - uses: actions/setup-node@v5
         with: { node-version: 22 }
       - run: npm install --no-save --no-audit --no-fund firebase-admin@13
       - name: Contrôler et comparer à la base (lecture seule)
